@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,12 +7,13 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <script>
+        // Configuration Tailwind CSS
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        'bronze': '#C99B4F',
-                        'charcoal': '#1A1A1A',
+                        'bronze': '#C99B4F',      // Accent Bronze/Or
+                        'charcoal': '#1A1A1A',    // Texte/Fond Sombre
                         'pure-white': '#FFFFFF',
                         'light-gray': '#F8F8F8',
                         'medium-gray': '#666666'
@@ -26,10 +27,10 @@
         }
     </script>
     <style>
-        body {
-            box-sizing: border-box;
-        }
+        /* Styles Globaux et Animations */
+        body { box-sizing: border-box; }
         
+        /* Effet de fondu en entrée (Slide-up) */
         .fade-in-up {
             animation: fadeInUp 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
             opacity: 0;
@@ -38,19 +39,11 @@
         
         .fade-in-up.delay-1 { animation-delay: 0.3s; }
         .fade-in-up.delay-2 { animation-delay: 0.6s; }
-        .fade-in-up.delay-3 { animation-delay: 0.9s; }
-        .fade-in-up.delay-4 { animation-delay: 1.2s; }
         
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+        @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
         
-        .elegant-line {
-            position: relative;
-        }
+        /* Ligne de soulignement élégante pour les titres */
+        .elegant-line { position: relative; }
         
         .elegant-line::after {
             content: '';
@@ -63,550 +56,543 @@
             background: linear-gradient(90deg, transparent, #C99B4F, transparent);
         }
         
-        .artistic-border {
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .artistic-border::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(201, 155, 79, 0.03) 0%, transparent 50%, rgba(26, 26, 26, 0.01) 100%);
-            pointer-events: none;
-        }
-        
-        .luxury-shadow {
-            box-shadow: 
-                0 8px 32px rgba(201, 155, 79, 0.08),
-                0 2px 8px rgba(26, 26, 26, 0.04);
-        }
-        
-        .luxury-shadow:hover {
-            box-shadow: 
-                0 16px 48px rgba(201, 155, 79, 0.12),
-                0 4px 16px rgba(26, 26, 26, 0.06);
-        }
-        
-        .floating-element {
-            animation: float 8s ease-in-out infinite;
-            opacity: 0.6;
-        }
-        
-        .floating-element.delay-1 {
-            animation-delay: -2.5s;
-        }
-        
-        .floating-element.delay-2 {
-            animation-delay: -5s;
-        }
-        
-        @keyframes float {
-            0%, 100% { 
-                transform: translateY(0px) rotate(0deg);
-                opacity: 0.4;
-            }
-            50% { 
-                transform: translateY(-20px) rotate(180deg);
-                opacity: 0.8;
-            }
-        }
-        
-        .geometric-accent {
-            position: relative;
-        }
-        
-        .geometric-accent::before {
-            content: '';
-            position: absolute;
-            width: 120px;
-            height: 120px;
-            border: 1px solid rgba(201, 155, 79, 0.08);
-            border-radius: 50%;
-            top: -60px;
-            right: -60px;
-            animation: rotate 25s linear infinite;
-        }
-        
-        .geometric-accent::after {
-            content: '';
-            position: absolute;
-            width: 80px;
-            height: 80px;
-            border: 1px solid rgba(26, 26, 26, 0.04);
-            top: -40px;
-            left: -40px;
-            transform: rotate(45deg);
-            animation: rotate 20s linear infinite reverse;
-        }
-        
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-        
+        /* Fond de la section Héros */
         .hero-bg {
             background: linear-gradient(135deg, 
-                rgba(26, 26, 26, 0.7) 0%, 
+                rgba(26, 26, 26, 0.75) 0%, 
                 rgba(201, 155, 79, 0.1) 50%, 
-                rgba(26, 26, 26, 0.8) 100%),
-                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><pattern id="mosaic" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse"><polygon points="20,20 80,20 80,80 20,80" fill="%23C99B4F" opacity="0.05"/><polygon points="25,25 75,25 75,75 25,75" fill="%231A1A1A" opacity="0.02"/><circle cx="50" cy="50" r="15" fill="%23C99B4F" opacity="0.03"/></pattern></defs><rect width="1000" height="1000" fill="url(%23mosaic)"/></svg>');
+                rgba(26, 26, 26, 0.85) 100%),
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><pattern id="mosaic" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse"><rect width="10" height="10" fill="%23C99B4F" opacity="0.05"/><rect x="10" y="10" width="10" height="10" fill="%231A1A1A" opacity="0.02"/></pattern></defs><rect width="1000" height="1000" fill="url(%23mosaic)"/></svg>');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
         }
         
+        /* Boutons CTA */
         .cta-primary {
             background: linear-gradient(135deg, #C99B4F, #B8894A);
-            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transition: all 0.4s ease;
             position: relative;
             overflow: hidden;
+            border: 1px solid rgba(201, 155, 79, 0.3);
             font-family: 'Montserrat', sans-serif;
             font-weight: 600;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            border: 1px solid rgba(201, 155, 79, 0.3);
         }
         
         .cta-primary:hover {
-            transform: translateY(-4px);
-            box-shadow: 
-                0 12px 32px rgba(201, 155, 79, 0.25),
-                0 4px 12px rgba(26, 26, 26, 0.1);
-            background: linear-gradient(135deg, #1A1A1A, #2A2A2A);
-        }
-        
-        .cta-primary::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            transition: left 0.6s ease;
-        }
-        
-        .cta-primary:hover::before {
-            left: 100%;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(201, 155, 79, 0.2);
+            background: #1A1A1A; /* Inversion de couleur au hover */
+            color: #C99B4F;
         }
         
         .cta-secondary {
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            color: white;
-            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            position: relative;
-            overflow: hidden;
+            border: 2px solid rgba(26, 26, 26, 0.15);
+            color: #1A1A1A;
+            transition: all 0.4s ease;
             font-family: 'Montserrat', sans-serif;
             font-weight: 500;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
         }
         
         .cta-secondary:hover {
-            transform: translateY(-4px);
-            background: rgba(255, 255, 255, 0.1);
-            border-color: rgba(201, 155, 79, 0.6);
+            background: rgba(201, 155, 79, 0.05);
+            border-color: #C99B4F;
             color: #C99B4F;
-            box-shadow: 
-                0 12px 32px rgba(255, 255, 255, 0.1),
-                0 4px 12px rgba(201, 155, 79, 0.1);
+            transform: translateY(-2px);
         }
         
-        .domain-card {
-            transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .domain-card:hover {
-            transform: translateY(-8px) scale(1.02);
-        }
-        
-        .domain-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(201, 155, 79, 0.05) 0%, transparent 50%, rgba(26, 26, 26, 0.02) 100%);
-            opacity: 0;
-            transition: opacity 0.6s ease;
-        }
-        
-        .domain-card:hover::before {
-            opacity: 1;
-        }
-        
-        .quote-decoration {
-            position: relative;
-        }
-        
-        .quote-decoration::before {
-            content: '"';
-            position: absolute;
-            top: -20px;
-            left: -30px;
-            font-size: 120px;
-            color: rgba(201, 155, 79, 0.1);
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 300;
-            line-height: 1;
-        }
-        
-        .quote-decoration::after {
-            content: '"';
-            position: absolute;
-            bottom: -60px;
-            right: -30px;
-            font-size: 120px;
-            color: rgba(201, 155, 79, 0.1);
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 300;
-            line-height: 1;
-        }
-        
-        .nav-link {
-            position: relative;
-            transition: all 0.3s ease;
-        }
-        
-        .nav-link:hover {
-            color: #C99B4F;
-        }
+        /* Style des liens de navigation */
+        .nav-link { position: relative; transition: all 0.3s ease; }
+        .nav-link:hover { color: #C99B4F; }
         
         .nav-link::after {
+            content: ''; position: absolute; bottom: -4px; left: 0;
+            width: 0; height: 1px; background: #C99B4F; transition: width 0.3s ease;
+        }
+        .nav-link:hover::after { width: 100%; }
+
+        /* Effet Masonry (Grille pour le Portfolio) */
+        .masonry-grid {
+            column-count: 3;
+            column-gap: 1.5rem; /* 24px */
+        }
+        .masonry-item {
+            display: inline-block;
+            width: 100%;
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+            position: relative;
+        }
+        .masonry-item img {
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .masonry-item:hover img {
+            transform: scale(1.05); /* Hover zoom */
+        }
+        
+        /* Styles pour la timeline sur la page Sur-Mesure */
+        .timeline-item {
+            position: relative;
+            padding-left: 50px;
+            padding-bottom: 30px;
+            border-left: 1px solid #E5E5E5;
+        }
+
+        .timeline-item::before {
             content: '';
             position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background: #C99B4F;
-            transition: width 0.3s ease;
-        }
-        
-        .nav-link:hover::after {
-            width: 100%;
-        }
-        
-        .social-icon {
+            left: -10px;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            background-color: #C99B4F;
+            border-radius: 50%;
+            border: 4px solid #FFFFFF;
             transition: all 0.3s ease;
         }
-        
-        .social-icon:hover {
-            transform: scale(1.1) rotate(5deg);
-            color: #C99B4F;
+
+        .timeline-item:hover::before {
+            background-color: #1A1A1A;
+            border-color: #C99B4F;
+            transform: scale(1.1);
         }
         
-        .subtle-pattern {
-            background-image: 
-                radial-gradient(circle at 25% 25%, rgba(201, 155, 79, 0.02) 1px, transparent 1px),
-                radial-gradient(circle at 75% 75%, rgba(26, 26, 26, 0.01) 1px, transparent 1px);
-            background-size: 80px 80px;
-            background-position: 0 0, 40px 40px;
+        .timeline-item:last-child {
+            border-left: none;
         }
         
-        .mosaic-icon {
-            transition: all 0.4s ease;
-        }
-        
-        .domain-card:hover .mosaic-icon {
-            transform: scale(1.1) rotate(5deg);
-            filter: brightness(1.2);
+        /* Conteneur de section pour la séparation visuelle */
+        .page-section {
+            padding-top: 100px;
+            padding-bottom: 100px;
         }
     </style>
 </head>
-<body class="bg-pure-white font-body">
+<body class="bg-pure-white font-body text-charcoal">
     <header class="bg-pure-white/98 backdrop-blur-md shadow-sm sticky top-0 z-50 border-b border-charcoal/5">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 <div class="flex-shrink-0">
-                    <h1 class="text-3xl font-title font-bold text-charcoal tracking-wider uppercase">MOSAIA STUDIO</h1>
+                    <a href="#accueil" class="text-3xl font-title font-bold text-charcoal tracking-wider uppercase hover:text-bronze transition-colors">MOSAIA STUDIO</a>
                 </div>
                 <nav class="hidden md:block">
-                    <div class="flex items-center space-x-12">
-                        <a href="#" class="nav-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide transition-colors uppercase">ACCUEIL</a>
-                        <a href="#portfolio" class="nav-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide transition-colors uppercase">PORTFOLIO</a>
-                        <a href="#studio" class="nav-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide transition-colors uppercase">STUDIO</a>
-                        <a href="#portfolio" class="nav-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide transition-colors uppercase">PROCESSUS</a>
-                        <a href="#contact" class="nav-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide transition-colors uppercase">CONTACT</a>
+                    <div class="flex items-center space-x-8 lg:space-x-10">
+                        <a href="#accueil" class="nav-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase">ACCUEIL</a>
+                        <a href="#portfolio-page" class="nav-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase">PORTFOLIO</a>
+                        <a href="#studio-page" class="nav-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase">STUDIO</a>
+                        <a href="#sur-mesure-page" class="nav-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase">SUR-MESURE</a>
+                        <a href="#processus-page" class="nav-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase">PROCESSUS</a>
+                        <a href="#partenaires-page" class="nav-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase">PARTENAIRES</a>
+                        <a href="#contact-page" class="nav-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase">CONTACT</a>
                     </div>
                 </nav>
                 <div class="md:hidden">
                     <button id="mobileMenuBtn" class="text-charcoal hover:text-bronze p-2">
-                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                        </svg>
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>
                     </button>
                 </div>
             </div>
-            
             <div id="mobileMenu" class="md:hidden bg-pure-white border-t border-charcoal/10 hidden">
                 <div class="px-6 py-4 space-y-2">
-                    <a href="#" class="block py-2 text-charcoal font-body font-medium uppercase">ACCUEIL</a>
-                    <a href="#portfolio" class="block py-2 text-charcoal font-body font-medium uppercase">PORTFOLIO</a>
-                    <a href="#studio" class="block py-2 text-charcoal font-body font-medium uppercase">STUDIO</a>
-                    <a href="#portfolio" class="block py-2 text-charcoal font-body font-medium uppercase">PROCESSUS</a>
-                    <a href="#contact" class="block py-2 text-charcoal font-body font-medium uppercase">CONTACT</a>
+                    <a href="#accueil" class="block py-2 text-charcoal font-body font-medium uppercase">ACCUEIL</a>
+                    <a href="#portfolio-page" class="block py-2 text-charcoal font-body font-medium uppercase">PORTFOLIO</a>
+                    <a href="#studio-page" class="block py-2 text-charcoal font-body font-medium uppercase">STUDIO</a>
+                    <a href="#sur-mesure-page" class="block py-2 text-charcoal font-body font-medium uppercase">SUR-MESURE</a>
+                    <a href="#processus-page" class="block py-2 text-charcoal font-body font-medium uppercase">PROCESSUS</a>
+                    <a href="#partenaires-page" class="block py-2 text-charcoal font-body font-medium uppercase">PARTENAIRES</a>
+                    <a href="#contact-page" class="block py-2 text-charcoal font-body font-medium uppercase">CONTACT</a>
                 </div>
             </div>
         </div>
     </header>
 
-    <section class="hero-bg min-h-screen flex items-center justify-center relative geometric-accent overflow-hidden">
-        <div class="absolute top-20 left-20 w-4 h-4 bg-bronze/40 floating-element" style="clip-path: polygon(50% 0%, 0% 100%, 100% 100%)"></div>
-        <div class="absolute top-32 right-24 w-3 h-3 bg-pure-white/30 rounded-full floating-element delay-1"></div>
-        <div class="absolute bottom-24 left-32 w-6 h-6 bg-bronze/30 floating-element delay-2" style="clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%)"></div>
-        <div class="absolute top-48 right-48 w-1 h-20 bg-pure-white/20 floating-element" style="transform-origin: center"></div>
-        
-        <div class="max-w-6xl mx-auto px-6 text-center relative z-10">
-            <div class="w-32 h-px bg-gradient-to-r from-transparent via-bronze to-transparent mx-auto mb-16 fade-in-up"></div>
-            
-            <h2 class="text-4xl md:text-6xl lg:text-7xl font-title font-bold text-pure-white mb-12 tracking-widest uppercase fade-in-up elegant-line leading-tight">
-                L'ART DE LA MOSAÏQUE<br>
-                <span class="text-bronze font-light">QUI ÉVEILLE L'ÉMOTION</span><br>
-                ET DURE
-            </h2>
-            
-            <p class="text-xl md:text-2xl text-pure-white/90 leading-relaxed font-body font-light mb-16 fade-in-up delay-1 max-w-4xl mx-auto tracking-wide">
-                Chaque tesselle raconte une histoire, chaque mosaïque devient éternelle.<br>
-                <span class="text-bronze/90">Découvrez l'artisanat qui transcende le temps.</span>
-            </p>
-            
-            <div class="w-24 h-px bg-gradient-to-r from-transparent via-pure-white/40 to-transparent mx-auto mb-16 fade-in-up delay-2"></div>
-            
-            <div class="flex flex-col sm:flex-row gap-8 justify-center fade-in-up delay-3">
-                <button class="cta-primary px-12 py-5 text-pure-white font-medium tracking-widest uppercase relative z-10">
-                    <span class="relative z-10">EXPLORER LE PORTFOLIO</span>
-                </button>
-                <button class="cta-secondary px-12 py-5 font-medium tracking-widest uppercase relative">
-                    <span class="relative z-10">COMMENCER UN PROJET SUR MESURE</span>
-                </button>
+    <main>
+        <section id="accueil" class="hero-bg min-h-screen flex items-center justify-center relative page-section pt-0 pb-0">
+            <div class="max-w-6xl mx-auto px-6 text-center relative z-10 py-32 lg:py-0">
+                <h2 class="text-5xl md:text-6xl lg:text-7xl font-title font-bold text-pure-white mb-12 tracking-widest uppercase fade-in-up leading-tight elegant-line">
+                    L’ART DE LA MOSAÏQUE<br>
+                    <span class="text-bronze font-light">QUI ÉVEILLE L’ÉMOTION</span><br>
+                    ET PERDURE
+                </h2>
+                <div class="flex flex-col sm:flex-row gap-8 justify-center fade-in-up delay-1">
+                    <a href="#portfolio-page" class="cta-primary px-10 py-4 text-pure-white tracking-widest uppercase">EXPLORER LE PORTFOLIO</a>
+                    <a href="#sur-mesure-page" class="bg-pure-white/10 hover:bg-pure-white/20 border-2 border-pure-white/30 text-pure-white cta-secondary px-10 py-4 tracking-widest uppercase">DÉMARRER UN PROJET SUR MESURE</a>
+                </div>
             </div>
-            
-            <div class="w-20 h-px bg-gradient-to-r from-transparent via-bronze to-transparent mx-auto mt-20 fade-in-up delay-4"></div>
-        </div>
-    </section>
+        </section>
 
-    <section id="studio" class="py-32 lg:py-40 bg-pure-white relative artistic-border subtle-pattern">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="text-center relative">
-                <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-12">
-                    <div class="w-12 h-12 border border-bronze/15 transform rotate-45"></div>
-                </div>
-                
-                <div class="w-24 h-px bg-gradient-to-r from-transparent via-bronze to-transparent mx-auto mb-12 fade-in-up"></div>
-                
-                <h3 class="text-4xl md:text-5xl lg:text-6xl font-title font-bold text-charcoal mb-16 tracking-widest uppercase fade-in-up elegant-line">
-                    MOSAIA STUDIO
-                </h3>
-                
-                <div class="max-w-5xl mx-auto fade-in-up delay-1">
-                    <p class="text-2xl md:text-3xl text-medium-gray leading-relaxed font-body font-light mb-12 tracking-wide">
-                        Né d'une passion profonde pour l'artisanat et l'art, Mosaia Studio fusionne la tradition avec le design moderne, 
-                        <span class="text-bronze font-normal">mêlant la précision artisanale à l'expression artistique.</span>
-                    </p>
-                    
-                    <div class="w-32 h-px bg-gradient-to-r from-transparent via-charcoal/30 to-transparent mx-auto mb-16"></div>
-                    
-                    <p class="text-lg text-medium-gray leading-relaxed font-body font-light max-w-4xl mx-auto tracking-wide">
-                        Chaque création naît de la rencontre entre l'héritage méditerranéen millénaire et une vision contemporaine. 
-                        Dans notre atelier d'Altea, nos maîtres artisans donnent vie à des œuvres uniques qui transforment l'espace en pure émotion.
-                    </p>
-                </div>
-                
-                <div class="w-16 h-px bg-gradient-to-r from-transparent via-bronze to-transparent mx-auto mt-16 fade-in-up delay-2"></div>
-            </div>
-        </div>
-    </section>
-
-    <section id="portfolio" class="py-32 lg:py-40 bg-light-gray relative artistic-border">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-24 relative">
-                <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-8">
-                    <div class="w-8 h-8 border border-bronze/20 transform rotate-45"></div>
-                </div>
-                
-                <div class="w-20 h-px bg-gradient-to-r from-transparent via-bronze to-transparent mx-auto mb-8 fade-in-up"></div>
-                <h3 class="text-4xl md:text-5xl font-title font-bold text-charcoal mb-8 tracking-widest uppercase fade-in-up elegant-line">
-                    NOS DOMAINES CLÉS
-                </h3>
-                <p class="text-sm font-title font-light text-bronze tracking-[0.2em] uppercase mb-12 fade-in-up delay-1">
-                    EXCELLENCE ARTISANALE
+        <section class="page-section bg-pure-white">
+            <div class="max-w-4xl mx-auto px-6 text-center">
+                <div class="w-20 h-px bg-bronze mx-auto mb-10 fade-in-up"></div>
+                <p class="text-xl md:text-2xl text-medium-gray leading-relaxed font-body font-light tracking-wide fade-in-up delay-1">
+                    Né d’une passion profonde pour l’artisanat et l’art, Mosaia Studio fusionne la tradition et le design moderne, 
+                    <span class="text-bronze font-normal">mêlant la précision artisanale à l’expression artistique.</span>
                 </p>
-                <div class="w-16 h-px bg-gradient-to-r from-transparent via-charcoal/30 to-transparent mx-auto fade-in-up delay-2"></div>
             </div>
+        </section>
 
-            <div class="grid md:grid-cols-3 gap-12 lg:gap-16">
-                <div class="domain-card bg-pure-white p-12 luxury-shadow artistic-border relative fade-in-up delay-1">
-                    <div class="absolute top-6 right-6 w-4 h-4 border border-bronze/25 transform rotate-45"></div>
-                    
-                    <div class="text-center">
-                        <div class="w-24 h-24 mx-auto mb-8 flex items-center justify-center">
-                            <svg class="mosaic-icon w-20 h-20 text-bronze/70" fill="currentColor" viewBox="0 0 100 100">
-                                <ellipse cx="50" cy="50" rx="40" ry="25" opacity="0.3"/>
-                                <ellipse cx="50" cy="50" rx="30" ry="18" opacity="0.5"/>
-                                <ellipse cx="50" cy="50" rx="20" ry="12" opacity="0.7"/>
-                                <ellipse cx="50" cy="50" rx="10" ry="6" opacity="0.9"/>
-                                <circle cx="35" cy="45" r="2" opacity="0.8"/>
-                                <circle cx="45" cy="40" r="1.5" opacity="0.9"/>
-                                <circle cx="55" cy="45" r="2" opacity="0.8"/>
-                                <circle cx="65" cy="50" r="1.5" opacity="0.9"/>
-                                <circle cx="40" cy="55" r="1.5" opacity="0.8"/>
-                                <circle cx="60" cy="55" r="2" opacity="0.9"/>
-                            </svg>
-                        </div>
-                        
-                        <div class="w-12 h-px bg-bronze mb-6 mx-auto"></div>
-                        
-                        <h4 class="text-2xl font-title font-bold text-charcoal mb-6 tracking-[0.1em] uppercase">
-                            PISCINES
-                        </h4>
-                        
-                        <p class="text-medium-gray font-body font-light leading-relaxed text-lg tracking-wide mb-8">
-                            Transformez votre piscine en une œuvre d'art aquatique. 
-                            <span class="text-bronze">Des mosaïques durables et sophistiquées pour traverser le temps.</span>
-                        </p>
-                        
-                        <div class="w-8 h-px bg-gradient-to-r from-transparent via-bronze to-transparent mx-auto"></div>
+        <section class="page-section bg-light-gray">
+            <div class="max-w-7xl mx-auto px-6 text-center">
+                <h3 class="text-3xl font-title font-bold text-charcoal mb-16 tracking-widest uppercase fade-in-up elegant-line">NOS DOMAINES CLÉS</h3>
+                <div class="grid md:grid-cols-3 gap-12 lg:gap-16">
+                    <div class="fade-in-up delay-1 bg-pure-white p-8 shadow-lg hover:shadow-xl transition-all duration-300">
+                        <div class="text-4xl text-bronze mb-4">🏊</div>
+                        <h4 class="text-xl font-title font-bold uppercase mb-4">PISCINES</h4>
+                        <p class="text-medium-gray">Transformez votre piscine en une œuvre d'art aquatique durable et sophistiquée.</p>
                     </div>
-                </div>
-
-                <div class="domain-card bg-pure-white p-12 luxury-shadow artistic-border relative fade-in-up delay-2">
-                    <div class="absolute top-6 right-6 w-4 h-4 border border-bronze/25 transform rotate-45"></div>
-                    
-                    <div class="text-center">
-                        <div class="w-24 h-24 mx-auto mb-8 flex items-center justify-center">
-                            <svg class="mosaic-icon w-20 h-20 text-bronze/70" fill="currentColor" viewBox="0 0 100 100">
-                                <rect x="10" y="20" width="80" height="60" opacity="0.3"/>
-                                <rect x="15" y="25" width="70" height="50" opacity="0.5"/>
-                                <rect x="20" y="30" width="60" height="40" opacity="0.4"/>
-                                <rect x="25" y="35" width="8" height="8" opacity="0.8"/>
-                                <rect x="35" y="35" width="6" height="6" opacity="0.9"/>
-                                <rect x="43" y="35" width="8" height="8" opacity="0.7"/>
-                                <rect x="53" y="35" width="6" height="6" opacity="0.8"/>
-                                <rect x="61" y="35" width="8" height="8" opacity="0.9"/>
-                                <rect x="25" y="45" width="6" height="6" opacity="0.9"/>
-                                <rect x="33" y="45" width="8" height="8" opacity="0.8"/>
-                                <rect x="43" y="45" width="6" height="6" opacity="0.7"/>
-                                <rect x="51" y="45" width="8" height="8" opacity="0.9"/>
-                                <rect x="61" y="45" width="6" height="6" opacity="0.8"/>
-                                <rect x="25" y="55" width="8" height="8" opacity="0.8"/>
-                                <rect x="35" y="55" width="6" height="6" opacity="0.9"/>
-                                <rect x="43" y="55" width="8" height="8" opacity="0.7"/>
-                                <rect x="53" y="55" width="6" height="6" opacity="0.8"/>
-                                <rect x="61" y="55" width="8" height="8" opacity="0.9"/>
-                            </svg>
-                        </div>
-                        
-                        <div class="w-12 h-px bg-bronze mb-6 mx-auto"></div>
-                        
-                        <h4 class="text-2xl font-title font-bold text-charcoal mb-6 tracking-[0.1em] uppercase">
-                            MURS & FAÇADES
-                        </h4>
-                        
-                        <p class="text-medium-gray font-body font-light leading-relaxed text-lg tracking-wide mb-8">
-                            Un revêtement architectural d'exception pour intérieurs et extérieurs. 
-                            <span class="text-bronze">Des créations sur mesure qui redéfinissent l'espace.</span>
-                        </p>
-                        
-                        <div class="w-8 h-px bg-gradient-to-r from-transparent via-bronze to-transparent mx-auto"></div>
+                    <div class="fade-in-up delay-2 bg-pure-white p-8 shadow-lg hover:shadow-xl transition-all duration-300">
+                        <div class="text-4xl text-bronze mb-4">🧱</div>
+                        <h4 class="text-xl font-title font-bold uppercase mb-4">MURS & FAÇADES</h4>
+                        <p class="text-medium-gray">Revêtements architecturaux d'exception pour intérieurs et extérieurs, redéfinissant l'espace.</p>
                     </div>
-                </div>
-
-                <div class="domain-card bg-pure-white p-12 luxury-shadow artistic-border relative fade-in-up delay-3">
-                    <div class="absolute top-6 right-6 w-4 h-4 border border-bronze/25 transform rotate-45"></div>
-                    
-                    <div class="text-center">
-                        <div class="w-24 h-24 mx-auto mb-8 flex items-center justify-center">
-                            <svg class="mosaic-icon w-20 h-20 text-bronze/70" fill="currentColor" viewBox="0 0 100 100">
-                                <polygon points="50,15 70,35 50,55 30,35" opacity="0.4"/>
-                                <polygon points="50,25 60,35 50,45 40,35" opacity="0.6"/>
-                                <circle cx="50" cy="35" r="8" opacity="0.3"/>
-                                <circle cx="35" cy="25" r="3" opacity="0.8"/>
-                                <circle cx="45" cy="20" r="2" opacity="0.9"/>
-                                <circle cx="55" cy="20" r="3" opacity="0.7"/>
-                                <circle cx="65" cy="25" r="2" opacity="0.8"/>
-                                <circle cx="30" cy="35" r="2" opacity="0.9"/>
-                                <circle cx="70" cy="35" r="3" opacity="0.8"/>
-                                <circle cx="35" cy="45" r="3" opacity="0.7"/>
-                                <circle cx="45" cy="50" r="2" opacity="0.9"/>
-                                <circle cx="55" cy="50" r="3" opacity="0.8"/>
-                                <circle cx="65" cy="45" r="2" opacity="0.9"/>
-                                <path d="M20 70 Q30 65 40 70 Q50 75 60 70 Q70 65 80 70" stroke="currentColor" fill="none" opacity="0.5" stroke-width="1"/>
-                                <circle cx="25" cy="75" r="1.5" opacity="0.8"/>
-                                <circle cx="50" cy="80" r="2" opacity="0.9"/>
-                                <circle cx="75" cy="75" r="1.5" opacity="0.8"/>
-                            </svg>
-                        </div>
-                        
-                        <div class="w-12 h-px bg-bronze mb-6 mx-auto"></div>
-                        
-                        <h4 class="text-2xl font-title font-bold text-charcoal mb-6 tracking-[0.1em] uppercase">
-                            ŒUVRES D'ART
-                        </h4>
-                        
-                        <p class="text-medium-gray font-body font-light leading-relaxed text-lg tracking-wide mb-8">
-                            Œuvres d'art uniques et installations artistiques personnalisées. 
-                            <span class="text-bronze">L'expression pure de votre vision créative.</span>
-                        </p>
-                        
-                        <div class="w-8 h-px bg-gradient-to-r from-transparent via-bronze to-transparent mx-auto"></div>
+                    <div class="fade-in-up delay-3 bg-pure-white p-8 shadow-lg hover:shadow-xl transition-all duration-300">
+                        <div class="text-4xl text-bronze mb-4">🖼️</div>
+                        <h4 class="text-xl font-title font-bold uppercase mb-4">ARTWORKS</h4>
+                        <p class="text-medium-gray">Œuvres d'art uniques et installations personnalisées. L'expression pure de votre vision créative.</p>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="py-32 lg:py-40 bg-charcoal relative geometric-accent overflow-hidden">
-        <div class="absolute top-16 left-16 w-5 h-5 bg-bronze/30 floating-element" style="clip-path: polygon(50% 0%, 0% 100%, 100% 100%)"></div>
-        <div class="absolute top-28 right-20 w-4 h-4 bg-pure-white/20 rounded-full floating-element delay-1"></div>
-        <div class="absolute bottom-20 left-28 w-6 h-6 bg-bronze/25 floating-element delay-2" style="clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%)"></div>
-        <div class="absolute top-40 right-40 w-2 h-24 bg-pure-white/15 floating-element" style="transform-origin: center"></div>
-        
-        <div class="max-w-5xl mx-auto px-6 text-center relative z-10">
-            <div class="w-32 h-px bg-gradient-to-r from-transparent via-bronze to-transparent mx-auto mb-16 fade-in-up"></div>
-            
-            <div class="quote-decoration relative fade-in-up delay-1">
-                <h3 class="text-4xl md:text-5xl lg:text-6xl font-title font-light text-pure-white leading-relaxed tracking-wide italic">
-                    La mosaïque n'est pas une décoration,<br>
-                    <span class="text-bronze font-normal">c'est une narration.</span>
+        <section class="min-h-[400px] bg-charcoal flex items-center justify-center bg-fixed bg-center bg-cover" style="background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><rect width="100%" height="100%" fill="%231A1A1A"/><circle cx="500" cy="500" r="400" fill="%23C99B4F" opacity="0.05"/></svg>');">
+            <div class="max-w-4xl mx-auto px-6 text-center">
+                <h3 class="text-4xl md:text-5xl font-title font-light text-pure-white leading-relaxed tracking-wide italic fade-in-up">
+                    <span class="text-bronze font-normal">« La mosaïque n’est pas une décoration,</span><br>
+                    c’est une narration. »
                 </h3>
             </div>
-            
-            <div class="w-24 h-px bg-gradient-to-r from-transparent via-bronze to-transparent mx-auto mt-16 fade-in-up delay-2"></div>
-            
-            <p class="text-lg text-pure-white/70 font-body font-light mt-12 tracking-widest uppercase fade-in-up delay-3">
-                MOSAIA STUDIO — L'ART QUI RACONTE DES HISTOIRES
-            </p>
-            
-            <div class="w-16 h-px bg-gradient-to-r from-transparent via-pure-white/30 to-transparent mx-auto mt-12 fade-in-up delay-4"></div>
-        </div>
-    </section>
+        </section>
 
-    <footer id="contact" class="bg-charcoal text-pure-white py-20 border-t border-bronze/10">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="flex flex-col lg:flex-row justify-between items-center space-y-8 lg:space-y-0">
-                <div class="text-center lg:text-left">
-                    <p class="text-sm opacity-80 font-body font-light tracking-wide uppercase">© MOSAIA STUDIO — PAR AMARU BRANDS</p>
+        <section id="portfolio-page" class="page-section bg-pure-white">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="text-center mb-20">
+                    <h2 class="text-4xl md:text-5xl font-title font-bold text-charcoal mb-8 tracking-widest uppercase fade-in-up elegant-line">
+                        NOS RÉALISATIONS
+                    </h2>
+                    <p class="text-xl text-medium-gray leading-relaxed font-body font-light fade-in-up delay-1">
+                        Chaque projet est une œuvre unique, conçue pour dialoguer avec la lumière, l’espace et la matière.
+                    </p>
+                </div>
+
+                <div class="flex justify-center space-x-6 mb-16 font-title font-medium uppercase text-sm tracking-widest fade-in-up delay-2">
+                    <button class="filter-btn text-bronze border-b-2 border-bronze pb-2 hover:text-charcoal hover:border-charcoal transition-all">Residential</button>
+                    <button class="filter-btn text-charcoal border-b-2 border-transparent pb-2 hover:border-bronze transition-all">Commercial</button>
+                    <button class="filter-btn text-charcoal border-b-2 border-transparent pb-2 hover:border-bronze transition-all">Civil & Public</button>
+                </div>
+
+                <div class="mb-16 max-w-4xl mx-auto text-center text-sm text-medium-gray fade-in-up delay-3">
+                    <h4 class="font-title font-bold uppercase text-charcoal mb-3">Residential :</h4>
+                    <p>Piscines (extérieures/intérieures), Installations artistiques, Sols de salles de bains, Revêtements de cheminées, Murs décoratifs.</p>
+                </div>
+
+                <div class="masonry-grid fade-in-up delay-4">
+                    <div class="masonry-item"><div class="bg-gray-200 h-96 w-full shadow-lg hover:shadow-xl transition-shadow" style="background-image: url('placeholder-1.jpg'); background-size: cover;"></div></div>
+                    <div class="masonry-item"><div class="bg-gray-200 h-64 w-full shadow-lg hover:shadow-xl transition-shadow" style="background-image: url('placeholder-2.jpg'); background-size: cover;"></div></div>
+                    <div class="masonry-item"><div class="bg-gray-200 h-80 w-full shadow-lg hover:shadow-xl transition-shadow" style="background-image: url('placeholder-3.jpg'); background-size: cover;"></div></div>
+                    <div class="masonry-item"><div class="bg-gray-200 h-72 w-full shadow-lg hover:shadow-xl transition-shadow" style="background-image: url('placeholder-4.jpg'); background-size: cover;"></div></div>
+                    <div class="masonry-item"><div class="bg-gray-200 h-100 w-full shadow-lg hover:shadow-xl transition-shadow" style="background-image: url('placeholder-5.jpg'); background-size: cover;"></div></div>
+                    <div class="masonry-item"><div class="bg-gray-200 h-60 w-full shadow-lg hover:shadow-xl transition-shadow" style="background-image: url('placeholder-6.jpg'); background-size: cover;"></div></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="studio-page" class="page-section bg-light-gray">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="text-center mb-20">
+                    <h2 class="text-4xl md:text-5xl font-title font-bold text-charcoal mb-8 tracking-widest uppercase fade-in-up elegant-line">
+                        MOSAIA STUDIO
+                    </h2>
+                    <p class="text-xl text-medium-gray leading-relaxed font-body font-light fade-in-up delay-1 max-w-3xl mx-auto">
+                        Fondé à Altea Pueblo, Mosaia Studio est né de la rencontre entre la tradition méditerranéenne et le design contemporain.
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-16 items-start mb-20">
+                    <div class="fade-in-up delay-2 p-8 bg-pure-white shadow-lg">
+                        <h3 class="text-2xl font-title font-bold uppercase mb-4 text-bronze">NOTRE VISION</h3>
+                        <div class="w-12 h-px bg-charcoal mb-6"></div>
+                        <p class="text-lg text-medium-gray leading-relaxed">
+                            Nous croyons en un art durable, précis, et émotionnel — ravivant le lien entre la main et la matière. Notre mission est de créer des œuvres qui transcendent la simple décoration.
+                        </p>
+                    </div>
+
+                    <div class="fade-in-up delay-3">
+                        <div class="w-full h-64 bg-gray-300 mb-6" style="background-image: url('placeholder-artisan.jpg'); background-size: cover; background-position: center;">
+                            </div>
+                        <h3 class="text-2xl font-title font-bold uppercase mb-4 text-charcoal">ART & TECHNOLOGIE</h3>
+                        <p class="text-lg text-medium-gray leading-relaxed">
+                            Dans notre atelier, les gestes anciens rencontrent la précision robotisée : la technologie amplifie la main de l’artisan. Chaque tesselle est placée avec une double exigence : passion et exactitude.
+                        </p>
+                    </div>
                 </div>
                 
-                <div class="flex space-x-8">
-                    <a href="#" class="social-icon hover:text-bronze transition-colors duration-300 transform hover:scale-110" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-                        <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                        </svg>
+                <div class="text-center pt-10">
+                    <div class="w-16 h-px bg-bronze mx-auto mb-10 fade-in-up delay-4"></div>
+                    <p class="text-3xl font-title font-light italic text-charcoal/70 fade-in-up delay-4">
+                        Every tile tells a story.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="sur-mesure-page" class="page-section bg-pure-white">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="text-center mb-20">
+                    <h2 class="text-4xl md:text-5xl font-title font-bold text-charcoal mb-8 tracking-widest uppercase fade-in-up elegant-line">
+                        VOTRE VISION, NOTRE ART
+                    </h2>
+                    <p class="text-xl text-medium-gray leading-relaxed font-body font-light fade-in-up delay-1 max-w-4xl mx-auto">
+                        Chaque mosaïque Mosaia Studio commence par une idée, une émotion, une vision. Nous traduisons votre inspiration en une œuvre d'art éternelle.
+                    </p>
+                </div>
+
+                <h3 class="text-3xl font-title font-bold uppercase mb-12 text-center text-charcoal fade-in-up delay-2">Notre Processus de Création</h3>
+                <div class="grid md:grid-cols-5 gap-8 max-w-6xl mx-auto">
+                    <div class="timeline-item p-4 hover:bg-light-gray transition-colors fade-in-up delay-3">
+                        <h4 class="font-title font-bold uppercase text-bronze mb-2">1. Concept & Inspiration</h4>
+                        <p class="text-sm text-medium-gray">Échanges initiaux pour capturer votre idée et l'environnement du projet.</p>
+                    </div>
+                    <div class="timeline-item p-4 hover:bg-light-gray transition-colors fade-in-up delay-4">
+                        <h4 class="font-title font-bold uppercase text-bronze mb-2">2. Digital Design</h4>
+                        <p class="text-sm text-medium-gray">Modélisation et rendu 3D de la mosaïque dans son contexte architectural.</p>
+                    </div>
+                    <div class="timeline-item p-4 hover:bg-light-gray transition-colors fade-in-up delay-5">
+                        <h4 class="font-title font-bold uppercase text-bronze mb-2">3. Material Selection</h4>
+                        <p class="text-sm text-medium-gray">Sélection des tesselles (verre, pierre, métal) et vérification des textures.</p>
+                    </div>
+                    <div class="timeline-item p-4 hover:bg-light-gray transition-colors fade-in-up delay-6">
+                        <h4 class="font-title font-bold uppercase text-bronze mb-2">4. Color Mapping</h4>
+                        <p class="text-sm text-medium-gray">Cartographie précise des couleurs pour assurer la fidélité de l'œuvre finale.</p>
+                    </div>
+                    <div class="timeline-item p-4 hover:bg-light-gray transition-colors fade-in-up delay-7">
+                        <h4 class="font-title font-bold uppercase text-bronze mb-2">5. Approval & Production</h4>
+                        <p class="text-sm text-medium-gray">Validation finale par le client avant le lancement de la production robotisée.</p>
+                    </div>
+                </div>
+
+                <h3 class="text-3xl font-title font-bold uppercase mb-12 text-center text-charcoal mt-20 fade-in-up">Avantages du Sur-Mesure</h3>
+                <div class="grid md:grid-cols-4 gap-10 text-center max-w-6xl mx-auto">
+                    <div class="fade-in-up delay-3">
+                        <div class="text-5xl text-charcoal advantage-icon mb-4">🖥️</div>
+                        <h4 class="font-title font-bold uppercase mb-2">Visual Previews</h4>
+                        <p class="text-sm text-medium-gray">Visualisez le résultat avant la production grâce à nos rendus photoréalistes.</p>
+                    </div>
+                    <div class="fade-in-up delay-4">
+                        <div class="text-5xl text-charcoal advantage-icon mb-4">📐</div>
+                        <h4 class="font-title font-bold uppercase mb-2">Precision Mapping</h4>
+                        <p class="text-sm text-medium-gray">Une précision au millimètre garantie par notre technologie de cartographie.</p>
+                    </div>
+                    <div class="fade-in-up delay-5">
+                        <div class="text-5xl text-charcoal advantage-icon mb-4">🎨</div>
+                        <h4 class="font-title font-bold uppercase mb-2">Full Customization</h4>
+                        <p class="text-sm text-medium-gray">Liberté totale sur les couleurs, la taille et les matériaux de chaque tesselle.</p>
+                    </div>
+                    <div class="fade-in-up delay-6">
+                        <div class="text-5xl text-charcoal advantage-icon mb-4">🤝</div>
+                        <h4 class="font-title font-bold uppercase mb-2">Collaboration</h4>
+                        <p class="text-sm text-medium-gray">Travail en étroite collaboration avec architectes et designers pour l'intégration.</p>
+                    </div>
+                </div>
+
+                <div class="text-center pt-20">
+                    <p class="text-xl text-medium-gray leading-relaxed font-body font-light max-w-4xl mx-auto fade-in-up delay-7">
+                        Nos experts accompagnent chaque client à chaque étape, garantissant beauté, durabilité et émotion.
+                    </p>
+                    <a href="#contact-page" class="cta-primary mt-10 inline-block px-8 py-3 text-pure-white tracking-widest uppercase fade-in-up delay-8">DEMANDER UN DEVIS</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="processus-page" class="page-section bg-light-gray">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="text-center mb-20">
+                    <h2 class="text-4xl md:text-5xl font-title font-bold text-charcoal mb-8 tracking-widest uppercase fade-in-up elegant-line">
+                        PRÉCISION ET PASSION
+                    </h2>
+                    <p class="text-xl text-medium-gray leading-relaxed font-body font-light fade-in-up delay-1 max-w-4xl mx-auto">
+                        Le robot Mosaia, cœur de notre production, incarne la précision et la passion du détail, permettant une exécution parfaite.
+                    </p>
+                </div>
+
+                <h3 class="text-3xl font-title font-bold uppercase mb-12 text-center text-charcoal fade-in-up delay-2">Les 6 Étapes de Production</h3>
+                <div class="grid md:grid-cols-6 gap-6 text-center max-w-6xl mx-auto">
+                    <div class="fade-in-up delay-3">
+                        <div class="text-4xl text-bronze mb-3">📤</div>
+                        <h4 class="font-title font-bold uppercase text-charcoal text-sm">Design Upload</h4>
+                    </div>
+                    <div class="fade-in-up delay-4">
+                        <div class="text-4xl text-bronze mb-3">🌈</div>
+                        <h4 class="font-title font-bold uppercase text-charcoal text-sm">Color Sorting</h4>
+                    </div>
+                    <div class="fade-in-up delay-5">
+                        <div class="text-4xl text-bronze mb-3">🤖</div>
+                        <h4 class="font-title font-bold uppercase text-charcoal text-sm">Automated Placement</h4>
+                    </div>
+                    <div class="fade-in-up delay-6">
+                        <div class="text-4xl text-bronze mb-3">🔎</div>
+                        <h4 class="font-title font-bold uppercase text-charcoal text-sm">Quality Control</h4>
+                    </div>
+                    <div class="fade-in-up delay-7">
+                        <div class="text-4xl text-bronze mb-3">🔗</div>
+                        <h4 class="font-title font-bold uppercase text-charcoal text-sm">Mesh Mounting</h4>
+                    </div>
+                    <div class="fade-in-up delay-8">
+                        <div class="text-4xl text-bronze mb-3">📦</div>
+                        <h4 class="font-title font-bold uppercase text-charcoal text-sm">Shipment</h4>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-12 mt-20 text-center max-w-5xl mx-auto">
+                    <div class="fade-in-up delay-3 p-6 bg-pure-white shadow-md">
+                        <div class="text-5xl text-bronze mb-4">⚡</div>
+                        <h4 class="text-xl font-title font-bold uppercase mb-2">Speed</h4>
+                        <p class="text-sm text-medium-gray">Production rapide sans compromis sur la qualité, respectant les délais serrés.</p>
+                    </div>
+                    <div class="fade-in-up delay-4 p-6 bg-pure-white shadow-md">
+                        <div class="text-5xl text-bronze mb-4">🎯</div>
+                        <h4 class="text-xl font-title font-bold uppercase mb-2">Accuracy</h4>
+                        <p class="text-sm text-medium-gray">Positionnement des tesselles au micron près, pour des compositions parfaites.</p>
+                    </div>
+                    <div class="fade-in-up delay-5 p-6 bg-pure-white shadow-md">
+                        <div class="text-5xl text-bronze mb-4">🔄</div>
+                        <h4 class="text-xl font-title font-bold uppercase mb-2">Consistency</h4>
+                        <p class="text-sm text-medium-gray">Uniformité de la qualité sur les grands projets et les reproductions complexes.</p>
+                    </div>
+                </div>
+                
+                <p class="text-center text-sm font-title font-bold uppercase text-bronze mt-8 fade-in-up delay-6">HUMAN FINAL INSPECTION. L'œil de l'artisan veille à la perfection finale.</p>
+
+                <div class="text-center pt-20">
+                    <p class="text-2xl font-title font-light italic text-charcoal/70 fade-in-up delay-7">
+                        Chez Mosaia, la technologie sublime l’artisanat, elle ne le remplace jamais.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="partenaires-page" class="page-section bg-pure-white">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="text-center mb-20">
+                    <h2 class="text-4xl md:text-5xl font-title font-bold text-charcoal mb-8 tracking-widest uppercase fade-in-up elegant-line">
+                        CRÉONS ENSEMBLE
+                    </h2>
+                    <p class="text-xl text-medium-gray leading-relaxed font-body font-light fade-in-up delay-1 max-w-4xl mx-auto">
+                        Architectes, designers, builders — rejoignez notre réseau et créons ensemble des œuvres qui traversent le temps et inspirent.
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-12 mt-16 text-center max-w-6xl mx-auto mb-20">
+                    <div class="fade-in-up delay-2">
+                        <div class="text-5xl text-bronze mb-4">💡</div>
+                        <h4 class="text-xl font-title font-bold uppercase mb-2">Collaboration Créative</h4>
+                        <p class="text-medium-gray">Un accès direct à nos maîtres artisans pour transformer vos concepts en réalité mosaïque.</p>
+                    </div>
+                    <div class="fade-in-up delay-3">
+                        <div class="text-5xl text-bronze mb-4">💎</div>
+                        <h4 class="text-xl font-title font-bold uppercase mb-2">Accès Privilégié</h4>
+                        <p class="text-medium-gray">Catalogue de matériaux exclusifs, échantillons prioritaires et tarifs préférentiels.</p>
+                    </div>
+                    <div class="fade-in-up delay-4">
+                        <div class="text-5xl text-bronze mb-4">☎️</div>
+                        <h4 class="text-xl font-title font-bold uppercase mb-2">Support Complet</h4>
+                        <p class="text-medium-gray">Support technique, marketing (images/vidéos) et logistique sur tous vos projets.</p>
+                    </div>
+                </div>
+
+                <div class="max-w-2xl mx-auto p-10 bg-light-gray shadow-2xl fade-in-up delay-5">
+                    <h3 class="text-3xl font-title font-bold uppercase mb-8 text-center text-charcoal">Candidature Partenaire</h3>
+                    <form>
+                        <div class="mb-4">
+                            <input type="text" placeholder="Nom Société" class="w-full p-3 border border-gray-300 focus:border-bronze focus:ring-bronze transition duration-300" required>
+                        </div>
+                        <div class="mb-4">
+                            <input type="text" placeholder="Contact" class="w-full p-3 border border-gray-300 focus:border-bronze focus:ring-bronze transition duration-300" required>
+                        </div>
+                        <div class="mb-4">
+                            <input type="email" placeholder="Email" class="w-full p-3 border border-gray-300 focus:border-bronze focus:ring-bronze transition duration-300" required>
+                        </div>
+                        <div class="mb-4">
+                            <input type="text" placeholder="Rôle / Profession" class="w-full p-3 border border-gray-300 focus:border-bronze focus:ring-bronze transition duration-300" required>
+                        </div>
+                        <div class="mb-6">
+                            <textarea placeholder="Message (Décrivez votre activité et vos besoins)" rows="4" class="w-full p-3 border border-gray-300 focus:border-bronze focus:ring-bronze transition duration-300"></textarea>
+                        </div>
+                        <button type="submit" class="cta-primary w-full px-8 py-3 text-pure-white tracking-widest uppercase">REJOINDRE LE RÉSEAU</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact-page" class="page-section min-h-screen flex items-center bg-cover" 
+            style="background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="softmosaic" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse"><rect width="5" height="5" fill="%23F8F8F8" opacity="1"/><rect x="5" y="5" width="5" height="5" fill="%23FFFFFF" opacity="1"/><rect width="10" height="10" fill="transparent" stroke="%23C99B4F" stroke-width="0.1" opacity="0.1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23softmosaic)"/></svg>');">
+            <div class="max-w-7xl mx-auto px-6 w-full">
+                <div class="grid lg:grid-cols-2 gap-12 items-start">
+                    <div class="bg-pure-white p-12 lg:p-16 shadow-2xl fade-in-up">
+                        <div class="mb-8">
+                            <h2 class="text-4xl font-title font-bold text-charcoal mb-4 tracking-widest uppercase elegant-line">
+                                DEMANDER UN DEVIS
+                            </h2>
+                            <p class="text-lg text-medium-gray leading-relaxed font-body font-light">
+                                Chaque mosaïque commence par une conversation. Remplissez le formulaire ci-dessous pour démarrer votre projet.
+                            </p>
+                        </div>
+                        <form>
+                            <div class="mb-4">
+                                <input type="text" placeholder="Nom complet" class="w-full p-3 border border-gray-300 focus:border-bronze focus:ring-bronze transition duration-300" required>
+                            </div>
+                            <div class="mb-4">
+                                <input type="email" placeholder="Email" class="w-full p-3 border border-gray-300 focus:border-bronze focus:ring-bronze transition duration-300" required>
+                            </div>
+                            <div class="mb-4">
+                                <select class="w-full p-3 border border-gray-300 bg-pure-white focus:border-bronze focus:ring-bronze transition duration-300" required>
+                                    <option value="" disabled selected>Type de projet (Liste déroulante)</option>
+                                    <option value="residentiel">Résidentiel</option>
+                                    <option value="commercial">Commercial</option>
+                                    <option value="public">Public (Civil & Public)</option>
+                                    <option value="artwork">Œuvre d'Art</option>
+                                </select>
+                            </div>
+                            <div class="mb-6">
+                                <textarea placeholder="Message (Décrivez votre projet)" rows="6" class="w-full p-3 border border-gray-300 focus:border-bronze focus:ring-bronze transition duration-300"></textarea>
+                            </div>
+                            <button type="submit" class="cta-primary w-full px-8 py-4 text-pure-white tracking-widest uppercase">ENVOYER MA DEMANDE</button>
+                        </form>
+                    </div>
+
+                    <div class="mt-12 lg:mt-0 lg:p-10 fade-in-up delay-1">
+                        <h3 class="text-2xl font-title font-bold uppercase mb-6 text-charcoal">Coordonnées</h3>
+                        <div class="space-y-4 text-lg text-medium-gray">
+                            <p><strong>Mosaia Studio</strong> – par Amaru Brands</p>
+                            <p>Email: <a href="mailto:contact@mosaia.studio" class="text-bronze hover:underline">contact@mosaia.studio</a></p>
+                            <p>Localisation: Altea Pueblo, Espagne (Atelier & Design)</p>
+                        </div>
+                        <div class="flex space-x-6 mt-8">
+                            <a href="#" class="text-charcoal hover:text-bronze transition-colors duration-300" aria-label="Instagram">
+                                <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM12 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                            </a>
+                            <a href="#" class="text-charcoal hover:text-bronze transition-colors duration-300" aria-label="Pinterest">
+                                <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.374 0 0 5.374 0 12s5.374 12 12 12c.343 0 .682-.015 1.017-.043-.096-.996-.264-2.317-.264-3.245 0-1.264.476-2.129 1.017-2.129.476 0 .714.357.714.833 0 .508-.321 1.269-.321 1.968 0 .833.714 1.508 1.548 1.508 1.468 0 2.456-1.548 2.456-3.611 0-1.889-1.349-3.301-3.301-3.301-2.317 0-3.683 1.746-3.683 3.571 0 .714.274 1.484.619 1.905.095.119.107.222.079.341-.021.095-.071.278-.095.357-.032.119-.127.151-.238.095-.833-.389-1.357-1.603-1.357-2.587 0-2.095 1.524-4.016 4.397-4.016 2.309 0 4.103 1.643 4.103 3.841 0 2.293-1.444 4.135-3.452 4.135-.675 0-1.31-.349-1.524-.778 0 0-.333 1.27-.405 1.579-.147.563-.544 1.27-.81 1.698C10.85 23.846 11.417 24 12 24c6.626 0 12-5.374 12-12S18.626 0 12 0z"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-charcoal text-pure-white py-12 border-t border-bronze/10">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col lg:flex-row justify-between items-center space-y-4 lg:space-y-0">
+                <div class="text-center lg:text-left">
+                    <p class="text-sm opacity-80 font-body font-light tracking-wide uppercase">© MOSAIA STUDIO – PAR AMARU BRANDS</p>
+                </div>
+                
+                <div class="flex space-x-6">
+                    <a href="#" class="text-pure-white/80 hover:text-bronze transition-colors duration-300 transform hover:scale-110" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM12 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
                     </a>
-                    <a href="#" class="social-icon hover:text-bronze transition-colors duration-300 transform hover:scale-110" target="_blank" rel="noopener noreferrer" aria-label="Pinterest">
-                        <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 0C5.374 0 0 5.374 0 12s5.374 12 12 12c.343 0 .682-.015 1.017-.043-.096-.996-.264-2.317-.264-3.245 0-1.264.476-2.129 1.017-2.129.476 0 .714.357.714.833 0 .508-.321 1.269-.321 1.968 0 .833.714 1.508 1.548 1.508 1.468 0 2.456-1.548 2.456-3.611 0-1.889-1.349-3.301-3.301-3.301-2.317 0-3.683 1.746-3.683 3.571 0 .714.274 1.484.619 1.905.095.119.107.222.079.341-.021.095-.071.278-.095.357-.032.119-.127.151-.238.095-.833-.389-1.357-1.603-1.357-2.587 0-2.095 1.524-4.016 4.397-4.016 2.309 0 4.103 1.643 4.103 3.841 0 2.293-1.444 4.135-3.452 4.135-.675 0-1.31-.349-1.524-.778 0 0-.333 1.27-.405 1.579-.147.563-.544 1.27-.81 1.698C10.85 23.846 11.417 24 12 24c6.626 0 12-5.374 12-12S18.626 0 12 0z"/>
-                        </svg>
+                    <a href="#" class="text-pure-white/80 hover:text-bronze transition-colors duration-300 transform hover:scale-110" target="_blank" rel="noopener noreferrer" aria-label="Pinterest">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.374 0 0 5.374 0 12s5.374 12 12 12c.343 0 .682-.015 1.017-.043-.096-.996-.264-2.317-.264-3.245 0-1.264.476-2.129 1.017-2.129.476 0 .714.357.714.833 0 .508-.321 1.269-.321 1.968 0 .833.714 1.508 1.548 1.508 1.468 0 2.456-1.548 2.456-3.611 0-1.889-1.349-3.301-3.301-3.301-2.317 0-3.683 1.746-3.683 3.571 0 .714.274 1.484.619 1.905.095.119.107.222.079.341-.021.095-.071.278-.095.357-.032.119-.127.151-.238.095-.833-.389-1.357-1.603-1.357-2.587 0-2.095 1.524-4.016 4.397-4.016 2.309 0 4.103 1.643 4.103 3.841 0 2.293-1.444 4.135-3.452 4.135-.675 0-1.31-.349-1.524-.778 0 0-.333 1.27-.405 1.579-.147.563-.544 1.27-.81 1.698C10.85 23.846 11.417 24 12 24c6.626 0 12-5.374 12-12S18.626 0 12 0z"/></svg>
                     </a>
                 </div>
                 
@@ -618,107 +604,46 @@
     </footer>
 
     <script>
-        // Animation au scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+        // JavaScript pour l'interactivité et les animations
 
+        // 1. Animation au scroll (Fade-in-up)
+        const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('fade-in-up');
+                    entry.target.classList.remove('opacity-0', 'translate-y-[40px]');
+                    observer.unobserve(entry.target);
                 }
             });
         }, observerOptions);
 
-        // Observer les éléments animés
         document.querySelectorAll('.fade-in-up').forEach(element => {
-            // Pour éviter l'animation initiale au chargement sur les éléments visibles, on ne l'observe que pour le scroll
-            if (!element.classList.contains('animated-on-load')) {
-                observer.observe(element);
-            }
+            // Assurez-vous que l'élément n'a pas déjà été animé (pour les éléments qui ne sont pas dans le Hero)
+            element.classList.add('opacity-0', 'translate-y-[40px]');
+            observer.observe(element);
         });
-
-        // Menu mobile
+        
+        // 2. Menu mobile
         function toggleMobileMenu() {
             const mobileMenu = document.getElementById('mobileMenu');
             mobileMenu.classList.toggle('hidden');
         }
-        
         document.getElementById('mobileMenuBtn').addEventListener('click', toggleMobileMenu);
 
-        // Animation d'entrée progressive (modifiée pour ne pas interférer avec l'observer)
-        window.addEventListener('load', function() {
-            const fadeElements = document.querySelectorAll('.fade-in-up');
-            fadeElements.forEach((element, index) => {
-                // On anime explicitement les éléments du Hero au chargement, et on désactive l'animation scroll par défaut
-                if (element.closest('.hero-bg')) {
-                    element.classList.add('animated-on-load');
-                    element.style.opacity = '1';
-                    element.style.transform = 'translateY(0)';
+        // 3. Navigation fluide
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+                // Fermer le menu mobile après le clic
+                if (!document.getElementById('mobileMenu').classList.contains('hidden')) {
+                    toggleMobileMenu();
                 }
             });
         });
-
-        // Interactions avec les cartes de domaines
-        document.querySelectorAll('.domain-card').forEach(card => {
-            card.addEventListener('click', function() {
-                const title = this.querySelector('h4').textContent;
-                console.log(`Navigation vers: ${title}`);
-                
-                // Animation de clic
-                this.style.transform = 'translateY(-8px) scale(0.98)';
-                setTimeout(() => {
-                    this.style.transform = 'translateY(-8px) scale(1.02)';
-                }, 150);
-            });
-        });
-
-        // Interactions avec les CTA
-        document.querySelectorAll('.cta-primary, .cta-secondary').forEach(button => {
-            button.addEventListener('click', function() {
-                const action = this.textContent.trim();
-                console.log(`Action: ${action}`);
-                
-                // Animation de clic
-                this.style.transform = 'translateY(-2px) scale(0.98)';
-                setTimeout(() => {
-                    this.style.transform = 'translateY(-4px) scale(1)';
-                }, 150);
-            });
-        });
-
-        // Gestion des liens sociaux
-        document.querySelectorAll('.social-icon').forEach(icon => {
-            icon.addEventListener('click', function(e) {
-                const platform = this.getAttribute('aria-label');
-                console.log(`Redirection vers ${platform}`);
-            });
-        });
-
-        // Parallax léger pour la section héros
-        window.addEventListener('scroll', function() {
-            const scrolled = window.pageYOffset;
-            const heroSection = document.querySelector('.hero-bg');
-            if (heroSection) {
-                // Diminution de l'effet parallax pour une meilleure performance
-                heroSection.style.transform = `translateY(${scrolled * 0.1}px)`;
-            }
-        });
-
-        // Animation des éléments flottants au survol
-        document.querySelectorAll('.floating-element').forEach(element => {
-            element.addEventListener('mouseenter', function() {
-                this.style.animationPlayState = 'paused';
-                this.style.transform = 'translateY(-10px) rotate(10deg) scale(1.1)';
-            });
-            
-            element.addEventListener('mouseleave', function() {
-                this.style.animationPlayState = 'running';
-                this.style.transform = ''; // Laisse l'animation CSS reprendre
-            });
-        });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98ddf500944e34bb',t:'MTc2MDM0OTI4MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</body>
 </html>
