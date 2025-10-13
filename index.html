@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mosaia Studio - L'art de la mosaïque qui éveille l'émotion</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'bronze': '#C99B4F',
+                        'charcoal': '#1A1A1A',
+                        'pure-white': '#FFFFFF',
+                        'light-gray': '#F8F8F8',
+                        'medium-gray': '#666666'
+                    },
+                    fontFamily: {
+                        'title': ['Montserrat', 'sans-serif'],
+                        'body': ['Open Sans', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            box-sizing: border-box;
+        }
+        
+        .fade-in-up {
+            animation: fadeInUp 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+            opacity: 0;
+            transform: translateY(40px);
+        }
+        
+        .fade-in-up.delay-1 { animation-delay: 0.3s; }
+        .fade-in-up.delay-2 { animation-delay: 0.6s; }
+        .fade-in-up.delay-3 { animation-delay: 0.9s; }
+        .fade-in-up.delay-4 { animation-delay: 1.2s; }
+        
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .elegant-line {
+            position: relative;
+        }
+        
+        .elegant-line::after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #C99B4F, transparent);
+        }
+        
+        .artistic-border {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .artistic-border::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(201, 155, 79, 0.03) 0%, transparent 50%, rgba(26, 26, 26, 0.01) 100%);
+            pointer-events: none;
+        }
+        
+        .luxury-shadow {
+            box-shadow: 
+                0 8px 32px rgba(201, 155, 79, 0.08),
+                0 2px 8px rgba(26, 26, 26, 0.04);
+        }
+        
+        .luxury-shadow:hover {
+            box-shadow: 
+                0 16px 48px rgba(201, 155, 79, 0.12),
+                0 4px 16px rgba(26, 26, 26, 0.06);
+        }
+        
+        .floating-element {
+            animation: float 8s ease-in-out infinite;
+            opacity: 0.6;
+        }
+        
+        .floating-element.delay-1 {
+            animation-delay: -2.5s;
+        }
+        
+        .floating-element.delay-2 {
+            animation-delay: -5s;
+        }
+        
+        @keyframes float {
+            0%, 100% { 
+                transform: translateY(0px) rotate(0deg);
+                opacity: 0.4;
+            }
+            50% { 
+                transform: translateY(-20px) rotate(180deg);
+                opacity: 0.8;
+            }
+        }
+        
+        .geometric-accent {
+            position: relative;
+        }
+        
+        .geometric-accent::before {
+            content: '';
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            border: 1px solid rgba(201, 155, 79, 0.08);
+            border-radius: 50%;
+            top: -60px;
+            right: -60px;
+            animation: rotate 25s linear infinite;
+        }
+        
+        .geometric-accent::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            border: 1px solid rgba(26, 26, 26, 0.04);
+            top: -40px;
+            left: -40px;
+            transform: rotate(45deg);
+            animation: rotate 20s linear infinite reverse;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .hero-bg {
+            background: linear-gradient(135deg, 
+                rgba(26, 26, 26, 0.7) 0%, 
+                rgba(201, 155, 79, 0.1) 50%, 
+                rgba(26, 26, 26, 0.8) 100%),
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><pattern id="mosaic" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse"><polygon points="20,20 80,20 80,80 20,80" fill="%23C99B4F" opacity="0.05"/><polygon points="25,25 75,25 75,75 25,75" fill="%231A1A1A" opacity="0.02"/><circle cx="50" cy="50" r="15" fill="%23C99B4F" opacity="0.03"/></pattern></defs><rect width="1000" height="1000" fill="url(%23mosaic)"/></svg>');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        
+        .cta-primary {
+            background: linear-gradient(135deg, #C99B4F, #B8894A);
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            overflow: hidden;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            border: 1px solid rgba(201, 155, 79, 0.3);
+        }
+        
+        .cta-primary:hover {
+            transform: translateY(-4px);
+            box-shadow: 
+                0 12px 32px rgba(201, 155, 79, 0.25),
+                0 4px 12px rgba(26, 26, 26, 0.1);
+            background: linear-gradient(135deg, #1A1A1A, #2A2A2A);
+        }
+        
+        .cta-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+        
+        .cta-primary:hover::before {
+            left: 100%;
+        }
+        
+        .cta-secondary {
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            overflow: hidden;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+        
+        .cta-secondary:hover {
+            transform: translateY(-4px);
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(201, 155, 79, 0.6);
+            color: #C99B4F;
+            box-shadow: 
+                0 12px 32px rgba(255, 255, 255, 0.1),
+                0 4px 12px rgba(201, 155, 79, 0.1);
+        }
+        
+        .domain-card {
+            transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .domain-card:hover {
+            transform: translateY(-8px) scale(1.02);
+        }
+        
+        .domain-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(201, 155, 79, 0.05) 0%, transparent 50%, rgba(26, 26, 26, 0.02) 100%);
+            opacity: 0;
+            transition: opacity 0.6s ease;
+        }
+        
+        .domain-card:hover::before {
+            opacity: 1;
+        }
+        
+        .quote-decoration {
+            position: relative;
+        }
+        
+        .quote-decoration::before {
+            content: '"';
+            position: absolute;
+            top: -20px;
+            left: -30px;
+            font-size: 120px;
+            color: rgba(201, 155, 79, 0.1);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 300;
+            line-height: 1;
+        }
+        
+        .quote-decoration::after {
+            content: '"';
+            position: absolute;
+            bottom: -60px;
+            right: -30px;
+            font-size: 120px;
+            color: rgba(201, 155, 79, 0.1);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 300;
+            line-height: 1;
+        }
+        
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            color: #C99B4F;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: #C99B4F;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .social-icon {
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            transform: scale(1.1) rotate(5deg);
+            color: #C99B4F;
+        }
+        
+        .subtle-pattern {
+            background-image: 
+                radial-gradient(circle at 25% 25%, rgba(201, 155, 79, 0.02) 1px, transparent 1px),
+                radial-gradient(circle at 75% 75%, rgba(26, 26, 26, 0.01) 1px, transparent 1px);
+            background-size: 80px 80px;
+            background-position: 0 0, 40px 40px;
+        }
+        
+        .mosaic-icon {
+            transition: all 0.4s ease;
+        }
+        
+        .domain-card:hover .mosaic-icon {
+            transform: scale(1.1) rotate(5deg);
+            filter: brightness(1.2);
+        }
+    </style>
+</head>
+<body class="bg-pure-white font-body">
+    <!-- Header -->
+    <header class="bg-pure-white/98 backdrop-blur-md shadow-sm sticky top-0 z-50 border-b border-charcoal/5">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0">
+                    <h1 class="text-3xl font-title font-bold text-charcoal tracking-wider uppercase">MOSAIA STUDIO</h1>
+                </div>
+                <nav class="hidden md:block">
+                    <div class="flex items-center space-x-12">
+                        <a href="#" class="nav-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide transition-colors uppercase">ACCUEIL</a>
+                        <a href="#" class="nav-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide transition-colors uppercase">PORTFOLIO</a>
+                        <a href="#" class="nav-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide transition-colors uppercase">STUDIO</a>
+                        <a href="#" class="nav-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide transition-colors uppercase">PROCESSUS</a>
+                        <a href="#" class="nav-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide transition-colors uppercase">CONTACT</a>
+                    </div>
+                </nav>
+                <div class="md:hidden">
+                    <button id="mobileMenuBtn" class="text-charcoal hover:text-bronze p-2">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Menu Mobile -->
+            <div id="mobileMenu" class="md:hidden bg-pure-white border-t border-charcoal/10 hidden">
+                <div class="px-6 py-4 space-y-2">
+                    <a href="#" class="block py-2 text-charcoal font-body font-medium uppercase">ACCUEIL</a>
+                    <a href="#" class="block py-2 text-charcoal font-body font-medium uppercase">PORTFOLIO</a>
+                    <a href="#" class="block py-2 text-charcoal font-body font-medium uppercase">STUDIO</a>
+                    <a href="#" class="block py-2 text-charcoal font-body font-medium uppercase">PROCESSUS</a>
+                    <a href="#" class="block py-2 text-charcoal font-body font-medium uppercase">CONTACT</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Section Héros -->
+    <section class="hero-bg min-h-screen flex items-center justify-center relative geometric-accent overflow-hidden">
+        <!-- Éléments décoratifs artistiques -->
+        <div class="absolute top-20 left-20 w-4 h-4 bg-bronze/40 floating-element" style="clip-path: polygon(50% 0%, 0% 100%, 100% 100%)"></div>
+        <div class="absolute top-32 right-24 w-3 h-3 bg-pure-white/30 rounded-full floating-element delay-1"></div>
+        <div class="absolute bottom-24 left-32 w-6 h-6 bg-bronze/30 floating-element delay-2" style="clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%)"></div>
+        <div class="absolute top-48 right-48 w-1 h-20 bg-pure-white/20 floating-element" style="transform-origin: center"></div>
+        
+        <div class="max-w-6xl mx-auto px-6 text-center relative z-10">
+            <!-- Ligne décorative supérieure -->
+            <div class="w-32 h-px bg-gradient-to-r from-transparent via-bronze to-transparent mx-auto mb-16 fade-in-up"></div>
+            
+            <h2 class="text-4xl md:text-6xl lg:text-7xl font-title font-bold text-pure-white mb-12 tracking-widest uppercase fade-in-up elegant-line leading-tight">
+                L'ART DE LA MOSAÏQUE<br>
+                <span class="text-bronze font-light">QUI ÉVEILLE L'ÉMOTION</span><br>
+                ET PERDURE
+            </h2>
+            
+            <p class="text-xl md:text-2xl text-pure-white/90 leading-relaxed font-body font-light mb-16 fade-in-up delay-1 max-w-4xl mx-auto tracking-wide">
+                Chaque tesselle raconte une histoire, chaque mosaïque devient éternelle.<br>
+                <span class="text-bronze/90">Découvrez l'art artisanal qui transcende le temps.</span>
+            </p>
+            
+            <!-- Ligne décorative centrale -->
+            <div class="w-24 h-px bg-gradient-to-r from-transparent via-pure-white/40 to-transparent mx-auto mb-16 fade-in-up delay-2"></div>
+            
+            <div class="flex flex-col sm:flex-row gap-8 justify-center fade-in-up delay-3">
+                <button class="cta-primary px-12 py-5 text-pure-white font-medium tracking-widest uppercase relative z-10">
+                    <span class="relative z-10">EXPLORER LE PORTFOLIO</span>
+                </button>
+                <button class="cta-secondary px-12 py-5 font-medium tracking-widest uppercase relative">
+                    <span class="relative z-10">DÉMARRER UN PROJET SUR MESURE</span>
+                </button>
+            </div>
+            
+            <!-- Ligne décorative inférieure -->
+            <div class="w-20 h-px bg-gradient-to-r from-transparent via-bronze to-transparent mx-auto mt-20 fade-in-up delay-4"></div>
+        </div>
+    </section>
+
+    <!-- Section Présentation du Studio -->
+    <section class="py-32 lg:py-40 bg-pure-white relative artistic-border subtle-pattern">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center relative">
+                <!-- Éléments décoratifs -->
+                <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-12">
+                    <div class="w-12 h-12 border border-bronze/15 transform rotate-45"></div>
+                </div>
+                
+                <div class="w-24 h-px bg-gradient-to-r from-transparent via-bronze to-transparent mx-auto mb-12 fade-in-up"></div>
+                
+                <h3 class="text-4xl md:text-5xl lg:text-6xl font-title font-bold text-charcoal mb-16 tracking-widest uppercase fade-in-up elegant-line">
+                    MOSAIA STUDIO
+                </h3>
+                
+                <div class="max-w-5xl mx-auto fade-in-up delay-1">
+                    <p class="text-2xl md:text-3xl text-medium-gray leading-relaxed font-body font-light mb-12 tracking-wide">
+                        Né d'une passion profonde pour l'artisanat et l'art, Mosaia Studio fusionne la tradition avec le design moderne, 
+                        <span class="text-bronze font-normal">mélangeant la précision artisanale et l'expression artistique.</span>
+                    </p>
+                    
+                    <!-- Ligne décorative centrale -->
+                    <div class="w-32 h-px bg-gradient-to-r from-transparent via-charcoal/30 to-transparent mx-auto mb-16"></div>
+                    
+                    <p class="text-lg text-medium-gray leading-relaxed font-body font-light max-w-4xl mx-auto tracking-wide">
+                        Chaque création naît de la rencontre entre l'héritage méditerranéen millénaire et la vision contemporaine. 
+                        Dans notre atelier d'Altea, nos maîtres artisans donnent vie à des œuvres uniques qui transforment l'espace en émotion pure.
+                    </p>
+                </div>
+                
+                <!-- Ligne décorative inférieure -->
+                <div class="w-16 h-px bg-gradient-to-r from-transparent via-bronze to-transparent mx-auto mt-16 fade-in-up delay-2"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Nos Domaines Clés -->
+    <section class="py-32 lg:py-40 bg-light-gray relative artistic-border">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-24 relative">
+                <!-- Éléments décoratifs -->
+                <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-8">
+                    <div class="w-8 h-8 border border-bronze/20 transform rotate-45"></div>
+                </div>
+                
+                <div class="w-20 h-px bg-gradient-to-r from-transparent via-bronze to-transparent mx-auto mb-8 fade-in-up"></div>
+                <h3 class="text-4xl md:text-5xl font-title font-bold text-charcoal mb-8 tracking-widest uppercase fade-in-up elegant-line">
+                    NOS DOMAINES CLÉS
+                </h3>
+                <p class="text-sm font-title font-light text-bronze tracking-[0.2em] uppercase mb-12 fade-in-up delay-1">
+                    EXCELLENCE ARTISANALE
+                </p>
+                <div class="w-16 h-px bg-gradient-to-r from-transparent via-charcoal/30 to-transparent mx-auto fade-in-up delay-2"></div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-12 lg:gap-16">
+                <!-- Pools -->
+                <div class="domain-card bg-pure-white p-12 luxury-shadow artistic-border relative fade-in-up delay-1">
+                    <!-- Accent décoratif -->
+                    <div class="absolute top-6 right-6 w-4 h-4 border border-bronze/25 transform rotate-45"></div>
+                    
+                    <div class="text-center">
+                        <div class="w-24 h-24 mx-auto mb-8 flex items-center justify-center">
+                            <svg class="mosaic-icon w-20 h-20 text-bronze/70" fill="currentColor" viewBox="0 0 100 100">
+                                <ellipse cx="50" cy="50" rx="40" ry="25" opacity="0.3"/>
+                                <ellipse cx="50" cy="50" rx="30" ry="18" opacity="0.5"/>
+                                <ellipse cx="50" cy="50" rx="20" ry="12" opacity="0.7"/>
+                                <ellipse cx="50" cy="50" rx="10" ry="6" opacity="0.9"/>
+                                <!-- Motif mosaïque -->
+                                <circle cx="35" cy="45" r="2" opacity="0.8"/>
+                                <circle cx="45" cy="40" r="1.5" opacity="0.9"/>
+                                <circle cx="55" cy="45" r="2" opacity="0.8"/>
+                                <circle cx="65" cy="50" r="1.5" opacity="0.9"/>
+                                <circle cx="40" cy="55" r="1.5" opacity="0.8"/>
+                                <circle cx="60" cy="55" r="2" opacity="0.9"/>
+                            </svg>
+                        </div>
+                        
+                        <div class="w-12 h-px bg-bronze mb-6 mx-auto"></div>
+                        
+                        <h4 class="text-2xl font-title font-bold text-charcoal mb-6 tracking-[0.1em] uppercase">
+                            POOLS
+                        </h4>
+                        
+                        <p class="text-medium-gray font-body font-light leading-relaxed text-lg tracking-wide mb-8">
+                            Transformez votre piscine en œuvre d'art aquatique. 
+                            <span class="text-bronze">Mosaïques durables et sophistiquées qui résistent au temps.</span>
+                        </p>
+                        
+                        <div class="w-8 h-px bg-gradient-to-r from-transparent via-bronze to-transparent mx-auto"></div>
+                    </div>
+                </div>
+
+                <!-- Murs & Façades -->
+                <div class="domain-card bg-pure-white p-12 luxury-shadow artistic-border relative fade-in-up delay-2">
+                    <!-- Accent décoratif -->
+                    <div class="absolute top-6 right-6 w-4 h-4 border border-bronze/25 transform rotate-45"></div>
+                    
+                    <div class="text-center">
+                        <div class="w-24 h-24 mx-auto mb-8 flex items-center justify-center">
+                            <svg class="mosaic-icon w-20 h-20 text-bronze/70" fill="currentColor" viewBox="0 0 100 100">
+                                <rect x="10" y="20" width="80" height="60" opacity="0.3"/>
+                                <rect x="15" y="25" width="70" height="50" opacity="0.5"/>
+                                <rect x="20" y="30" width="60" height="40" opacity="0.4"/>
+                                <!-- Motif mosaïque -->
+                                <rect x="25" y="35" width="8" height="8" opacity="0.8"/>
+                                <rect x="35" y="35" width="6" height="6" opacity="0.9"/>
+                                <rect x="43" y="35" width="8" height="8" opacity="0.7"/>
+                                <rect x="53" y="35" width="6" height="6" opacity="0.8"/>
+                                <rect x="61" y="35" width="8" height="8" opacity="0.9"/>
+                                <rect x="25" y="45" width="6" height="6" opacity="0.9"/>
+                                <rect x="33" y="45" width="8" height="8" opacity="0.8"/>
+                                <rect x="43" y="45" width="6" height="6" opacity="0.7"/>
+                                <rect x="51" y="45" width="8" height="8" opacity="0.9"/>
+                                <rect x="61" y="45" width="6" height="6" opacity="0.8"/>
+                                <rect x="25" y="55" width="8" height="8" opacity="0.8"/>
+                                <rect x="35" y="55" width="6" height="6" opacity="0.9"/>
+                                <rect x="43" y="55" width="8" height="8" opacity="0.7"/>
+                                <rect x="53" y="55" width="6" height="6" opacity="0.8"/>
+                                <rect x="61" y="55" width="8" height="8" opacity="0.9"/>
+                            </svg>
+                        </div>
+                        
+                        <div class="w-12 h-px bg-bronze mb-6 mx-auto"></div>
+                        
+                        <h4 class="text-2xl font-title font-bold text-charcoal mb-6 tracking-[0.1em] uppercase">
+                            MURS & FAÇADES
+                        </h4>
+                        
+                        <p class="text-medium-gray font-body font-light leading-relaxed text-lg tracking-wide mb-8">
+                            Habillage architectural d'exception pour intérieurs et extérieurs. 
+                            <span class="text-bronze">Créations sur mesure qui redéfinissent l'espace.</span>
+                        </p>
+                        
+                        <div class="w-8 h-px bg-gradient-to-r from-transparent via-bronze to-transparent mx-auto"></div>
+                    </div>
+                </div>
+
+                <!-- Artworks -->
+                <div class="domain-card bg-pure-white p-12 luxury-shadow artistic-border relative fade-in-up delay-3">
+                    <!-- Accent décoratif -->
+                    <div class="absolute top-6 right-6 w-4 h-4 border border-bronze/25 transform rotate-45"></div>
+                    
+                    <div class="text-center">
+                        <div class="w-24 h-24 mx-auto mb-8 flex items-center justify-center">
+                            <svg class="mosaic-icon w-20 h-20 text-bronze/70" fill="currentColor" viewBox="0 0 100 100">
+                                <polygon points="50,15 70,35 50,55 30,35" opacity="0.4"/>
+                                <polygon points="50,25 60,35 50,45 40,35" opacity="0.6"/>
+                                <circle cx="50" cy="35" r="8" opacity="0.3"/>
+                                <!-- Motif mosaïque artistique -->
+                                <circle cx="35" cy="25" r="3" opacity="0.8"/>
+                                <circle cx="45" cy="20" r="2" opacity="0.9"/>
+                                <circle cx="55" cy="20" r="3" opacity="0.7"/>
+                                <circle cx="65" cy="25" r="2" opacity="0.8"/>
+                                <circle cx="30" cy="35" r="2" opacity="0.9"/>
+                                <circle cx="70" cy="35" r="3" opacity="0.8"/>
+                                <circle cx="35" cy="45" r="3" opacity="0.7"/>
+                                <circle cx="45" cy="50" r="2" opacity="0.9"/>
+                                <circle cx="55" cy="50" r="3" opacity="0.8"/>
+                                <circle cx="65" cy="45" r="2" opacity="0.9"/>
+                                <!-- Éléments décoratifs -->
+                                <path d="M20 70 Q30 65 40 70 Q50 75 60 70 Q70 65 80 70" stroke="currentColor" fill="none" opacity="0.5" stroke-width="1"/>
+                                <circle cx="25" cy="75" r="1.5" opacity="0.8"/>
+                                <circle cx="50" cy="80" r="2" opacity="0.9"/>
+                                <circle cx="75" cy="75" r="1.5" opacity="0.8"/>
+                            </svg>
+                        </div>
+                        
+                        <div class="w-12 h-px bg-bronze mb-6 mx-auto"></div>
+                        
+                        <h4 class="text-2xl font-title font-bold text-charcoal mb-6 tracking-[0.1em] uppercase">
+                            ARTWORKS
+                        </h4>
+                        
+                        <p class="text-medium-gray font-body font-light leading-relaxed text-lg tracking-wide mb-8">
+                            Œuvres d'art uniques et installations artistiques personnalisées. 
+                            <span class="text-bronze">L'expression pure de votre vision créative.</span>
+                        </p>
+                        
+                        <div class="w-8 h-px bg-gradient-to-r from-transparent via-bronze to-transparent mx-auto"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Citation Artistique -->
+    <section class="py-32 lg:py-40 bg-charcoal relative geometric-accent overflow-hidden">
+        <!-- Éléments décoratifs artistiques -->
+        <div class="absolute top-16 left-16 w-5 h-5 bg-bronze/30 floating-element" style="clip-path: polygon(50% 0%, 0% 100%, 100% 100%)"></div>
+        <div class="absolute top-28 right-20 w-4 h-4 bg-pure-white/20 rounded-full floating-element delay-1"></div>
+        <div class="absolute bottom-20 left-28 w-6 h-6 bg-bronze/25 floating-element delay-2" style="clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%)"></div>
+        <div class="absolute top-40 right-40 w-2 h-24 bg-pure-white/15 floating-element" style="transform-origin: center"></div>
+        
+        <div class="max-w-5xl mx-auto px-6 text-center relative z-10">
+            <!-- Ligne décorative supérieure -->
+            <div class="w-32 h-px bg-gradient-to-r from-transparent via-bronze to-transparent mx-auto mb-16 fade-in-up"></div>
+            
+            <div class="quote-decoration relative fade-in-up delay-1">
+                <h3 class="text-4xl md:text-5xl lg:text-6xl font-title font-light text-pure-white leading-relaxed tracking-wide italic">
+                    La mosaïque n'est pas une décoration,<br>
+                    <span class="text-bronze font-normal">c'est une narration.</span>
+                </h3>
+            </div>
+            
+            <div class="w-24 h-px bg-gradient-to-r from-transparent via-bronze to-transparent mx-auto mt-16 fade-in-up delay-2"></div>
+            
+            <p class="text-lg text-pure-white/70 font-body font-light mt-12 tracking-widest uppercase fade-in-up delay-3">
+                MOSAIA STUDIO — L'ART QUI RACONTE
+            </p>
+            
+            <!-- Ligne décorative inférieure -->
+            <div class="w-16 h-px bg-gradient-to-r from-transparent via-pure-white/30 to-transparent mx-auto mt-12 fade-in-up delay-4"></div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-charcoal text-pure-white py-20 border-t border-bronze/10">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col lg:flex-row justify-between items-center space-y-8 lg:space-y-0">
+                <div class="text-center lg:text-left">
+                    <p class="text-sm opacity-80 font-body font-light tracking-wide uppercase">© MOSAIA STUDIO — PAR AMARU BRANDS</p>
+                </div>
+                
+                <div class="flex space-x-8">
+                    <a href="#" class="social-icon hover:text-bronze transition-colors duration-300 transform hover:scale-110" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                        <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="social-icon hover:text-bronze transition-colors duration-300 transform hover:scale-110" target="_blank" rel="noopener noreferrer" aria-label="Pinterest">
+                        <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 0C5.374 0 0 5.374 0 12s5.374 12 12 12c.343 0 .682-.015 1.017-.043-.096-.996-.264-2.317-.264-3.245 0-1.264.476-2.129 1.017-2.129.476 0 .714.357.714.833 0 .508-.321 1.269-.321 1.968 0 .833.714 1.508 1.548 1.508 1.468 0 2.456-1.548 2.456-3.611 0-1.889-1.349-3.301-3.301-3.301-2.317 0-3.683 1.746-3.683 3.571 0 .714.274 1.484.619 1.905.095.119.107.222.079.341-.021.095-.071.278-.095.357-.032.119-.127.151-.238.095-.833-.389-1.357-1.603-1.357-2.587 0-2.095 1.524-4.016 4.397-4.016 2.309 0 4.103 1.643 4.103 3.841 0 2.293-1.444 4.135-3.452 4.135-.675 0-1.31-.349-1.524-.778 0 0-.333 1.27-.405 1.579-.147.563-.544 1.27-.81 1.698C10.85 23.846 11.417 24 12 24c6.626 0 12-5.374 12-12S18.626 0 12 0z"/>
+                        </svg>
+                    </a>
+                </div>
+                
+                <div class="text-center lg:text-right">
+                    <p class="text-sm opacity-80 font-title font-light tracking-wider uppercase">L'ART DE LA MOSAÏQUE QUI ÉVEILLE L'ÉMOTION ET PERDURE</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Animation au scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in-up');
+                }
+            });
+        }, observerOptions);
+
+        // Observer les éléments animés
+        document.querySelectorAll('.fade-in-up').forEach(element => {
+            observer.observe(element);
+        });
+
+        // Menu mobile
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('hidden');
+        }
+        
+        document.getElementById('mobileMenuBtn').addEventListener('click', toggleMobileMenu);
+
+        // Animation d'entrée progressive
+        window.addEventListener('load', function() {
+            const fadeElements = document.querySelectorAll('.fade-in-up');
+            fadeElements.forEach((element, index) => {
+                setTimeout(() => {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+        });
+
+        // Interactions avec les cartes de domaines
+        document.querySelectorAll('.domain-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const title = this.querySelector('h4').textContent;
+                console.log(`Navigation vers: ${title}`);
+                
+                // Animation de clic
+                this.style.transform = 'translateY(-8px) scale(0.98)';
+                setTimeout(() => {
+                    this.style.transform = 'translateY(-8px) scale(1.02)';
+                }, 150);
+            });
+        });
+
+        // Interactions avec les CTA
+        document.querySelectorAll('.cta-primary, .cta-secondary').forEach(button => {
+            button.addEventListener('click', function() {
+                const action = this.textContent.trim();
+                console.log(`Action: ${action}`);
+                
+                // Animation de clic
+                this.style.transform = 'translateY(-2px) scale(0.98)';
+                setTimeout(() => {
+                    this.style.transform = 'translateY(-4px) scale(1)';
+                }, 150);
+            });
+        });
+
+        // Gestion des liens sociaux
+        document.querySelectorAll('.social-icon').forEach(icon => {
+            icon.addEventListener('click', function(e) {
+                const platform = this.getAttribute('aria-label');
+                console.log(`Redirection vers ${platform}`);
+            });
+        });
+
+        // Parallax léger pour la section héros
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const heroSection = document.querySelector('.hero-bg');
+            if (heroSection) {
+                heroSection.style.transform = `translateY(${scrolled * 0.3}px)`;
+            }
+        });
+
+        // Animation des éléments flottants au survol
+        document.querySelectorAll('.floating-element').forEach(element => {
+            element.addEventListener('mouseenter', function() {
+                this.style.animationPlayState = 'paused';
+                this.style.transform = 'translateY(-10px) rotate(10deg) scale(1.1)';
+            });
+            
+            element.addEventListener('mouseleave', function() {
+                this.style.animationPlayState = 'running';
+                this.style.transform = '';
+            });
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98ddeb83e68534bb',t:'MTc2MDM0ODg5Mi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
