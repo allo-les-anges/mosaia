@@ -41,6 +41,13 @@
         .lang-button { background: none; border: 1px solid transparent; padding: 4px 8px; border-radius: 4px; transition: all 0.3s; }
         .lang-button:hover { background: rgba(201, 155, 79, 0.1); border-color: #C99B4F; }
         .lang-button.active { background: #C99B4F; color: #1A1A1A; font-weight: 600; border-color: #C99B4F; }
+        /* FIX: Ajout de la rotation pour la flèche du dropdown desktop */
+        #dropdown-arrow {
+            transition: transform 0.2s ease;
+        }
+        .rotate-180 {
+            transform: rotate(180deg);
+        }
     </style>
 </head>
 <body class="bg-pure-white font-body text-charcoal">
@@ -76,15 +83,15 @@
                             </button>
                             
                             <div id="lang-menu" 
-                                 class="absolute right-0 mt-3 w-32 bg-pure-white shadow-xl rounded-md ring-1 ring-charcoal/5 hidden origin-top-right py-1 z-50" 
-                                 role="menu" 
-                                 aria-orientation="vertical" 
-                                 aria-labelledby="lang-dropdown-btn">
-                                <a href="#" class="block px-4 py-2 text-sm text-charcoal hover:bg-light-gray lang-option" role="menuitem" data-lang="fr">Français</a>
-                                <a href="#" class="block px-4 py-2 text-sm text-charcoal hover:bg-light-gray lang-option" role="menuitem" data-lang="en">English</a>
-                                <a href="#" class="block px-4 py-2 text-sm text-charcoal hover:bg-light-gray lang-option" role="menuitem" data-lang="nl">Nederlands</a>
-                                <a href="#" class="block px-4 py-2 text-sm text-charcoal hover:bg-light-gray lang-option" role="menuitem" data-lang="de">Deutsch</a>
-                                <a href="#" class="block px-4 py-2 text-sm text-charcoal hover:bg-light-gray lang-option" role="menuitem" data-lang="es">Español</a>
+                                class="absolute right-0 mt-3 w-32 bg-pure-white shadow-xl rounded-md ring-1 ring-charcoal/5 hidden origin-top-right py-1 z-50" 
+                                role="menu" 
+                                aria-orientation="vertical" 
+                                aria-labelledby="lang-dropdown-btn">
+                                <a href="#" class="block px-4 py-2 text-sm text-charcoal hover:bg-light-gray lang-button" role="menuitem" data-lang="fr">Français</a>
+                                <a href="#" class="block px-4 py-2 text-sm text-charcoal hover:bg-light-gray lang-button" role="menuitem" data-lang="en">English</a>
+                                <a href="#" class="block px-4 py-2 text-sm text-charcoal hover:bg-light-gray lang-button" role="menuitem" data-lang="nl">Nederlands</a>
+                                <a href="#" class="block px-4 py-2 text-sm text-charcoal hover:bg-light-gray lang-button" role="menuitem" data-lang="de">Deutsch</a>
+                                <a href="#" class="block px-4 py-2 text-sm text-charcoal hover:bg-light-gray lang-button" role="menuitem" data-lang="es">Español</a>
                             </div>
                         </div>
                     </div>
@@ -297,8 +304,20 @@
                 button.classList.remove('active');
                 if (button.getAttribute('data-lang') === lang) {
                     button.classList.add('active');
+                    // Met à jour l'affichage de la langue actuelle dans le bouton desktop
+                    if (button.closest('#lang-dropdown-container')) {
+                        document.getElementById('current-lang-display').textContent = lang.toUpperCase();
+                    }
                 }
             });
+
+            // Optionnel: Ferme le dropdown desktop après la sélection (si elle vient du dropdown)
+            const langMenu = document.getElementById('lang-menu');
+            const arrow = document.getElementById('dropdown-arrow');
+            if (langMenu && !langMenu.classList.contains('hidden')) {
+                langMenu.classList.add('hidden');
+                arrow.classList.remove('rotate-180');
+            }
         }
 
         // --- 3. LOGIQUE MOBILE ET INITIALISATION ---
@@ -332,14 +351,41 @@
         }
         document.getElementById('mobileMenuBtn').addEventListener('click', toggleMobileMenu);
 
+        // FIX: Toggle du sélecteur de langue Desktop
+        document.getElementById('lang-dropdown-btn').addEventListener('click', (event) => {
+            event.stopPropagation(); // Empêche l'événement de se propager au document et de fermer immédiatement
+            const langMenu = document.getElementById('lang-menu');
+            const arrow = document.getElementById('dropdown-arrow');
+            
+            langMenu.classList.toggle('hidden');
+            // Rotation de la flèche pour indiquer l'état
+            arrow.classList.toggle('rotate-180');
+        });
+
+        // FIX: Fermer le dropdown de langue en cliquant n'importe où ailleurs sur la page
+        document.addEventListener('click', (event) => {
+            const dropdownContainer = document.getElementById('lang-dropdown-container');
+            const langMenu = document.getElementById('lang-menu');
+            const arrow = document.getElementById('dropdown-arrow');
+            
+            // Si le clic n'est pas dans le conteneur du dropdown et que le menu est ouvert
+            if (dropdownContainer && langMenu && arrow && !dropdownContainer.contains(event.target) && !langMenu.classList.contains('hidden')) {
+                langMenu.classList.add('hidden');
+                arrow.classList.remove('rotate-180');
+            }
+        });
+
         // Écouteurs d'événements pour les sélecteurs de langue (Desktop et Mobile)
         document.querySelectorAll('.lang-button').forEach(button => {
             button.addEventListener('click', (e) => {
                 const lang = e.target.getAttribute('data-lang');
                 switchLanguage(lang);
                 // Ferme le menu mobile si la sélection vient de là (sur mobile)
-                if (window.innerWidth < 768 && document.getElementById('mobileMenu').classList.contains('hidden') === false) {
-                     document.getElementById('mobileMenu').classList.add('hidden');
+                if (window.innerWidth < 768) {
+                    const mobileMenu = document.getElementById('mobileMenu');
+                    if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                         mobileMenu.classList.add('hidden');
+                    }
                 }
             });
         });
