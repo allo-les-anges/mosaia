@@ -226,169 +226,190 @@
         </div>
     </footer>
     
-    <script>
-        // --- 1. DONNÉES DE TRADUCTION ---
-        const translations = {
-            // Page & Navigation
-            'page_title': { fr: "Mosaia Studio - Sur-Mesure", en: "Mosaia Studio - Bespoke", nl: "Mosaia Studio - Maatwerk", de: "Mosaia Studio - Maßanfertigung", es: "Mosaia Studio - A Medida" },
-            'title_studio': { fr: "MOSAIA STUDIO", en: "MOSAIA STUDIO", nl: "MOSAIA STUDIO", de: "MOSAIA STUDIO", es: "MOSAIA STUDIO" },
-            'nav_home': { fr: "ACCUEIL", en: "HOME", nl: "STARTPAGINA", de: "STARTSEITE", es: "INICIO" },
-            'nav_portfolio': { fr: "PORTFOLIO", en: "PORTFOLIO", nl: "PORTFOLIO", de: "PORTFOLIO", es: "PORTAFOLIO" },
-            'nav_studio': { fr: "STUDIO", en: "STUDIO", nl: "STUDIO", de: "STUDIO", es: "ESTUDIO" },
-            'nav_bespoke': { fr: "SUR-MESURE", en: "BESPOKE", nl: "MAATWERK", de: "MAẞARBEIT", es: "A MEDIDA" },
-            'nav_process': { fr: "PROCESSUS", en: "PROCESS", nl: "PROCES", de: "PROZESS", es: "PROCESO" },
-            'nav_partners': { fr: "PARTENAIRES", en: "PARTNERS", nl: "PARTNERS", de: "PARTNER", es: "SOCIOS" },
-            'nav_contact': { fr: "CONTACT", en: "CONTACT", nl: "CONTACT", de: "KONTAKT", es: "CONTACTO" },
-            'lang_selector_title': { fr: "Choisir la Langue", en: "Choose Language", nl: "Taal Kiezen", de: "Sprache Wählen", es: "Elegir Idioma" },
-            
-            // Sur-Mesure Section
-            'section_title': { fr: "VOTRE VISION, NOTRE ART", en: "YOUR VISION, OUR ART", nl: "UW VISIE, ONZE KUNST", de: "IHRE VISION, UNSERE KUNST", es: "SU VISIÓN, NUESTRO ARTE" },
-            'section_subtitle': { fr: "Chaque mosaïque Mosaia Studio commence par une idée, une émotion, une vision. Nous traduisons votre inspiration en une œuvre d'art éternelle.", en: "Every Mosaia Studio mosaic begins with an idea, an emotion, a vision. We translate your inspiration into an eternal work of art.", nl: "Elk mozaïek van Mosaia Studio begint met een idee, een emotie, een visie. Wij vertalen uw inspiratie naar een eeuwig kunstwerk.", de: "Jedes Mosaia Studio Mosaik beginnt mit einer Idee, einer Emotion, einer Vision. Wir übersetzen Ihre Inspiration in ein ewiges Kunstwerk.", es: "Cada mosaico de Mosaia Studio comienza con una idea, una emoción, una visión. Traducimos su inspiración en una obra de arte eterna." },
-            
-            // Processus de Création
-            'process_title': { fr: "Notre Processus de Création", en: "Our Creation Process", nl: "Ons Creatieproces", de: "Unser Schaffensprozess", es: "Nuestro Proceso de Creación" },
-            'step1_title': { fr: "1. Concept & Inspiration", en: "1. Concept & Inspiration", nl: "1. Concept & Inspiratie", de: "1. Konzept & Inspiration", es: "1. Concepto e Inspiración" },
-            'step1_text': { fr: "Échanges initiaux pour capturer votre idée et l'environnement du projet.", en: "Initial discussions to capture your idea and the project's environment.", nl: "Eerste gesprekken om uw idee en de projectomgeving vast te leggen.", de: "Erste Gespräche zur Erfassung Ihrer Idee und des Projektumfelds.", es: "Intercambios iniciales para capturar su idea y el entorno del proyecto." },
-            'step2_title': { fr: "2. Digital Design", en: "2. Digital Design", nl: "2. Digitaal Ontwerp", de: "2. Digitales Design", es: "2. Diseño Digital" },
-            'step2_text': { fr: "Modélisation et rendu 3D de la mosaïque dans son contexte architectural.", en: "3D modeling and rendering of the mosaic within its architectural context.", nl: "3D-modellering en rendering van het mozaïek in zijn architecturale context.", de: "3D-Modellierung und Rendering des Mosaiks in seinem architektonischen Kontext.", es: "Modelado 3D y renderizado del mosaico en su contexto arquitectónico." },
-            'step3_title': { fr: "3. Material Selection", en: "3. Material Selection", nl: "3. Materiaalkeuze", de: "3. Materialauswahl", es: "3. Selección de Materiales" },
-            'step3_text': { fr: "Sélection des tesselles (verre, pierre, métal) et vérification des textures.", en: "Selection of tesserae (glass, stone, metal) and texture verification.", nl: "Selectie van tegels (glas, steen, metaal) en textuurcontrole.", de: "Auswahl der Tesserae (Glas, Stein, Metall) und Texturprüfung.", es: "Selección de teselas (vidrio, piedra, metal) y verificación de texturas." },
-            'step4_title': { fr: "4. Color Mapping", en: "4. Color Mapping", nl: "4. Kleurcodering", de: "4. Farbkartierung", es: "4. Mapeo de Colores" },
-            'step4_text': { fr: "Cartographie précise des couleurs pour assurer la fidélité de l'œuvre finale.", en: "Precise color mapping to ensure the fidelity of the final work.", nl: "Nauwkeurige kleurcodering om de getrouwheid van het uiteindelijke werk te garanderen.", de: "Präzise Farbkartierung zur Gewährleistung der Wiedergabetreue des Endwerks.", es: "Mapeo preciso de colores para asegurar la fidelidad de la obra final." },
-            'step5_title': { fr: "5. Approval & Production", en: "5. Approval & Production", nl: "5. Goedkeuring & Productie", de: "5. Genehmigung & Produktion", es: "5. Aprobación y Producción" },
-            'step5_text': { fr: "Validation finale par le client avant le lancement de la production robotisée.", en: "Final client validation before launching robotic production.", nl: "Definitieve goedkeuring door de klant vóór de start van de gerobotiseerde productie.", de: "Endgültige Kundenfreigabe vor dem Start der robotergestützten Produktion.", es: "Validación final del cliente antes de iniciar la producción robotizada." },
-
-            // Avantages
-            'advantages_title': { fr: "Avantages du Sur-Mesure", en: "Bespoke Advantages", nl: "Voordelen van Maatwerk", de: "Vorteile der Maßanfertigung", es: "Ventajas del Servicio a Medida" },
-            'advantage1_title': { fr: "Visual Previews", en: "Visual Previews", nl: "Visuele Voorbeelden", de: "Visuelle Vorschauen", es: "Vistas Previas Visuales" },
-            'advantage1_text': { fr: "Visualisez le résultat avant la production grâce à nos rendus photoréalistes.", en: "Visualize the result before production with our photorealistic renderings.", nl: "Visualiseer het resultaat vóór productie dankzij onze fotorealistische renderings.", de: "Visualisieren Sie das Ergebnis vor der Produktion dank unserer photorealistischen Renderings.", es: "Visualice el resultado antes de la producción con nuestros renders fotorrealistas." },
-            'advantage2_title': { fr: "Precision Mapping", en: "Precision Mapping", nl: "Precisie Codering", de: "Präzisionskartierung", es: "Mapeo de Precisión" },
-            'advantage2_text': { fr: "Une précision au millimètre garantie par notre technologie de cartographie.", en: "Millimeter precision guaranteed by our mapping technology.", nl: "Millimeterprecisie gegarandeerd door onze coderingstechnologie.", de: "Millimetergenaue Präzision, garantiert durch unsere Kartierungstechnologie.", es: "Precisión milimétrica garantizada por nuestra tecnología de mapeo." },
-            'advantage3_title': { fr: "Full Customization", en: "Full Customization", nl: "Volledige Personalisatie", de: "Vollständige Anpassung", es: "Personalización Total" },
-            'advantage3_text': { fr: "Liberté totale sur les couleurs, la taille et les matériaux de chaque tesselle.", en: "Total freedom over colors, size, and materials for each tessera.", nl: "Volledige vrijheid over kleuren, grootte en materialen van elke tegel.", de: "Völlige Freiheit bei Farben, Größe und Materialien jeder Tesselle.", es: "Libertad total sobre colores, tamaño y materiales de cada tesela." },
-            'advantage4_title': { fr: "Collaboration", en: "Collaboration", nl: "Samenwerking", de: "Zusammenarbeit", es: "Colaboración" },
-            'advantage4_text': { fr: "Travail en étroite collaboration avec architectes et designers pour l'intégration.", en: "Close collaboration with architects and designers for integration.", nl: "Nauwe samenwerking met architecten en ontwerpers voor integratie.", de: "Enge Zusammenarbeit mit Architekten und Designern für die Integration.", es: "Colaboración estrecha con arquitectos y diseñadores para la integración." },
-            'conclusion_text': { fr: "Nos experts accompagnent chaque client à chaque étape, garantissant beauté, durabilité et émotion.", en: "Our experts support every client at every step, guaranteeing beauty, durability, and emotion.", nl: "Onze experts begeleiden elke klant bij elke stap en garanderen schoonheid, duurzaamheid en emotie.", de: "Unsere Experten begleiten jeden Kunden bei jedem Schritt und garantieren Schönheit, Haltbarkeit und Emotionen.", es: "Nuestros expertos acompañan a cada cliente en cada etapa, garantizando belleza, durabilidad y emoción." },
-            'cta_quote': { fr: "DEMANDER UN DEVIS", en: "REQUEST A QUOTE", nl: "VRAAG EEN OFFERTE AAN", de: "EIN ANGEBOT ANFORDERN", es: "SOLICITAR PRESUPUESTO" },
-            
-            // Footer
-            'footer_copyright': { fr: "© MOSAIA STUDIO – PAR AMARU BRANDS", en: "© MOSAIA STUDIO – BY AMARU BRANDS", nl: "© MOSAIA STUDIO – DOOR AMARU BRANDS", de: "© MOSAIA STUDIO – VON AMARU BRANDS", es: "© MOSAIA STUDIO – POR AMARU BRANDS" },
-            'footer_tagline': { fr: "L'ART DE LA MOSAÏQUE QUI ÉVEILLE L'ÉMOTION ET DURE", en: "THE ART OF MOSAIC THAT AWAKENS EMOTION AND ENDURES", nl: "DE KUNST VAN MOZAÏEK DAT EMOTIE OPROEPT EN VOORTDUURT", de: "DIE KUNST DES MOSAIKS, DIE EMOTIONEN WECKT UND BESTEHT", es: "EL ARTE DEL MOSAICO QUE DESPIERTA EMOCIÓN Y PERDURA" }
-        };
-
-        let currentLang = 'fr'; // Langue par défaut
-
-        // --- 2. FONCTION DE TRADUCTION ---
-        function switchLanguage(lang) {
-            currentLang = lang;
-            document.documentElement.lang = lang; // Met à jour l'attribut lang de la page
-
-            // Met à jour le titre
-            document.querySelector('title').textContent = translations['page_title'][lang];
-
-            // Met à jour tous les éléments avec l'attribut data-translate-key
-            document.querySelectorAll('[data-translate-key]').forEach(element => {
-                const key = element.getAttribute('data-translate-key');
-                if (translations[key] && translations[key][lang]) {
-                    // Pour le CTA, on s'assure que le lien lui-même (s'il s'agit d'une balise <a>) est mis à jour
-                    if (element.tagName === 'A' && key === 'cta_quote') {
-                        element.textContent = translations[key][lang];
-                    } else {
-                        element.textContent = translations[key][lang];
-                    }
-                }
-            });
-
-            // Gère les classes 'active' pour les boutons de langue
-            document.querySelectorAll('.lang-button').forEach(button => {
-                button.classList.remove('active');
-                if (button.getAttribute('data-lang') === lang) {
-                    button.classList.add('active');
-                    // Met à jour l'affichage de la langue actuelle dans le bouton desktop
-                    if (button.closest('#lang-dropdown-container')) {
-                        document.getElementById('current-lang-display').textContent = lang.toUpperCase();
-                    }
-                }
-            });
-
-            // Optionnel: Ferme le dropdown desktop après la sélection (si elle vient du dropdown)
-            const langMenu = document.getElementById('lang-menu');
-            const arrow = document.getElementById('dropdown-arrow');
-            if (langMenu && !langMenu.classList.contains('hidden')) {
-                langMenu.classList.add('hidden');
-                arrow.classList.remove('rotate-180');
-            }
-        }
-
-        // --- 3. LOGIQUE MOBILE ET INITIALISATION ---
-
-        // Animation au scroll
-        const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('fade-in-up');
-                    entry.target.classList.remove('opacity-0', 'translate-y-[40px]');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
+   <script>
+    // --- 1. DONNÉES DE TRADUCTION ---
+    const translations = {
+        // Page & Navigation
+        'page_title': { fr: "Mosaia Studio - Sur-Mesure", en: "Mosaia Studio - Bespoke", nl: "Mosaia Studio - Maatwerk", de: "Mosaia Studio - Maßanfertigung", es: "Mosaia Studio - A Medida" },
+        'title_studio': { fr: "MOSAIA STUDIO", en: "MOSAIA STUDIO", nl: "MOSAIA STUDIO", de: "MOSAIA STUDIO", es: "MOSAIA STUDIO" },
+        'nav_home': { fr: "ACCUEIL", en: "HOME", nl: "STARTPAGINA", de: "STARTSEITE", es: "INICIO" },
+        'nav_portfolio': { fr: "PORTFOLIO", en: "PORTFOLIO", nl: "PORTFOLIO", de: "PORTFOLIO", es: "PORTAFOLIO" },
+        'nav_studio': { fr: "STUDIO", en: "STUDIO", nl: "STUDIO", de: "STUDIO", es: "ESTUDIO" },
+        'nav_bespoke': { fr: "SUR-MESURE", en: "BESPOKE", nl: "MAATWERK", de: "MAẞARBEIT", es: "A MEDIDA" },
+        'nav_process': { fr: "PROCESSUS", en: "PROCESS", nl: "PROCES", de: "PROZESS", es: "PROCESO" },
+        'nav_partners': { fr: "PARTENAIRES", en: "PARTNERS", nl: "PARTNERS", de: "PARTNER", es: "SOCIOS" },
+        'nav_contact': { fr: "CONTACT", en: "CONTACT", nl: "CONTACT", de: "KONTAKT", es: "CONTACTO" },
+        'lang_selector_title': { fr: "Choisir la Langue", en: "Choose Language", nl: "Taal Kiezen", de: "Sprache Wählen", es: "Elegir Idioma" },
         
-        document.addEventListener('DOMContentLoaded', () => {
-             document.querySelectorAll('.fade-in-up').forEach(element => {
-                element.classList.add('opacity-0', 'translate-y-[40px]');
-                observer.observe(element);
-            });
-            
-            // Initialisation de la langue par défaut (français)
-            switchLanguage(currentLang);
+        // Sur-Mesure Section
+        'section_title': { fr: "VOTRE VISION, NOTRE ART", en: "YOUR VISION, OUR ART", nl: "UW VISIE, ONZE KUNST", de: "IHRE VISION, UNSERE KUNST", es: "SU VISIÓN, NUESTRO ARTE" },
+        'section_subtitle': { fr: "Chaque mosaïque Mosaia Studio commence par une idée, une émotion, une vision. Nous traduisons votre inspiration en une œuvre d'art éternelle.", en: "Every Mosaia Studio mosaic begins with an idea, an emotion, a vision. We translate your inspiration into an eternal work of art.", nl: "Elk mozaïek van Mosaia Studio begint met een idee, een emotie, een visie. Wij vertalen uw inspiratie naar een eeuwig kunstwerk.", de: "Jedes Mosaia Studio Mosaik beginnt mit einer Idee, einer Emotion, einer Vision. Wir übersetzen Ihre Inspiration in ein ewiges Kunstwerk.", es: "Cada mosaico de Mosaia Studio comienza con una idea, una emoción, una visión. Traducimos su inspiración en una obra de arte eterna." },
+        
+        // Processus de Création
+        'process_title': { fr: "Notre Processus de Création", en: "Our Creation Process", nl: "Ons Creatieproces", de: "Unser Schaffensprozess", es: "Nuestro Proceso de Creación" },
+        'step1_title': { fr: "1. Concept & Inspiration", en: "1. Concept & Inspiration", nl: "1. Concept & Inspiratie", de: "1. Konzept & Inspiration", es: "1. Concepto e Inspiración" },
+        'step1_text': { fr: "Échanges initiaux pour capturer votre idée et l'environnement du projet.", en: "Initial discussions to capture your idea and the project's environment.", nl: "Eerste gesprekken om uw idee en de projectomgeving vast te leggen.", de: "Erste Gespräche zur Erfassung Ihrer Idee und des Projektumfelds.", es: "Intercambios iniciales para capturar su idea y el entorno del proyecto." },
+        'step2_title': { fr: "2. Digital Design", en: "2. Digital Design", nl: "2. Digitaal Ontwerp", de: "2. Digitales Design", es: "2. Diseño Digital" },
+        'step2_text': { fr: "Modélisation et rendu 3D de la mosaïque dans son contexte architectural.", en: "3D modeling and rendering of the mosaic within its architectural context.", nl: "3D-modellering en rendering van het mozaïek in zijn architecturale context.", de: "3D-Modellierung und Rendering des Mosaiks in seinem architektonischen Kontext.", es: "Modelado 3D y renderizado del mosaico en su contexto arquitectónico." },
+        'step3_title': { fr: "3. Material Selection", en: "3. Material Selection", nl: "3. Materiaalkeuze", de: "3. Materialauswahl", es: "3. Selección de Materiales" },
+        'step3_text': { fr: "Sélection des tesselles (verre, pierre, métal) et vérification des textures.", en: "Selection of tesserae (glass, stone, metal) and texture verification.", nl: "Selectie van tegels (glas, steen, metaal) en textuurcontrole.", de: "Auswahl der Tesserae (Glas, Stein, Metall) und Texturprüfung.", es: "Selección de teselas (vidrio, piedra, metal) y verificación de texturas." },
+        'step4_title': { fr: "4. Color Mapping", en: "4. Color Mapping", nl: "4. Kleurcodering", de: "4. Farbkartierung", es: "4. Mapeo de Colores" },
+        'step4_text': { fr: "Cartographie précise des couleurs pour assurer la fidélité de l'œuvre finale.", en: "Precise color mapping to ensure the fidelity of the final work.", nl: "Nauwkeurige kleurcodering om de getrouwheid van het uiteindelijke werk te garanderen.", de: "Präzise Farbkartierung zur Gewährleistung der Wiedergabetreue des Endwerks.", es: "Mapeo preciso de colores para asegurar la fidelidad de la obra final." },
+        'step5_title': { fr: "5. Approval & Production", en: "5. Approval & Production", nl: "5. Goedkeuring & Productie", de: "5. Genehmigung & Produktion", es: "5. Aprobación y Producción" },
+        'step5_text': { fr: "Validation finale par le client avant le lancement de la production robotisée.", en: "Final client validation before launching robotic production.", nl: "Definitieve goedkeuring door de klant vóór de start van de gerobotiseerde productie.", de: "Endgültige Kundenfreigabe vor dem Start der robotergestützten Produktion.", es: "Validación final del cliente antes de iniciar la producción robotizada." },
+
+        // Avantages
+        'advantages_title': { fr: "Avantages du Sur-Mesure", en: "Bespoke Advantages", nl: "Voordelen van Maatwerk", de: "Vorteile der Maßanfertigung", es: "Ventajas del Servicio a Medida" },
+        'advantage1_title': { fr: "Visual Previews", en: "Visual Previews", nl: "Visuele Voorbeelden", de: "Visuelle Vorschauen", es: "Vistas Previas Visuales" },
+        'advantage1_text': { fr: "Visualisez le résultat avant la production grâce à nos rendus photoréalistes.", en: "Visualize the result before production with our photorealistic renderings.", nl: "Visualiseer het resultaat vóór productie dankzij onze fotorealistische renderings.", de: "Visualisieren Sie das Ergebnis vor der Produktion dank unserer photorealistischen Renderings.", es: "Visualice el resultado antes de la producción con nuestros renders fotorrealistas." },
+        'advantage2_title': { fr: "Precision Mapping", en: "Precision Mapping", nl: "Precisie Codering", de: "Präzisionskartierung", es: "Mapeo de Precisión" },
+        'advantage2_text': { fr: "Une précision au millimètre garantie par notre technologie de cartographie.", en: "Millimeter precision guaranteed by our mapping technology.", nl: "Millimeterprecisie gegarandeerd door onze coderingstechnologie.", de: "Millimetergenaue Präzision, garantiert durch unsere Kartierungstechnologie.", es: "Precisión milimétrica garantizada por nuestra tecnología de mapeo." },
+        'advantage3_title': { fr: "Full Customization", en: "Full Customization", nl: "Volledige Personalisatie", de: "Vollständige Anpassung", es: "Personalización Total" },
+        'advantage3_text': { fr: "Liberté totale sur les couleurs, la taille et les matériaux de chaque tesselle.", en: "Total freedom over colors, size, and materials for each tessera.", nl: "Volledige vrijheid over kleuren, grootte en materialen van elke tegel.", de: "Völlige Freiheit bei Farben, Größe und Materialien jeder Tesselle.", es: "Libertad total sobre colores, tamaño y materiales de cada tesela." },
+        'advantage4_title': { fr: "Collaboration", en: "Collaboration", nl: "Samenwerking", de: "Zusammenarbeit", es: "Colaboración" },
+        'advantage4_text': { fr: "Travail en étroite collaboration avec architectes et designers pour l'intégration.", en: "Close collaboration with architects and designers for integration.", nl: "Nauwe samenwerking met architecten en ontwerpers voor integratie.", de: "Enge Zusammenarbeit mit Architekten und Designern für die Integration.", es: "Colaboración estrecha con arquitectos y diseñadores para la integración." },
+        'conclusion_text': { fr: "Nos experts accompagnent chaque client à chaque étape, garantissant beauté, durabilité et émotion.", en: "Our experts support every client at every step, guaranteeing beauty, durability, and emotion.", nl: "Onze experts begeleiden elke klant bij elke stap en garanderen schoonheid, duurzaamheid en emotie.", de: "Unsere Experten begleiten jeden Kunden bei jedem Schritt und garantieren Schönheit, Haltbarkeit und Emotionen.", es: "Nuestros expertos acompañan a cada cliente en cada etapa, garantizando belleza, durabilidad y emoción." },
+        'cta_quote': { fr: "DEMANDER UN DEVIS", en: "REQUEST A QUOTE", nl: "VRAAG EEN OFFERTE AAN", de: "EIN ANGEBOT ANFORDERN", es: "SOLICITAR PRESUPUESTO" },
+        
+        // Footer
+        'footer_copyright': { fr: "© MOSAIA STUDIO – PAR AMARU BRANDS", en: "© MOSAIA STUDIO – BY AMARU BRANDS", nl: "© MOSAIA STUDIO – DOOR AMARU BRANDS", de: "© MOSAIA STUDIO – VON AMARU BRANDS", es: "© MOSAIA STUDIO – POR AMARU BRANDS" },
+        'footer_tagline': { fr: "L'ART DE LA MOSAÏQUE QUI ÉVEILLE L'ÉMOTION ET DURE", en: "THE ART OF MOSAIC THAT AWAKENS EMOTION AND ENDURES", nl: "DE KUNST VAN MOZAÏEK DAT EMOTIE OPROEPT EN VOORTDUURT", de: "DIE KUNST DES MOSAIKS, DIE EMOTIONEN WECKT UND BESTEHT", es: "EL ARTE DEL MOSAICO QUE DESPIERTA EMOCIÓN Y PERDURA" }
+    };
+
+    // --- DÉTERMINATION DE LA LANGUE INITIALE (AVEC PERSISTANCE) ---
+    // Récupère la langue stockée dans localStorage, sinon utilise 'fr'
+    let currentLang = localStorage.getItem('mosaiaLang') || 'fr'; 
+
+    // --- 2. FONCTION DE TRADUCTION (MISE À JOUR AVEC PERSISTANCE) ---
+    function switchLanguage(lang) {
+        currentLang = lang;
+        document.documentElement.lang = lang; // Met à jour l'attribut lang de la page
+
+        // **AJOUT POUR LA PERSISTANCE : Stockage de la langue dans localStorage**
+        localStorage.setItem('mosaiaLang', lang);
+
+        // Met à jour le titre
+        document.querySelector('title').textContent = translations['page_title'][lang];
+
+        // Met à jour tous les éléments avec l'attribut data-translate-key
+        document.querySelectorAll('[data-translate-key]').forEach(element => {
+            const key = element.getAttribute('data-translate-key');
+            if (translations[key] && translations[key][lang]) {
+                // Pour le CTA et autres éléments
+                element.textContent = translations[key][lang];
+            }
         });
 
-        // Toggle du menu mobile
-        function toggleMobileMenu() {
-            const mobileMenu = document.getElementById('mobileMenu');
-            mobileMenu.classList.toggle('hidden');
+        // Gère les classes 'active' pour les boutons de langue (Desktop et Mobile)
+        document.querySelectorAll('.lang-button').forEach(button => {
+            button.classList.remove('active');
+            if (button.getAttribute('data-lang') === lang) {
+                // Met à jour la classe 'active' pour les boutons mobiles
+                if (button.closest('#lang-selector-mobile')) {
+                    button.classList.add('active');
+                } 
+                
+                // Met à jour l'affichage de la langue actuelle dans le bouton desktop
+                if (button.closest('#lang-dropdown-container')) {
+                    const currentLangDisplay = document.getElementById('current-lang-display');
+                    if(currentLangDisplay) {
+                        currentLangDisplay.textContent = lang.toUpperCase();
+                    }
+                }
+            }
+        });
+        
+        // Ferme le dropdown desktop après la sélection (si elle vient du dropdown)
+        const langMenu = document.getElementById('lang-menu');
+        const arrow = document.getElementById('dropdown-arrow');
+        if (langMenu && arrow) {
+             // S'assure de l'état "fermé" après un clic depuis le dropdown
+             langMenu.classList.add('hidden');
+             arrow.classList.remove('rotate-180');
         }
-        document.getElementById('mobileMenuBtn').addEventListener('click', toggleMobileMenu);
 
-        // FIX: Toggle du sélecteur de langue Desktop
-        document.getElementById('lang-dropdown-btn').addEventListener('click', (event) => {
-            event.stopPropagation(); // Empêche l'événement de se propager au document et de fermer immédiatement
-            const langMenu = document.getElementById('lang-menu');
-            const arrow = document.getElementById('dropdown-arrow');
-            
-            langMenu.classList.toggle('hidden');
-            // Rotation de la flèche pour indiquer l'état
-            arrow.classList.toggle('rotate-180');
+        // Ferme le menu mobile si la sélection vient de là
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        if (mobileMenu && mobileMenuBtn && !mobileMenu.classList.contains('hidden')) {
+             mobileMenu.classList.add('hidden');
+             mobileMenuBtn.setAttribute('aria-expanded', 'false');
+        }
+    }
+
+    // --- 3. LOGIQUE GLOBALE ET INITIALISATION ---
+
+    // Animation au scroll
+    const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('fade-in-up');
+                entry.target.classList.remove('opacity-0', 'translate-y-[40px]');
+                observer.unobserve(entry.target);
+            }
         });
+    }, observerOptions);
+    
+    document.addEventListener('DOMContentLoaded', () => {
+        // **INITIALISATION DE LA LANGUE PERSISTANTE**
+        switchLanguage(currentLang);
 
-        // FIX: Fermer le dropdown de langue en cliquant n'importe où ailleurs sur la page
+        // Initialisation de l'observateur d'animation
+        document.querySelectorAll('.fade-in-up').forEach(element => {
+            element.classList.add('opacity-0', 'translate-y-[40px]');
+            observer.observe(element);
+        });
+        
+        // Toggle du menu mobile
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        function toggleMobileMenu() {
+            const isHidden = mobileMenu.classList.toggle('hidden');
+            mobileMenuBtn.setAttribute('aria-expanded', !isHidden);
+        }
+        if(mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+        }
+        
+
+        // Toggle du sélecteur de langue Desktop
+        const langDropdownBtn = document.getElementById('lang-dropdown-btn');
+        const langMenu = document.getElementById('lang-menu');
+        const dropdownArrow = document.getElementById('dropdown-arrow');
+        
+        if (langDropdownBtn) {
+            langDropdownBtn.addEventListener('click', (event) => {
+                event.stopPropagation(); // Empêche l'événement de se propager au document et de fermer immédiatement
+                if (langMenu && dropdownArrow) {
+                    const isExpanded = langDropdownBtn.getAttribute('aria-expanded') === 'true';
+                    langDropdownBtn.setAttribute('aria-expanded', !isExpanded);
+                    langMenu.classList.toggle('hidden');
+                    // Rotation de la flèche pour indiquer l'état
+                    dropdownArrow.classList.toggle('rotate-180');
+                }
+            });
+        }
+        
+
+        // Fermer le dropdown de langue en cliquant n'importe où ailleurs sur la page
         document.addEventListener('click', (event) => {
             const dropdownContainer = document.getElementById('lang-dropdown-container');
-            const langMenu = document.getElementById('lang-menu');
-            const arrow = document.getElementById('dropdown-arrow');
-            
-            // Si le clic n'est pas dans le conteneur du dropdown et que le menu est ouvert
-            if (dropdownContainer && langMenu && arrow && !dropdownContainer.contains(event.target) && !langMenu.classList.contains('hidden')) {
+            if (dropdownContainer && langMenu && dropdownArrow && !dropdownContainer.contains(event.target) && !langMenu.classList.contains('hidden')) {
                 langMenu.classList.add('hidden');
-                arrow.classList.remove('rotate-180');
+                langDropdownBtn.setAttribute('aria-expanded', 'false');
+                dropdownArrow.classList.remove('rotate-180');
             }
         });
 
         // Écouteurs d'événements pour les sélecteurs de langue (Desktop et Mobile)
         document.querySelectorAll('.lang-button').forEach(button => {
             button.addEventListener('click', (e) => {
-                const lang = e.target.getAttribute('data-lang');
-                switchLanguage(lang);
-                // Ferme le menu mobile si la sélection vient de là (sur mobile)
-                if (window.innerWidth < 768) {
-                    const mobileMenu = document.getElementById('mobileMenu');
-                    if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
-                         mobileMenu.classList.add('hidden');
-                    }
-                }
+                // Utilisation de currentTarget pour s'assurer que l'élément cliqué est le bouton, pas un enfant
+                const lang = e.currentTarget.getAttribute('data-lang');
+                switchLanguage(lang); // switchLanguage va sauvegarder dans localStorage et gérer les états ouverts/fermés
             });
         });
-    </script>
-</body>
-</html>
+
+    }); // Fin DOMContentLoaded
+</script>
