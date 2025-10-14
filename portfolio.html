@@ -20,6 +20,8 @@
         .fade-in-up { animation: fadeInUp 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; opacity: 0; transform: translateY(40px); }
         .fade-in-up.delay-1 { animation-delay: 0.3s; }
         .fade-in-up.delay-2 { animation-delay: 0.6s; }
+        .fade-in-up.delay-3 { animation-delay: 0.9s; } /* Ajouté pour les filtres */
+        .fade-in-up.delay-4 { animation-delay: 1.2s; } /* Ajouté pour la grille */
         @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
         .elegant-line { position: relative; }
         .elegant-line::after { content: ''; position: absolute; bottom: -12px; left: 50%; transform: translateX(-50%); width: 80px; height: 1px; background: linear-gradient(90deg, transparent, #C99B4F, transparent); }
@@ -38,10 +40,12 @@
         @media (max-width: 1024px) { .masonry-grid { column-count: 2; } }
         @media (max-width: 640px) { .masonry-grid { column-count: 1; } }
 
-        /* Style pour le sélecteur de langue */
+        /* Style pour les boutons de langue mobiles ou le bouton du dropdown */
         .lang-button { background: none; border: 1px solid transparent; padding: 4px 8px; border-radius: 4px; transition: all 0.3s; }
         .lang-button:hover { background: rgba(201, 155, 79, 0.1); border-color: #C99B4F; }
         .lang-button.active { background: #C99B4F; color: #1A1A1A; font-weight: 600; border-color: #C99B4F; }
+        /* Style pour les options du dropdown sur desktop */
+        .lang-option.active { background-color: #F8F8F8; color: #C99B4F; font-weight: 600; }
     </style>
 </head>
 <body class="bg-pure-white font-body text-charcoal">
@@ -49,8 +53,13 @@
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 <div class="flex-shrink-0">
-                    <a href="index.html" data-translate-key="title_studio" class="text-3xl font-title font-bold text-charcoal tracking-wider uppercase hover:text-bronze transition-colors">MOSAIA STUDIO</a>
+                    <a href="index.html">
+                        <img src="https://raw.githubusercontent.com/allo-les-anges/mosaia/main/mosaia-assets/logos/logo%20mosaia%202.png" 
+                             alt="Mosaia Studio Logo" 
+                             class="h-10 lg:h-12 w-auto">
+                    </a>
                 </div>
+                
                 <nav class="hidden md:block">
                     <div class="flex items-center space-x-8 lg:space-x-10">
                         <a href="index.html" data-translate-key="nav_home" class="nav-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase">ACCUEIL</a>
@@ -61,21 +70,43 @@
                         <a href="partenaires.html" data-translate-key="nav_partners" class="nav-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase">PARTENAIRES</a>
                         <a href="contact.html" data-translate-key="nav_contact" class="nav-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase">CONTACT</a>
                         
-                        <div id="lang-selector-desktop" class="flex space-x-1 items-center ml-4 border-l border-charcoal/10 pl-4">
-                            <button class="lang-button text-charcoal text-sm" data-lang="fr">FR</button>
-                            <button class="lang-button text-charcoal text-sm" data-lang="en">EN</button>
-                            <button class="lang-button text-charcoal text-sm" data-lang="nl">NL</button>
-                            <button class="lang-button text-charcoal text-sm" data-lang="de">DE</button>
-                            <button class="lang-button text-charcoal text-sm" data-lang="es">ES</button>
+                        <div class="relative ml-4 pl-4 border-l border-charcoal/10" id="lang-dropdown-container">
+                            <button id="lang-dropdown-btn" 
+                                    class="lang-button text-charcoal text-sm font-title font-medium flex items-center p-2" 
+                                    aria-expanded="false" 
+                                    aria-controls="lang-menu"
+                                    aria-label="Sélectionner la langue">
+                                <span id="current-lang-display" class="font-semibold text-bronze">FR</span>
+                                <svg class="h-4 w-4 ml-1 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" id="dropdown-arrow"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+                            </button>
+                            
+                            <div id="lang-menu" 
+                                 class="absolute right-0 mt-3 w-32 bg-pure-white shadow-xl rounded-md ring-1 ring-charcoal/5 hidden origin-top-right py-1 z-50" 
+                                 role="menu" 
+                                 aria-orientation="vertical" 
+                                 aria-labelledby="lang-dropdown-btn">
+                                <a href="#" class="block px-4 py-2 text-sm text-charcoal hover:bg-light-gray lang-option" role="menuitem" data-lang="fr">Français</a>
+                                <a href="#" class="block px-4 py-2 text-sm text-charcoal hover:bg-light-gray lang-option" role="menuitem" data-lang="en">English</a>
+                                <a href="#" class="block px-4 py-2 text-sm text-charcoal hover:bg-light-gray lang-option" role="menuitem" data-lang="nl">Nederlands</a>
+                                <a href="#" class="block px-4 py-2 text-sm text-charcoal hover:bg-light-gray lang-option" role="menuitem" data-lang="de">Deutsch</a>
+                                <a href="#" class="block px-4 py-2 text-sm text-charcoal hover:bg-light-gray lang-option" role="menuitem" data-lang="es">Español</a>
+                            </div>
                         </div>
                     </div>
                 </nav>
+                
                 <div class="md:hidden flex items-center space-x-4">
-                    <button id="mobileMenuBtn" class="text-charcoal hover:text-bronze p-2">
+                    <button id="mobileMenuBtn" 
+                            class="text-charcoal hover:text-bronze p-2" 
+                            data-translate-key="menu_btn"
+                            aria-label="Menu mobile" 
+                            aria-expanded="false" 
+                            aria-controls="mobileMenu">
                         <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>
                     </button>
                 </div>
             </div>
+            
             <div id="mobileMenu" class="md:hidden bg-pure-white border-t border-charcoal/10 hidden">
                 <div class="px-6 py-4 space-y-2">
                     <a href="index.html" data-translate-key="nav_home" class="block py-2 text-charcoal font-body font-medium uppercase">ACCUEIL</a>
@@ -164,7 +195,6 @@
         const translations = {
             // Page & Navigation
             'page_title': { fr: "Mosaia Studio - Portfolio", en: "Mosaia Studio - Portfolio", nl: "Mosaia Studio - Portfolio", de: "Mosaia Studio - Portfolio", es: "Mosaia Studio - Portafolio" },
-            'title_studio': { fr: "MOSAIA STUDIO", en: "MOSAIA STUDIO", nl: "MOSAIA STUDIO", de: "MOSAIA STUDIO", es: "MOSAIA STUDIO" },
             'nav_home': { fr: "ACCUEIL", en: "HOME", nl: "STARTPAGINA", de: "STARTSEITE", es: "INICIO" },
             'nav_portfolio': { fr: "PORTFOLIO", en: "PORTFOLIO", nl: "PORTFOLIO", de: "PORTFOLIO", es: "PORTAFOLIO" },
             'nav_studio': { fr: "STUDIO", en: "STUDIO", nl: "STUDIO", de: "STUDIO", es: "ESTUDIO" },
@@ -172,13 +202,14 @@
             'nav_process': { fr: "PROCESSUS", en: "PROCESS", nl: "PROCES", de: "PROZESS", es: "PROCESO" },
             'nav_partners': { fr: "PARTENAIRES", en: "PARTNERS", nl: "PARTNERS", de: "PARTNER", es: "SOCIOS" },
             'nav_contact': { fr: "CONTACT", en: "CONTACT", nl: "CONTACT", de: "KONTAKT", es: "CONTACTO" },
+            'menu_btn': { fr: "Menu", en: "Menu", nl: "Menu", de: "Menü", es: "Menú" }, // Clé ajoutée
             'lang_selector_title': { fr: "Choisir la Langue", en: "Choose Language", nl: "Taal Kiezen", de: "Sprache Wählen", es: "Elegir Idioma" },
             
             // Portfolio Section
             'section_title': { fr: "NOS RÉALISATIONS", en: "OUR PROJECTS", nl: "ONZE REALISATIES", de: "UNSERE PROJEKTE", es: "NUESTRAS REALIZACIONES" },
             'section_subtitle': { fr: "Chaque projet est une œuvre unique, conçue pour dialoguer avec la lumière, l’espace et la matière.", en: "Each project is a unique work, designed to dialogue with light, space, and material.", nl: "Elk project is een uniek kunstwerk, ontworpen om in dialoog te gaan met licht, ruimte en materiaal.", de: "Jedes Projekt ist ein einzigartiges Werk, das darauf ausgelegt ist, mit Licht, Raum und Material in Dialog zu treten.", es: "Cada proyecto es una obra única, diseñada para dialogar con la luz, el espacio y la materia." },
 
-            // Filters (Uppercase pour correspondre au style du bouton)
+            // Filters
             'filter_residential': { fr: "RÉSIDENTIEL", en: "RESIDENTIAL", nl: "RESIDENTIEEL", de: "WOHNBAU", es: "RESIDENCIAL" },
             'filter_commercial': { fr: "COMMERCIAL", en: "COMMERCIAL", nl: "COMMERCIEEL", de: "GEWERBEBAU", es: "COMERCIAL" },
             'filter_civil_public': { fr: "CIVIL & PUBLIC", en: "CIVIL & PUBLIC", nl: "CIVIEL & OPENBAAR", de: "ZIVIL & ÖFFENTLICH", es: "CIVIL & PÚBLICO" },
@@ -199,29 +230,45 @@
             currentLang = lang;
             document.documentElement.lang = lang; // Met à jour l'attribut lang de la page
 
-            // Met à jour le titre
-            document.querySelector('title').textContent = translations['page_title'][lang];
+            // Met à jour le titre de la page
+            document.title = translations['page_title'][lang];
 
             // Met à jour tous les éléments avec l'attribut data-translate-key
             document.querySelectorAll('[data-translate-key]').forEach(element => {
                 const key = element.getAttribute('data-translate-key');
                 if (translations[key] && translations[key][lang]) {
-                    element.textContent = translations[key][lang];
+                    // Utiliser innerHTML pour permettre des balises si nécessaire (bien que non utilisées ici)
+                    element.innerHTML = translations[key][lang]; 
                 }
             });
 
-            // Gère les classes 'active' pour les boutons de langue
-            document.querySelectorAll('.lang-button').forEach(button => {
-                button.classList.remove('active');
-                if (button.getAttribute('data-lang') === lang) {
-                    button.classList.add('active');
+            // Met à jour l'affichage de la langue actuelle dans le dropdown desktop
+            const currentLangDisplay = document.getElementById('current-lang-display');
+            if (currentLangDisplay) {
+                currentLangDisplay.textContent = lang.toUpperCase(); // Affiche 'FR', 'EN', etc.
+            }
+
+            // Gère les classes 'active' pour les boutons mobiles et les options de dropdown desktop
+            document.querySelectorAll('.lang-button, .lang-option').forEach(element => {
+                element.classList.remove('active', 'text-bronze', 'font-semibold');
+
+                if (element.getAttribute('data-lang') === lang) {
+                    element.classList.add('active');
+                    // Pour le bouton principal du dropdown, on ajoute les couleurs
+                    if (element.id === 'lang-dropdown-btn' && currentLangDisplay) {
+                        currentLangDisplay.classList.add('text-bronze');
+                    }
+                    // Pour les options du menu, on ajoute une classe spécifique
+                    if (element.classList.contains('lang-option')) {
+                        element.classList.add('active'); // Utilise la classe .lang-option.active
+                    }
                 }
             });
         }
 
         // --- 3. LOGIQUE MOBILE ET INITIALISATION ---
 
-        // Fonction pour l'animation des éléments au scroll (inchangée)
+        // Fonction pour l'animation des éléments au scroll
         const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -234,34 +281,86 @@
         }, observerOptions);
         
         document.addEventListener('DOMContentLoaded', () => {
-             document.querySelectorAll('.fade-in-up').forEach(element => {
+            // Initialisation des animations
+            document.querySelectorAll('.fade-in-up').forEach(element => {
                 element.classList.add('opacity-0', 'translate-y-[40px]');
                 observer.observe(element);
             });
             
-            // Initialisation de la langue par défaut (français)
-            switchLanguage(currentLang);
-        });
-
-        // Toggle du menu mobile (inchangé)
-        function toggleMobileMenu() {
+            // Éléments du menu mobile
             const mobileMenu = document.getElementById('mobileMenu');
-            mobileMenu.classList.toggle('hidden');
-        }
-        document.getElementById('mobileMenuBtn').addEventListener('click', toggleMobileMenu);
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            
+            // Fonction de toggle du menu mobile AVEC A11y
+            function toggleMobileMenu() {
+                const isExpanded = mobileMenuBtn.getAttribute('aria-expanded') === 'true';
+                mobileMenuBtn.setAttribute('aria-expanded', String(!isExpanded));
+                mobileMenu.classList.toggle('hidden');
+            }
+            
+            // Attachement de l'événement pour le bouton mobile
+            mobileMenuBtn.addEventListener('click', toggleMobileMenu);
 
-        // Écouteurs d'événements pour les sélecteurs de langue (Desktop et Mobile)
-        document.querySelectorAll('.lang-button').forEach(button => {
-            button.addEventListener('click', (e) => {
-                const lang = e.target.getAttribute('data-lang');
-                switchLanguage(lang);
-                // Ferme le menu mobile si la sélection vient de là
-                if (document.getElementById('mobileMenu').classList.contains('hidden') === false) {
-                     document.getElementById('mobileMenu').classList.add('hidden');
-                }
+            // Initialisation de la langue par défaut
+            const initialLang = document.documentElement.lang || 'fr';
+            switchLanguage(initialLang);
+
+            // LOGIQUE DU DROPDOWN DE LANGUE DESKTOP
+            const langDropdownContainer = document.getElementById('lang-dropdown-container');
+            const langDropdownBtn = document.getElementById('lang-dropdown-btn');
+            const langMenu = document.getElementById('lang-menu');
+            const dropdownArrow = document.getElementById('dropdown-arrow');
+
+            if (langDropdownBtn && langMenu) {
+                // Toggle du dropdown au clic sur le bouton principal
+                langDropdownBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation(); // Empêche la propagation pour le clic hors zone
+                    const isExpanded = langDropdownBtn.getAttribute('aria-expanded') === 'true';
+                    
+                    if (isExpanded) {
+                        langMenu.classList.add('hidden');
+                        dropdownArrow.classList.remove('rotate-180');
+                        langDropdownBtn.setAttribute('aria-expanded', 'false');
+                    } else {
+                        langMenu.classList.remove('hidden');
+                        dropdownArrow.classList.add('rotate-180');
+                        langDropdownBtn.setAttribute('aria-expanded', 'true');
+                    }
+                });
+
+                // Fermer le dropdown en cliquant à l'extérieur
+                document.addEventListener('click', (e) => {
+                    if (langDropdownContainer && !langDropdownContainer.contains(e.target)) {
+                        langMenu.classList.add('hidden');
+                        dropdownArrow.classList.remove('rotate-180');
+                        langDropdownBtn.setAttribute('aria-expanded', 'false');
+                    }
+                });
+            }
+
+            // Écouteurs d'événements pour TOUS les sélecteurs de langue (.lang-button pour mobile, .lang-option pour desktop)
+            document.querySelectorAll('.lang-button, .lang-option').forEach(element => {
+                element.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const lang = element.getAttribute('data-lang');
+                    switchLanguage(lang);
+                    
+                    // Ferme le menu desktop s'il était ouvert
+                    if (langMenu && !langMenu.classList.contains('hidden')) {
+                        langMenu.classList.add('hidden');
+                        langDropdownBtn.setAttribute('aria-expanded', 'false');
+                        dropdownArrow.classList.remove('rotate-180');
+                    }
+
+                    // Ferme le menu mobile si la sélection vient de là
+                    if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                         mobileMenu.classList.add('hidden');
+                         mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                    }
+                });
             });
         });
     </script>
 </body>
 </html>
-```
