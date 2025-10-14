@@ -216,166 +216,183 @@
     </footer>
     
     <script>
-        // --- 1. DONNÉES DE TRADUCTION CONSOLIDÉES ---
-        const translations = {
-            // Page & Navigation
-            'page_title': { fr: "Mosaia Studio - Processus", en: "Mosaia Studio - Process", nl: "Mosaia Studio - Proces", de: "Mosaia Studio - Prozess", es: "Mosaia Studio - Proceso" },
-            'nav_home': { fr: "ACCUEIL", en: "HOME", nl: "HOME", de: "STARTSEITE", es: "INICIO" },
-            'nav_portfolio': { fr: "PORTFOLIO", en: "PORTFOLIO", nl: "PORTFOLIO", de: "PORTFOLIO", es: "PORTAFOLIO" },
-            'nav_studio': { fr: "STUDIO", en: "STUDIO", nl: "STUDIO", de: "STUDIO", es: "ESTUDIO" },
-            'nav_bespoke': { fr: "SUR-MESURE", en: "BESPOKE", nl: "OP MAAT", de: "MASSARBEIT", es: "A MEDIDA" },
-            'nav_process': { fr: "PROCESSUS", en: "PROCESS", nl: "PROCES", de: "PROZESS", es: "PROCESO" },
-            'nav_partners': { fr: "PARTENAIRES", en: "PARTNERS", nl: "PARTNERS", de: "PARTNER", es: "SOCIOS" },
-            'nav_contact': { fr: "CONTACT", en: "CONTACT", nl: "CONTACT", de: "KONTAKT", es: "CONTACTO" },
-            'lang_selector_title': { fr: "Choisir la Langue", en: "Choose Language", nl: "Taal Kiezen", de: "Sprache Wählen", es: "Elegir Idioma" },
-            
-            // Processus Section
-            'process_title': { fr: "PRÉCISION ET PASSION", en: "PRECISION AND PASSION", nl: "NAUWKEURIGHEID EN PASSIE", de: "PRÄZISION UND LEIDENSCHAFT", es: "PRECISIÓN Y PASIÓN" },
-            'process_subtitle': { fr: "Le robot Mosaia, cœur de notre production, incarne la précision et la passion du détail, permettant une exécution parfaite.", en: "The Mosaia robot, the heart of our production, embodies precision and a passion for detail, enabling perfect execution.", nl: "De Mosaia-robot, het hart van onze productie, belichaamt precisie en een passie voor detail, wat een perfecte uitvoering mogelijk maakt.", de: "Der Mosaia-Roboter, das Herzstück unserer Produktion, verkörpert Präzision und Detailleidenschaft und ermöglicht eine perfekte Ausführung.", es: "El robot Mosaia, corazón de nuestra producción, encarna la precisión y la pasión por el detalle, permitiendo una ejecución perfecta." },
-            'steps_section_title': { fr: "Les 6 Étapes de Production", en: "The 6 Production Steps", nl: "De 6 Productiestappen", de: "Die 6 Produktionsschritte", es: "Las 6 Etapas de Producción" },
+    // --- 1. DONNÉES DE TRADUCTION CONSOLIDÉES ---
+    const translations = {
+        // Page & Navigation
+        'page_title': { fr: "Mosaia Studio - Processus", en: "Mosaia Studio - Process", nl: "Mosaia Studio - Proces", de: "Mosaia Studio - Prozess", es: "Mosaia Studio - Proceso" },
+        'nav_home': { fr: "ACCUEIL", en: "HOME", nl: "HOME", de: "STARTSEITE", es: "INICIO" },
+        'nav_portfolio': { fr: "PORTFOLIO", en: "PORTFOLIO", nl: "PORTFOLIO", de: "PORTFOLIO", es: "PORTAFOLIO" },
+        'nav_studio': { fr: "STUDIO", en: "STUDIO", nl: "STUDIO", de: "STUDIO", es: "ESTUDIO" },
+        'nav_bespoke': { fr: "SUR-MESURE", en: "BESPOKE", nl: "OP MAAT", de: "MASSARBEIT", es: "A MEDIDA" },
+        'nav_process': { fr: "PROCESSUS", en: "PROCESS", nl: "PROCES", de: "PROZESS", es: "PROCESO" },
+        'nav_partners': { fr: "PARTENAIRES", en: "PARTNERS", nl: "PARTNERS", de: "PARTNER", es: "SOCIOS" },
+        'nav_contact': { fr: "CONTACT", en: "CONTACT", nl: "CONTACT", de: "KONTAKT", es: "CONTACTO" },
+        'lang_selector_title': { fr: "Choisir la Langue", en: "Choose Language", nl: "Taal Kiezen", de: "Sprache Wählen", es: "Elegir Idioma" },
+        
+        // Processus Section
+        'process_title': { fr: "PRÉCISION ET PASSION", en: "PRECISION AND PASSION", nl: "NAUWKEURIGHEID EN PASSIE", de: "PRÄZISION UND LEIDENSCHAFT", es: "PRECISIÓN Y PASIÓN" },
+        'process_subtitle': { fr: "Le robot Mosaia, cœur de notre production, incarne la précision et la passion du détail, permettant une exécution parfaite.", en: "The Mosaia robot, the heart of our production, embodies precision and a passion for detail, enabling perfect execution.", nl: "De Mosaia-robot, het hart van onze productie, belichaamt precisie en een passie voor detail, wat een perfecte uitvoering mogelijk maakt.", de: "Der Mosaia-Roboter, das Herzstück unserer Produktion, verkörpert Präzision und Detailleidenschaft und ermöglicht eine perfekte Ausführung.", es: "El robot Mosaia, corazón de nuestra producción, encarna la precisión y la pasión por el detalle, permitiendo una ejecución perfecta." },
+        'steps_section_title': { fr: "Les 6 Étapes de Production", en: "The 6 Production Steps", nl: "De 6 Productiestappen", de: "Die 6 Produktionsschritte", es: "Las 6 Etapas de Producción" },
 
-            // Steps
-            'step_1_title': { fr: "TÉLÉCHARGEMENT DU DESIGN", en: "DESIGN UPLOAD", nl: "ONTWERP UPLOADEN", de: "DESIGN-UPLOAD", es: "CARGA DEL DISEÑO" },
-            'step_2_title': { fr: "TRI DES COULEURS", en: "COLOR SORTING", nl: "KLEURSORTERING", de: "FARBSORTIERUNG", es: "CLASIFICACIÓN POR COLOR" },
-            'step_3_title': { fr: "PLACEMENT AUTOMATISÉ", en: "AUTOMATED PLACEMENT", nl: "GEAUTOMATISEERDE PLAATSING", de: "AUTOMATISIERTE PLATZIERUNG", es: "COLOCACIÓN AUTOMATIZADA" },
-            'step_4_title': { fr: "CONTRÔLE QUALITÉ", en: "QUALITY CONTROL", nl: "KWALITEITSCONTROLE", de: "QUALITÄTSKONTROLLE", es: "CONTROL DE CALIDAD" },
-            'step_5_title': { fr: "MONTAGE SUR FILET", en: "MESH MOUNTING", nl: "OP NET MONTEREN", de: "NETZMONTIERUNG", es: "MONTAJE EN MALLA" },
-            'step_6_title': { fr: "EXPÉDITION", en: "SHIPMENT", nl: "VERZENDING", de: "VERSAND", es: "ENVÍO" },
+        // Steps
+        'step_1_title': { fr: "TÉLÉCHARGEMENT DU DESIGN", en: "DESIGN UPLOAD", nl: "ONTWERP UPLOADEN", de: "DESIGN-UPLOAD", es: "CARGA DEL DISEÑO" },
+        'step_2_title': { fr: "TRI DES COULEURS", en: "COLOR SORTING", nl: "KLEURSORTERING", de: "FARBSORTIERUNG", es: "CLASIFICACIÓN POR COLOR" },
+        'step_3_title': { fr: "PLACEMENT AUTOMATISÉ", en: "AUTOMATED PLACEMENT", nl: "GEAUTOMATISEERDE PLAATSING", de: "AUTOMATISIERTE PLATZIERUNG", es: "COLOCACIÓN AUTOMATIZADA" },
+        'step_4_title': { fr: "CONTRÔLE QUALITÉ", en: "QUALITY CONTROL", nl: "KWALITEITSCONTROLE", de: "QUALITÄTSKONTROLLE", es: "CONTROL DE CALIDAD" },
+        'step_5_title': { fr: "MONTAGE SUR FILET", en: "MESH MOUNTING", nl: "OP NET MONTEREN", de: "NETZMONTIERUNG", es: "MONTAJE EN MALLA" },
+        'step_6_title': { fr: "EXPÉDITION", en: "SHIPMENT", nl: "VERZENDING", de: "VERSAND", es: "ENVÍO" },
 
-            // Features
-            'feature_speed_title': { fr: "VITESSE", en: "SPEED", nl: "SNELHEID", de: "GESCHWINDIGKEIT", es: "VELOCIDAD" },
-            'feature_speed_text': { fr: "Production rapide sans compromis sur la qualité, respectant les délais serrés.", en: "Fast production without compromising quality, meeting tight deadlines.", nl: "Snelle productie zonder kwaliteitsverlies, met respect voor strakke deadlines.", de: "Schnelle Produktion ohne Qualitätseinbußen, unter Einhaltung knapper Fristen.", es: "Producción rápida sin comprometer la calidad, respetando los plazos ajustados." },
-            'feature_accuracy_title': { fr: "PRÉCISION", en: "ACCURACY", nl: "NAUWKEURIGHEID", de: "PRÄZISION", es: "PRECISIÓN" },
-            'feature_accuracy_text': { fr: "Positionnement des tesselles au micron près, pour des compositions parfaites.", en: "Tesserae positioning to the nearest micron, for perfect compositions.", nl: "Plaatsing van de tesserae tot op de micron nauwkeurig, voor perfecte composities.", de: "Positionierung der Mosaiksteine auf den Mikrometer genau, für perfekte Kompositionen.", es: "Posicionamiento de las teselas al micrón, para composiciones perfectas." },
-            'feature_consistency_title': { fr: "UNIFORMITÉ", en: "CONSISTENCY", nl: "CONSISTENTIE", de: "KONSISTENZ", es: "CONSISTENCIA" },
-            'feature_consistency_text': { fr: "Uniformité de la qualité sur les grands projets et les reproductions complexes.", en: "Uniformity of quality across large projects and complex reproductions.", nl: "Uniforme kwaliteit voor grote projecten en complexe reproducties.", de: "Gleichbleibende Qualität bei großen Projekten und komplexen Reproduktionen.", es: "Uniformidad de la calidad en grandes proyectos y reproducciones complejas." },
-            'final_inspection_text': { fr: "INSPECTION FINALE HUMAINE. L'œil de l'artisan veille à la perfection finale.", en: "HUMAN FINAL INSPECTION. The artisan's eye ensures the final perfection.", nl: "MENSELIJKE EINDINSPECTIE. Het oog van de ambachtsman zorgt voor de uiteindelijke perfectie.", de: "MENSCHLICHE ENDINSPEKTION. Das Auge des Handwerkers sorgt für die endgültige Perfektion.", es: "INSPECCIÓN FINAL HUMANA. El ojo del artesano vela por la perfección final." },
-            'quote_text': { fr: "Chez Mosaia, la technologie sublime l’artisanat, elle ne le remplace jamais.", en: "At Mosaia, technology enhances craftsmanship; it never replaces it.", nl: "Bij Mosaia verfijnt technologie het vakmanschap; het vervangt het nooit.", de: "Bei Mosaia veredelt Technologie das Handwerk, sie ersetzt es niemals.", es: "En Mosaia, la tecnología sublima la artesanía, nunca la reemplaza." },
+        // Features
+        'feature_speed_title': { fr: "VITESSE", en: "SPEED", nl: "SNELHEID", de: "GESCHWINDIGKEIT", es: "VELOCIDAD" },
+        'feature_speed_text': { fr: "Production rapide sans compromis sur la qualité, respectant les délais serrés.", en: "Fast production without compromising quality, meeting tight deadlines.", nl: "Snelle productie zonder kwaliteitsverlies, met respect voor strakke deadlines.", de: "Schnelle Produktion ohne Qualitätseinbußen, unter Einhaltung knapper Fristen.", es: "Producción rápida sin comprometer la calidad, respetando los plazos ajustados." },
+        'feature_accuracy_title': { fr: "PRÉCISION", en: "ACCURACY", nl: "NAUWKEURIGHEID", de: "PRÄZISION", es: "PRECISIÓN" },
+        'feature_accuracy_text': { fr: "Positionnement des tesselles au micron près, pour des compositions parfaites.", en: "Tesserae positioning to the nearest micron, for perfect compositions.", nl: "Plaatsing van de tesserae tot op de micron nauwkeurig, voor perfecte composities.", de: "Positionierung der Mosaiksteine auf den Mikrometer genau, für perfekte Kompositionen.", es: "Posicionamiento de las teselas al micrón, para composiciones perfectas." },
+        'feature_consistency_title': { fr: "UNIFORMITÉ", en: "CONSISTENCY", nl: "CONSISTENTIE", de: "KONSISTENZ", es: "CONSISTENCIA" },
+        'feature_consistency_text': { fr: "Uniformité de la qualité sur les grands projets et les reproductions complexes.", en: "Uniformity of quality across large projects and complex reproductions.", nl: "Uniforme kwaliteit voor grote projecten en complexe reproducties.", de: "Gleichbleibende Qualität bei großen Projekten und komplexen Reproduktionen.", es: "Uniformidad de la calidad en grandes proyectos y reproducciones complejas." },
+        'final_inspection_text': { fr: "INSPECTION FINALE HUMAINE. L'œil de l'artisan veille à la perfection finale.", en: "HUMAN FINAL INSPECTION. The artisan's eye ensures the final perfection.", nl: "MENSELIJKE EINDINSPECTIE. Het oog van de ambachtsman zorgt voor de uiteindelijke perfectie.", de: "MENSCHLICHE ENDINSPEKTION. Das Auge des Handwerkers sorgt für die endgültige Perfektion.", es: "INSPECCIÓN FINAL HUMANA. El ojo del artesano vela por la perfección final." },
+        'quote_text': { fr: "Chez Mosaia, la technologie sublime l’artisanat, elle ne le remplace jamais.", en: "At Mosaia, technology enhances craftsmanship; it never replaces it.", nl: "Bij Mosaia verfijnt technologie het vakmanschap; het vervangt het nooit.", de: "Bei Mosaia veredelt Technologie das Handwerk, sie ersetzt es niemals.", es: "En Mosaia, la tecnología sublima la artesanía, nunca la reemplaza." },
 
-            // Footer
-            'footer_copyright': { fr: "© MOSAIA STUDIO – PAR AMARU BRANDS", en: "© MOSAIA STUDIO – BY AMARU BRANDS", nl: "© MOSAIA STUDIO – DOOR AMARU BRANDS", de: "© MOSAIA STUDIO – VON AMARU BRANDS", es: "© MOSAIA STUDIO – POR AMARU BRANDS" },
-            'footer_tagline': { fr: "L'ART DE LA MOSAÏQUE QUI ÉVEILLE L'ÉMOTION ET DURE", en: "THE ART OF MOSAIC THAT AWAKENS EMOTION AND LASTS", nl: "DE KUNST VAN MOZAÏEK DAT EMOTIE OPWEKT EN BLIJFT", de: "DIE KUNST DES MOSAIKS, DIE EMOTIONEN WECKT UND BESTÄNDIG IST", es: "EL ARTE DEL MOSAICO QUE DESPIERTA LA EMOCIÓN Y PERDURA" }
-        };
+        // Footer
+        'footer_copyright': { fr: "© MOSAIA STUDIO – PAR AMARU BRANDS", en: "© MOSAIA STUDIO – BY AMARU BRANDS", nl: "© MOSAIA STUDIO – DOOR AMARU BRANDS", de: "© MOSAIA STUDIO – VON AMARU BRANDS", es: "© MOSAIA STUDIO – POR AMARU BRANDS" },
+        'footer_tagline': { fr: "L'ART DE LA MOSAÏQUE QUI ÉVEILLE L'ÉMOTION ET DURE", en: "THE ART OF MOSAIC THAT AWAKENS EMOTION AND LASTS", nl: "DE KUNST VAN MOZAÏEK DAT EMOTIE OPWEKT EN BLIJFT", de: "DIE KUNST DES MOSAIKS, DIE EMOTIONEN WECKT UND BESTÄNDIG IST", es: "EL ARTE DES MOSAICO QUE DESPIERTA LA EMOCIÓN Y PERDURA" }
+    };
 
-        let currentLang = localStorage.getItem('userLanguage') || 'fr'; // Utilise la langue sauvegardée ou 'fr' par défaut
+    // --- DÉTERMINATION DE LA LANGUE INITIALE (PERSISTANCE) ---
+    // Récupère la langue stockée dans localStorage ('userLanguage'), sinon utilise 'fr' par défaut
+    let currentLang = localStorage.getItem('userLanguage') || 'fr'; 
 
-        // --- 2. FONCTION DE TRADUCTION UNIQUE ---
-        function switchLanguage(lang) {
-            currentLang = lang;
-            document.documentElement.lang = lang; 
-            localStorage.setItem('userLanguage', lang); // Sauvegarde la préférence
+    // --- 2. FONCTION DE TRADUCTION UNIQUE (MISE À JOUR) ---
+    function switchLanguage(lang) {
+        currentLang = lang;
+        document.documentElement.lang = lang; 
+        
+        // **SAUVEGARDE DE LA PRÉFÉRENCE DE LANGUE**
+        localStorage.setItem('userLanguage', lang); 
 
-            // Met à jour le titre
-            document.querySelector('title').textContent = translations['page_title'][lang];
+        // Met à jour le titre
+        document.querySelector('title').textContent = translations['page_title'][lang];
 
-            // Met à jour tous les éléments avec l'attribut data-translate-key
-            document.querySelectorAll('[data-translate-key]').forEach(element => {
-                const key = element.getAttribute('data-translate-key');
-                if (translations[key] && translations[key][lang]) {
-                    element.textContent = translations[key][lang];
+        // Met à jour tous les éléments avec l'attribut data-translate-key
+        document.querySelectorAll('[data-translate-key]').forEach(element => {
+            const key = element.getAttribute('data-translate-key');
+            if (translations[key] && translations[key][lang]) {
+                element.textContent = translations[key][lang];
+            }
+        });
+
+        // Gère les classes 'active' pour les boutons de langue (Desktop et Mobile)
+        document.querySelectorAll('.lang-button').forEach(button => {
+            button.classList.remove('active');
+            if (button.getAttribute('data-lang') === lang) {
+                button.classList.add('active');
+                
+                // Met à jour l'affichage de la langue actuelle dans le bouton desktop
+                const currentLangDisplay = document.getElementById('current-lang-display');
+                if (currentLangDisplay && button.closest('#lang-dropdown-container')) {
+                    currentLangDisplay.textContent = lang.toUpperCase();
                 }
-            });
+            }
+        });
 
-            // Gère les classes 'active' pour les boutons de langue (Desktop et Mobile)
-            document.querySelectorAll('.lang-button').forEach(button => {
-                button.classList.remove('active');
-                if (button.getAttribute('data-lang') === lang) {
-                    button.classList.add('active');
-                    // Met à jour l'affichage de la langue actuelle dans le bouton desktop
-                    if (button.closest('#lang-dropdown-container') || button.id === 'lang-dropdown-btn') {
-                        document.getElementById('current-lang-display').textContent = lang.toUpperCase();
-                    }
-                }
-            });
+        // Optionnel: Ferme le dropdown desktop après la sélection (s'il est ouvert)
+        const langMenu = document.getElementById('lang-menu');
+        const arrow = document.getElementById('dropdown-arrow');
+        const langDropdownBtn = document.getElementById('lang-dropdown-btn');
 
-            // Optionnel: Ferme le dropdown desktop après la sélection
-            const langMenu = document.getElementById('lang-menu');
-            const arrow = document.getElementById('dropdown-arrow');
-            if (langMenu && !langMenu.classList.contains('hidden')) {
-                langMenu.classList.add('hidden');
+        if (langMenu && langDropdownBtn && !langMenu.classList.contains('hidden')) {
+            langMenu.classList.add('hidden');
+            langDropdownBtn.setAttribute('aria-expanded', 'false');
+            if (arrow) {
                 arrow.classList.remove('rotate-180');
             }
         }
 
-        // --- 3. LOGIQUE D'INTERACTIVITÉ ---
-
-        // Toggle du menu mobile
-        function toggleMobileMenu() {
-            const mobileMenu = document.getElementById('mobileMenu');
-            mobileMenu.classList.toggle('hidden');
+        // Ferme le menu mobile si un bouton a été cliqué à l'intérieur
+        const mobileMenu = document.getElementById('mobileMenu');
+        if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+             mobileMenu.classList.add('hidden');
+             document.getElementById('mobileMenuBtn').setAttribute('aria-expanded', 'false');
         }
-        document.addEventListener('DOMContentLoaded', () => {
-             document.getElementById('mobileMenuBtn').addEventListener('click', toggleMobileMenu);
-        });
+    }
 
+    // --- 3. LOGIQUE D'INTERACTIVITÉ & INITIALISATION ---
 
-        // Toggle du sélecteur de langue Desktop
-        document.addEventListener('DOMContentLoaded', () => {
-            const dropdownBtn = document.getElementById('lang-dropdown-btn');
-            if (dropdownBtn) {
-                dropdownBtn.addEventListener('click', (event) => {
-                    event.stopPropagation();
-                    const langMenu = document.getElementById('lang-menu');
-                    const arrow = document.getElementById('dropdown-arrow');
-                    
-                    langMenu.classList.toggle('hidden');
-                    arrow.classList.toggle('rotate-180');
-                });
+    // Toggle du menu mobile
+    function toggleMobileMenu() {
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const isHidden = mobileMenu.classList.toggle('hidden');
+        mobileMenuBtn.setAttribute('aria-expanded', !isHidden);
+    }
+    
+
+    // --- 4. LOGIQUE D'ANIMATION ET INITIALISATION ---
+    const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('fade-in-up');
+                entry.target.classList.remove('opacity-0', 'translate-y-[40px]');
+                observer.unobserve(entry.target);
             }
         });
+    }, observerOptions);
+    
+    document.addEventListener('DOMContentLoaded', () => {
+        // **INITIALISATION DE LA LANGUE PERSISTANTE AU CHARGEMENT**
+        switchLanguage(currentLang);
+        
+        // Initialisation de l'observateur d'animation
+        document.querySelectorAll('.fade-in-up').forEach(element => {
+            element.classList.add('opacity-0', 'translate-y-[40px]');
+            observer.observe(element);
+        });
+
+        // Toggle du menu mobile
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+        }
+        
+        // Toggle du sélecteur de langue Desktop
+        const dropdownBtn = document.getElementById('lang-dropdown-btn');
+        const langMenu = document.getElementById('lang-menu');
+        const arrow = document.getElementById('dropdown-arrow');
+
+        if (dropdownBtn) {
+            dropdownBtn.addEventListener('click', (event) => {
+                event.stopPropagation();
+                if (langMenu) {
+                    const isExpanded = dropdownBtn.getAttribute('aria-expanded') === 'true';
+                    dropdownBtn.setAttribute('aria-expanded', !isExpanded);
+                    langMenu.classList.toggle('hidden');
+                    if (arrow) {
+                        arrow.classList.toggle('rotate-180');
+                    }
+                }
+            });
+        }
 
         // Fermer le dropdown de langue en cliquant n'importe où ailleurs sur la page
         document.addEventListener('click', (event) => {
             const dropdownContainer = document.getElementById('lang-dropdown-container');
-            const langMenu = document.getElementById('lang-menu');
-            const arrow = document.getElementById('dropdown-arrow');
-            
-            if (dropdownContainer && langMenu && arrow && !dropdownContainer.contains(event.target) && !langMenu.classList.contains('hidden')) {
+            if (dropdownContainer && langMenu && arrow && dropdownBtn && !dropdownContainer.contains(event.target) && !langMenu.classList.contains('hidden')) {
                 langMenu.classList.add('hidden');
+                dropdownBtn.setAttribute('aria-expanded', 'false');
                 arrow.classList.remove('rotate-180');
             }
         });
 
         // Écouteurs d'événements pour les sélecteurs de langue (Desktop et Mobile)
-        document.addEventListener('DOMContentLoaded', () => {
-            document.querySelectorAll('.lang-button').forEach(button => {
-                button.addEventListener('click', (e) => {
-                    // On cherche l'attribut data-lang sur le bouton ou son parent <a>
-                    const lang = e.target.closest('[data-lang]').getAttribute('data-lang');
-                    switchLanguage(lang);
-                    
-                    // Ferme le menu mobile si la sélection vient de là (sur mobile)
-                    if (window.innerWidth < 768) {
-                        const mobileMenu = document.getElementById('mobileMenu');
-                        if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
-                             mobileMenu.classList.add('hidden');
-                        }
-                    }
-                });
+        document.querySelectorAll('.lang-button').forEach(button => {
+            button.addEventListener('click', (e) => {
+                // Utilisation de currentTarget pour s'assurer que l'attribut est lu du bon élément, même si l'enfant est cliqué
+                const lang = e.currentTarget.getAttribute('data-lang');
+                switchLanguage(lang);
+                // Le reste (fermeture des menus) est géré dans switchLanguage
             });
         });
-
-        // --- 4. LOGIQUE D'ANIMATION ET INITIALISATION ---
-        const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('fade-in-up');
-                    entry.target.classList.remove('opacity-0', 'translate-y-[40px]');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-        
-        document.addEventListener('DOMContentLoaded', () => {
-             document.querySelectorAll('.fade-in-up').forEach(element => {
-                element.classList.add('opacity-0', 'translate-y-[40px]');
-                observer.observe(element);
-            });
-            
-            // Initialisation de la langue au chargement
-            switchLanguage(currentLang);
-        });
-    </script>
+    }); // Fin DOMContentLoaded
+</script>
 </body>
 </html>
