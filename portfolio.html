@@ -190,177 +190,185 @@
         </div>
     </footer>
     
-    <script>
-        // --- 1. DONNÉES DE TRADUCTION ---
-        const translations = {
-            // Page & Navigation
-            'page_title': { fr: "Mosaia Studio - Portfolio", en: "Mosaia Studio - Portfolio", nl: "Mosaia Studio - Portfolio", de: "Mosaia Studio - Portfolio", es: "Mosaia Studio - Portafolio" },
-            'nav_home': { fr: "ACCUEIL", en: "HOME", nl: "STARTPAGINA", de: "STARTSEITE", es: "INICIO" },
-            'nav_portfolio': { fr: "PORTFOLIO", en: "PORTFOLIO", nl: "PORTFOLIO", de: "PORTFOLIO", es: "PORTAFOLIO" },
-            'nav_studio': { fr: "STUDIO", en: "STUDIO", nl: "STUDIO", de: "STUDIO", es: "ESTUDIO" },
-            'nav_bespoke': { fr: "SUR-MESURE", en: "BESPOKE", nl: "MAATWERK", de: "MAẞARBEIT", es: "A MEDIDA" },
-            'nav_process': { fr: "PROCESSUS", en: "PROCESS", nl: "PROCES", de: "PROZESS", es: "PROCESO" },
-            'nav_partners': { fr: "PARTENAIRES", en: "PARTNERS", nl: "PARTNERS", de: "PARTNER", es: "SOCIOS" },
-            'nav_contact': { fr: "CONTACT", en: "CONTACT", nl: "CONTACT", de: "KONTAKT", es: "CONTACTO" },
-            'menu_btn': { fr: "Menu", en: "Menu", nl: "Menu", de: "Menü", es: "Menú" }, // Clé ajoutée
-            'lang_selector_title': { fr: "Choisir la Langue", en: "Choose Language", nl: "Taal Kiezen", de: "Sprache Wählen", es: "Elegir Idioma" },
-            
-            // Portfolio Section
-            'section_title': { fr: "NOS RÉALISATIONS", en: "OUR PROJECTS", nl: "ONZE REALISATIES", de: "UNSERE PROJEKTE", es: "NUESTRAS REALIZACIONES" },
-            'section_subtitle': { fr: "Chaque projet est une œuvre unique, conçue pour dialoguer avec la lumière, l’espace et la matière.", en: "Each project is a unique work, designed to dialogue with light, space, and material.", nl: "Elk project is een uniek kunstwerk, ontworpen om in dialoog te gaan met licht, ruimte en materiaal.", de: "Jedes Projekt ist ein einzigartiges Werk, das darauf ausgelegt ist, mit Licht, Raum und Material in Dialog zu treten.", es: "Cada proyecto es una obra única, diseñada para dialogar con la luz, el espacio y la materia." },
+   <script>
+    // --- 1. DONNÉES DE TRADUCTION ---
+    const translations = {
+        // Page & Navigation
+        'page_title': { fr: "Mosaia Studio - Portfolio", en: "Mosaia Studio - Portfolio", nl: "Mosaia Studio - Portfolio", de: "Mosaia Studio - Portfolio", es: "Mosaia Studio - Portafolio" },
+        'nav_home': { fr: "ACCUEIL", en: "HOME", nl: "STARTPAGINA", de: "STARTSEITE", es: "INICIO" },
+        'nav_portfolio': { fr: "PORTFOLIO", en: "PORTFOLIO", nl: "PORTFOLIO", de: "PORTFOLIO", es: "PORTAFOLIO" },
+        'nav_studio': { fr: "STUDIO", en: "STUDIO", nl: "STUDIO", de: "STUDIO", es: "ESTUDIO" },
+        'nav_bespoke': { fr: "SUR-MESURE", en: "BESPOKE", nl: "MAATWERK", de: "MAẞARBEIT", es: "A MEDIDA" },
+        'nav_process': { fr: "PROCESSUS", en: "PROCESS", nl: "PROCES", de: "PROZESS", es: "PROCESO" },
+        'nav_partners': { fr: "PARTENAIRES", en: "PARTNERS", nl: "PARTNERS", de: "PARTNER", es: "SOCIOS" },
+        'nav_contact': { fr: "CONTACT", en: "CONTACT", nl: "CONTACT", de: "KONTAKT", es: "CONTACTO" },
+        'menu_btn': { fr: "Menu", en: "Menu", nl: "Menu", de: "Menü", es: "Menú" }, // Clé ajoutée
+        'lang_selector_title': { fr: "Choisir la Langue", en: "Choose Language", nl: "Taal Kiezen", de: "Sprache Wählen", es: "Elegir Idioma" },
+        
+        // Portfolio Section
+        'section_title': { fr: "NOS RÉALISATIONS", en: "OUR PROJECTS", nl: "ONZE REALISATIES", de: "UNSERE PROJEKTE", es: "NUESTRAS REALIZACIONES" },
+        'section_subtitle': { fr: "Chaque projet est une œuvre unique, conçue pour dialoguer avec la lumière, l’espace et la matière.", en: "Each project is a unique work, designed to dialogue with light, space, and material.", nl: "Elk project is een uniek kunstwerk, ontworpen om in dialoog te gaan met licht, ruimte en materiaal.", de: "Jedes Projekt ist ein einzigartiges Werk, das darauf ausgelegt ist, mit Licht, Raum und Material in Dialog zu treten.", es: "Cada proyecto es una obra única, diseñada para dialogar con la luz, el espacio y la materia." },
 
-            // Filters
-            'filter_residential': { fr: "RÉSIDENTIEL", en: "RESIDENTIAL", nl: "RESIDENTIEEL", de: "WOHNBAU", es: "RESIDENCIAL" },
-            'filter_commercial': { fr: "COMMERCIAL", en: "COMMERCIAL", nl: "COMMERCIEEL", de: "GEWERBEBAU", es: "COMERCIAL" },
-            'filter_civil_public': { fr: "CIVIL & PUBLIC", en: "CIVIL & PUBLIC", nl: "CIVIEL & OPENBAAR", de: "ZIVIL & ÖFFENTLICH", es: "CIVIL & PÚBLICO" },
+        // Filters
+        'filter_residential': { fr: "RÉSIDENTIEL", en: "RESIDENTIAL", nl: "RESIDENTIEEL", de: "WOHNBAU", es: "RESIDENCIAL" },
+        'filter_commercial': { fr: "COMMERCIAL", en: "COMMERCIAL", nl: "COMMERCIEEL", de: "GEWERBEBAU", es: "COMERCIAL" },
+        'filter_civil_public': { fr: "CIVIL & PUBLIC", en: "CIVIL & PUBLIC", nl: "CIVIEL & OPENBAAR", de: "ZIVIL & ÖFFENTLICH", es: "CIVIL & PÚBLICO" },
 
-            // Category Info (Residential)
-            'category_title': { fr: "RÉSIDENTIEL :", en: "RESIDENTIAL :", nl: "RESIDENTIEEL :", de: "WOHNBAU :", es: "RESIDENCIAL :" },
-            'category_description': { fr: "Piscines, installations d'art, sols, entourage de cheminées, murs décoratifs.", en: "Swimming pools, Art installations, Floors, Fireplace surrounds, Decorative walls.", nl: "Zwembaden, kunstinstallaties, vloeren, schouwomlijstingen, decoratieve muren.", de: "Schwimmbäder, Kunstinstallationen, Böden, Kaminumrandungen, dekorative Wände.", es: "Piscinas, instalaciones de arte, suelos, revestimientos de chimeneas, paredes decorativas." },
+        // Category Info (Residential)
+        'category_title': { fr: "RÉSIDENTIEL :", en: "RESIDENTIAL :", nl: "RESIDENTIEEL :", de: "WOHNBAU :", es: "RESIDENCIAL :" },
+        'category_description': { fr: "Piscines, installations d'art, sols, entourage de cheminées, murs décoratifs.", en: "Swimming pools, Art installations, Floors, Fireplace surrounds, Decorative walls.", nl: "Zwembaden, kunstinstallaties, vloeren, schouwomlijstingen, decoratieve muren.", de: "Schwimmbäder, Kunstinstallationen, Böden, Kaminumrandungen, dekorative Wände.", es: "Piscinas, instalaciones de arte, suelos, revestimientos de chimeneas, paredes decorativas." },
 
-            // Footer
-            'footer_copyright': { fr: "© MOSAIA STUDIO – PAR AMARU BRANDS", en: "© MOSAIA STUDIO – BY AMARU BRANDS", nl: "© MOSAIA STUDIO – DOOR AMARU BRANDS", de: "© MOSAIA STUDIO – VON AMARU BRANDS", es: "© MOSAIA STUDIO – POR AMARU BRANDS" },
-            'footer_tagline': { fr: "L'ART DE LA MOSAÏQUE QUI ÉVEILLE L'ÉMOTION ET DURE", en: "THE ART OF MOSAIC THAT AWAKENS EMOTION AND ENDURES", nl: "DE KUNST VAN MOZAÏEK DAT EMOTIE OPROEPT EN VOORTDUURT", de: "DIE KUNST DES MOSAIKS, DIE EMOTIONEN WECKT UND BESTEHT", es: "EL ARTE DEL MOSAICO QUE DESPIERTA EMOCIÓN Y PERDURA" }
-        };
+        // Footer
+        'footer_copyright': { fr: "© MOSAIA STUDIO – PAR AMARU BRANDS", en: "© MOSAIA STUDIO – BY AMARU BRANDS", nl: "© MOSAIA STUDIO – DOOR AMARU BRANDS", de: "© MOSAIA STUDIO – VON AMARU BRANDS", es: "© MOSAIA STUDIO – POR AMARU BRANDS" },
+        'footer_tagline': { fr: "L'ART DE LA MOSAÏQUE QUI ÉVEILLE L'ÉMOTION ET DURE", en: "THE ART OF MOSAIC THAT AWAKENS EMOTION AND ENDURES", nl: "DE KUNST VAN MOZAÏEK DAT EMOTIE OPROEPT EN VOORTDUURT", de: "DIE KUNST DES MOSAIKS, DIE EMOTIONEN WECKT UND BESTEHT", es: "EL ARTE DEL MOSAICO QUE DESPIERTA EMOCIÓN Y PERDURA" }
+    };
 
-        let currentLang = 'fr'; // Langue par défaut
+    let currentLang = 'fr'; // Langue par défaut
 
-        // --- 2. FONCTION DE TRADUCTION ---
-        function switchLanguage(lang) {
-            currentLang = lang;
-            document.documentElement.lang = lang; // Met à jour l'attribut lang de la page
+    // --- 2. FONCTION DE TRADUCTION AVEC LOCAL STORAGE (MODIFIÉE) ---
+    function switchLanguage(lang) {
+        currentLang = lang;
+        document.documentElement.lang = lang; 
 
-            // Met à jour le titre de la page
-            document.title = translations['page_title'][lang];
+        // MODIFICATION CLÉ : ENREGISTRE LA LANGUE SÉLECTIONNÉE DANS LE LOCAL STORAGE
+        localStorage.setItem('userLanguage', lang);
+        
+        // Met à jour le titre de la page
+        document.title = translations['page_title'][lang];
 
-            // Met à jour tous les éléments avec l'attribut data-translate-key
-            document.querySelectorAll('[data-translate-key]').forEach(element => {
-                const key = element.getAttribute('data-translate-key');
-                if (translations[key] && translations[key][lang]) {
-                    // Utiliser innerHTML pour permettre des balises si nécessaire (bien que non utilisées ici)
-                    element.innerHTML = translations[key][lang]; 
+        // Met à jour tous les éléments avec l'attribut data-translate-key
+        document.querySelectorAll('[data-translate-key]').forEach(element => {
+            const key = element.getAttribute('data-translate-key');
+            if (translations[key] && translations[key][lang]) {
+                element.innerHTML = translations[key][lang];
+            }
+        });
+
+        // Met à jour l'affichage de la langue actuelle dans le dropdown desktop
+        const currentLangDisplay = document.getElementById('current-lang-display');
+        if (currentLangDisplay) {
+            currentLangDisplay.textContent = lang.toUpperCase(); 
+        }
+
+        // Gère les classes 'active' pour les boutons mobiles et les options de dropdown desktop
+        document.querySelectorAll('.lang-button, .lang-option').forEach(element => {
+            element.classList.remove('active', 'text-bronze', 'font-semibold');
+
+            if (element.getAttribute('data-lang') === lang) {
+                element.classList.add('active');
+                if (currentLangDisplay) {
+                    currentLangDisplay.classList.add('text-bronze', 'font-semibold');
+                }
+                if (element.classList.contains('lang-option') || element.closest('#lang-selector-mobile')) {
+                    element.classList.add('active'); 
+                }
+            } else {
+                if (element.classList.contains('lang-option')) {
+                    element.classList.remove('active');
+                }
+            }
+        });
+    }
+
+    // --- 3. LOGIQUE MOBILE ET INITIALISATION ---
+
+    // Fonction pour l'animation des éléments au scroll
+    const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('fade-in-up');
+                entry.target.classList.remove('opacity-0', 'translate-y-[40px]');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+    
+    document.addEventListener('DOMContentLoaded', () => {
+        
+        // MODIFICATION CLÉ : Récupère la langue du Stockage Local
+        const storedLang = localStorage.getItem('userLanguage');
+
+        // Initialise la langue : utilise la version stockée, ou celle du HTML (ou 'fr')
+        const initialLang = storedLang || document.documentElement.lang || 'fr';
+        switchLanguage(initialLang); 
+
+        // Initialisation des animations
+        document.querySelectorAll('.fade-in-up').forEach(element => {
+            element.classList.add('opacity-0', 'translate-y-[40px]');
+            observer.observe(element);
+        });
+        
+        // Éléments du menu mobile
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        
+        // Fonction de toggle du menu mobile AVEC A11y
+        function toggleMobileMenu() {
+            const isExpanded = mobileMenuBtn.getAttribute('aria-expanded') === 'true';
+            mobileMenuBtn.setAttribute('aria-expanded', String(!isExpanded));
+            mobileMenu.classList.toggle('hidden');
+        }
+        
+        // Attachement de l'événement pour le bouton mobile
+        mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+
+        // LOGIQUE DU DROPDOWN DE LANGUE DESKTOP
+        const langDropdownContainer = document.getElementById('lang-dropdown-container');
+        const langDropdownBtn = document.getElementById('lang-dropdown-btn');
+        const langMenu = document.getElementById('lang-menu');
+        const dropdownArrow = document.getElementById('dropdown-arrow');
+
+        if (langDropdownBtn && langMenu) {
+            // Toggle du dropdown au clic sur le bouton principal
+            langDropdownBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation(); 
+                const isExpanded = langDropdownBtn.getAttribute('aria-expanded') === 'true';
+                
+                if (isExpanded) {
+                    langMenu.classList.add('hidden');
+                    dropdownArrow.classList.remove('rotate-180');
+                    langDropdownBtn.setAttribute('aria-expanded', 'false');
+                } else {
+                    langMenu.classList.remove('hidden');
+                    dropdownArrow.classList.add('rotate-180');
+                    langDropdownBtn.setAttribute('aria-expanded', 'true');
                 }
             });
 
-            // Met à jour l'affichage de la langue actuelle dans le dropdown desktop
-            const currentLangDisplay = document.getElementById('current-lang-display');
-            if (currentLangDisplay) {
-                currentLangDisplay.textContent = lang.toUpperCase(); // Affiche 'FR', 'EN', etc.
-            }
-
-            // Gère les classes 'active' pour les boutons mobiles et les options de dropdown desktop
-            document.querySelectorAll('.lang-button, .lang-option').forEach(element => {
-                element.classList.remove('active', 'text-bronze', 'font-semibold');
-
-                if (element.getAttribute('data-lang') === lang) {
-                    element.classList.add('active');
-                    // Pour le bouton principal du dropdown, on ajoute les couleurs
-                    if (element.id === 'lang-dropdown-btn' && currentLangDisplay) {
-                        currentLangDisplay.classList.add('text-bronze');
-                    }
-                    // Pour les options du menu, on ajoute une classe spécifique
-                    if (element.classList.contains('lang-option')) {
-                        element.classList.add('active'); // Utilise la classe .lang-option.active
-                    }
+            // Fermer le dropdown en cliquant à l'extérieur
+            document.addEventListener('click', (e) => {
+                if (langDropdownContainer && !langDropdownContainer.contains(e.target)) {
+                    langMenu.classList.add('hidden');
+                    dropdownArrow.classList.remove('rotate-180');
+                    langDropdownBtn.setAttribute('aria-expanded', 'false');
                 }
             });
         }
 
-        // --- 3. LOGIQUE MOBILE ET INITIALISATION ---
+        // Écouteurs d'événements pour TOUS les sélecteurs de langue (.lang-button pour mobile, .lang-option pour desktop)
+        document.querySelectorAll('.lang-button, .lang-option').forEach(element => {
+            element.addEventListener('click', (e) => {
+                e.preventDefault();
+                const lang = element.getAttribute('data-lang');
+                switchLanguage(lang); // Cela enregistre la langue dans localStorage
+                
+                // Ferme le menu desktop s'il était ouvert
+                if (langMenu && !langMenu.classList.contains('hidden')) {
+                    langMenu.classList.add('hidden');
+                    langDropdownBtn.setAttribute('aria-expanded', 'false');
+                    if (dropdownArrow) dropdownArrow.classList.remove('rotate-180');
+                }
 
-        // Fonction pour l'animation des éléments au scroll
-        const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('fade-in-up');
-                    entry.target.classList.remove('opacity-0', 'translate-y-[40px]');
-                    observer.unobserve(entry.target);
+                // Ferme le menu mobile si la sélection vient de là
+                if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                       mobileMenu.classList.add('hidden');
+                       mobileMenuBtn.setAttribute('aria-expanded', 'false');
                 }
             });
-        }, observerOptions);
-        
-        document.addEventListener('DOMContentLoaded', () => {
-            // Initialisation des animations
-            document.querySelectorAll('.fade-in-up').forEach(element => {
-                element.classList.add('opacity-0', 'translate-y-[40px]');
-                observer.observe(element);
-            });
-            
-            // Éléments du menu mobile
-            const mobileMenu = document.getElementById('mobileMenu');
-            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-            
-            // Fonction de toggle du menu mobile AVEC A11y
-            function toggleMobileMenu() {
-                const isExpanded = mobileMenuBtn.getAttribute('aria-expanded') === 'true';
-                mobileMenuBtn.setAttribute('aria-expanded', String(!isExpanded));
-                mobileMenu.classList.toggle('hidden');
-            }
-            
-            // Attachement de l'événement pour le bouton mobile
-            mobileMenuBtn.addEventListener('click', toggleMobileMenu);
-
-            // Initialisation de la langue par défaut
-            const initialLang = document.documentElement.lang || 'fr';
-            switchLanguage(initialLang);
-
-            // LOGIQUE DU DROPDOWN DE LANGUE DESKTOP
-            const langDropdownContainer = document.getElementById('lang-dropdown-container');
-            const langDropdownBtn = document.getElementById('lang-dropdown-btn');
-            const langMenu = document.getElementById('lang-menu');
-            const dropdownArrow = document.getElementById('dropdown-arrow');
-
-            if (langDropdownBtn && langMenu) {
-                // Toggle du dropdown au clic sur le bouton principal
-                langDropdownBtn.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    e.stopPropagation(); // Empêche la propagation pour le clic hors zone
-                    const isExpanded = langDropdownBtn.getAttribute('aria-expanded') === 'true';
-                    
-                    if (isExpanded) {
-                        langMenu.classList.add('hidden');
-                        dropdownArrow.classList.remove('rotate-180');
-                        langDropdownBtn.setAttribute('aria-expanded', 'false');
-                    } else {
-                        langMenu.classList.remove('hidden');
-                        dropdownArrow.classList.add('rotate-180');
-                        langDropdownBtn.setAttribute('aria-expanded', 'true');
-                    }
-                });
-
-                // Fermer le dropdown en cliquant à l'extérieur
-                document.addEventListener('click', (e) => {
-                    if (langDropdownContainer && !langDropdownContainer.contains(e.target)) {
-                        langMenu.classList.add('hidden');
-                        dropdownArrow.classList.remove('rotate-180');
-                        langDropdownBtn.setAttribute('aria-expanded', 'false');
-                    }
-                });
-            }
-
-            // Écouteurs d'événements pour TOUS les sélecteurs de langue (.lang-button pour mobile, .lang-option pour desktop)
-            document.querySelectorAll('.lang-button, .lang-option').forEach(element => {
-                element.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const lang = element.getAttribute('data-lang');
-                    switchLanguage(lang);
-                    
-                    // Ferme le menu desktop s'il était ouvert
-                    if (langMenu && !langMenu.classList.contains('hidden')) {
-                        langMenu.classList.add('hidden');
-                        langDropdownBtn.setAttribute('aria-expanded', 'false');
-                        dropdownArrow.classList.remove('rotate-180');
-                    }
-
-                    // Ferme le menu mobile si la sélection vient de là
-                    if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
-                         mobileMenu.classList.add('hidden');
-                         mobileMenuBtn.setAttribute('aria-expanded', 'false');
-                    }
-                });
-            });
         });
-    </script>
+    });
+</script>
 </body>
 </html>
