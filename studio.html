@@ -221,12 +221,14 @@
             'footer_tagline': { fr: "L'ART DE LA MOSAÏQUE QUI ÉVEILLE L'ÉMOTION ET DURE", en: "THE ART OF MOSAIC THAT AWAKENS EMOTION AND ENDURES", nl: "DE KUNST VAN MOZAÏEK DAT EMOTIE OPROEPT EN VOORTDUURT", de: "DIE KUNST DES MOSAIKS, DIE EMOTIONEN WECKT UND BESTEHT", es: "EL ARTE DEL MOSAICO QUE DESPIERTA EMOCIÓN Y PERDURA" }
         };
 
-        let currentLang = 'fr'; // Langue par défaut
-
-        // --- 2. FONCTION DE TRADUCTION (MISE À JOUR) ---
+        // --- 2. FONCTION DE TRADUCTION (MISE À JOUR AVEC PERSISTANCE) ---
         function switchLanguage(lang) {
+            // 1. Mise à jour de la variable globale et de l'attribut lang
             currentLang = lang;
-            document.documentElement.lang = lang; // Met à jour l'attribut lang de la page
+            document.documentElement.lang = lang; 
+            
+            // **2. Persistance : Stockage de la langue dans localStorage**
+            localStorage.setItem('mosaiaLang', lang);
 
             // Met à jour le titre
             const titleElement = document.querySelector('title');
@@ -250,17 +252,21 @@
                 }
             });
 
-            // Met à jour le texte affiché dans le menu déroulant desktop (CORRECTION DE L'ID)
+            // Met à jour le texte affiché dans le menu déroulant desktop
             const currentLangDisplay = document.getElementById('current-lang-display');
             if (currentLangDisplay) {
                 currentLangDisplay.textContent = lang.toUpperCase();
             }
         }
 
-        // --- 3. LOGIQUE GLOBALE, DROPDOWN & INITIALISATION (CORRIGÉE) ---
+        // --- 3. LOGIQUE GLOBALE, DROPDOWN & INITIALISATION (MODIFIÉE) ---
         
+        // **Détermination de la langue initiale : localStorage > HTML (fr) **
+        // Utilise la langue stockée, sinon 'fr'
+        let currentLang = localStorage.getItem('mosaiaLang') || 'fr'; 
+
         document.addEventListener('DOMContentLoaded', () => {
-            // Initialisation de la langue par défaut
+            // **Initialisation de la langue au chargement de la page**
             switchLanguage(currentLang);
 
             // ----------------------------------------------
@@ -296,7 +302,7 @@
             mobileMenuBtn.addEventListener('click', toggleMobileMenu);
 
             // ----------------------------------------------
-            // LOGIQUE DU SÉLECTEUR DE LANGUE DESKTOP (CORRIGÉE)
+            // LOGIQUE DU SÉLECTEUR DE LANGUE DESKTOP
             // ----------------------------------------------
             const langDropdownBtn = document.getElementById('lang-dropdown-btn');
             const langMenu = document.getElementById('lang-menu');
@@ -326,7 +332,8 @@
                 link.addEventListener('click', (e) => {
                     e.preventDefault();
                     const lang = link.getAttribute('data-lang');
-                    switchLanguage(lang);
+                    // switchLanguage va maintenant sauvegarder dans localStorage
+                    switchLanguage(lang); 
                     // Ferme le menu déroulant après la sélection
                     langMenu.classList.add('hidden');
                     langDropdownBtn.setAttribute('aria-expanded', 'false');
@@ -338,7 +345,8 @@
             document.querySelectorAll('#lang-selector-mobile .lang-button').forEach(button => {
                 button.addEventListener('click', (e) => {
                     const lang = button.getAttribute('data-lang');
-                    switchLanguage(lang);
+                    // switchLanguage va maintenant sauvegarder dans localStorage
+                    switchLanguage(lang); 
                     // Ferme le menu mobile après la sélection
                     mobileMenu.classList.add('hidden');
                     mobileMenuBtn.setAttribute('aria-expanded', 'false');
