@@ -190,7 +190,7 @@
         </div>
     </footer>
     
-   <script>
+  <script>
     // --- 1. DONNÉES DE TRADUCTION ---
     const translations = {
         // Page & Navigation
@@ -202,7 +202,7 @@
         'nav_process': { fr: "PROCESSUS", en: "PROCESS", nl: "PROCES", de: "PROZESS", es: "PROCESO" },
         'nav_partners': { fr: "PARTENAIRES", en: "PARTNERS", nl: "PARTNERS", de: "PARTNER", es: "SOCIOS" },
         'nav_contact': { fr: "CONTACT", en: "CONTACT", nl: "CONTACT", de: "KONTAKT", es: "CONTACTO" },
-        'menu_btn': { fr: "Menu", en: "Menu", nl: "Menu", de: "Menü", es: "Menú" }, // Clé ajoutée
+        'menu_btn': { fr: "Menu", en: "Menu", nl: "Menu", de: "Menü", es: "Menú" },
         'lang_selector_title': { fr: "Choisir la Langue", en: "Choose Language", nl: "Taal Kiezen", de: "Sprache Wählen", es: "Elegir Idioma" },
         
         // Portfolio Section
@@ -220,18 +220,48 @@
 
         // Footer
         'footer_copyright': { fr: "© MOSAIA STUDIO – PAR AMARU BRANDS", en: "© MOSAIA STUDIO – BY AMARU BRANDS", nl: "© MOSAIA STUDIO – DOOR AMARU BRANDS", de: "© MOSAIA STUDIO – VON AMARU BRANDS", es: "© MOSAIA STUDIO – POR AMARU BRANDS" },
-        'footer_tagline': { fr: "L'ART DE LA MOSAÏQUE QUI ÉVEILLE L'ÉMOTION ET DURE", en: "THE ART OF MOSAIC THAT AWAKENS EMOTION AND ENDURES", nl: "DE KUNST VAN MOZAÏEK DAT EMOTIE OPROEPT EN VOORTDUURT", de: "DIE KUNST DES MOSAIKS, DIE EMOTIONEN WECKT UND BESTEHT", es: "EL ARTE DEL MOSAICO QUE DESPIERTA EMOCIÓN Y PERDURA" }
+        'footer_tagline': { fr: "L'ART DE LA MOSAÏQUE QUI ÉVEILLE L'ÉMOTION ET DURE", en: "THE ART OF MOSAIC THAT AWAKENS EMOTION AND ENDURES", nl: "DE KUNST VAN MOZAÏEK DAT EMOTIE OPROEPT EN VOORTDUURT", de: "DIE KUNST DES MOSAIKS, DIE EMOTIONEN WECKT UND BESTEHT", es: "EL ARTE DEL MOSAICO QUE DESPIERTA EMOCIÓN ET PERDURE" }
     };
 
-    let currentLang = 'fr'; // Langue par défaut
+    let currentLang = 'fr'; // Sera mis à jour immédiatement
 
-    // --- 2. FONCTION DE TRADUCTION AVEC LOCAL STORAGE (MODIFIÉE) ---
+    // **NOUVELLE FONCTION CLÉ : Met à jour les liens de navigation avec le paramètre d'URL**
+    function updateNavigationLinks(lang) {
+        // Cible tous les liens internes (fichiers .html ou la page d'accueil par défaut)
+        document.querySelectorAll('a[href$=".html"], a[href="index.html"], a[href="#"], a[href="/"]').forEach(link => {
+            let href = link.getAttribute('href');
+
+            // Vérifie que le lien est bien défini et n'est pas juste un fragment vide
+            if (href && !href.startsWith('#') && !href.startsWith('http')) {
+                try {
+                    // Utilise l'objet URL pour manipuler les paramètres
+                    const url = new URL(href, window.location.origin);
+                    
+                    // Supprime l'ancien paramètre de langue s'il existe
+                    url.searchParams.delete('lang');
+                    
+                    // Ajoute le nouveau paramètre de langue
+                    url.searchParams.set('lang', lang);
+
+                    // Réécrit le href (pathname + search)
+                    link.setAttribute('href', url.pathname + url.search);
+                } catch (e) {
+                    // Ignore les erreurs si l'href n'est pas un chemin de fichier standard
+                }
+            }
+        });
+    }
+
+    // --- 2. FONCTION DE TRADUCTION MISE À JOUR ---
     function switchLanguage(lang) {
         currentLang = lang;
-        document.documentElement.lang = lang; 
+        document.documentElement.lang = lang; 
 
-        // MODIFICATION CLÉ : ENREGISTRE LA LANGUE SÉLECTIONNÉE DANS LE LOCAL STORAGE
-        localStorage.setItem('userLanguage', lang);
+        // 1. Stocke la langue choisie dans localStorage
+        localStorage.setItem('mosaiaLang', lang); // Clé unifiée
+
+        // 2. Transmet la langue en mettant à jour les liens de navigation
+        updateNavigationLinks(lang);
         
         // Met à jour le titre de la page
         document.title = translations['page_title'][lang];
@@ -240,39 +270,56 @@
         document.querySelectorAll('[data-translate-key]').forEach(element => {
             const key = element.getAttribute('data-translate-key');
             if (translations[key] && translations[key][lang]) {
-                element.innerHTML = translations[key][lang];
+                // Utilisez textContent pour éviter des problèmes de sécurité si vous ne mettez pas de HTML
+                element.textContent = translations[key][lang]; 
             }
         });
 
         // Met à jour l'affichage de la langue actuelle dans le dropdown desktop
         const currentLangDisplay = document.getElementById('current-lang-display');
         if (currentLangDisplay) {
-            currentLangDisplay.textContent = lang.toUpperCase(); 
+            currentLangDisplay.textContent = lang.toUpperCase(); 
         }
 
-        // Gère les classes 'active' pour les boutons mobiles et les options de dropdown desktop
+        // Gère les classes 'active' pour les sélecteurs de langue
         document.querySelectorAll('.lang-button, .lang-option').forEach(element => {
             element.classList.remove('active', 'text-bronze', 'font-semibold');
 
+            // Logique pour mettre en évidence la langue sélectionnée
             if (element.getAttribute('data-lang') === lang) {
-                element.classList.add('active');
+                element.classList.add('active'); // Pour le style CSS général (.lang-button.active ou .lang-option.active)
+                
+                // Gère l'affichage dans le bouton principal du dropdown
                 if (currentLangDisplay) {
-                    currentLangDisplay.classList.add('text-bronze', 'font-semibold');
-                }
-                if (element.classList.contains('lang-option') || element.closest('#lang-selector-mobile')) {
-                    element.classList.add('active'); 
-                }
-            } else {
-                if (element.classList.contains('lang-option')) {
-                    element.classList.remove('active');
+                    // Gère la classe 'active' pour l'affichage de la langue courante (FR/EN/NL)
+                    if (element.id === 'current-lang-display') {
+                        element.classList.add('text-bronze', 'font-semibold');
+                    } else if (element.parentElement.id === 'lang-dropdown-btn') {
+                        element.classList.add('text-bronze', 'font-semibold');
+                    }
                 }
             }
         });
     }
 
-    // --- 3. LOGIQUE MOBILE ET INITIALISATION ---
+    // **LOGIQUE D'INITIALISATION : S'exécute le plus tôt possible**
+    // 1. Priorité au paramètre d'URL (?lang=en) pour la navigation inter-pages
+    const urlParams = new URLSearchParams(window.location.search);
+    const urlLang = urlParams.get('lang');
+    
+    // 2. Sinon, utilise localStorage
+    const storedLang = localStorage.getItem('mosaiaLang');
 
-    // Fonction pour l'animation des éléments au scroll
+    // Détermine la langue initiale : URL > localStorage > défaut ('fr')
+    const initialLang = urlLang || storedLang || 'fr';
+    
+    // Applique la traduction immédiatement
+    switchLanguage(initialLang); 
+
+
+    // --- 3. LOGIQUE GLOBALE ET ÉVÉNEMENTS (Dans DOMContentLoaded) ---
+    
+    // Fonction pour l'animation des éléments au scroll (inchangée)
     const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -285,15 +332,7 @@
     }, observerOptions);
     
     document.addEventListener('DOMContentLoaded', () => {
-        
-        // MODIFICATION CLÉ : Récupère la langue du Stockage Local
-        const storedLang = localStorage.getItem('userLanguage');
-
-        // Initialise la langue : utilise la version stockée, ou celle du HTML (ou 'fr')
-        const initialLang = storedLang || document.documentElement.lang || 'fr';
-        switchLanguage(initialLang); 
-
-        // Initialisation des animations
+        // Initialisation des animations (inchangée)
         document.querySelectorAll('.fade-in-up').forEach(element => {
             element.classList.add('opacity-0', 'translate-y-[40px]');
             observer.observe(element);
@@ -302,28 +341,26 @@
         // Éléments du menu mobile
         const mobileMenu = document.getElementById('mobileMenu');
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        
-        // Fonction de toggle du menu mobile AVEC A11y
-        function toggleMobileMenu() {
-            const isExpanded = mobileMenuBtn.getAttribute('aria-expanded') === 'true';
-            mobileMenuBtn.setAttribute('aria-expanded', String(!isExpanded));
-            mobileMenu.classList.toggle('hidden');
-        }
-        
-        // Attachement de l'événement pour le bouton mobile
-        mobileMenuBtn.addEventListener('click', toggleMobileMenu);
-
-        // LOGIQUE DU DROPDOWN DE LANGUE DESKTOP
         const langDropdownContainer = document.getElementById('lang-dropdown-container');
         const langDropdownBtn = document.getElementById('lang-dropdown-btn');
         const langMenu = document.getElementById('lang-menu');
         const dropdownArrow = document.getElementById('dropdown-arrow');
 
+        // Fonction de toggle du menu mobile
+        function toggleMobileMenu() {
+            if (!mobileMenu || !mobileMenuBtn) return;
+            const isExpanded = mobileMenuBtn.getAttribute('aria-expanded') === 'true';
+            mobileMenuBtn.setAttribute('aria-expanded', String(!isExpanded));
+            mobileMenu.classList.toggle('hidden');
+        }
+        
+        if (mobileMenuBtn) mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+
+        // LOGIQUE DU DROPDOWN DE LANGUE DESKTOP (inchangée)
         if (langDropdownBtn && langMenu) {
-            // Toggle du dropdown au clic sur le bouton principal
             langDropdownBtn.addEventListener('click', (e) => {
                 e.preventDefault();
-                e.stopPropagation(); 
+                e.stopPropagation(); 
                 const isExpanded = langDropdownBtn.getAttribute('aria-expanded') === 'true';
                 
                 if (isExpanded) {
@@ -337,7 +374,6 @@
                 }
             });
 
-            // Fermer le dropdown en cliquant à l'extérieur
             document.addEventListener('click', (e) => {
                 if (langDropdownContainer && !langDropdownContainer.contains(e.target)) {
                     langMenu.classList.add('hidden');
@@ -347,24 +383,24 @@
             });
         }
 
-        // Écouteurs d'événements pour TOUS les sélecteurs de langue (.lang-button pour mobile, .lang-option pour desktop)
+        // Écouteurs d'événements pour TOUS les sélecteurs de langue
         document.querySelectorAll('.lang-button, .lang-option').forEach(element => {
             element.addEventListener('click', (e) => {
                 e.preventDefault();
                 const lang = element.getAttribute('data-lang');
-                switchLanguage(lang); // Cela enregistre la langue dans localStorage
-                
-                // Ferme le menu desktop s'il était ouvert
+                switchLanguage(lang); // Met à jour localStorage et les liens
+
+                // Ferme le menu desktop
                 if (langMenu && !langMenu.classList.contains('hidden')) {
                     langMenu.classList.add('hidden');
                     langDropdownBtn.setAttribute('aria-expanded', 'false');
                     if (dropdownArrow) dropdownArrow.classList.remove('rotate-180');
                 }
 
-                // Ferme le menu mobile si la sélection vient de là
+                // Ferme le menu mobile
                 if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
-                       mobileMenu.classList.add('hidden');
-                       mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                    mobileMenu.classList.add('hidden');
+                    mobileMenuBtn.setAttribute('aria-expanded', 'false');
                 }
             });
         });
