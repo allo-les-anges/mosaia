@@ -197,174 +197,179 @@
     </footer>
     
     <script>
-        // --- LOGIQUE DE TRADUCTION (i18n) ---
-        const translations = {
-            fr: {
-                page_title: "Mosaia Studio - Partenaires",
-                // Navigation
-                nav_home: "ACCUEIL", nav_portfolio: "PORTFOLIO", nav_studio: "STUDIO", nav_bespoke: "SUR-MESURE", nav_process: "PROCESSUS", nav_partners: "PARTENAIRES", nav_contact: "CONTACT",
-                // Contenu principal
-                partners_title: "CRÉONS ENSEMBLE",
-                partners_subtitle: "Architectes, designers, builders — rejoignez notre réseau et créons ensemble des œuvres qui traversent le temps et inspirent.",
-                feature_1_title: "COLLABORATION CRÉATIVE", feature_1_text: "Un accès direct à nos maîtres artisans pour transformer vos concepts en réalité mosaïque.",
-                feature_2_title: "ACCÈS PRIVILÉGIÉ", feature_2_text: "Catalogue de matériaux exclusifs, échantillons prioritaires et tarifs préférentiels.",
-                feature_3_title: "SUPPORT COMPLET", feature_3_text: "Support technique, marketing (images/vidéos) et logistique sur tous vos projets.",
-                // Formulaire
-                form_title: "CANDIDATURE PARTENAIRE",
-                form_placeholder_company: "Nom Société", form_placeholder_contact: "Contact", form_placeholder_email: "Email", form_placeholder_role: "Rôle / Profession", form_placeholder_message: "Message (Décrivez votre activité et vos besoins)",
-                form_button: "REJOINDRE LE RÉSEAU",
-                // Footer
-                footer_copyright: "© MOSAIA STUDIO – PAR AMARU BRANDS",
-                footer_tagline: "L'ART DE LA MOSAÏQUE QUI ÉVEILLE L'ÉMOTION ET DURE"
-            },
-            en: {
-                page_title: "Mosaia Studio - Partners",
-                // Navigation
-                nav_home: "HOME", nav_portfolio: "PORTFOLIO", nav_studio: "STUDIO", nav_bespoke: "BESPOKE", nav_process: "PROCESS", nav_partners: "PARTNERS", nav_contact: "CONTACT",
-                // Contenu principal
-                partners_title: "LET'S CREATE TOGETHER",
-                partners_subtitle: "Architects, designers, builders — join our network and let's create timeless, inspiring works together.",
-                feature_1_title: "CREATIVE COLLABORATION", feature_1_text: "Direct access to our master artisans to transform your concepts into mosaic reality.",
-                feature_2_title: "PRIVILEGED ACCESS", feature_2_text: "Exclusive materials catalog, priority samples, and preferential pricing.",
-                feature_3_title: "FULL SUPPORT", feature_3_text: "Technical, marketing (images/videos), and logistical support for all your projects.",
-                // Formulaire
-                form_title: "PARTNER APPLICATION",
-                form_placeholder_company: "Company Name", form_placeholder_contact: "Contact", form_placeholder_email: "Email", form_placeholder_role: "Role / Profession", form_placeholder_message: "Message (Describe your activity and needs)",
-                form_button: "JOIN THE NETWORK",
-                // Footer
-                footer_copyright: "© MOSAIA STUDIO – BY AMARU BRANDS",
-                footer_tagline: "THE ART OF MOSAIC THAT AWAKENS EMOTION AND LASTS"
-            },
-            nl: {
-                page_title: "Mosaia Studio - Partners",
-                // Navigation
-                nav_home: "HOME", nav_portfolio: "PORTFOLIO", nav_studio: "STUDIO", nav_bespoke: "OP MAAT", nav_process: "PROCES", nav_partners: "PARTNERS", nav_contact: "CONTACT",
-                // Contenu principal
-                partners_title: "LATEN WE SAMEN CREËREN",
-                partners_subtitle: "Architecten, ontwerpers, bouwers — sluit u aan bij ons netwerk en laten we samen tijdloze, inspirerende werken creëren.",
-                feature_1_title: "CREATIEVE SAMENWERKING", feature_1_text: "Directe toegang tot onze meester-ambachtslieden om uw concepten om te zetten in mozaïekrealiteit.",
-                feature_2_title: "GEPRIVILEGEERDE TOEGANG", feature_2_text: "Exclusieve materialencatalogus, prioritaire stalen en voorkeurstarieven.",
-                feature_3_title: "VOLLEDIGE ONDERSTEUNING", feature_3_text: "Technische, marketing (afbeeldingen/video's) en logistieke ondersteuning voor al uw projecten.",
-                // Formulaire
-                form_title: "PARTNER AANVRAAG",
-                form_placeholder_company: "Bedrijfsnaam", form_placeholder_contact: "Contactpersoon", form_placeholder_email: "E-mail", form_placeholder_role: "Rol / Beroep", form_placeholder_message: "Bericht (Beschrijf uw activiteit en behoeften)",
-                form_button: "WORD LID VAN HET NETWERK",
-                // Footer
-                footer_copyright: "© MOSAIA STUDIO – DOOR AMARU BRANDS",
-                footer_tagline: "DE KUNST VAN MOZAÏEK DAT EMOTIE OPWEKT EN BLIJFT"
-            },
-            de: {
-                page_title: "Mosaia Studio - Partner",
-                // Navigation
-                nav_home: "STARTSEITE", nav_portfolio: "PORTFOLIO", nav_studio: "STUDIO", nav_bespoke: "MASSARBEIT", nav_process: "PROZESS", nav_partners: "PARTNER", nav_contact: "KONTAKT",
-                // Contenu principal
-                partners_title: "LASS UNS GEMEINSAM ETWAS SCHAFFEN",
-                partners_subtitle: "Architekten, Designer, Bauherren — treten Sie unserem Netzwerk bei und lassen Sie uns gemeinsam zeitlose, inspirierende Werke schaffen.",
-                feature_1_title: "KREATIVE ZUSAMMENARBEIT", feature_1_text: "Direkter Zugang zu unseren Meisterhandwerkern, um Ihre Konzepte in Mosaik-Realität umzusetzen.",
-                feature_2_title: "PRIVILEGIERTER ZUGANG", feature_2_text: "Exklusiver Materialkatalog, bevorzugte Muster und Vorzugspreise.",
-                feature_3_title: "UMFASSENDER SUPPORT", feature_3_text: "Technische, Marketing- (Bilder/Videos) und logistische Unterstützung für alle Ihre Projekte.",
-                // Formulaire
-                form_title: "PARTNERBEWERBUNG",
-                form_placeholder_company: "Firmenname", form_placeholder_contact: "Kontaktperson", form_placeholder_email: "E-Mail", form_placeholder_role: "Rolle / Beruf", form_placeholder_message: "Nachricht (Beschreiben Sie Ihre Tätigkeit und Bedürfnisse)",
-                form_button: "DEM NETZWERK BEITRETEN",
-                // Footer
-                footer_copyright: "© MOSAIA STUDIO – VON AMARU BRANDS",
-                footer_tagline: "DIE KUNST DES MOSAIKS, DIE EMOTIONEN WECKT UND BESTÄNDIG IST"
-            },
-            es: {
-                page_title: "Mosaia Studio - Socios",
-                // Navigation
-                nav_home: "INICIO", nav_portfolio: "PORTAFOLIO", nav_studio: "ESTUDIO", nav_bespoke: "A MEDIDA", nav_process: "PROCESO", nav_partners: "SOCIOS", nav_contact: "CONTACTO",
-                // Contenu principal
-                partners_title: "CREEMOS JUNTOS",
-                partners_subtitle: "Arquitectos, diseñadores, constructores — únanse a nuestra red y creemos juntos obras que perduren en el tiempo e inspiren.",
-                feature_1_title: "COLABORACIÓN CREATIVA", feature_1_text: "Acceso directo a nuestros maestros artesanos para transformar sus conceptos en realidad de mosaico.",
-                feature_2_title: "ACCESO PRIVILEGIADO", feature_2_text: "Catálogo de materiales exclusivos, muestras prioritarias y tarifas preferenciales.",
-                feature_3_title: "SOPORTE COMPLETO", feature_3_text: "Soporte técnico, de marketing (imágenes/videos) y logístico en todos sus proyectos.",
-                // Formulaire
-                form_title: "SOLICITUD DE SOCIO",
-                form_placeholder_company: "Nombre Empresa", form_placeholder_contact: "Contacto", form_placeholder_email: "Email", form_placeholder_role: "Rol / Profesión", form_placeholder_message: "Mensaje (Describa su actividad y necesidades)",
-                form_button: "UNIRSE A LA RED",
-                // Footer
-                footer_copyright: "© MOSAIA STUDIO – POR AMARU BRANDS",
-                footer_tagline: "EL ARTE DEL MOSAICO QUE DESPIERTA LA EMOCIÓN Y PERDURA"
-            }
-        };
+       <script>
+    // --- LOGIQUE DE TRADUCTION (i18n) ---
+    const translations = {
+        fr: {
+            page_title: "Mosaia Studio - Partenaires",
+            // Navigation
+            nav_home: "ACCUEIL", nav_portfolio: "PORTFOLIO", nav_studio: "STUDIO", nav_bespoke: "SUR-MESURE", nav_process: "PROCESSUS", nav_partners: "PARTENAIRES", nav_contact: "CONTACT",
+            // Contenu principal
+            partners_title: "CRÉONS ENSEMBLE",
+            partners_subtitle: "Architectes, designers, builders — rejoignez notre réseau et créons ensemble des œuvres qui traversent le temps et inspirent.",
+            feature_1_title: "COLLABORATION CRÉATIVE", feature_1_text: "Un accès direct à nos maîtres artisans pour transformer vos concepts en réalité mosaïque.",
+            feature_2_title: "ACCÈS PRIVILÉGIÉ", feature_2_text: "Catalogue de matériaux exclusifs, échantillons prioritaires et tarifs préférentiels.",
+            feature_3_title: "SUPPORT COMPLET", feature_3_text: "Support technique, marketing (images/vidéos) et logistique sur tous vos projets.",
+            // Formulaire
+            form_title: "CANDIDATURE PARTENAIRE",
+            form_placeholder_company: "Nom Société", form_placeholder_contact: "Contact", form_placeholder_email: "Email", form_placeholder_role: "Rôle / Profession", form_placeholder_message: "Message (Décrivez votre activité et vos besoins)",
+            form_button: "REJOINDRE LE RÉSEAU",
+            // Footer
+            footer_copyright: "© MOSAIA STUDIO – PAR AMARU BRANDS",
+            footer_tagline: "L'ART DE LA MOSAÏQUE QUI ÉVEILLE L'ÉMOTION ET DURE"
+        },
+        en: {
+            page_title: "Mosaia Studio - Partners",
+            // Navigation
+            nav_home: "HOME", nav_portfolio: "PORTFOLIO", nav_studio: "STUDIO", nav_bespoke: "BESPOKE", nav_process: "PROCESS", nav_partners: "PARTNERS", nav_contact: "CONTACT",
+            // Contenu principal
+            partners_title: "LET'S CREATE TOGETHER",
+            partners_subtitle: "Architects, designers, builders — join our network and let's create timeless, inspiring works together.",
+            feature_1_title: "CREATIVE COLLABORATION", feature_1_text: "Direct access to our master artisans to transform your concepts into mosaic reality.",
+            feature_2_title: "PRIVILEGED ACCESS", feature_2_text: "Exclusive materials catalog, priority samples, and preferential pricing.",
+            feature_3_title: "FULL SUPPORT", feature_3_text: "Technical, marketing (images/videos), and logistical support for all your projects.",
+            // Formulaire
+            form_title: "PARTNER APPLICATION",
+            form_placeholder_company: "Company Name", form_placeholder_contact: "Contact", form_placeholder_email: "Email", form_placeholder_role: "Role / Profession", form_placeholder_message: "Message (Describe your activity and needs)",
+            form_button: "JOIN THE NETWORK",
+            // Footer
+            footer_copyright: "© MOSAIA STUDIO – BY AMARU BRANDS",
+            footer_tagline: "THE ART OF MOSAIC THAT AWAKENS EMOTION AND LASTS"
+        },
+        nl: {
+            page_title: "Mosaia Studio - Partners",
+            // Navigation
+            nav_home: "HOME", nav_portfolio: "PORTFOLIO", nav_studio: "STUDIO", nav_bespoke: "OP MAAT", nav_process: "PROCES", nav_partners: "PARTNERS", nav_contact: "CONTACT",
+            // Contenu principal
+            partners_title: "LATEN WE SAMEN CREËREN",
+            partners_subtitle: "Architecten, ontwerpers, bouwers — sluit u aan bij ons netwerk en laten we samen tijdloze, inspirerende werken creëren.",
+            feature_1_title: "CREATIEVE SAMENWERKING", feature_1_text: "Directe toegang tot onze meester-ambachtslieden om uw concepten om te zetten in mozaïekrealiteit.",
+            feature_2_title: "GEPRIVILEGEERDE TOEGANG", feature_2_text: "Exclusieve materialencatalogus, prioritaire stalen en voorkeurstarieven.",
+            feature_3_title: "VOLLEDIGE ONDERSTEUNING", feature_3_text: "Technische, marketing (afbeeldingen/video's) en logistieke ondersteuning voor al uw projecten.",
+            // Formulaire
+            form_title: "PARTNER AANVRAAG",
+            form_placeholder_company: "Bedrijfsnaam", form_placeholder_contact: "Contactpersoon", form_placeholder_email: "E-mail", form_placeholder_role: "Rol / Beroep", form_placeholder_message: "Bericht (Beschrijf uw activiteit en behoeften)",
+            form_button: "WORD LID VAN HET NETWERK",
+            // Footer
+            footer_copyright: "© MOSAIA STUDIO – DOOR AMARU BRANDS",
+            footer_tagline: "DE KUNST VAN MOZAÏEK DAT EMOTIE OPWEKT EN BLIJFT"
+        },
+        de: {
+            page_title: "Mosaia Studio - Partner",
+            // Navigation
+            nav_home: "STARTSEITE", nav_portfolio: "PORTFOLIO", nav_studio: "STUDIO", nav_bespoke: "MASSARBEIT", nav_process: "PROZESS", nav_partners: "PARTNER", nav_contact: "KONTAKT",
+            // Contenu principal
+            partners_title: "LASS UNS GEMEINSAM ETWAS SCHAFFEN",
+            partners_subtitle: "Architekten, Designer, Bauherren — treten Sie unserem Netzwerk bei und lassen Sie uns gemeinsam zeitlose, inspirierende Werke schaffen.",
+            feature_1_title: "KREATIVE ZUSAMMENARBEIT", feature_1_text: "Direkter Zugang zu unseren Meisterhandwerkern, um Ihre Konzepte in Mosaik-Realität umzusetzen.",
+            feature_2_title: "PRIVILEGIERTER ZUGANG", feature_2_text: "Exklusiver Materialkatalog, bevorzugte Muster und Vorzugspreise.",
+            feature_3_title: "UMFASSENDER SUPPORT", feature_3_text: "Technische, Marketing- (Bilder/Videos) und logistische Unterstützung für alle Ihre Projekte.",
+            // Formulaire
+            form_title: "PARTNERBEWERBUNG",
+            form_placeholder_company: "Firmenname", form_placeholder_contact: "Kontaktperson", form_placeholder_email: "E-Mail", form_placeholder_role: "Rolle / Beruf", form_placeholder_message: "Nachricht (Beschreiben Sie Ihre Tätigkeit und Bedürfnisse)",
+            form_button: "DEM NETZWERK BEITRETEN",
+            // Footer
+            footer_copyright: "© MOSAIA STUDIO – VON AMARU BRANDS",
+            footer_tagline: "DIE KUNST DES MOSAIKS, DIE EMOTIONEN WECKT UND BESTÄNDIG IST"
+        },
+        es: {
+            page_title: "Mosaia Studio - Socios",
+            // Navigation
+            nav_home: "INICIO", nav_portfolio: "PORTAFOLIO", nav_studio: "ESTUDIO", nav_bespoke: "A MEDIDA", nav_process: "PROCESO", nav_partners: "SOCIOS", nav_contact: "CONTACTO",
+            // Contenu principal
+            partners_title: "CREEMOS JUNTOS",
+            partners_subtitle: "Arquitectos, diseñadores, constructores — únanse a nuestra red y creemos juntos obras que perduren en el tiempo e inspiren.",
+            feature_1_title: "COLABORACIÓN CREATIVA", feature_1_text: "Acceso directo a nuestros maestros artesanos para transformar sus conceptos en realidad de mosaico.",
+            feature_2_title: "ACCESO PRIVILEGIADO", feature_2_text: "Catálogo de materiales exclusivos, muestras prioritarias y tarifas preferenciales.",
+            feature_3_title: "SOPORTE COMPLETO", feature_3_text: "Soporte técnico, de marketing (imágenes/videos) y logístico en todos sus proyectos.",
+            // Formulaire
+            form_title: "SOLICITUD DE SOCIO",
+            form_placeholder_company: "Nombre Empresa", form_placeholder_contact: "Contacto", form_placeholder_email: "Email", form_placeholder_role: "Rol / Profesión", form_placeholder_message: "Mensaje (Describa su actividad y necesidades)",
+            form_button: "UNIRSE A LA RED",
+            // Footer
+            footer_copyright: "© MOSAIA STUDIO – POR AMARU BRANDS",
+            footer_tagline: "EL ARTE DEL MOSAICO QUE DESPIERTA LA EMOCIÓN Y PERDURA"
+        }
+    };
 
-        // Fonction principale pour appliquer la traduction
-        function translatePage(lang) {
-            const currentTranslations = translations[lang];
-            if (!currentTranslations) return;
+    // Fonction principale pour appliquer la traduction et gérer la persistance
+    function translatePage(lang) {
+        const currentTranslations = translations[lang];
+        if (!currentTranslations) return;
 
-            // 1. Mise à jour de l'attribut lang de la page
-            document.documentElement.lang = lang;
+        // 1. Mise à jour de l'attribut lang de la page
+        document.documentElement.lang = lang;
 
-            // 2. Traduction du titre de la page
-            const pageTitleElement = document.querySelector('title');
-            if (pageTitleElement) {
-                const key = pageTitleElement.getAttribute('data-translate-key');
-                if (key && currentTranslations[key]) {
-                    pageTitleElement.textContent = currentTranslations[key];
-                }
-            }
+        // **PERSISTANCE : Sauvegarder la langue dans le stockage local**
+        localStorage.setItem('userLanguage', lang);
 
-            // 3. Traduction de tous les éléments avec data-translate-key (texte de l'élément)
-            document.querySelectorAll('[data-translate-key]').forEach(element => {
-                const key = element.getAttribute('data-translate-key');
-                if (currentTranslations[key]) {
-                    // Si c'est un champ de formulaire (input/textarea) avec un placeholder
-                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
-                        // S'assurer que le placeholder est bien une clé de traduction
-                        if (key.startsWith('form_placeholder_')) {
-                            element.setAttribute('placeholder', currentTranslations[key]);
-                        }
-                    } 
-                    // Si c'est un bouton de formulaire
-                    else if (element.tagName === 'BUTTON' && element.getAttribute('type') === 'submit') {
-                        element.textContent = currentTranslations[key].toUpperCase();
-                    }
-                    // Pour les autres éléments (nav, titres, paragraphes)
-                    else {
-                        element.textContent = currentTranslations[key];
+        // 2. Traduction du titre de la page (utilisation de la clé directe 'page_title')
+        const pageTitleElement = document.querySelector('title');
+        if (pageTitleElement && currentTranslations['page_title']) {
+            pageTitleElement.textContent = currentTranslations['page_title'];
+        }
+
+        // 3. Traduction de tous les éléments avec data-translate-key
+        document.querySelectorAll('[data-translate-key]').forEach(element => {
+            const key = element.getAttribute('data-translate-key');
+            if (currentTranslations[key]) {
+                // S'assurer que le placeholder est traduit pour les inputs/textareas
+                if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                    if (key.startsWith('form_placeholder_')) {
+                        element.setAttribute('placeholder', currentTranslations[key]);
                     }
                 }
-            });
+                // Traduction du texte de l'élément pour les autres (boutons, titres, nav)
+                else {
+                    element.textContent = currentTranslations[key];
+                }
+            }
+        });
 
-            // 4. Mettre à jour les sélecteurs de langue pour refléter le bon choix
-            // Assurer la synchronisation entre desktop et mobile
-            const langSelectDesktop = document.getElementById('lang-select-desktop');
-            const langSelectMobile = document.getElementById('lang-select-mobile');
+        // 4. Mettre à jour les sélecteurs de langue pour refléter le bon choix
+        const langSelectDesktop = document.getElementById('lang-select-desktop');
+        const langSelectMobile = document.getElementById('lang-select-mobile');
 
-            if (langSelectDesktop) langSelectDesktop.value = lang;
-            if (langSelectMobile) langSelectMobile.value = lang;
+        // Assurer que les sélecteurs affichent la langue active
+        if (langSelectDesktop) langSelectDesktop.value = lang;
+        if (langSelectMobile) langSelectMobile.value = lang;
+    }
 
-            // 5. Sauvegarder la langue dans le stockage local
-            localStorage.setItem('userLanguage', lang);
+    // Fonction pour gérer le changement de langue depuis les sélecteurs
+    function handleLangChange(event) {
+        const newLang = event.target.value;
+        translatePage(newLang);
+    }
+
+    // Fonction pour initialiser la langue au chargement
+    function initializeLanguage() {
+        // **PERSISTANCE : Récupérer la langue sauvegardée, sinon utiliser 'fr' (défaut)**
+        const savedLang = localStorage.getItem('userLanguage') || 'fr';
+        
+        // Appliquer la traduction
+        translatePage(savedLang);
+
+        // Attacher les écouteurs d'événements aux deux sélecteurs
+        const langSelectDesktop = document.getElementById('lang-select-desktop');
+        const langSelectMobile = document.getElementById('lang-select-mobile');
+        
+        if (langSelectDesktop) langSelectDesktop.addEventListener('change', handleLangChange);
+        if (langSelectMobile) langSelectMobile.addEventListener('change', handleLangChange);
+
+        // Initialisation des animations après l'initialisation de la langue
+        initializeAnimations();
+
+        // Initialisation du menu mobile
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', toggleMobileMenu);
         }
+    }
 
-        // Fonction pour gérer le changement de langue
-        function handleLangChange(event) {
-            const newLang = event.target.value;
-            translatePage(newLang);
-        }
-
-        // Fonction pour initialiser la langue au chargement
-        function initializeLanguage() {
-            // Récupérer la langue sauvegardée, sinon utiliser 'fr' (défaut)
-            const savedLang = localStorage.getItem('userLanguage') || 'fr';
-            
-            // Appliquer la traduction
-            translatePage(savedLang);
-
-            // Attacher les écouteurs d'événements aux deux sélecteurs
-            const langSelectDesktop = document.getElementById('lang-select-desktop');
-            const langSelectMobile = document.getElementById('lang-select-mobile');
-            
-            if (langSelectDesktop) langSelectDesktop.addEventListener('change', handleLangChange);
-            if (langSelectMobile) langSelectMobile.addEventListener('change', handleLangChange);
-        }
-
-        // --- LOGIQUE D'ANIMATION ET MENU MOBILE (existante) ---
+    // --- LOGIQUE D'ANIMATION ET MENU MOBILE (Réorganisée) ---
+    
+    // Fonction d'initialisation des animations (déplacée et renommée)
+    function initializeAnimations() {
         const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -375,19 +380,23 @@
                 }
             });
         }, observerOptions);
+
         document.querySelectorAll('.fade-in-up').forEach(element => {
             element.classList.add('opacity-0', 'translate-y-[40px]');
             observer.observe(element);
         });
-        
-        function toggleMobileMenu() {
-            const mobileMenu = document.getElementById('mobileMenu');
+    }
+
+    // Fonction pour le toggle du menu mobile
+    function toggleMobileMenu() {
+        const mobileMenu = document.getElementById('mobileMenu');
+        if (mobileMenu) {
             mobileMenu.classList.toggle('hidden');
         }
-        document.getElementById('mobileMenuBtn').addEventListener('click', toggleMobileMenu);
+    }
 
-        // Initialisation de la langue au chargement de la page
-        document.addEventListener('DOMContentLoaded', initializeLanguage);
-    </script>
+    // Initialisation de la langue et des événements au chargement de la page
+    document.addEventListener('DOMContentLoaded', initializeLanguage);
+</script>
 </body>
 </html>
