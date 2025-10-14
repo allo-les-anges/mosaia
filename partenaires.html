@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-translate-key="page_title">Mosaia Studio - Partenaires</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { 'bronze': '#C99B4F', 'charcoal': '#1A1A1A', 'pure-white': '#FFFFFF', 'light-gray': '#F8F8F8', 'medium-gray': '#666666' },
+                    fontFamily: { 'title': ['Montserrat', 'sans-serif'], 'body': ['Open Sans', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <style>
+        .fade-in-up { animation: fadeInUp 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; opacity: 0; transform: translateY(40px); }
+        .fade-in-up.delay-1 { animation-delay: 0.3s; }
+        .fade-in-up.delay-2 { animation-delay: 0.6s; }
+        @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+        .elegant-line { position: relative; }
+        .elegant-line::after { content: ''; position: absolute; bottom: -12px; left: 50%; transform: translateX(-50%); width: 80px; height: 1px; background: linear-gradient(90deg, transparent, #C99B4F, transparent); }
+        .cta-primary { background: linear-gradient(135deg, #C99B4F, #B8894A); transition: all 0.4s ease; font-family: 'Montserrat', sans-serif; font-weight: 600; }
+        .cta-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(201, 155, 79, 0.2); background: #1A1A1A; color: #C99B4F; }
+        .nav-link { position: relative; transition: all 0.3s ease; }
+        .nav-link:hover { color: #C99B4F; }
+        .nav-link::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: #C99B4F; transition: width 0.3s ease; }
+        .nav-link:hover::after { width: 100%; }
+        .page-section { padding-top: 100px; padding-bottom: 100px; }
+        /* Style pour le sélecteur de langue */
+        #language-selector select { border: none; background: transparent; color: #1A1A1A; font-family: 'Montserrat', sans-serif; font-weight: 600; text-transform: uppercase; font-size: 0.875rem; padding: 0.5rem 0; margin-right: 0.5rem; cursor: pointer; }
+        #language-selector.mobile select { color: #1A1A1A; width: 100%; border-bottom: 1px solid #1A1A1A1A; padding-bottom: 1rem; }
+    </style>
+</head>
+<body class="bg-pure-white font-body text-charcoal">
+    <header class="bg-pure-white/98 backdrop-blur-md shadow-sm sticky top-0 z-50 border-b border-charcoal/5">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0">
+                    <a href="index.html" class="text-3xl font-title font-bold text-charcoal tracking-wider uppercase hover:text-bronze transition-colors">MOSAIA STUDIO</a>
+                </div>
+                <nav class="hidden md:block">
+                    <div class="flex items-center space-x-8 lg:space-x-10">
+                        <div id="language-selector-desktop">
+                            <select id="lang-select-desktop" class="text-sm">
+                                <option value="fr">FR</option>
+                                <option value="en">EN</option>
+                                <option value="nl">NL</option>
+                                <option value="de">DE</option>
+                                <option value="es">ES</option>
+                            </select>
+                        </div>
+                        <a href="index.html" class="nav-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase" data-translate-key="nav_home">ACCUEIL</a>
+                        <a href="portfolio.html" class="nav-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase" data-translate-key="nav_portfolio">PORTFOLIO</a>
+                        <a href="studio.html" class="nav-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase" data-translate-key="nav_studio">STUDIO</a>
+                        <a href="sur-mesure.html" class="nav-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase" data-translate-key="nav_bespoke">SUR-MESURE</a>
+                        <a href="processus.html" class="nav-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase" data-translate-key="nav_process">PROCESSUS</a>
+                        <a href="partenaires.html" class="nav-link text-bronze border-b-2 border-bronze px-1 py-2 text-sm font-body font-medium tracking-wide uppercase" data-translate-key="nav_partners">PARTENAIRES</a>
+                        <a href="contact.html" class="nav-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase" data-translate-key="nav_contact">CONTACT</a>
+                    </div>
+                </nav>
+                <div class="md:hidden">
+                    <button id="mobileMenuBtn" class="text-charcoal hover:text-bronze p-2">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>
+                    </button>
+                </div>
+            </div>
+            <div id="mobileMenu" class="md:hidden bg-pure-white border-t border-charcoal/10 hidden">
+                <div class="px-6 py-4 space-y-2">
+                    <div id="language-selector-mobile" class="pb-4 mb-2">
+                        <select id="lang-select-mobile" class="text-base w-full">
+                            <option value="fr">FR</option>
+                            <option value="en">EN</option>
+                            <option value="nl">NL</option>
+                            <option value="de">DE</option>
+                            <option value="es">ES</option>
+                        </select>
+                    </div>
+                    <a href="index.html" class="block py-2 text-charcoal font-body font-medium uppercase" data-translate-key="nav_home">ACCUEIL</a>
+                    <a href="portfolio.html" class="block py-2 text-charcoal font-body font-medium uppercase" data-translate-key="nav_portfolio">PORTFOLIO</a>
+                    <a href="studio.html" class="block py-2 text-charcoal font-body font-medium uppercase" data-translate-key="nav_studio">STUDIO</a>
+                    <a href="sur-mesure.html" class="block py-2 text-charcoal font-body font-medium uppercase" data-translate-key="nav_bespoke">SUR-MESURE</a>
+                    <a href="processus.html" class="block py-2 text-charcoal font-body font-medium uppercase" data-translate-key="nav_process">PROCESSUS</a>
+                    <a href="partenaires.html" class="block py-2 text-bronze font-body font-medium uppercase" data-translate-key="nav_partners">PARTENAIRES</a>
+                    <a href="contact.html" class="block py-2 text-charcoal font-body font-medium uppercase" data-translate-key="nav_contact">CONTACT</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-section bg-pure-white">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="text-center mb-20">
+                    <h2 class="text-4xl md:text-5xl font-title font-bold text-charcoal mb-8 tracking-widest uppercase fade-in-up elegant-line" data-translate-key="partners_title">
+                        CRÉONS ENSEMBLE
+                    </h2>
+                    <p class="text-xl text-medium-gray leading-relaxed font-body font-light fade-in-up delay-1 max-w-4xl mx-auto" data-translate-key="partners_subtitle">
+                        Architectes, designers, builders — rejoignez notre réseau et créons ensemble des œuvres qui traversent le temps et inspirent.
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-12 mt-16 text-center max-w-6xl mx-auto mb-20">
+                    <div class="fade-in-up delay-2">
+                        <div class="text-5xl text-bronze mb-4">💡</div>
+                        <h4 class="text-xl font-title font-bold uppercase mb-2" data-translate-key="feature_1_title">Collaboration Créative</h4>
+                        <p class="text-medium-gray" data-translate-key="feature_1_text">Un accès direct à nos maîtres artisans pour transformer vos concepts en réalité mosaïque.</p>
+                    </div>
+                    <div class="fade-in-up delay-3">
+                        <div class="text-5xl text-bronze mb-4">💎</div>
+                        <h4 class="text-xl font-title font-bold uppercase mb-2" data-translate-key="feature_2_title">Accès Privilégié</h4>
+                        <p class="text-medium-gray" data-translate-key="feature_2_text">Catalogue de matériaux exclusifs, échantillons prioritaires et tarifs préférentiels.</p>
+                    </div>
+                    <div class="fade-in-up delay-4">
+                        <div class="text-5xl text-bronze mb-4">☎️</div>
+                        <h4 class="text-xl font-title font-bold uppercase mb-2" data-translate-key="feature_3_title">Support Complet</h4>
+                        <p class="text-medium-gray" data-translate-key="feature_3_text">Support technique, marketing (images/vidéos) et logistique sur tous vos projets.</p>
+                    </div>
+                </div>
+
+                <div class="max-w-2xl mx-auto p-10 bg-light-gray shadow-2xl fade-in-up delay-5">
+                    <h3 class="text-3xl font-title font-bold uppercase mb-8 text-center text-charcoal" data-translate-key="form_title">Candidature Partenaire</h3>
+                    <form>
+                        <div class="mb-4">
+                            <input type="text" placeholder="Nom Société" class="w-full p-3 border border-gray-300 focus:border-bronze focus:ring-bronze transition duration-300" required data-translate-key="form_placeholder_company">
+                        </div>
+                        <div class="mb-4">
+                            <input type="text" placeholder="Contact" class="w-full p-3 border border-gray-300 focus:border-bronze focus:ring-bronze transition duration-300" required data-translate-key="form_placeholder_contact">
+                        </div>
+                        <div class="mb-4">
+                            <input type="email" placeholder="Email" class="w-full p-3 border border-gray-300 focus:border-bronze focus:ring-bronze transition duration-300" required data-translate-key="form_placeholder_email">
+                        </div>
+                        <div class="mb-4">
+                            <input type="text" placeholder="Rôle / Profession" class="w-full p-3 border border-gray-300 focus:border-bronze focus:ring-bronze transition duration-300" required data-translate-key="form_placeholder_role">
+                        </div>
+                        <div class="mb-6">
+                            <textarea placeholder="Message (Décrivez votre activité et vos besoins)" rows="4" class="w-full p-3 border border-gray-300 focus:border-bronze focus:ring-bronze transition duration-300" data-translate-key="form_placeholder_message"></textarea>
+                        </div>
+                        <button type="submit" class="cta-primary w-full px-8 py-3 text-pure-white tracking-widest uppercase" data-translate-key="form_button">REJOINDRE LE RÉSEAU</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-charcoal text-pure-white py-12 border-t border-bronze/10">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col lg:flex-row justify-between items-center space-y-4 lg:space-y-0">
+                <div class="text-center lg:text-left">
+                    <p class="text-sm opacity-80 font-body font-light tracking-wide uppercase" data-translate-key="footer_copyright">© MOSAIA STUDIO – PAR AMARU BRANDS</p>
+                </div>
+               
+                <div class="flex space-x-6">
+                    <a href="#" class="text-pure-white/80 hover:text-bronze transition-colors duration-300 transform hover:scale-110" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM12 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                    </a>
+                    <a href="#" class="text-pure-white/80 hover:text-bronze transition-colors duration-300 transform hover:scale-110" target="_blank" rel="noopener noreferrer" aria-label="Pinterest">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.374 0 0 5.374 0 12s5.374 12 12 12c.343 0 .682-.015 1.017-.043-.096-.996-.264-2.317-.264-3.245 0-1.264.476-2.129 1.017-2.129.476 0 .714.357.714.833 0 .508-.321 1.269-.321 1.968 0 .833.714 1.508 1.548 1.508 1.468 0 2.456-1.548 2.456-3.611 0-1.889-1.349-3.301-3.301-3.301-2.317 0-3.683 1.746-3.683 3.571 0 .714.274 1.484.619 1.905.095.119.107.222.079.341-.021.095-.071.278-.095.357-.032.119-.127.151-.238.095-.833-.389-1.357-1.603-1.357-2.587 0-2.095 1.524-4.016 4.397-4.016 2.309 0 4.103 1.643 4.103 3.841 0 2.293-1.444 4.135-3.452 4.135-.675 0-1.31-.349-1.524-.778 0 0-.333 1.27-.405 1.579-.147.563-.544 1.27-.81 1.698C10.85 23.846 11.417 24 12 24c6.626 0 12-5.374 12-12S18.626 0 12 0z"/></svg>
+                    </a>
+                </div>
+               
+                <div class="text-center lg:text-right">
+                    <p class="text-sm opacity-80 font-title font-light tracking-wider uppercase" data-translate-key="footer_tagline">L'ART DE LA MOSAÏQUE QUI ÉVEILLE L'ÉMOTION ET DURE</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // --- LOGIQUE DE TRADUCTION (i18n) ---
+        const translations = {
+            fr: {
+                page_title: "Mosaia Studio - Partenaires",
+                // Navigation
+                nav_home: "ACCUEIL", nav_portfolio: "PORTFOLIO", nav_studio: "STUDIO", nav_bespoke: "SUR-MESURE", nav_process: "PROCESSUS", nav_partners: "PARTENAIRES", nav_contact: "CONTACT",
+                // Contenu principal
+                partners_title: "CRÉONS ENSEMBLE",
+                partners_subtitle: "Architectes, designers, builders — rejoignez notre réseau et créons ensemble des œuvres qui traversent le temps et inspirent.",
+                feature_1_title: "COLLABORATION CRÉATIVE", feature_1_text: "Un accès direct à nos maîtres artisans pour transformer vos concepts en réalité mosaïque.",
+                feature_2_title: "ACCÈS PRIVILÉGIÉ", feature_2_text: "Catalogue de matériaux exclusifs, échantillons prioritaires et tarifs préférentiels.",
+                feature_3_title: "SUPPORT COMPLET", feature_3_text: "Support technique, marketing (images/vidéos) et logistique sur tous vos projets.",
+                // Formulaire
+                form_title: "CANDIDATURE PARTENAIRE",
+                form_placeholder_company: "Nom Société", form_placeholder_contact: "Contact", form_placeholder_email: "Email", form_placeholder_role: "Rôle / Profession", form_placeholder_message: "Message (Décrivez votre activité et vos besoins)",
+                form_button: "REJOINDRE LE RÉSEAU",
+                // Footer
+                footer_copyright: "© MOSAIA STUDIO – PAR AMARU BRANDS",
+                footer_tagline: "L'ART DE LA MOSAÏQUE QUI ÉVEILLE L'ÉMOTION ET DURE"
+            },
+            en: {
+                page_title: "Mosaia Studio - Partners",
+                // Navigation
+                nav_home: "HOME", nav_portfolio: "PORTFOLIO", nav_studio: "STUDIO", nav_bespoke: "BESPOKE", nav_process: "PROCESS", nav_partners: "PARTNERS", nav_contact: "CONTACT",
+                // Contenu principal
+                partners_title: "LET'S CREATE TOGETHER",
+                partners_subtitle: "Architects, designers, builders — join our network and let's create timeless, inspiring works together.",
+                feature_1_title: "CREATIVE COLLABORATION", feature_1_text: "Direct access to our master artisans to transform your concepts into mosaic reality.",
+                feature_2_title: "PRIVILEGED ACCESS", feature_2_text: "Exclusive materials catalog, priority samples, and preferential pricing.",
+                feature_3_title: "FULL SUPPORT", feature_3_text: "Technical, marketing (images/videos), and logistical support for all your projects.",
+                // Formulaire
+                form_title: "PARTNER APPLICATION",
+                form_placeholder_company: "Company Name", form_placeholder_contact: "Contact", form_placeholder_email: "Email", form_placeholder_role: "Role / Profession", form_placeholder_message: "Message (Describe your activity and needs)",
+                form_button: "JOIN THE NETWORK",
+                // Footer
+                footer_copyright: "© MOSAIA STUDIO – BY AMARU BRANDS",
+                footer_tagline: "THE ART OF MOSAIC THAT AWAKENS EMOTION AND LASTS"
+            },
+            nl: {
+                page_title: "Mosaia Studio - Partners",
+                // Navigation
+                nav_home: "HOME", nav_portfolio: "PORTFOLIO", nav_studio: "STUDIO", nav_bespoke: "OP MAAT", nav_process: "PROCES", nav_partners: "PARTNERS", nav_contact: "CONTACT",
+                // Contenu principal
+                partners_title: "LATEN WE SAMEN CREËREN",
+                partners_subtitle: "Architecten, ontwerpers, bouwers — sluit u aan bij ons netwerk en laten we samen tijdloze, inspirerende werken creëren.",
+                feature_1_title: "CREATIEVE SAMENWERKING", feature_1_text: "Directe toegang tot onze meester-ambachtslieden om uw concepten om te zetten in mozaïekrealiteit.",
+                feature_2_title: "GEPRIVILEGEERDE TOEGANG", feature_2_text: "Exclusieve materialencatalogus, prioritaire stalen en voorkeurstarieven.",
+                feature_3_title: "VOLLEDIGE ONDERSTEUNING", feature_3_text: "Technische, marketing (afbeeldingen/video's) en logistieke ondersteuning voor al uw projecten.",
+                // Formulaire
+                form_title: "PARTNER AANVRAAG",
+                form_placeholder_company: "Bedrijfsnaam", form_placeholder_contact: "Contactpersoon", form_placeholder_email: "E-mail", form_placeholder_role: "Rol / Beroep", form_placeholder_message: "Bericht (Beschrijf uw activiteit en behoeften)",
+                form_button: "WORD LID VAN HET NETWERK",
+                // Footer
+                footer_copyright: "© MOSAIA STUDIO – DOOR AMARU BRANDS",
+                footer_tagline: "DE KUNST VAN MOZAÏEK DAT EMOTIE OPWEKT EN BLIJFT"
+            },
+            de: {
+                page_title: "Mosaia Studio - Partner",
+                // Navigation
+                nav_home: "STARTSEITE", nav_portfolio: "PORTFOLIO", nav_studio: "STUDIO", nav_bespoke: "MASSARBEIT", nav_process: "PROZESS", nav_partners: "PARTNER", nav_contact: "KONTAKT",
+                // Contenu principal
+                partners_title: "LASS UNS GEMEINSAM ETWAS SCHAFFEN",
+                partners_subtitle: "Architekten, Designer, Bauherren — treten Sie unserem Netzwerk bei und lassen Sie uns gemeinsam zeitlose, inspirierende Werke schaffen.",
+                feature_1_title: "KREATIVE ZUSAMMENARBEIT", feature_1_text: "Direkter Zugang zu unseren Meisterhandwerkern, um Ihre Konzepte in Mosaik-Realität umzusetzen.",
+                feature_2_title: "PRIVILEGIERTER ZUGANG", feature_2_text: "Exklusiver Materialkatalog, bevorzugte Muster und Vorzugspreise.",
+                feature_3_title: "UMFASSENDER SUPPORT", feature_3_text: "Technische, Marketing- (Bilder/Videos) und logistische Unterstützung für alle Ihre Projekte.",
+                // Formulaire
+                form_title: "PARTNERBEWERBUNG",
+                form_placeholder_company: "Firmenname", form_placeholder_contact: "Kontaktperson", form_placeholder_email: "E-Mail", form_placeholder_role: "Rolle / Beruf", form_placeholder_message: "Nachricht (Beschreiben Sie Ihre Tätigkeit und Bedürfnisse)",
+                form_button: "DEM NETZWERK BEITRETEN",
+                // Footer
+                footer_copyright: "© MOSAIA STUDIO – VON AMARU BRANDS",
+                footer_tagline: "DIE KUNST DES MOSAIKS, DIE EMOTIONEN WECKT UND BESTÄNDIG IST"
+            },
+            es: {
+                page_title: "Mosaia Studio - Socios",
+                // Navigation
+                nav_home: "INICIO", nav_portfolio: "PORTAFOLIO", nav_studio: "ESTUDIO", nav_bespoke: "A MEDIDA", nav_process: "PROCESO", nav_partners: "SOCIOS", nav_contact: "CONTACTO",
+                // Contenu principal
+                partners_title: "CREEMOS JUNTOS",
+                partners_subtitle: "Arquitectos, diseñadores, constructores — únanse a nuestra red y creemos juntos obras que perduren en el tiempo e inspiren.",
+                feature_1_title: "COLABORACIÓN CREATIVA", feature_1_text: "Acceso directo a nuestros maestros artesanos para transformar sus conceptos en realidad de mosaico.",
+                feature_2_title: "ACCESO PRIVILEGIADO", feature_2_text: "Catálogo de materiales exclusivos, muestras prioritarias y tarifas preferenciales.",
+                feature_3_title: "SOPORTE COMPLETO", feature_3_text: "Soporte técnico, de marketing (imágenes/videos) y logístico en todos sus proyectos.",
+                // Formulaire
+                form_title: "SOLICITUD DE SOCIO",
+                form_placeholder_company: "Nombre Empresa", form_placeholder_contact: "Contacto", form_placeholder_email: "Email", form_placeholder_role: "Rol / Profesión", form_placeholder_message: "Mensaje (Describa su actividad y necesidades)",
+                form_button: "UNIRSE A LA RED",
+                // Footer
+                footer_copyright: "© MOSAIA STUDIO – POR AMARU BRANDS",
+                footer_tagline: "EL ARTE DEL MOSAICO QUE DESPIERTA LA EMOCIÓN Y PERDURA"
+            }
+        };
+
+        // Fonction principale pour appliquer la traduction
+        function translatePage(lang) {
+            const currentTranslations = translations[lang];
+            if (!currentTranslations) return;
+
+            // 1. Mise à jour de l'attribut lang de la page
+            document.documentElement.lang = lang;
+
+            // 2. Traduction du titre de la page
+            const pageTitleElement = document.querySelector('title');
+            if (pageTitleElement) {
+                const key = pageTitleElement.getAttribute('data-translate-key');
+                if (key && currentTranslations[key]) {
+                    pageTitleElement.textContent = currentTranslations[key];
+                }
+            }
+
+            // 3. Traduction de tous les éléments avec data-translate-key (texte de l'élément)
+            document.querySelectorAll('[data-translate-key]').forEach(element => {
+                const key = element.getAttribute('data-translate-key');
+                if (currentTranslations[key]) {
+                    // Si c'est un champ de formulaire (input/textarea) avec un placeholder
+                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                        // S'assurer que le placeholder est bien une clé de traduction
+                        if (key.startsWith('form_placeholder_')) {
+                            element.setAttribute('placeholder', currentTranslations[key]);
+                        }
+                    } 
+                    // Si c'est un bouton de formulaire
+                    else if (element.tagName === 'BUTTON' && element.getAttribute('type') === 'submit') {
+                        element.textContent = currentTranslations[key].toUpperCase();
+                    }
+                    // Pour les autres éléments (nav, titres, paragraphes)
+                    else {
+                        element.textContent = currentTranslations[key];
+                    }
+                }
+            });
+
+            // 4. Mettre à jour les sélecteurs de langue pour refléter le bon choix
+            // Assurer la synchronisation entre desktop et mobile
+            const langSelectDesktop = document.getElementById('lang-select-desktop');
+            const langSelectMobile = document.getElementById('lang-select-mobile');
+
+            if (langSelectDesktop) langSelectDesktop.value = lang;
+            if (langSelectMobile) langSelectMobile.value = lang;
+
+            // 5. Sauvegarder la langue dans le stockage local
+            localStorage.setItem('userLanguage', lang);
+        }
+
+        // Fonction pour gérer le changement de langue
+        function handleLangChange(event) {
+            const newLang = event.target.value;
+            translatePage(newLang);
+        }
+
+        // Fonction pour initialiser la langue au chargement
+        function initializeLanguage() {
+            // Récupérer la langue sauvegardée, sinon utiliser 'fr' (défaut)
+            const savedLang = localStorage.getItem('userLanguage') || 'fr';
+            
+            // Appliquer la traduction
+            translatePage(savedLang);
+
+            // Attacher les écouteurs d'événements aux deux sélecteurs
+            const langSelectDesktop = document.getElementById('lang-select-desktop');
+            const langSelectMobile = document.getElementById('lang-select-mobile');
+            
+            if (langSelectDesktop) langSelectDesktop.addEventListener('change', handleLangChange);
+            if (langSelectMobile) langSelectMobile.addEventListener('change', handleLangChange);
+        }
+
+        // --- LOGIQUE D'ANIMATION ET MENU MOBILE (existante) ---
+        const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in-up');
+                    entry.target.classList.remove('opacity-0', 'translate-y-[40px]');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+        document.querySelectorAll('.fade-in-up').forEach(element => {
+            element.classList.add('opacity-0', 'translate-y-[40px]');
+            observer.observe(element);
+        });
+        
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('hidden');
+        }
+        document.getElementById('mobileMenuBtn').addEventListener('click', toggleMobileMenu);
+
+        // Initialisation de la langue au chargement de la page
+        document.addEventListener('DOMContentLoaded', initializeLanguage);
+    </script>
+</body>
+</html>
