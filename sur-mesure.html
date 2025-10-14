@@ -6,6 +6,13 @@
     <title data-translate-key="page_title">Mosaia Studio - Sur-Mesure</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <link rel="alternate" hreflang="fr" href="https://votresite.com/sur-mesure.html" />
+    <link rel="alternate" hreflang="en" href="https://votresite.com/en/sur-mesure.html" />
+    <link rel="alternate" hreflang="nl" href="https://votresite.com/nl/sur-mesure.html" />
+    <link rel="alternate" hreflang="de" href="https://votresite.com/de/sur-mesure.html" />
+    <link rel="alternate" hreflang="es" href="https://votresite.com/es/sur-mesure.html" />
+
     <script>
         tailwind.config = {
             theme: {
@@ -17,10 +24,17 @@
         }
     </script>
     <style>
-        .fade-in-up { animation: fadeInUp 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; opacity: 0; transform: translateY(40px); }
-        .fade-in-up.delay-1 { animation-delay: 0.3s; }
-        .fade-in-up.delay-2 { animation-delay: 0.6s; }
-        @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+        .fade-in-up { opacity: 0; transform: translateY(40px); transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+        .fade-in-up.loaded { opacity: 1; transform: translateY(0); }
+        .fade-in-up.delay-1 { transition-delay: 0.1s; }
+        .fade-in-up.delay-2 { transition-delay: 0.2s; }
+        .fade-in-up.delay-3 { transition-delay: 0.3s; }
+        .fade-in-up.delay-4 { transition-delay: 0.4s; }
+        .fade-in-up.delay-5 { transition-delay: 0.5s; }
+        .fade-in-up.delay-6 { transition-delay: 0.6s; }
+        .fade-in-up.delay-7 { transition-delay: 0.7s; }
+        .fade-in-up.delay-8 { transition-delay: 0.8s; }
+
         .elegant-line { position: relative; }
         .elegant-line::after { content: ''; position: absolute; bottom: -12px; left: 50%; transform: translateX(-50%); width: 80px; height: 1px; background: linear-gradient(90deg, transparent, #C99B4F, transparent); }
         .cta-primary { background: linear-gradient(135deg, #C99B4F, #B8894A); transition: all 0.4s ease; font-family: 'Montserrat', sans-serif; font-weight: 600; }
@@ -28,8 +42,10 @@
         .nav-link { position: relative; transition: all 0.3s ease; }
         .nav-link:hover { color: #C99B4F; }
         .nav-link::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: #C99B4F; transition: width 0.3s ease; }
-        .nav-link:hover::after { width: 100%; }
+        .nav-link:hover::after,
+        .nav-link.active::after { width: 100%; }
         .page-section { padding-top: 100px; padding-bottom: 100px; }
+        
         /* Timeline Styles */
         .timeline-item { position: relative; padding-left: 50px; padding-bottom: 30px; border-left: 1px solid #E5E5E5; }
         .timeline-item::before { content: ''; position: absolute; left: -10px; top: 0; width: 20px; height: 20px; background-color: #C99B4F; border-radius: 50%; border: 4px solid #FFFFFF; transition: all 0.3s ease; }
@@ -37,17 +53,22 @@
         .timeline-item:last-child { border-left: none; }
         .advantage-icon { transition: transform 0.4s ease, color 0.4s ease; }
         .advantage-icon:hover { transform: translateY(-5px); color: #C99B4F; }
+        
         /* Style pour le sélecteur de langue */
         .lang-button { background: none; border: 1px solid transparent; padding: 4px 8px; border-radius: 4px; transition: all 0.3s; }
         .lang-button:hover { background: rgba(201, 155, 79, 0.1); border-color: #C99B4F; }
         .lang-button.active { background: #C99B4F; color: #1A1A1A; font-weight: 600; border-color: #C99B4F; }
+        /* Style spécifique pour les options du dropdown desktop */
+        #lang-menu a.lang-option {
+            background: none; border: none; /* Override button styles */
+            display: block; padding: 8px 16px;
+        }
+        #lang-menu a.lang-option:hover { background-color: #F0F0F0; color: #C99B4F; }
+        #lang-menu a.lang-option.active { background-color: #C99B4F; color: #1A1A1A; font-weight: 600; }
+
         /* FIX: Ajout de la rotation pour la flèche du dropdown desktop */
-        #dropdown-arrow {
-            transition: transform 0.2s ease;
-        }
-        .rotate-180 {
-            transform: rotate(180deg);
-        }
+        #dropdown-arrow { transition: transform 0.2s ease; }
+        .rotate-180 { transform: rotate(180deg); }
     </style>
 </head>
 <body class="bg-pure-white font-body text-charcoal">
@@ -55,7 +76,7 @@
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 <div class="flex-shrink-0">
-                    <a href="index.html">
+                    <a href="index.html" class="nav-lang-link">
                         <img src="https://raw.githubusercontent.com/allo-les-anges/mosaia/main/mosaia-assets/logos/logo%20mosaia%202.png" 
                              alt="Mosaia Studio Logo" 
                              class="h-10 lg:h-12 w-auto">
@@ -64,13 +85,13 @@
                 
                 <nav class="hidden md:block">
                     <div class="flex items-center space-x-8 lg:space-x-10">
-                        <a href="index.html" data-translate-key="nav_home" class="nav-link text-bronze border-b-2 border-bronze px-1 py-2 text-sm font-body font-medium tracking-wide uppercase">ACCUEIL</a>
-                        <a href="portfolio.html" data-translate-key="nav_portfolio" class="nav-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase">PORTFOLIO</a>
-                        <a href="studio.html" data-translate-key="nav_studio" class="nav-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase">STUDIO</a>
-                        <a href="sur-mesure.html" data-translate-key="nav_bespoke" class="nav-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase">SUR-MESURE</a>
-                        <a href="processus.html" data-translate-key="nav_process" class="nav-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase">PROCESSUS</a>
-                        <a href="partenaires.html" data-translate-key="nav_partners" class="nav-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase">PARTENAIRES</a>
-                        <a href="contact.html" data-translate-key="nav_contact" class="nav-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase">CONTACT</a>
+                        <a href="index.html" data-translate-key="nav_home" class="nav-link nav-lang-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase">ACCUEIL</a>
+                        <a href="portfolio.html" data-translate-key="nav_portfolio" class="nav-link nav-lang-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase">PORTFOLIO</a>
+                        <a href="studio.html" data-translate-key="nav_studio" class="nav-link nav-lang-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase">STUDIO</a>
+                        <a href="sur-mesure.html" data-translate-key="nav_bespoke" class="nav-link nav-lang-link text-bronze border-b-2 border-bronze px-1 py-2 text-sm font-body font-medium tracking-wide uppercase active">SUR-MESURE</a>
+                        <a href="processus.html" data-translate-key="nav_process" class="nav-link nav-lang-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase">PROCESSUS</a>
+                        <a href="partenaires.html" data-translate-key="nav_partners" class="nav-link nav-lang-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase">PARTENAIRES</a>
+                        <a href="contact.html" data-translate-key="nav_contact" class="nav-link nav-lang-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase">CONTACT</a>
                         
                         <div class="relative ml-4 pl-4 border-l border-charcoal/10" id="lang-dropdown-container">
                             <button id="lang-dropdown-btn" 
@@ -83,15 +104,15 @@
                             </button>
                             
                             <div id="lang-menu" 
-                                class="absolute right-0 mt-3 w-32 bg-pure-white shadow-xl rounded-md ring-1 ring-charcoal/5 hidden origin-top-right py-1 z-50" 
+                                class="absolute right-0 mt-3 w-36 bg-pure-white shadow-xl rounded-md ring-1 ring-charcoal/5 hidden origin-top-right py-1 z-50" 
                                 role="menu" 
                                 aria-orientation="vertical" 
                                 aria-labelledby="lang-dropdown-btn">
-                                <a href="#" class="block px-4 py-2 text-sm text-charcoal hover:bg-light-gray lang-button" role="menuitem" data-lang="fr">Français</a>
-                                <a href="#" class="block px-4 py-2 text-sm text-charcoal hover:bg-light-gray lang-button" role="menuitem" data-lang="en">English</a>
-                                <a href="#" class="block px-4 py-2 text-sm text-charcoal hover:bg-light-gray lang-button" role="menuitem" data-lang="nl">Nederlands</a>
-                                <a href="#" class="block px-4 py-2 text-sm text-charcoal hover:bg-light-gray lang-button" role="menuitem" data-lang="de">Deutsch</a>
-                                <a href="#" class="block px-4 py-2 text-sm text-charcoal hover:bg-light-gray lang-button" role="menuitem" data-lang="es">Español</a>
+                                <a href="#" class="lang-option block px-4 py-2 text-sm text-charcoal hover:bg-light-gray" role="menuitem" data-lang="fr">Français</a>
+                                <a href="#" class="lang-option block px-4 py-2 text-sm text-charcoal hover:bg-light-gray" role="menuitem" data-lang="en">English</a>
+                                <a href="#" class="lang-option block px-4 py-2 text-sm text-charcoal hover:bg-light-gray" role="menuitem" data-lang="nl">Nederlands</a>
+                                <a href="#" class="lang-option block px-4 py-2 text-sm text-charcoal hover:bg-light-gray" role="menuitem" data-lang="de">Deutsch</a>
+                                <a href="#" class="lang-option block px-4 py-2 text-sm text-charcoal hover:bg-light-gray" role="menuitem" data-lang="es">Español</a>
                             </div>
                         </div>
                     </div>
@@ -111,13 +132,13 @@
             
             <div id="mobileMenu" class="md:hidden bg-pure-white border-t border-charcoal/10 hidden">
                 <div class="px-6 py-4 space-y-2">
-                    <a href="index.html" data-translate-key="nav_home" class="block py-2 text-bronze font-body font-medium uppercase">ACCUEIL</a>
-                    <a href="portfolio.html" data-translate-key="nav_portfolio" class="block py-2 text-charcoal font-body font-medium uppercase">PORTFOLIO</a>
-                    <a href="studio.html" data-translate-key="nav_studio" class="block py-2 text-charcoal font-body font-medium uppercase">STUDIO</a>
-                    <a href="sur-mesure.html" data-translate-key="nav_bespoke" class="block py-2 text-charcoal font-body font-medium uppercase">SUR-MESURE</a>
-                    <a href="processus.html" data-translate-key="nav_process" class="block py-2 text-charcoal font-body font-medium uppercase">PROCESSUS</a>
-                    <a href="partenaires.html" data-translate-key="nav_partners" class="block py-2 text-charcoal font-body font-medium uppercase">PARTENAIRES</a>
-                    <a href="contact.html" data-translate-key="nav_contact" class="block py-2 text-charcoal font-body font-medium uppercase">CONTACT</a>
+                    <a href="index.html" data-translate-key="nav_home" class="nav-lang-link block py-2 text-charcoal font-body font-medium uppercase">ACCUEIL</a>
+                    <a href="portfolio.html" data-translate-key="nav_portfolio" class="nav-lang-link block py-2 text-charcoal font-body font-medium uppercase">PORTFOLIO</a>
+                    <a href="studio.html" data-translate-key="nav_studio" class="nav-lang-link block py-2 text-charcoal font-body font-medium uppercase">STUDIO</a>
+                    <a href="sur-mesure.html" data-translate-key="nav_bespoke" class="nav-lang-link block py-2 text-bronze font-body font-medium uppercase">SUR-MESURE</a>
+                    <a href="processus.html" data-translate-key="nav_process" class="nav-lang-link block py-2 text-charcoal font-body font-medium uppercase">PROCESSUS</a>
+                    <a href="partenaires.html" data-translate-key="nav_partners" class="nav-lang-link block py-2 text-charcoal font-body font-medium uppercase">PARTENAIRES</a>
+                    <a href="contact.html" data-translate-key="nav_contact" class="nav-lang-link block py-2 text-charcoal font-body font-medium uppercase">CONTACT</a>
                     
                     <div id="lang-selector-mobile" class="pt-4 border-t border-charcoal/10">
                         <h4 data-translate-key="lang_selector_title" class="text-sm font-title font-medium text-charcoal mb-2 uppercase">Choisir la Langue</h4>
@@ -197,7 +218,7 @@
                     <p data-translate-key="conclusion_text" class="text-xl text-medium-gray leading-relaxed font-body font-light max-w-4xl mx-auto fade-in-up delay-7">
                         Nos experts accompagnent chaque client à chaque étape, garantissant beauté, durabilité et émotion.
                     </p>
-                    <a href="contact.html" data-translate-key="cta_quote" class="cta-primary mt-10 inline-block px-8 py-3 text-pure-white tracking-widest uppercase fade-in-up delay-8">DEMANDER UN DEVIS</a>
+                    <a href="contact.html" data-translate-key="cta_quote" class="nav-lang-link cta-primary mt-10 inline-block px-8 py-3 text-pure-white tracking-widest uppercase fade-in-up delay-8">DEMANDER UN DEVIS</a>
                 </div>
             </div>
         </section>
@@ -226,7 +247,7 @@
         </div>
     </footer>
     
-   <script>
+    <script>
     // --- 1. DONNÉES DE TRADUCTION ---
     const translations = {
         // Page & Navigation
@@ -240,6 +261,7 @@
         'nav_partners': { fr: "PARTENAIRES", en: "PARTNERS", nl: "PARTNERS", de: "PARTNER", es: "SOCIOS" },
         'nav_contact': { fr: "CONTACT", en: "CONTACT", nl: "CONTACT", de: "KONTAKT", es: "CONTACTO" },
         'lang_selector_title': { fr: "Choisir la Langue", en: "Choose Language", nl: "Taal Kiezen", de: "Sprache Wählen", es: "Elegir Idioma" },
+        'menu_btn': { fr: "Menu", en: "Menu", nl: "Menu", de: "Menü", es: "Menú" }, // Clé manquante ajoutée
         
         // Sur-Mesure Section
         'section_title': { fr: "VOTRE VISION, NOTRE ART", en: "YOUR VISION, OUR ART", nl: "UW VISIE, ONZE KUNST", de: "IHRE VISION, UNSERE KUNST", es: "SU VISIÓN, NUESTRO ARTE" },
@@ -261,7 +283,7 @@
         // Avantages
         'advantages_title': { fr: "Avantages du Sur-Mesure", en: "Bespoke Advantages", nl: "Voordelen van Maatwerk", de: "Vorteile der Maßanfertigung", es: "Ventajas del Servicio a Medida" },
         'advantage1_title': { fr: "Visual Previews", en: "Visual Previews", nl: "Visuele Voorbeelden", de: "Visuelle Vorschauen", es: "Vistas Previas Visuales" },
-        'advantage1_text': { fr: "Visualisez le résultat avant la production grâce à nos rendus photoréalistes.", en: "Visualize the result before production with our photorealistic renderings.", nl: "Visualiseer het resultaat vóór productie dankzij onze fotorealistische renderings.", de: "Visualisieren Sie das Ergebnis vor der Produktion dank unserer photorealistischen Renderings.", es: "Visualice el resultado antes de la producción con nuestros renders fotorrealistas." },
+        'advantage1_text': { fr: "Visualisez le résultat avant la production grâce à nos rendus photoréalistes.", en: "Visualize the result before production with our photorealistic renderings.", nl: "Visualiseer het resultaat vóór productie dankzij onze fotorealistische renderings.", de: "Visualisieren Sie das Ergebnis vor der Produktion dank unserer photorealistischen Renderings.", es: "Visualice el resultado antes de la production con nuestros renders fotorrealistas." },
         'advantage2_title': { fr: "Precision Mapping", en: "Precision Mapping", nl: "Precisie Codering", de: "Präzisionskartierung", es: "Mapeo de Precisión" },
         'advantage2_text': { fr: "Une précision au millimètre garantie par notre technologie de cartographie.", en: "Millimeter precision guaranteed by our mapping technology.", nl: "Millimeterprecisie gegarandeerd door onze coderingstechnologie.", de: "Millimetergenaue Präzision, garantiert durch unsere Kartierungstechnologie.", es: "Precisión milimétrica garantizada por nuestra tecnología de mapeo." },
         'advantage3_title': { fr: "Full Customization", en: "Full Customization", nl: "Volledige Personalisatie", de: "Vollständige Anpassung", es: "Personalización Total" },
@@ -276,41 +298,48 @@
         'footer_tagline': { fr: "L'ART DE LA MOSAÏQUE QUI ÉVEILLE L'ÉMOTION ET DURE", en: "THE ART OF MOSAIC THAT AWAKENS EMOTION AND ENDURES", nl: "DE KUNST VAN MOZAÏEK DAT EMOTIE OPROEPT EN VOORTDUURT", de: "DIE KUNST DES MOSAIKS, DIE EMOTIONEN WECKT UND BESTEHT", es: "EL ARTE DEL MOSAICO QUE DESPIERTA EMOCIÓN Y PERDURA" }
     };
 
-    // --- DÉTERMINATION DE LA LANGUE INITIALE (AVEC PERSISTANCE) ---
-    // Récupère la langue stockée dans localStorage, sinon utilise 'fr'
-    let currentLang = localStorage.getItem('mosaiaLang') || 'fr'; 
+    let currentLang = 'fr';
+    const supportedLangs = ['en', 'nl', 'de', 'es'];
 
-    // --- 2. FONCTION DE TRADUCTION (MISE À JOUR AVEC PERSISTANCE) ---
-    function switchLanguage(lang) {
+    // --- 2. FONCTION POUR METTRE À JOUR LE CONTENU ET L'INTERFACE ---
+    function updateContentTranslations(lang) {
         currentLang = lang;
-        document.documentElement.lang = lang; // Met à jour l'attribut lang de la page
-
-        // **AJOUT POUR LA PERSISTANCE : Stockage de la langue dans localStorage**
-        localStorage.setItem('mosaiaLang', lang);
+        document.documentElement.lang = lang; 
 
         // Met à jour le titre
-        document.querySelector('title').textContent = translations['page_title'][lang];
+        const newTitle = translations['page_title'][lang] || document.title;
+        document.title = newTitle;
+        document.querySelector('title').textContent = newTitle;
 
         // Met à jour tous les éléments avec l'attribut data-translate-key
         document.querySelectorAll('[data-translate-key]').forEach(element => {
             const key = element.getAttribute('data-translate-key');
             if (translations[key] && translations[key][lang]) {
-                // Pour le CTA et autres éléments
                 element.textContent = translations[key][lang];
             }
         });
 
-        // Gère les classes 'active' pour les boutons de langue (Desktop et Mobile)
-        document.querySelectorAll('.lang-button').forEach(button => {
-            button.classList.remove('active');
-            if (button.getAttribute('data-lang') === lang) {
-                // Met à jour la classe 'active' pour les boutons mobiles
-                if (button.closest('#lang-selector-mobile')) {
-                    button.classList.add('active');
-                } 
+        // Gère les classes 'active' pour les liens de navigation (Desktop)
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.classList.remove('active', 'text-bronze', 'border-b-2', 'border-bronze');
+            link.classList.add('text-charcoal');
+            if (link.getAttribute('data-translate-key') === 'nav_bespoke') {
+                if (link.getAttribute('href').includes(window.location.pathname.split('/').pop())) {
+                     link.classList.add('active', 'text-bronze', 'border-b-2', 'border-bronze');
+                     link.classList.remove('text-charcoal');
+                }
+            }
+        });
+        
+        // Gère les classes 'active' pour les options de langue
+        document.querySelectorAll('.lang-button, .lang-option').forEach(element => {
+            element.classList.remove('active', 'text-bronze', 'font-semibold');
+            
+            if (element.getAttribute('data-lang') === lang) {
+                element.classList.add('active');
                 
-                // Met à jour l'affichage de la langue actuelle dans le bouton desktop
-                if (button.closest('#lang-dropdown-container')) {
+                // Mettre à jour l'affichage de la langue actuelle dans le bouton desktop
+                if (element.id !== 'lang-dropdown-btn') { // Évite de cibler le bouton parent du dropdown
                     const currentLangDisplay = document.getElementById('current-lang-display');
                     if(currentLangDisplay) {
                         currentLangDisplay.textContent = lang.toUpperCase();
@@ -318,100 +347,191 @@
                 }
             }
         });
+
+        // Met à jour les liens de navigation après la traduction
+        updateNavigationLinks(lang);
+    }
+    
+    // --- 3. FONCTION POUR GÉRER LES LIENS DE NAVIGATION (ex: sur-mesure.html vers /en/sur-mesure.html) ---
+    function updateNavigationLinks(lang) {
+        const isDefaultLang = (lang === 'fr');
         
-        // Ferme le dropdown desktop après la sélection (si elle vient du dropdown)
+        document.querySelectorAll('.nav-lang-link').forEach(link => {
+            const href = link.getAttribute('href');
+            if (!href || href === '#') return;
+
+            // Détermine le nom du fichier actuel (ex: sur-mesure.html)
+            const fileName = href.split('/').pop();
+            
+            if (isDefaultLang) {
+                // Pour le Français (FR), utilise le lien de base (ex: sur-mesure.html)
+                link.href = fileName;
+            } else {
+                // Pour les autres langues, ajoute le préfixe (ex: /en/sur-mesure.html)
+                link.href = `/${lang}/${fileName}`;
+            }
+        });
+    }
+
+    // --- 4. FONCTION CLÉ : GESTION DU CHANGEMENT DE LANGUE ET DE LA REDIRECTION ---
+    function switchLanguage(lang) {
+        // Étape 1 : Enregistre la langue sélectionnée pour la persistance
+        localStorage.setItem('mosaiaLang', lang);
+        
+        // Étape 2 : Détermine la nouvelle URL de la page
+        const currentPath = window.location.pathname.replace(/\/$/, '');
+        const currentFileName = 'sur-mesure.html'; // Nom du fichier actuel
+        const supportedLangs = ['en', 'nl', 'de', 'es'];
+
+        // Détermine la langue actuelle basée sur l'URL
+        const currentLangMatch = currentPath.match(new RegExp(`\/(${supportedLangs.join('|')})\/`));
+        const oldLang = currentLangMatch ? currentLangMatch[1] : 'fr';
+
+        let newUrl;
+
+        if (lang === 'fr') {
+            // Si la nouvelle langue est 'fr', on redirige vers la racine
+            if (oldLang !== 'fr') {
+                // Remplace le préfixe /lang/ par / (ou enlève le préfixe)
+                newUrl = currentPath.replace(new RegExp(`\/${oldLang}\/`), '/');
+            } else {
+                newUrl = currentFileName; // Déjà en FR, l'URL est le nom du fichier
+            }
+            
+            // Nettoyer l'URL pour n'avoir que le nom du fichier
+            if (newUrl.endsWith(`/${currentFileName}`)) {
+                newUrl = currentFileName;
+            }
+
+        } else {
+            // Si la nouvelle langue est autre que 'fr'
+            if (oldLang === 'fr') {
+                // Ajoute le nouveau préfixe
+                newUrl = `/${lang}/${currentFileName}`;
+            } else {
+                // Remplace l'ancien préfixe par le nouveau
+                newUrl = currentPath.replace(`/${oldLang}/`, `/${lang}/`);
+            }
+        }
+        
+        // La redirection n'a lieu que si la nouvelle URL est différente de l'actuelle
+        // On normalise les chemins pour la comparaison (avec ou sans slash initial)
+        const currentPathNormalized = currentPath.startsWith('/') ? currentPath.substring(1) : currentPath;
+        const newUrlNormalized = newUrl.startsWith('/') ? newUrl.substring(1) : newUrl;
+
+        if (currentPathNormalized === newUrlNormalized || currentPathNormalized.endsWith(newUrlNormalized)) {
+            // Si l'URL est déjà correcte, on met juste à jour le contenu
+            updateContentTranslations(lang);
+        } else {
+            // Redirection vers la nouvelle URL
+            window.location.href = newUrl.startsWith('/') ? newUrl : `/${newUrl}`;
+        }
+        
+        // Ferme le dropdown desktop après la sélection
         const langMenu = document.getElementById('lang-menu');
         const arrow = document.getElementById('dropdown-arrow');
-        if (langMenu && arrow) {
-             // S'assure de l'état "fermé" après un clic depuis le dropdown
-             langMenu.classList.add('hidden');
-             arrow.classList.remove('rotate-180');
+        const langDropdownBtn = document.getElementById('lang-dropdown-btn');
+        if (langMenu && arrow && langDropdownBtn) {
+            langMenu.classList.add('hidden');
+            arrow.classList.remove('rotate-180');
+            langDropdownBtn.setAttribute('aria-expanded', 'false');
         }
 
         // Ferme le menu mobile si la sélection vient de là
         const mobileMenu = document.getElementById('mobileMenu');
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         if (mobileMenu && mobileMenuBtn && !mobileMenu.classList.contains('hidden')) {
-             mobileMenu.classList.add('hidden');
-             mobileMenuBtn.setAttribute('aria-expanded', 'false');
+            mobileMenu.classList.add('hidden');
+            mobileMenuBtn.setAttribute('aria-expanded', 'false');
         }
     }
 
-    // --- 3. LOGIQUE GLOBALE ET INITIALISATION ---
 
-    // Animation au scroll
-    const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('fade-in-up');
-                entry.target.classList.remove('opacity-0', 'translate-y-[40px]');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, observerOptions);
-    
+    // --- 5. INITIALISATION LORS DU CHARGEMENT DE LA PAGE ---
     document.addEventListener('DOMContentLoaded', () => {
-        // **INITIALISATION DE LA LANGUE PERSISTANTE**
-        switchLanguage(currentLang);
-
-        // Initialisation de l'observateur d'animation
-        document.querySelectorAll('.fade-in-up').forEach(element => {
-            element.classList.add('opacity-0', 'translate-y-[40px]');
-            observer.observe(element);
-        });
         
-        // Toggle du menu mobile
+        // Récupère la langue du Stockage Local
+        let storedLang = localStorage.getItem('mosaiaLang');
+        
+        // Détecte la langue dans l'URL (ex: pour quelqu'un qui arrive directement sur /en/sur-mesure.html)
+        const pathLangMatch = window.location.pathname.match(new RegExp(`\/(${supportedLangs.join('|')})\/`));
+        let urlLang = pathLangMatch ? pathLangMatch[1] : 'fr';
+
+        // Logique d'initialisation :
+        if (storedLang && storedLang !== urlLang) {
+            // L'utilisateur a une préférence stockée qui ne correspond pas à l'URL actuelle -> Redirection
+            switchLanguage(storedLang);
+            return;
+        }
+
+        // Initialise la langue sur la base de l'URL (ou la langue stockée si l'URL est la base FR)
+        const initialLang = urlLang || storedLang || 'fr';
+        updateContentTranslations(initialLang); 
+
+        // --- GESTION DU MENU MOBILE ---
         const mobileMenu = document.getElementById('mobileMenu');
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+
         function toggleMobileMenu() {
-            const isHidden = mobileMenu.classList.toggle('hidden');
-            mobileMenuBtn.setAttribute('aria-expanded', !isHidden);
+            const isExpanded = mobileMenuBtn.getAttribute('aria-expanded') === 'true';
+            mobileMenuBtn.setAttribute('aria-expanded', String(!isExpanded));
+            mobileMenu.classList.toggle('hidden');
         }
+        
         if(mobileMenuBtn) {
             mobileMenuBtn.addEventListener('click', toggleMobileMenu);
         }
-        
 
-        // Toggle du sélecteur de langue Desktop
+        // --- GESTION DU DROPDOWN DESKTOP ---
         const langDropdownBtn = document.getElementById('lang-dropdown-btn');
         const langMenu = document.getElementById('lang-menu');
         const dropdownArrow = document.getElementById('dropdown-arrow');
+        const langDropdownContainer = document.getElementById('lang-dropdown-container');
         
         if (langDropdownBtn) {
             langDropdownBtn.addEventListener('click', (event) => {
-                event.stopPropagation(); // Empêche l'événement de se propager au document et de fermer immédiatement
-                if (langMenu && dropdownArrow) {
-                    const isExpanded = langDropdownBtn.getAttribute('aria-expanded') === 'true';
-                    langDropdownBtn.setAttribute('aria-expanded', !isExpanded);
-                    langMenu.classList.toggle('hidden');
-                    // Rotation de la flèche pour indiquer l'état
-                    dropdownArrow.classList.toggle('rotate-180');
-                }
+                event.stopPropagation();
+                const isExpanded = langDropdownBtn.getAttribute('aria-expanded') === 'true';
+                langDropdownBtn.setAttribute('aria-expanded', String(!isExpanded));
+                langMenu.classList.toggle('hidden');
+                dropdownArrow.classList.toggle('rotate-180');
             });
         }
         
-
-        // Fermer le dropdown de langue en cliquant n'importe où ailleurs sur la page
         document.addEventListener('click', (event) => {
-            const dropdownContainer = document.getElementById('lang-dropdown-container');
-            if (dropdownContainer && langMenu && dropdownArrow && !dropdownContainer.contains(event.target) && !langMenu.classList.contains('hidden')) {
+            if (langDropdownContainer && langMenu && dropdownArrow && !langDropdownContainer.contains(event.target) && !langMenu.classList.contains('hidden')) {
                 langMenu.classList.add('hidden');
                 langDropdownBtn.setAttribute('aria-expanded', 'false');
                 dropdownArrow.classList.remove('rotate-180');
             }
         });
 
-        // Écouteurs d'événements pour les sélecteurs de langue (Desktop et Mobile)
-        document.querySelectorAll('.lang-button').forEach(button => {
+        // --- ÉCOUTEURS D'ÉVÉNEMENTS POUR LE CHANGEMENT DE LANGUE ---
+        document.querySelectorAll('.lang-option, .lang-button').forEach(button => {
             button.addEventListener('click', (e) => {
-                // Utilisation de currentTarget pour s'assurer que l'élément cliqué est le bouton, pas un enfant
+                e.preventDefault(); 
                 const lang = e.currentTarget.getAttribute('data-lang');
-                switchLanguage(lang); // switchLanguage va sauvegarder dans localStorage et gérer les états ouverts/fermés
+                
+                // Ne fait rien si la langue est déjà active et que l'URL est correcte (la fonction switchLanguage gère la comparaison)
+                switchLanguage(lang);
             });
         });
+        
+        // --- LOGIQUE D'ANIMATION (Mise à jour pour un meilleur contrôle) ---
+        const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+        const observer = new IntersectionObserver((entries, obs) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('loaded');
+                    obs.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
 
-    }); // Fin DOMContentLoaded
-</script>
+        document.querySelectorAll('.fade-in-up').forEach(element => {
+            observer.observe(element);
+        });
+    });
+    </script>
 </body>
 </html>
