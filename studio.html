@@ -227,7 +227,7 @@
             currentLang = lang;
             document.documentElement.lang = lang; 
             
-            // **2. Persistance : Stockage de la langue dans localStorage**
+            // **AJOUT POUR LA PERSISTANCE : Stockage de la langue dans localStorage**
             localStorage.setItem('mosaiaLang', lang);
 
             // Met à jour le titre
@@ -261,8 +261,8 @@
 
         // --- 3. LOGIQUE GLOBALE, DROPDOWN & INITIALISATION (MODIFIÉE) ---
         
-        // **Détermination de la langue initiale : localStorage > HTML (fr) **
-        // Utilise la langue stockée, sinon 'fr'
+        // **AJOUT POUR LA PERSISTANCE : Détermination de la langue initiale**
+        // Récupère la langue stockée dans localStorage, sinon utilise 'fr'
         let currentLang = localStorage.getItem('mosaiaLang') || 'fr'; 
 
         document.addEventListener('DOMContentLoaded', () => {
@@ -332,7 +332,7 @@
                 link.addEventListener('click', (e) => {
                     e.preventDefault();
                     const lang = link.getAttribute('data-lang');
-                    // switchLanguage va maintenant sauvegarder dans localStorage
+                    // switchLanguage va sauvegarder dans localStorage
                     switchLanguage(lang); 
                     // Ferme le menu déroulant après la sélection
                     langMenu.classList.add('hidden');
@@ -345,7 +345,7 @@
             document.querySelectorAll('#lang-selector-mobile .lang-button').forEach(button => {
                 button.addEventListener('click', (e) => {
                     const lang = button.getAttribute('data-lang');
-                    // switchLanguage va maintenant sauvegarder dans localStorage
+                    // switchLanguage va sauvegarder dans localStorage
                     switchLanguage(lang); 
                     // Ferme le menu mobile après la sélection
                     mobileMenu.classList.add('hidden');
@@ -355,5 +355,3 @@
 
         }); // Fin DOMContentLoaded
     </script>
-</body>
-</html>
