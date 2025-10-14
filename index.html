@@ -4,416 +4,409 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title data-translate-key="page_title">Mosaia Studio - Accueil</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: { 'bronze': '#C99B4F', 'charcoal': '#1A1A1A', 'pure-white': '#FFFFFF', 'light-gray': '#F8F8F8', 'medium-gray': '#666666' },
-                    fontFamily: { 'title': ['Montserrat', 'sans-serif'], 'body': ['Open Sans', 'sans-serif'] }
-                }
-            }
-        }
-    </script>
-    <style>
-    /* Styles CSS inchangés pour l'animation et le design */
-    .fade-in-up { animation: fadeInUp 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; opacity: 0; transform: translateY(40px); }
-    .fade-in-up.delay-1 { animation-delay: 0.3s; }
-    .fade-in-up.delay-2 { animation-delay: 0.6s; }
-    .fade-in-up.delay-3 { animation-delay: 0.9s; }
-    @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
-    .elegant-line { position: relative; }
-    .elegant-line::after { content: ''; position: absolute; bottom: -12px; left: 50%; transform: translateX(-50%); width: 80px; height: 1px; background: linear-gradient(90deg, transparent, #C99B4F, transparent); }
-
-    .hero-bg {
-        /* Superposition pour assombrir l'image et améliorer le contraste avec le texte blanc */
-        background: linear-gradient(135deg, rgba(26, 26, 26, 0.75) 0%, rgba(201, 155, 79, 0.2) 50%, rgba(26, 26, 26, 0.85) 100%),
-            /* Votre image d'arrière-plan */
-            url('https://raw.githubusercontent.com/allo-les-anges/mosaia/main/mosaia-assets/logos/Hero%20background%20pool.png');
-        
-        background-size: cover; /* ESSENTIEL : L'image couvre toujours tout le conteneur */
-        background-position: center; /* Centrage par défaut pour PC */
-        background-repeat: no-repeat; /* Assure que l'image ne se répète pas */
-        /* background-attachment: fixed; */
-    }
-
-    /* MEDIA QUERY : Ajustement pour les petits écrans (smartphones) */
-    @media (max-width: 640px) {
-        .hero-bg {
-            /* Déplace le point focal de l'image légèrement vers le haut pour mieux centrer la piscine */
-            background-position: center 30%; 
-        }
-    }
-
-        .cta-primary { background: linear-gradient(135deg, #C99B4F, #B8894A); transition: all 0.4s ease; position: relative; overflow: hidden; border: 1px solid rgba(201, 155, 79, 0.3); font-family: 'Montserrat', sans-serif; font-weight: 600; }
-        .cta-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(201, 155, 79, 0.2); background: #1A1A1A; color: #C99B4F; }
-        .cta-secondary { border: 2px solid rgba(26, 26, 26, 0.15); color: #1A1A1A; transition: all 0.4s ease; font-family: 'Montserrat', sans-serif; font-weight: 500; }
-        .cta-secondary:hover { background: rgba(201, 155, 79, 0.05); border-color: #C99B4F; color: #C99B4F; transform: translateY(-2px); }
-        .nav-link { position: relative; transition: all 0.3s ease; }
-        .nav-link:hover { color: #C99B4F; }
-        .nav-link::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: #C99B4F; transition: width 0.3s ease; }
-        .nav-link:hover::after { width: 100%; }
-        .page-section { padding-top: 100px; padding-bottom: 100px; }
-        /* Style pour les boutons de langue mobiles ou le bouton du dropdown */
-        .lang-button { background: none; border: 1px solid transparent; padding: 4px 8px; border-radius: 4px; transition: all 0.3s; }
-        .lang-button:hover { background: rgba(201, 155, 79, 0.1); border-color: #C99B4F; }
-        .lang-button.active { background: #C99B4F; color: #1A1A1A; font-weight: 600; border-color: #C99B4F; }
-        /* Style pour les options du dropdown sur desktop */
-        .lang-option.active { background-color: #F8F8F8; color: #C99B4F; font-weight: 600; }
-    </style>
+    <link href="path/to/your/tailwind.css" rel="stylesheet">
+    
+    <link rel="alternate" hreflang="fr" href="https://votresite.com/index.html" />
+    <link rel="alternate" hreflang="en" href="https://votresite.com/en/index.html" />
+    <link rel="alternate" hreflang="nl" href="https://votresite.com/nl/index.html" />
+    <link rel="alternate" hreflang="de" href="https://votresite.com/de/index.html" />
+    <link rel="alternate" hreflang="es" href="https://votresite.com/es/index.html" />
 </head>
-<body class="bg-pure-white font-body text-charcoal">
-    <header class="bg-pure-white/98 backdrop-blur-md shadow-sm sticky top-0 z-50 border-b border-charcoal/5">
-        <div class="max-w-7xl mx-auto px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
-                <div class="flex-shrink-0">
-                    <a href="index.html">
-                        <img src="https://raw.githubusercontent.com/allo-les-anges/mosaia/main/mosaia-assets/logos/logo%20mosaia%202.png" 
-                            alt="Mosaia Studio Logo" 
-                            class="h-10 lg:h-12 w-auto">
-                    </a>
-                </div>
-                
-                <nav class="hidden md:block">
-                    <div class="flex items-center space-x-8 lg:space-x-10">
-                        <a href="index.html" data-translate-key="nav_home" class="nav-link text-bronze border-b-2 border-bronze px-1 py-2 text-sm font-body font-medium tracking-wide uppercase">ACCUEIL</a>
-                        <a href="portfolio.html" data-translate-key="nav_portfolio" class="nav-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase">PORTFOLIO</a>
-                        <a href="studio.html" data-translate-key="nav_studio" class="nav-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase">STUDIO</a>
-                        <a href="sur-mesure.html" data-translate-key="nav_bespoke" class="nav-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase">SUR-MESURE</a>
-                        <a href="processus.html" data-translate-key="nav_process" class="nav-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase">PROCESSUS</a>
-                        <a href="partenaires.html" data-translate-key="nav_partners" class="nav-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase">PARTENAIRES</a>
-                        <a href="contact.html" data-translate-key="nav_contact" class="nav-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase">CONTACT</a>
-                        
-                        <div class="relative ml-4 pl-4 border-l border-charcoal/10" id="lang-dropdown-container">
-                            <button id="lang-dropdown-btn" 
-                                    class="lang-button text-charcoal text-sm font-title font-medium flex items-center p-2" 
-                                    aria-expanded="false" 
-                                    aria-controls="lang-menu"
-                                    aria-label="Sélectionner la langue">
-                                <span id="current-lang-display" class="font-semibold text-bronze">FR</span>
-                                <svg class="h-4 w-4 ml-1 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" id="dropdown-arrow"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
-                            </button>
-                            
-                            <div id="lang-menu" 
-                                class="absolute right-0 mt-3 w-32 bg-pure-white shadow-xl rounded-md ring-1 ring-charcoal/5 hidden origin-top-right py-1 z-50" 
-                                role="menu" 
-                                aria-orientation="vertical" 
-                                aria-labelledby="lang-dropdown-btn">
-                                <a href="#" class="block px-4 py-2 text-sm text-charcoal hover:bg-light-gray lang-option" role="menuitem" data-lang="fr">Français</a>
-                                <a href="#" class="block px-4 py-2 text-sm text-charcoal hover:bg-light-gray lang-option" role="menuitem" data-lang="en">English</a>
-                                <a href="#" class="block px-4 py-2 text-sm text-charcoal hover:bg-light-gray lang-option" role="menuitem" data-lang="nl">Nederlands</a>
-                                <a href="#" class="block px-4 py-2 text-sm text-charcoal hover:bg-light-gray lang-option" role="menuitem" data-lang="de">Deutsch</a>
-                                <a href="#" class="block px-4 py-2 text-sm text-charcoal hover:bg-light-gray lang-option" role="menuitem" data-lang="es">Español</a>
-                            </div>
-                        </div>
-                    </div>
-                </nav>
-                
-                <div class="md:hidden flex items-center space-x-4">
-                    <button id="mobileMenuBtn" 
-                            class="text-charcoal hover:text-bronze p-2" 
-                            data-translate-key="menu_btn"
-                            aria-label="Menu mobile" 
-                            aria-expanded="false" 
-                            aria-controls="mobileMenu">
-                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>
-                    </button>
-                </div>
-            </div>
-            
-            <div id="mobileMenu" class="md:hidden bg-pure-white border-t border-charcoal/10 hidden">
-                <div class="px-6 py-4 space-y-2">
-                    <a href="index.html" data-translate-key="nav_home" class="block py-2 text-bronze font-body font-medium uppercase">ACCUEIL</a>
-                    <a href="portfolio.html" data-translate-key="nav_portfolio" class="block py-2 text-charcoal font-body font-medium uppercase">PORTFOLIO</a>
-                    <a href="studio.html" data-translate-key="nav_studio" class="block py-2 text-charcoal font-body font-medium uppercase">STUDIO</a>
-                    <a href="sur-mesure.html" data-translate-key="nav_bespoke" class="block py-2 text-charcoal font-body font-medium uppercase">SUR-MESURE</a>
-                    <a href="processus.html" data-translate-key="nav_process" class="block py-2 text-charcoal font-body font-medium uppercase">PROCESSUS</a>
-                    <a href="partenaires.html" data-translate-key="nav_partners" class="block py-2 text-charcoal font-body font-medium uppercase">PARTENAIRES</a>
-                    <a href="contact.html" data-translate-key="nav_contact" class="block py-2 text-charcoal font-body font-medium uppercase">CONTACT</a>
-                    
-                    <div id="lang-selector-mobile" class="pt-4 border-t border-charcoal/10">
-                        <h4 data-translate-key="lang_selector_title" class="text-sm font-title font-medium text-charcoal mb-2 uppercase">Choisir la Langue</h4>
-                        <div class="flex flex-wrap gap-2">
-                            <button class="lang-button text-charcoal text-sm" data-lang="fr">Français</button>
-                            <button class="lang-button text-charcoal text-sm" data-lang="en">English</button>
-                            <button class="lang-button text-charcoal text-sm" data-lang="nl">Nederlands</button>
-                            <button class="lang-button text-charcoal text-sm" data-lang="de">Deutsch</button>
-                            <button class="lang-button text-charcoal text-sm" data-lang="es">Español</button>
-                        </div>
-                    </div>
-                </div>
+<body class="bg-dark-grey text-light-grey">
+
+    <header class="hidden lg:flex justify-between items-center px-8 py-4 fixed top-0 w-full z-50 bg-dark-grey/90 backdrop-blur-sm">
+        <a href="index.html" class="text-xl font-serif text-bronze">Mosaia Studio</a>
+        
+        <nav class="flex space-x-8">
+            <a href="index.html" data-translate-key="nav_home" class="nav-link nav-lang-link font-semibold text-bronze">ACCUEIL</a>
+            <a href="portfolio.html" data-translate-key="nav_portfolio" class="nav-link nav-lang-link">PORTFOLIO</a>
+            <a href="studio.html" data-translate-key="nav_studio" class="nav-link nav-lang-link">STUDIO</a>
+            <a href="bespoke.html" data-translate-key="nav_bespoke" class="nav-link nav-lang-link">SUR-MESURE</a>
+            <a href="process.html" data-translate-key="nav_process" class="nav-link nav-lang-link">PROCESSUS</a>
+            <a href="partners.html" data-translate-key="nav_partners" class="nav-link nav-lang-link">PARTENAIRES</a>
+            <a href="contact.html" data-translate-key="nav_contact" class="nav-link nav-lang-link">CONTACT</a>
+        </nav>
+
+        <div id="lang-dropdown-container" class="relative">
+            <button id="lang-dropdown-btn" class="flex items-center space-x-2 p-2 hover:text-bronze" aria-expanded="false" aria-controls="lang-menu">
+                <span id="current-lang-display" class="font-semibold text-bronze">FR</span>
+                <svg id="dropdown-arrow" class="w-4 h-4 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+            </button>
+            <div id="lang-menu" class="absolute right-0 mt-2 w-40 bg-dark-grey border border-bronze shadow-lg hidden z-50">
+                <p class="px-4 py-2 text-sm text-bronze font-semibold" data-translate-key="lang_selector_title">Choisir la Langue</p>
+                <a href="#" data-lang="fr" class="lang-option block px-4 py-2 hover:bg-bronze hover:text-dark-grey active text-bronze font-semibold">Français (FR)</a>
+                <a href="#" data-lang="en" class="lang-option block px-4 py-2 hover:bg-bronze hover:text-dark-grey">English (EN)</a>
+                <a href="#" data-lang="nl" class="lang-option block px-4 py-2 hover:bg-bronze hover:text-dark-grey">Nederlands (NL)</a>
+                <a href="#" data-lang="de" class="lang-option block px-4 py-2 hover:bg-bronze hover:text-dark-grey">Deutsch (DE)</a>
+                <a href="#" data-lang="es" class="lang-option block px-4 py-2 hover:bg-bronze hover:text-dark-grey">Español (ES)</a>
             </div>
         </div>
     </header>
 
-    <main>
-        <section class="hero-bg h-screen flex items-center justify-center relative pt-0 pb-0">
-            <div class="max-w-6xl mx-auto px-6 text-center relative z-10 py-32 lg:py-0">
-                <h2 class="text-5xl md:text-6xl lg:text-7xl font-title font-bold text-pure-white mb-12 tracking-widest uppercase fade-in-up leading-tight elegant-line" data-translate-key="hero_title">
-                    L’ART DE LA MOSAÏQUE<br>
-                    <span class="text-bronze font-light" data-translate-key="hero_title_bronze">QUI ÉVEILLE L’ÉMOTION</span><br>
-                    <span data-translate-key="hero_title_end">ET PERDURE</span>
-                </h2>
-                <div class="flex flex-col sm:flex-row gap-8 justify-center fade-in-up delay-1">
-                    <a href="portfolio.html" data-translate-key="cta_portfolio" class="cta-primary px-10 py-4 text-pure-white tracking-widest uppercase">EXPLORER LE PORTFOLIO</a>
-                    <a href="sur-mesure.html" data-translate-key="cta_bespoke" class="bg-pure-white/10 hover:bg-pure-white/20 border-2 border-pure-white/30 text-pure-white cta-secondary px-10 py-4 tracking-widest uppercase">DÉMARRER UN PROJET SUR MESURE</a>
-                </div>
-            </div>
-        </section>
+    <header class="flex lg:hidden justify-between items-center px-4 py-4 fixed top-0 w-full z-50 bg-dark-grey/90 backdrop-blur-sm">
+        <a href="index.html" class="text-xl font-serif text-bronze">Mosaia Studio</a>
+        
+        <button id="mobileMenuBtn" class="p-2 border border-light-grey rounded hover:border-bronze hover:text-bronze transition-colors duration-300" aria-controls="mobileMenu" aria-expanded="false">
+            <span data-translate-key="menu_btn">Menu</span>
+        </button>
+    </header>
 
-        <section class="page-section bg-pure-white">
-            <div class="max-w-4xl mx-auto px-6 text-center">
-                <div class="w-20 h-px bg-bronze mx-auto mb-10 fade-in-up"></div>
-                <p class="text-xl md:text-2xl text-medium-gray leading-relaxed font-body font-light tracking-wide fade-in-up delay-1" data-translate-key="intro_text">
-                    Né d’une passion profonde pour l’artisanat et l’art, Mosaia Studio fusionne la tradition et le design moderne, 
-                    <span class="text-bronze font-normal" data-translate-key="intro_text_bronze">mêlant la précision artisanale à l’expression artistique.</span>
-                </p>
-            </div>
-        </section>
-
-        <section class="page-section bg-light-gray">
-            <div class="max-w-7xl mx-auto px-6 text-center">
-                <h3 data-translate-key="key_domains_title" class="text-3xl font-title font-bold text-charcoal mb-16 tracking-widest uppercase fade-in-up elegant-line">NOS DOMAINES CLÉS</h3>
-                <div class="grid md:grid-cols-3 gap-12 lg:gap-16">
-                    <div class="fade-in-up delay-1 bg-pure-white p-8 shadow-lg hover:shadow-xl transition-all duration-300">
-                        <div class="text-4xl text-bronze mb-4">🏊</div>
-                        <h4 data-translate-key="domain_pools_title" class="text-xl font-title font-bold uppercase mb-4">PISCINES</h4>
-                        <p data-translate-key="domain_pools_desc" class="text-medium-gray">Transformez votre piscine en une œuvre d'art aquatique durable et sophistiquée.</p>
-                    </div>
-                    <div class="fade-in-up delay-2 bg-pure-white p-8 shadow-lg hover:shadow-xl transition-all duration-300">
-                        <div class="text-4xl text-bronze mb-4">🧱</div>
-                        <h4 data-translate-key="domain_walls_title" class="text-xl font-title font-bold uppercase mb-4">MURS & FAÇADES</h4>
-                        <p data-translate-key="domain_walls_desc" class="text-medium-gray">Revêtements architecturaux d'exception pour intérieurs et extérieurs, redéfinissant l'espace.</p>
-                    </div>
-                    <div class="fade-in-up delay-3 bg-pure-white p-8 shadow-lg hover:shadow-xl transition-all duration-300">
-                        <div class="text-4xl text-bronze mb-4">🖼️</div>
-                        <h4 data-translate-key="domain_artworks_title" class="text-xl font-title font-bold uppercase mb-4">ARTWORKS</h4>
-                        <p data-translate-key="domain_artworks_desc" class="text-medium-gray">Œuvres d'art uniques et installations personnalisées. L'expression pure de votre vision créative.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="min-h-[400px] bg-charcoal flex items-center justify-center bg-fixed bg-center bg-cover" style="background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><rect width="100%" height="100%" fill="%231A1A1A"/><circle cx="500" cy="500" r="400" fill="%23C99B4F" opacity="0.05"/></svg>');">
-            <div class="max-w-4xl mx-auto px-6 text-center">
-                <h3 class="text-4xl md:text-5xl font-title font-light text-pure-white leading-relaxed tracking-wide italic fade-in-up">
-                    <span class="text-bronze font-normal" data-translate-key="quote_1_bronze">« La mosaïque n’est pas une décoration,</span><br>
-                    <span data-translate-key="quote_2">c’est une narration. »</span>
-                </h3>
-            </div>
-        </section>
-    </main>
-
-    <footer class="bg-charcoal text-pure-white py-12 border-t border-bronze/10">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="flex flex-col lg:flex-row justify-between items-center space-y-4 lg:space-y-0">
-                <div class="text-center lg:text-left">
-                    <p data-translate-key="footer_copyright" class="text-sm opacity-80 font-body font-light tracking-wide uppercase">© MOSAIA STUDIO – PAR AMARU BRANDS</p>
-                </div>
-                <div class="flex space-x-6">
-                    <a href="#" class="text-pure-white/80 hover:text-bronze transition-colors duration-300 transform hover:scale-110" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664-4.771-4.919-4.919-1.266-.058-1.644-.07-4.85-.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM12 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-                    </a>
-                    <a href="#" class="text-pure-white/80 hover:text-bronze transition-colors duration-300 transform hover:scale-110" target="_blank" rel="noopener noreferrer" aria-label="Pinterest">
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.374 0 0 5.374 0 12s5.374 12 12 12c.343 0 .682-.015 1.017-.043-.096-.996-.264-2.317-.264-3.245 0-1.264.476-2.129 1.017-2.129.476 0 .714.357.714.833 0 .508-.321 1.269-.321 1.968 0 .833.714 1.508 1.548 1.508 1.468 0 2.456-1.548 2.456-3.611 0-1.889-1.349-3.301-3.301-3.301-2.317 0-3.683 1.746-3.683 3.571 0 .714.274 1.484.619 1.905.095.119.107.222.079.341-.021.095-.071.278-.095.357-.032.119-.127.151-.238.095-.833-.389-1.357-1.603-1.357-2.587 0-2.095 1.524-4.016 4.397-4.016 2.309 0 4.103 1.643 4.103 3.841 0 2.293-1.444 4.135-3.452 4.135-.675 0-1.31-.349-1.524-.778 0 0-.333 1.27-.405 1.579-.147.563-.544 1.27-.81 1.698C10.85 23.846 11.417 24 12 24c6.626 0 12-5.374 12-12S18.626 0 12 0z"/></svg>
-                    </a>
-                </div>
-                <div class="text-center lg:text-right">
-                    <p data-translate-key="footer_tagline" class="text-sm opacity-80 font-title font-light tracking-wider uppercase">L'ART DE LA MOSAÏQUE QUI ÉVEILLE L'ÉMOTION ET DURE</p>
-                </div>
+    <div id="mobileMenu" class="fixed inset-0 bg-dark-grey z-40 p-8 pt-20 transition-transform transform hidden lg:hidden">
+        <nav class="flex flex-col space-y-6 text-2xl">
+            <a href="index.html" data-translate-key="nav_home" class="nav-lang-link text-bronze font-semibold">ACCUEIL</a>
+            <a href="portfolio.html" data-translate-key="nav_portfolio" class="nav-lang-link">PORTFOLIO</a>
+            <a href="studio.html" data-translate-key="nav_studio" class="nav-lang-link">STUDIO</a>
+            <a href="bespoke.html" data-translate-key="nav_bespoke" class="nav-lang-link">SUR-MESURE</a>
+            <a href="process.html" data-translate-key="nav_process" class="nav-lang-link">PROCESSUS</a>
+            <a href="partners.html" data-translate-key="nav_partners" class="nav-lang-link">PARTENAIRES</a>
+            <a href="contact.html" data-translate-key="nav_contact" class="nav-lang-link">CONTACT</a>
+        </nav>
+        
+        <div id="lang-selector-mobile" class="mt-10 border-t border-light-grey pt-6">
+            <p class="text-lg mb-4 font-semibold" data-translate-key="lang_selector_title">Choisir la Langue :</p>
+            <div class="flex space-x-4">
+                <button data-lang="fr" class="lang-button text-lg border p-2 w-16 text-bronze font-semibold active">FR</button>
+                <button data-lang="en" class="lang-button text-lg border p-2 w-16 hover:text-bronze">EN</button>
+                <button data-lang="nl" class="lang-button text-lg border p-2 w-16 hover:text-bronze">NL</button>
+                <button data-lang="de" class="lang-button text-lg border p-2 w-16 hover:text-bronze">DE</button>
+                <button data-lang="es" class="lang-button text-lg border p-2 w-16 hover:text-bronze">ES</button>
             </div>
         </div>
+    </div>
+    
+    <main class="pt-20 lg:pt-24">
+        
+        <section class="min-h-screen flex flex-col justify-center items-center text-center p-8">
+            <h1 class="text-5xl lg:text-7xl font-serif leading-tight fade-in-up">
+                <span data-translate-key="hero_title" class="block">L’ART DE LA MOSAÏQUE</span>
+                <span data-translate-key="hero_title_bronze" class="block text-bronze">QUI ÉVEILLE L’ÉMOTION</span>
+                <span data-translate-key="hero_title_end" class="block">ET PERDURE</span>
+            </h1>
+            <div class="mt-10 space-y-4 lg:space-y-0 lg:space-x-8 fade-in-up delay-200">
+                <a href="portfolio.html" class="inline-block py-3 px-8 border border-bronze text-bronze hover:bg-bronze hover:text-dark-grey transition-colors duration-300" data-translate-key="cta_portfolio">EXPLORER LE PORTFOLIO</a>
+                <a href="bespoke.html" class="inline-block py-3 px-8 bg-bronze text-dark-grey hover:bg-light-grey hover:text-dark-grey transition-colors duration-300" data-translate-key="cta_bespoke">DÉMARRER UN PROJET SUR MESURE</a>
+            </div>
+        </section>
+        
+        <section class="max-w-4xl mx-auto text-center p-8 py-20">
+            <p class="text-xl lg:text-2xl font-light leading-relaxed fade-in-up">
+                <span data-translate-key="intro_text">Né d’une passion profonde pour l’artisanat et l’art, Mosaia Studio fusionne la tradition et le design moderne,</span>
+                <span data-translate-key="intro_text_bronze" class="text-bronze">mêlant la précision artisanale à l’expression artistique.</span>
+            </p>
+        </section>
+
+        <section class="py-20 bg-light-grey text-dark-grey">
+            <h2 class="text-4xl text-center mb-12 font-serif fade-in-up" data-translate-key="key_domains_title">NOS DOMAINES CLÉS</h2>
+            <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-8 p-8">
+                <div class="text-center p-6 border border-dark-grey fade-in-up">
+                    <h3 class="text-2xl font-semibold mb-2" data-translate-key="domain_pools_title">PISCINES</h3>
+                    <p data-translate-key="domain_pools_desc">Transformez votre piscine en une œuvre d'art aquatique durable et sophistiquée.</p>
+                </div>
+                <div class="text-center p-6 border border-dark-grey fade-in-up delay-100">
+                    <h3 class="text-2xl font-semibold mb-2" data-translate-key="domain_walls_title">MURS & FAÇADES</h3>
+                    <p data-translate-key="domain_walls_desc">Revêtements architecturaux d'exception pour intérieurs et extérieurs, redéfinissant l'espace.</p>
+                </div>
+                <div class="text-center p-6 border border-dark-grey fade-in-up delay-200">
+                    <h3 class="text-2xl font-semibold mb-2" data-translate-key="domain_artworks_title">ARTWORKS</h3>
+                    <p data-translate-key="domain_artworks_desc">Œuvres d'art uniques et installations personnalisées. L'expression pure de votre vision créative.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-20 text-center p-8">
+            <p class="text-3xl lg:text-4xl font-serif italic fade-in-up">
+                <span data-translate-key="quote_1_bronze" class="text-bronze">« La mosaïque n’est pas une décoration,</span>
+                <span data-translate-key="quote_2" class="block">c’est une narration. »</span>
+            </p>
+        </section>
+    </main>
+    
+    <footer class="bg-darker-grey text-light-grey p-8 text-center mt-10">
+        <p class="mb-2 text-bronze" data-translate-key="footer_tagline">L'ART DE LA MOSAÏQUE QUI ÉVEILLE L'ÉMOTION ET DURE</p>
+        <p data-translate-key="footer_copyright">© MOSAIA STUDIO – PAR AMARU BRANDS</p>
     </footer>
-    
+
     <script>
-    // --- 1. DONNÉES DE TRADUCTION ---
-    const translations = {
-        'page_title': { fr: "Mosaia Studio - Accueil", en: "Mosaia Studio - Home", nl: "Mosaia Studio - Startpagina", de: "Mosaia Studio - Startseite", es: "Mosaia Studio - Inicio" },
-        'nav_home': { fr: "ACCUEIL", en: "HOME", nl: "STARTPAGINA", de: "STARTSEITE", es: "INICIO" },
-        'nav_portfolio': { fr: "PORTFOLIO", en: "PORTFOLIO", nl: "PORTFOLIO", de: "PORTFOLIO", es: "PORTAFOLIO" },
-        'nav_studio': { fr: "STUDIO", en: "STUDIO", nl: "STUDIO", de: "STUDIO", es: "ESTUDIO" },
-        'nav_bespoke': { fr: "SUR-MESURE", en: "BESPOKE", nl: "MAATWERK", de: "MAẞARBEIT", es: "A MEDIDA" },
-        'nav_process': { fr: "PROCESSUS", en: "PROCESS", nl: "PROCES", de: "PROZESS", es: "PROCESO" },
-        'nav_partners': { fr: "PARTENAIRES", en: "PARTNERS", nl: "PARTNERS", de: "PARTNER", es: "SOCIOS" },
-        'nav_contact': { fr: "CONTACT", en: "CONTACT", nl: "CONTACT", de: "KONTAKT", es: "CONTACTO" },
-        'menu_btn': { fr: "Menu", en: "Menu", nl: "Menu", de: "Menü", es: "Menú" },
-        
-        'hero_title': { fr: "L’ART DE LA MOSAÏQUE", en: "THE ART OF MOSAIC", nl: "DE KUNST VAN MOZAÏEK", de: "DIE KUNST DES MOSAIKS", es: "EL ARTE DEL MOSAICO" },
-        'hero_title_bronze': { fr: "QUI ÉVEILLE L’ÉMOTION", en: "THAT AWAKENS EMOTION", nl: "DAT EMOTIE OPROEPT", de: "DIE EMOTIONEN WECKT", es: "QUE DESPIERTA EMOCIÓN" },
-        'hero_title_end': { fr: "ET PERDURE", en: "AND ENDURES", nl: "EN VOORTDUURT", de: "UND BESTEHT", es: "Y PERDURA" },
-        
-        'cta_portfolio': { fr: "EXPLORER LE PORTFOLIO", en: "EXPLORE THE PORTFOLIO", nl: "ONTDEK DE PORTFOLIO", de: "PORTFOLIO ENTDECKEN", es: "EXPLORAR EL PORTAFOLIO" },
-        'cta_bespoke': { fr: "DÉMARRER UN PROJET SUR MESURE", en: "START A BESPOKE PROJECT", nl: "START EEN MAATWERK PROJECT", de: "EIN MASSGESCHNEIDERTES PROJEKT STARTEN", es: "INICIAR UN PROYECTO A MEDIDA" },
-        
-        'intro_text': { fr: "Né d’une passion profonde pour l’artisanat et l’art, Mosaia Studio fusionne la tradition et le design moderne,", en: "Born from a deep passion for craftsmanship and art, Mosaia Studio merges tradition with modern design,", nl: "Geboren uit een diepe passie voor vakmanschap en kunst, versmelt Mosaia Studio traditie met modern design,", de: "Aus tiefer Leidenschaft für Handwerk und Kunst entstanden, vereint das Mosaia Studio Tradition mit modernem Design,", es: "Nacido de una profunda pasión por la artesanía y el arte, Mosaia Studio fusiona la tradición y el diseño moderno," },
-        'intro_text_bronze': { fr: "mêlant la précision artisanale à l’expression artistique.", en: "blending hand-crafted precision with artistic expression.", nl: "waarbij handgemaakte precisie wordt gecombineerd met artistieke expressie.", de: "verbindet handwerkliche Präzision mit künstlerischem Ausdruck.", es: "mezclando la precisión artesanal con la expresión artística." },
-        
-        'key_domains_title': { fr: "NOS DOMAINES CLÉS", en: "OUR KEY DOMAINS", nl: "ONZE BELANGRIJKSTE DOMEINEN", de: "UNSERE SCHLÜSSELBEREICHE", es: "NUESTROS DOMINIOS CLAVE" },
-        
-        'domain_pools_title': { fr: "PISCINES", en: "POOLS", nl: "ZWEMBADEN", de: "POOLS", es: "PISCINAS" },
-        'domain_pools_desc': { fr: "Transformez votre piscine en une œuvre d'art aquatique durable et sophistiquée.", en: "Transform your pool into a durable and sophisticated aquatic work of art.", nl: "Transformeer uw zwembad in een duurzaam en verfijnd waterkunstwerk.", de: "Verwandeln Sie Ihren Pool in ein langlebiges und raffiniertes Wasserkunstwerk.", es: "Transforma tu piscina en una obra de arte acuática duradera y sofisticada." },
-        
-        'domain_walls_title': { fr: "MURS & FAÇADES", en: "WALLS & FACADES", nl: "MUREN & GEVELS", de: "WÄNDE & FASSADEN", es: "MUROS & FACHADAS" },
-        'domain_walls_desc': { fr: "Revêtements architecturaux d'exception pour intérieurs et extérieurs, redéfinissant l'espace.", en: "Exceptional architectural coverings for interiors and exteriors, redefining the space.", nl: "Uitzonderlijke architecturale bekleding voor interieur en exterieur, die de ruimte herdefinieert.", de: "Außergewöhnliche architektonische Verkleidungen für innen und außen, die den Raum neu definieren.", es: "Revestimientos arquitectónicos excepcionales para interiores y exteriores, redefiniendo el espacio." },
-        
-        'domain_artworks_title': { fr: "ARTWORKS", en: "ARTWORKS", nl: "KUNSTWERKEN", de: "KUNSTWERKE", es: "OBRAS DE ARTE" },
-        'domain_artworks_desc': { fr: "Œuvres d'art uniques et installations personnalisées. L'expression pure de votre vision créative.", en: "Unique artworks and custom installations. The pure expression of your creative vision.", nl: "Unieke kunstwerken en gepersonaliseerde installaties. De pure uitdrukking van uw creatieve visie.", de: "Einzigartige Kunstwerke und kundenspezifische Installationen. Der reine Ausdruck Ihrer kreativen Vision.", es: "Obras de arte únicas e instalaciones personnalizadas. La expresión pura de su visión creativa." },
-        
-        'quote_1_bronze': { fr: "« La mosaïque n’est pas une décoration,", en: "« Mosaic is not decoration,", nl: "« Mozaïek is geen decoratie,", de: "« Mosaik ist keine Dekoration,", es: "« El mosaico no es una decoración," },
-        'quote_2': { fr: "c’est une narration. »", en: "it is a narrative. »", nl: "het is een verhaal. »", de: "es ist eine Erzählung. »", es: "es una narración. »" },
-        
-        'footer_copyright': { fr: "© MOSAIA STUDIO – PAR AMARU BRANDS", en: "© MOSAIA STUDIO – BY AMARU BRANDS", nl: "© MOSAIA STUDIO – DOOR AMARU BRANDS", de: "© MOSAIA STUDIO – VON AMARU BRANDS", es: "© MOSAIA STUDIO – POR AMARU BRANDS" },
-        'footer_tagline': { fr: "L'ART DE LA MOSAÏQUE QUI ÉVEILLE L'ÉMOTION ET DURE", en: "THE ART OF MOSAIC THAT AWAKENS EMOTION AND ENDURES", nl: "DE KUNST VAN MOZAÏEK DAT EMOTIE OPROEPT EN VOORTDUURT", de: "DIE KUNST DES MOSAIKS, DIE EMOTIONEN WECKT UND BESTEHT", es: "EL ARTE DEL MOSAICO QUE DESPIERTA EMOCIÓN Y PERDURA" },
-        'lang_selector_title': { fr: "Choisir la Langue", en: "Choose Language", nl: "Taal Kiezen", de: "Sprache Wählen", es: "Elegir Idioma" }
-    };
+        // --- 1. DONNÉES DE TRADUCTION ---
+        const translations = {
+            'page_title': { fr: "Mosaia Studio - Accueil", en: "Mosaia Studio - Home", nl: "Mosaia Studio - Startpagina", de: "Mosaia Studio - Startseite", es: "Mosaia Studio - Inicio" },
+            'nav_home': { fr: "ACCUEIL", en: "HOME", nl: "STARTPAGINA", de: "STARTSEITE", es: "INICIO" },
+            'nav_portfolio': { fr: "PORTFOLIO", en: "PORTFOLIO", nl: "PORTFOLIO", de: "PORTFOLIO", es: "PORTAFOLIO" },
+            'nav_studio': { fr: "STUDIO", en: "STUDIO", nl: "STUDIO", de: "STUDIO", es: "ESTUDIO" },
+            'nav_bespoke': { fr: "SUR-MESURE", en: "BESPOKE", nl: "MAATWERK", de: "MAẞARBEIT", es: "A MEDIDA" },
+            'nav_process': { fr: "PROCESSUS", en: "PROCESS", nl: "PROCES", de: "PROZESS", es: "PROCESO" },
+            'nav_partners': { fr: "PARTENAIRES", en: "PARTNERS", nl: "PARTNERS", de: "PARTNER", es: "SOCIOS" },
+            'nav_contact': { fr: "CONTACT", en: "CONTACT", nl: "CONTACT", de: "KONTAKT", es: "CONTACTO" },
+            'menu_btn': { fr: "Menu", en: "Menu", nl: "Menu", de: "Menü", es: "Menú" },
+            
+            'hero_title': { fr: "L’ART DE LA MOSAÏQUE", en: "THE ART OF MOSAIC", nl: "DE KUNST VAN MOZAÏEK", de: "DIE KUNST DES MOSAIKS", es: "EL ARTE DEL MOSAICO" },
+            'hero_title_bronze': { fr: "QUI ÉVEILLE L’ÉMOTION", en: "THAT AWAKENS EMOTION", nl: "DAT EMOTIE OPROEPT", de: "DIE EMOTIONEN WECKT", es: "QUE DESPIERTA EMOCIÓN" },
+            'hero_title_end': { fr: "ET PERDURE", en: "AND ENDURES", nl: "EN VOORTDUURT", de: "UND BESTEHT", es: "Y PERDURA" },
+            
+            'cta_portfolio': { fr: "EXPLORER LE PORTFOLIO", en: "EXPLORE THE PORTFOLIO", nl: "ONTDEK DE PORTFOLIO", de: "PORTFOLIO ENTDECKEN", es: "EXPLORAR EL PORTAFOLIO" },
+            'cta_bespoke': { fr: "DÉMARRER UN PROJET SUR MESURE", en: "START A BESPOKE PROJECT", nl: "START EEN MAATWERK PROJECT", de: "EIN MASSGESCHNEIDERTES PROJEKT STARTEN", es: "INICIAR UN PROYECTO A MEDIDA" },
+            
+            'intro_text': { fr: "Né d’une passion profonde pour l’artisanat et l’art, Mosaia Studio fusionne la tradition et le design moderne,", en: "Born from a deep passion for craftsmanship and art, Mosaia Studio merges tradition with modern design,", nl: "Geboren uit een diepe passie voor vakmanschap en kunst, versmelt Mosaia Studio traditie met modern design,", de: "Aus tiefer Leidenschaft für Handwerk und Kunst entstanden, vereint das Mosaia Studio Tradition mit modernem Design,", es: "Nacido de una profunda pasión por la artesanía y el arte, Mosaia Studio fusiona la tradición y el diseño moderno," },
+            'intro_text_bronze': { fr: "mêlant la précision artisanale à l’expression artistique.", en: "blending hand-crafted precision with artistic expression.", nl: "waarbij handgemaakte precisie wordt gecombineerd met artistieke expressie.", de: "verbindet handwerkliche Präzision mit künstlerischem Ausdruck.", es: "mezclando la precisión artesanal con la expresión artística." },
+            
+            'key_domains_title': { fr: "NOS DOMAINES CLÉS", en: "OUR KEY DOMAINS", nl: "ONZE BELANGRIJKSTE DOMEINEN", de: "UNSERE SCHLÜSSELBEREICHE", es: "NUESTROS DOMINIOS CLAVE" },
+            
+            'domain_pools_title': { fr: "PISCINES", en: "POOLS", nl: "ZWEMBADEN", de: "POOLS", es: "PISCINAS" },
+            'domain_pools_desc': { fr: "Transformez votre piscine en une œuvre d'art aquatique durable et sophistiquée.", en: "Transform your pool into a durable and sophisticated aquatic work of art.", nl: "Transformeer uw zwembad in een duurzaam en verfijnd waterkunstwerk.", de: "Verwandeln Sie Ihren Pool in ein langlebiges und raffiniertes Wasserkunstwerk.", es: "Transforma tu piscina en una obra de arte acuática duradera y sofisticada." },
+            
+            'domain_walls_title': { fr: "MURS & FAÇADES", en: "WALLS & FACADES", nl: "MUREN & GEVELS", de: "WÄNDE & FASSADEN", es: "MUROS & FACHADAS" },
+            'domain_walls_desc': { fr: "Revêtements architecturaux d'exception pour intérieurs et extérieurs, redéfinissant l'espace.", en: "Exceptional architectural coverings for interiors and exteriors, redefining the space.", nl: "Uitzonderlijke architecturale bekleding voor interieur en exterieur, die de ruimte herdefinieert.", de: "Außergewöhnliche architektonische Verkleidungen für innen und außen, die den Raum neu definieren.", es: "Revestimientos arquitectónicos excepcionales para interiores y exteriores, redefiniendo el espacio." },
+            
+            'domain_artworks_title': { fr: "ARTWORKS", en: "ARTWORKS", nl: "KUNSTWERKEN", de: "KUNSTWERKE", es: "OBRAS DE ARTE" },
+            'domain_artworks_desc': { fr: "Œuvres d'art uniques et installations personnalisées. L'expression pure de votre vision créative.", en: "Unique artworks and custom installations. The pure expression of your creative vision.", nl: "Unieke kunstwerken en gepersonaliseerde installaties. De pure uitdrukking van uw creatieve visie.", de: "Einzigartige Kunstwerke und kundenspezifische Installationen. Der reine Ausdruck Ihrer kreativen Vision.", es: "Obras de arte únicas e instalaciones personnalisées. La expresión pura de su visión creativa." },
+            
+            'quote_1_bronze': { fr: "« La mosaïque n’est pas une décoration,", en: "« Mosaic is not decoration,", nl: "« Mozaïek is geen decoratie,", de: "« Mosaik ist keine Dekoration,", es: "« El mosaico no es una decoración," },
+            'quote_2': { fr: "c’est une narration. »", en: "it is a narrative. »", nl: "het is een verhaal. »", de: "es ist eine Erzählung. »", es: "es una narración. »" },
+            
+            'footer_copyright': { fr: "© MOSAIA STUDIO – PAR AMARU BRANDS", en: "© MOSAIA STUDIO – BY AMARU BRANDS", nl: "© MOSAIA STUDIO – DOOR AMARU BRANDS", de: "© MOSAIA STUDIO – VON AMARU BRANDS", es: "© MOSAIA STUDIO – POR AMARU BRANDS" },
+            'footer_tagline': { fr: "L'ART DE LA MOSAÏQUE QUI ÉVEILLE L'ÉMOTION ET DURE", en: "THE ART OF MOSAIC THAT AWAKENS EMOTION AND ENDURES", nl: "DE KUNST VAN MOZAÏEK DAT EMOTIE OPROEPT EN VOORTDUURT", de: "DIE KUNST DES MOSAIKS, DIE EMOTIONEN WECKT UND BESTEHT", es: "EL ARTE DEL MOSAICO QUE DESPIERTA EMOCIÓN ET PERDURA" },
+            'lang_selector_title': { fr: "Choisir la Langue", en: "Choose Language", nl: "Taal Kiezen", de: "Sprache Wählen", es: "Elegir Idioma" }
+        };
 
-    let currentLang = 'fr'; // Langue par défaut
+        let currentLang = 'fr'; // Langue par défaut
 
-    // --- 2. FONCTION DE TRADUCTION AVEC LOCAL STORAGE (MODIFIÉE) ---
-    function switchLanguage(lang) {
-        currentLang = lang;
-        document.documentElement.lang = lang; 
+        // Fonction pour traduire le contenu de la page actuelle
+        function updateContentTranslations(lang) {
+            currentLang = lang;
+            document.documentElement.lang = lang;
 
-        // MODIFICATION CLÉ : ENREGISTRE LA LANGUE SÉLECTIONNÉE DANS LE LOCAL STORAGE
-        localStorage.setItem('userLanguage', lang);
-        
-        // Met à jour le titre de la page
-        document.title = translations['page_title'][lang];
-
-        // Met à jour tous les éléments avec l'attribut data-translate-key
-        document.querySelectorAll('[data-translate-key]').forEach(element => {
-            const key = element.getAttribute('data-translate-key');
-            if (translations[key] && translations[key][lang]) {
-                element.innerHTML = translations[key][lang];
+            // Met à jour le titre de la page
+            const pageTitleElement = document.querySelector('title[data-translate-key="page_title"]');
+            if (pageTitleElement && translations['page_title'][lang]) {
+                 pageTitleElement.textContent = translations['page_title'][lang];
+            } else if (translations['page_title'][lang]) {
+                 document.title = translations['page_title'][lang];
             }
-        });
 
-        // Met à jour l'affichage de la langue actuelle dans le dropdown desktop
-        const currentLangDisplay = document.getElementById('current-lang-display');
-        if (currentLangDisplay) {
-            currentLangDisplay.textContent = lang.toUpperCase(); 
-        }
+            // Met à jour tous les éléments avec l'attribut data-translate-key
+            document.querySelectorAll('[data-translate-key]').forEach(element => {
+                const key = element.getAttribute('data-translate-key');
+                if (translations[key] && translations[key][lang]) {
+                    element.innerHTML = translations[key][lang];
+                }
+            });
 
-        // Gère les classes 'active' pour les boutons mobiles et les options de dropdown desktop
-        document.querySelectorAll('.lang-button, .lang-option').forEach(element => {
-            element.classList.remove('active', 'text-bronze', 'font-semibold');
-
-            if (element.getAttribute('data-lang') === lang) {
-                element.classList.add('active');
-                if (currentLangDisplay) {
-                    currentLangDisplay.classList.add('text-bronze', 'font-semibold');
-                }
-                if (element.classList.contains('lang-option') || element.closest('#lang-selector-mobile')) {
-                    element.classList.add('active'); 
-                }
-            } else {
-                if (element.classList.contains('lang-option')) {
-                    element.classList.remove('active');
-                }
+            // Met à jour l'affichage de la langue actuelle dans le dropdown desktop
+            const currentLangDisplay = document.getElementById('current-lang-display');
+            if (currentLangDisplay) {
+                currentLangDisplay.textContent = lang.toUpperCase();
             }
-        });
-    }
 
-    // --- 3. LOGIQUE MOBILE ET INITIALISATION ---
+            // Gère l'état actif des boutons et options
+            document.querySelectorAll('.lang-button, .lang-option').forEach(element => {
+                element.classList.remove('active', 'text-bronze', 'font-semibold');
+                element.classList.add('hover:text-bronze'); // S'assure de conserver l'état de survol
 
-    // Fonction pour l'animation des éléments au scroll (inchangée)
-    const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('fade-in-up');
-                entry.target.classList.remove('opacity-0', 'translate-y-[40px]');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, observerOptions);
-    
-    document.addEventListener('DOMContentLoaded', () => {
-        
-        // MODIFICATION CLÉ : Récupère la langue du Stockage Local
-        const storedLang = localStorage.getItem('userLanguage');
-
-        // Initialise la langue : utilise la version stockée, ou celle du HTML (ou 'fr')
-        const initialLang = storedLang || document.documentElement.lang || 'fr';
-        switchLanguage(initialLang); 
-
-        // Initialisation des animations
-        document.querySelectorAll('.fade-in-up').forEach(element => {
-            element.classList.add('opacity-0', 'translate-y-[40px]');
-            observer.observe(element);
-        });
-        
-        // Éléments du menu mobile
-        const mobileMenu = document.getElementById('mobileMenu');
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        
-        // Fonction de toggle du menu mobile AVEC A11y
-        function toggleMobileMenu() {
-            const isExpanded = mobileMenuBtn.getAttribute('aria-expanded') === 'true';
-            mobileMenuBtn.setAttribute('aria-expanded', String(!isExpanded));
-            mobileMenu.classList.toggle('hidden');
+                if (element.getAttribute('data-lang') === lang) {
+                    element.classList.add('active', 'text-bronze', 'font-semibold');
+                    element.classList.remove('hover:text-bronze'); // Supprimer le hover pour l'actif
+                }
+            });
+            
+            // Met à jour les liens de navigation après la traduction
+            updateNavigationLinks(lang);
         }
         
-        // Attachement de l'événement pour le bouton mobile
-        mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+        // --- 2. FONCTION POUR GÉRER LES LIENS DE NAVIGATION (ex: index.html vers /en/index.html) ---
+        // S'assure que les liens dans la barre de navigation pointent vers la version linguistique correcte.
+        function updateNavigationLinks(lang) {
+            const isDefaultLang = (lang === 'fr');
+            
+            document.querySelectorAll('.nav-lang-link').forEach(link => {
+                const href = link.getAttribute('href');
+                if (!href || href === '#') return; // Ignore les liens vides
 
-        // LOGIQUE DU DROPDOWN DE LANGUE DESKTOP
-        const langDropdownContainer = document.getElementById('lang-dropdown-container');
-        const langDropdownBtn = document.getElementById('lang-dropdown-btn');
-        const langMenu = document.getElementById('lang-menu');
-        const dropdownArrow = document.getElementById('dropdown-arrow');
-
-        if (langDropdownBtn && langMenu) {
-            // Toggle du dropdown au clic sur le bouton principal
-            langDropdownBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                e.stopPropagation(); 
-                const isExpanded = langDropdownBtn.getAttribute('aria-expanded') === 'true';
+                // Supprime tout préfixe de langue existant pour travailler à partir d'une base FR propre
+                let cleanHref = href.replace(/^\/(en|nl|de|es)\//, '').replace(/^\.\.\/(en|nl|de|es)\//, '');
                 
-                if (isExpanded) {
-                    langMenu.classList.add('hidden');
-                    dropdownArrow.classList.remove('rotate-180');
-                    langDropdownBtn.setAttribute('aria-expanded', 'false');
+                // S'assure que le lien ne commence pas par un slash pour les fichiers FR
+                cleanHref = cleanHref.startsWith('/') ? cleanHref.substring(1) : cleanHref;
+
+                if (isDefaultLang) {
+                    // Pour le Français (FR), utilise le lien de base (ex: portfolio.html)
+                    link.href = cleanHref;
                 } else {
-                    langMenu.classList.remove('hidden');
-                    dropdownArrow.classList.add('rotate-180');
-                    langDropdownBtn.setAttribute('aria-expanded', 'true');
-                }
-            });
-
-            // Fermer le dropdown en cliquant à l'extérieur
-            document.addEventListener('click', (e) => {
-                if (langDropdownContainer && !langDropdownContainer.contains(e.target)) {
-                    langMenu.classList.add('hidden');
-                    dropdownArrow.classList.remove('rotate-180');
-                    langDropdownBtn.setAttribute('aria-expanded', 'false');
+                    // Pour les autres langues, ajoute le préfixe (ex: /en/portfolio.html)
+                    link.href = `/${lang}/${cleanHref}`;
                 }
             });
         }
 
-        // Écouteurs d'événements pour TOUS les sélecteurs de langue (.lang-button pour mobile, .lang-option pour desktop)
-        document.querySelectorAll('.lang-button, .lang-option').forEach(element => {
-            element.addEventListener('click', (e) => {
-                e.preventDefault();
-                const lang = element.getAttribute('data-lang');
-                switchLanguage(lang); // Cela enregistre la langue dans localStorage
+
+        // --- 3. FONCTION CLÉ : GESTION DU CHANGEMENT DE LANGUE ET DE LA REDIRECTION ---
+        function switchLanguage(lang) {
+            // Étape 1 : Enregistre la langue sélectionnée pour la persistance
+            localStorage.setItem('userLanguage', lang);
+            
+            // Étape 2 : Détermine la nouvelle URL de la page
+            const currentPath = window.location.pathname.replace(/\/$/, '');
+            const supportedLangs = ['en', 'nl', 'de', 'es'];
+
+            // 1. Détermine le nom du fichier actuel (ex: index.html ou portfolio.html)
+            const fileNameMatch = currentPath.match(/\/([a-zA-Z0-9_\-]+\.html)$/);
+            const fileName = fileNameMatch ? fileNameMatch[1] : 'index.html';
+
+            // 2. Détermine la langue actuelle basée sur l'URL
+            const currentLangMatch = currentPath.match(new RegExp(`\/(${supportedLangs.join('|')})\/`));
+            const oldLang = currentLangMatch ? currentLangMatch[1] : 'fr';
+
+            let newUrl;
+
+            if (lang === 'fr') {
+                // Si la nouvelle langue est 'fr', on redirige vers la racine (sans préfixe /fr/)
+                // Ex: /en/index.html -> /index.html
+                if (oldLang !== 'fr') {
+                    // Remplace le préfixe /lang/ par / (ou enlève le préfixe si index.html)
+                    newUrl = currentPath.replace(new RegExp(`\/${oldLang}\/`), '/');
+                } else {
+                    // Si déjà en FR, l'URL reste la même (ex: /index.html)
+                    newUrl = currentPath;
+                }
                 
-                // Ferme le menu desktop s'il était ouvert
-                if (langMenu && !langMenu.classList.contains('hidden')) {
-                    langMenu.classList.add('hidden');
-                    langDropdownBtn.setAttribute('aria-expanded', 'false');
-                    if (dropdownArrow) dropdownArrow.classList.remove('rotate-180');
+                // Nettoyer l'URL si elle devient un simple slash (pour index.html)
+                if (newUrl === `/${fileName}`) {
+                    newUrl = fileName;
                 }
 
-                // Ferme le menu mobile si la sélection vient de là
-                if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
-                       mobileMenu.classList.add('hidden');
-                       mobileMenuBtn.setAttribute('aria-expanded', 'false');
+            } else {
+                // Si la nouvelle langue est autre que 'fr'
+                // Ex: /index.html -> /en/index.html
+                // Ex: /de/index.html -> /en/index.html
+                if (oldLang === 'fr') {
+                    // Ajoute le nouveau préfixe
+                    newUrl = `/${lang}/${fileName}`;
+                } else {
+                    // Remplace l'ancien préfixe par le nouveau
+                    newUrl = currentPath.replace(`/${oldLang}/`, `/${lang}/`);
                 }
+            }
+            
+            // Nettoyage final pour s'assurer que newUrl commence par / si c'est une sous-page dans un sous-dossier
+            if (newUrl.startsWith(fileName) && fileName !== 'index.html') {
+                newUrl = `/${newUrl}`;
+            }
+
+            // Redirection ou mise à jour du contenu
+            if (window.location.pathname.replace(/\/$/, '') === newUrl || window.location.pathname.replace(/\/$/, '') === `/${newUrl}`) {
+                updateContentTranslations(lang); // Pas de changement d'URL, juste mise à jour
+            } else {
+                window.location.href = newUrl.startsWith('/') ? newUrl : `/${newUrl}`; // Redirection
+            }
+        }
+
+
+        // --- 4. INITIALISATION LORS DU CHARGEMENT DE LA PAGE ---
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // Récupère la langue du Stockage Local
+            let storedLang = localStorage.getItem('userLanguage');
+            
+            // Détecte la langue dans l'URL (ex: pour quelqu'un qui arrive directement sur /en/index.html)
+            const pathLangMatch = window.location.pathname.match(/\/(en|nl|de|es)\//);
+            let urlLang = pathLangMatch ? pathLangMatch[1] : 'fr';
+
+            // Logique d'initialisation :
+            // 1. Si une langue est stockée ET qu'elle ne correspond pas à la langue de l'URL, on redirige.
+            // 2. Sinon, on utilise la langue de l'URL ou la langue stockée pour traduire.
+            
+            if (storedLang && storedLang !== urlLang) {
+                // Si l'utilisateur a déjà choisi une langue, mais l'URL actuelle est différente, on corrige.
+                switchLanguage(storedLang);
+                return;
+            }
+
+            // Initialise la langue sur la base de l'URL (qui correspond à la structure du fichier)
+            const initialLang = urlLang || storedLang || 'fr';
+            updateContentTranslations(initialLang); 
+            
+            // --- GESTION DU MENU MOBILE (inchangée) ---
+            const mobileMenu = document.getElementById('mobileMenu');
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const langDropdownBtn = document.getElementById('lang-dropdown-btn');
+            const langMenu = document.getElementById('lang-menu');
+            const dropdownArrow = document.getElementById('dropdown-arrow');
+            const langDropdownContainer = document.getElementById('lang-dropdown-container');
+            
+            function toggleMobileMenu() {
+                const isExpanded = mobileMenuBtn.getAttribute('aria-expanded') === 'true';
+                mobileMenuBtn.setAttribute('aria-expanded', String(!isExpanded));
+                mobileMenu.classList.toggle('hidden');
+            }
+            
+            mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+
+            // LOGIQUE DU DROPDOWN DE LANGUE DESKTOP
+            if (langDropdownBtn && langMenu) {
+                langDropdownBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation(); 
+                    const isExpanded = langDropdownBtn.getAttribute('aria-expanded') === 'true';
+                    
+                    if (isExpanded) {
+                        langMenu.classList.add('hidden');
+                        dropdownArrow.classList.remove('rotate-180');
+                        langDropdownBtn.setAttribute('aria-expanded', 'false');
+                    } else {
+                        langMenu.classList.remove('hidden');
+                        dropdownArrow.classList.add('rotate-180');
+                        langDropdownBtn.setAttribute('aria-expanded', 'true');
+                    }
+                });
+
+                document.addEventListener('click', (e) => {
+                    if (langDropdownContainer && !langDropdownContainer.contains(e.target)) {
+                        langMenu.classList.add('hidden');
+                        dropdownArrow.classList.remove('rotate-180');
+                        langDropdownBtn.setAttribute('aria-expanded', 'false');
+                    }
+                });
+            }
+            
+            // --- ÉCOUTEURS D'ÉVÉNEMENTS POUR LE CHANGEMENT DE LANGUE ---
+            document.querySelectorAll('.lang-option, .lang-button').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    e.preventDefault(); 
+                    const lang = button.getAttribute('data-lang');
+                    
+                    // Fermer les menus lors du clic (même si la langue est la même)
+                    if (langMenu && !langMenu.classList.contains('hidden')) {
+                         langMenu.classList.add('hidden');
+                         dropdownArrow.classList.remove('rotate-180');
+                         langDropdownBtn.setAttribute('aria-expanded', 'false');
+                    }
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        toggleMobileMenu();
+                    }
+                    
+                    // Si la langue est déjà active et que l'URL est correcte, on ne fait rien de plus.
+                    if (lang === currentLang) return;
+                    
+                    switchLanguage(lang);
+                });
+            });
+            
+            // --- LOGIQUE D'ANIMATION (Conservée) ---
+            const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in-up');
+                        entry.target.classList.remove('opacity-0', 'translate-y-[40px]');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.fade-in-up').forEach(element => {
+                element.classList.add('opacity-0', 'translate-y-[40px]');
+                observer.observe(element);
             });
         });
-    });
-</script>
+    </script>
 </body>
 </html>
