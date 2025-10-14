@@ -37,60 +37,87 @@
 </head>
 <body class="bg-pure-white font-body text-charcoal">
     <header class="bg-pure-white/98 backdrop-blur-md shadow-sm sticky top-0 z-50 border-b border-charcoal/5">
-        <div class="max-w-7xl mx-auto px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
-                <div class="flex-shrink-0">
-                    <a href="index.html" class="text-3xl font-title font-bold text-charcoal tracking-wider uppercase hover:text-bronze transition-colors">MOSAIA STUDIO</a>
-                </div>
-                <nav class="hidden md:block">
-                    <div class="flex items-center space-x-8 lg:space-x-10">
-                        <div id="language-selector-desktop">
-                            <select id="lang-select-desktop" class="text-sm">
-                                <option value="fr">FR</option>
-                                <option value="en">EN</option>
-                                <option value="nl">NL</option>
-                                <option value="de">DE</option>
-                                <option value="es">ES</option>
-                            </select>
-                        </div>
-                        <a href="index.html" class="nav-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase" data-translate-key="nav_home">ACCUEIL</a>
-                        <a href="portfolio.html" class="nav-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase" data-translate-key="nav_portfolio">PORTFOLIO</a>
-                        <a href="studio.html" class="nav-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase" data-translate-key="nav_studio">STUDIO</a>
-                        <a href="sur-mesure.html" class="nav-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase" data-translate-key="nav_bespoke">SUR-MESURE</a>
-                        <a href="processus.html" class="nav-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase" data-translate-key="nav_process">PROCESSUS</a>
-                        <a href="partenaires.html" class="nav-link text-bronze border-b-2 border-bronze px-1 py-2 text-sm font-body font-medium tracking-wide uppercase" data-translate-key="nav_partners">PARTENAIRES</a>
-                        <a href="contact.html" class="nav-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase" data-translate-key="nav_contact">CONTACT</a>
-                    </div>
-                </nav>
-                <div class="md:hidden">
-                    <button id="mobileMenuBtn" class="text-charcoal hover:text-bronze p-2">
-                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>
-                    </button>
-                </div>
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+        <div class="flex justify-between items-center h-20">
+            <div class="flex-shrink-0">
+                <a href="index.html">
+                    <img src="https://raw.githubusercontent.com/allo-les-anges/mosaia/main/mosaia-assets/logos/logo%20mosaia%202.png" 
+                             alt="Mosaia Studio Logo" 
+                             class="h-10 lg:h-12 w-auto">
+                </a>
             </div>
-            <div id="mobileMenu" class="md:hidden bg-pure-white border-t border-charcoal/10 hidden">
-                <div class="px-6 py-4 space-y-2">
-                    <div id="language-selector-mobile" class="pb-4 mb-2">
-                        <select id="lang-select-mobile" class="text-base w-full">
-                            <option value="fr">FR</option>
-                            <option value="en">EN</option>
-                            <option value="nl">NL</option>
-                            <option value="de">DE</option>
-                            <option value="es">ES</option>
-                        </select>
+            
+            <nav class="hidden md:block">
+                <div class="flex items-center space-x-8 lg:space-x-10">
+                    <a href="index.html" data-translate-key="nav_home" class="nav-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase">ACCUEIL</a>
+                    <a href="portfolio.html" data-translate-key="nav_portfolio" class="nav-link text-bronze border-b-2 border-bronze px-1 py-2 text-sm font-body font-medium tracking-wide uppercase">PORTFOLIO</a>
+                    <a href="studio.html" data-translate-key="nav_studio" class="nav-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase">STUDIO</a>
+                    <a href="sur-mesure.html" data-translate-key="nav_bespoke" class="nav-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase">SUR-MESURE</a>
+                    <a href="processus.html" data-translate-key="nav_process" class="nav-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase">PROCESSUS</a>
+                    <a href="partenaires.html" data-translate-key="nav_partners" class="nav-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase">PARTENAIRES</a>
+                    <a href="contact.html" data-translate-key="nav_contact" class="nav-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase">CONTACT</a>
+                    
+                    <div class="relative ml-4 pl-4 border-l border-charcoal/10" id="lang-dropdown-container">
+                        <button id="lang-dropdown-btn" 
+                                class="lang-button text-charcoal text-sm font-title font-medium flex items-center p-2" 
+                                aria-expanded="false" 
+                                aria-controls="lang-menu"
+                                aria-label="Sélectionner la langue">
+                            <span id="current-lang-display" class="font-semibold text-bronze">FR</span>
+                            <svg class="h-4 w-4 ml-1 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" id="dropdown-arrow"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+                        </button>
+                        
+                        <div id="lang-menu" 
+                             class="absolute right-0 mt-3 w-32 bg-pure-white shadow-xl rounded-md ring-1 ring-charcoal/5 hidden origin-top-right py-1 z-50" 
+                             role="menu" 
+                             aria-orientation="vertical" 
+                             aria-labelledby="lang-dropdown-btn">
+                            <a href="#" class="block px-4 py-2 text-sm text-charcoal hover:bg-light-gray lang-option" role="menuitem" data-lang="fr">Français</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-charcoal hover:bg-light-gray lang-option" role="menuitem" data-lang="en">English</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-charcoal hover:bg-light-gray lang-option" role="menuitem" data-lang="nl">Nederlands</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-charcoal hover:bg-light-gray lang-option" role="menuitem" data-lang="de">Deutsch</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-charcoal hover:bg-light-gray lang-option" role="menuitem" data-lang="es">Español</a>
+                        </div>
                     </div>
-                    <a href="index.html" class="block py-2 text-charcoal font-body font-medium uppercase" data-translate-key="nav_home">ACCUEIL</a>
-                    <a href="portfolio.html" class="block py-2 text-charcoal font-body font-medium uppercase" data-translate-key="nav_portfolio">PORTFOLIO</a>
-                    <a href="studio.html" class="block py-2 text-charcoal font-body font-medium uppercase" data-translate-key="nav_studio">STUDIO</a>
-                    <a href="sur-mesure.html" class="block py-2 text-charcoal font-body font-medium uppercase" data-translate-key="nav_bespoke">SUR-MESURE</a>
-                    <a href="processus.html" class="block py-2 text-charcoal font-body font-medium uppercase" data-translate-key="nav_process">PROCESSUS</a>
-                    <a href="partenaires.html" class="block py-2 text-bronze font-body font-medium uppercase" data-translate-key="nav_partners">PARTENAIRES</a>
-                    <a href="contact.html" class="block py-2 text-charcoal font-body font-medium uppercase" data-translate-key="nav_contact">CONTACT</a>
+                </div>
+            </nav>
+            
+            <div class="md:hidden flex items-center space-x-4">
+                <button id="mobileMenuBtn" 
+                        class="text-charcoal hover:text-bronze p-2" 
+                        data-translate-key="menu_btn"
+                        aria-label="Menu mobile" 
+                        aria-expanded="false" 
+                        aria-controls="mobileMenu">
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>
+                </button>
+            </div>
+        </div>
+        
+        <div id="mobileMenu" class="md:hidden bg-pure-white border-t border-charcoal/10 hidden">
+            <div class="px-6 py-4 space-y-2">
+                <a href="index.html" data-translate-key="nav_home" class="block py-2 text-charcoal font-body font-medium uppercase">ACCUEIL</a>
+                <a href="portfolio.html" data-translate-key="nav_portfolio" class="block py-2 text-bronze font-body font-medium uppercase">PORTFOLIO</a>
+                <a href="studio.html" data-translate-key="nav_studio" class="block py-2 text-charcoal font-body font-medium uppercase">STUDIO</a>
+                <a href="sur-mesure.html" data-translate-key="nav_bespoke" class="block py-2 text-charcoal font-body font-medium uppercase">SUR-MESURE</a>
+                <a href="processus.html" data-translate-key="nav_process" class="block py-2 text-charcoal font-body font-medium uppercase">PROCESSUS</a>
+                <a href="partenaires.html" data-translate-key="nav_partners" class="block py-2 text-charcoal font-body font-medium uppercase">PARTENAIRES</a>
+                <a href="contact.html" data-translate-key="nav_contact" class="block py-2 text-charcoal font-body font-medium uppercase">CONTACT</a>
+                
+                <div id="lang-selector-mobile" class="pt-4 border-t border-charcoal/10">
+                    <h4 data-translate-key="lang_selector_title" class="text-sm font-title font-medium text-charcoal mb-2 uppercase">Choisir la Langue</h4>
+                    <div class="flex flex-wrap gap-2">
+                        <button class="lang-button text-charcoal text-sm" data-lang="fr">Français</button>
+                        <button class="lang-button text-charcoal text-sm" data-lang="en">English</button>
+                        <button class="lang-button text-charcoal text-sm" data-lang="nl">Nederlands</button>
+                        <button class="lang-button text-charcoal text-sm" data-lang="de">Deutsch</button>
+                        <button class="lang-button text-charcoal text-sm" data-lang="es">Español</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </header>
-
+    </div>
+</header>
     <main>
         <section class="page-section bg-pure-white">
             <div class="max-w-7xl mx-auto px-6">
