@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mosaia Studio - Portfolio</title>
+    <title data-translate-key="page_title">Mosaia Studio - Notre Studio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <script>
@@ -30,13 +30,11 @@
         .nav-link::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: #C99B4F; transition: width 0.3s ease; }
         .nav-link:hover::after { width: 100%; }
         .page-section { padding-top: 100px; padding-bottom: 100px; }
-        /* Masonry Grid Styles */
-        .masonry-grid { column-count: 3; column-gap: 1.5rem; }
-        .masonry-item { display: inline-block; width: 100%; margin-bottom: 1.5rem; overflow: hidden; }
-        .masonry-item img { transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
-        .masonry-item:hover img { transform: scale(1.05); }
-        @media (max-width: 1024px) { .masonry-grid { column-count: 2; } }
-        @media (max-width: 640px) { .masonry-grid { column-count: 1; } }
+
+        /* Style pour le sélecteur de langue */
+        .lang-button { background: none; border: 1px solid transparent; padding: 4px 8px; border-radius: 4px; transition: all 0.3s; }
+        .lang-button:hover { background: rgba(201, 155, 79, 0.1); border-color: #C99B4F; }
+        .lang-button.active { background: #C99B4F; color: #1A1A1A; font-weight: 600; border-color: #C99B4F; }
     </style>
 </head>
 <body class="bg-pure-white font-body text-charcoal">
@@ -44,20 +42,28 @@
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 <div class="flex-shrink-0">
-                    <a href="index.html" class="text-3xl font-title font-bold text-charcoal tracking-wider uppercase hover:text-bronze transition-colors">MOSAIA STUDIO</a>
+                    <a href="index.html" data-translate-key="title_studio" class="text-3xl font-title font-bold text-charcoal tracking-wider uppercase hover:text-bronze transition-colors">MOSAIA STUDIO</a>
                 </div>
                 <nav class="hidden md:block">
                     <div class="flex items-center space-x-8 lg:space-x-10">
-                        <a href="index.html" class="nav-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase">ACCUEIL</a>
-                        <a href="portfolio.html" class="nav-link text-bronze border-b-2 border-bronze px-1 py-2 text-sm font-body font-medium tracking-wide uppercase">PORTFOLIO</a>
-                        <a href="studio.html" class="nav-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase">STUDIO</a>
-                        <a href="sur-mesure.html" class="nav-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase">SUR-MESURE</a>
-                        <a href="processus.html" class="nav-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase">PROCESSUS</a>
-                        <a href="partenaires.html" class="nav-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase">PARTENAIRES</a>
-                        <a href="contact.html" class="nav-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase">CONTACT</a>
+                        <a href="index.html" data-translate-key="nav_home" class="nav-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase">ACCUEIL</a>
+                        <a href="portfolio.html" data-translate-key="nav_portfolio" class="nav-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase">PORTFOLIO</a>
+                        <a href="studio.html" data-translate-key="nav_studio" class="nav-link text-bronze border-b-2 border-bronze px-1 py-2 text-sm font-body font-medium tracking-wide uppercase">STUDIO</a>
+                        <a href="sur-mesure.html" data-translate-key="nav_bespoke" class="nav-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase">SUR-MESURE</a>
+                        <a href="processus.html" data-translate-key="nav_process" class="nav-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase">PROCESSUS</a>
+                        <a href="partenaires.html" data-translate-key="nav_partners" class="nav-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase">PARTENAIRES</a>
+                        <a href="contact.html" data-translate-key="nav_contact" class="nav-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase">CONTACT</a>
+                        
+                        <div id="lang-selector-desktop" class="flex space-x-1 items-center ml-4 border-l border-charcoal/10 pl-4">
+                            <button class="lang-button text-charcoal text-sm" data-lang="fr">FR</button>
+                            <button class="lang-button text-charcoal text-sm" data-lang="en">EN</button>
+                            <button class="lang-button text-charcoal text-sm" data-lang="nl">NL</button>
+                            <button class="lang-button text-charcoal text-sm" data-lang="de">DE</button>
+                            <button class="lang-button text-charcoal text-sm" data-lang="es">ES</button>
+                        </div>
                     </div>
                 </nav>
-                <div class="md:hidden">
+                <div class="md:hidden flex items-center space-x-4">
                     <button id="mobileMenuBtn" class="text-charcoal hover:text-bronze p-2">
                         <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>
                     </button>
@@ -65,48 +71,65 @@
             </div>
             <div id="mobileMenu" class="md:hidden bg-pure-white border-t border-charcoal/10 hidden">
                 <div class="px-6 py-4 space-y-2">
-                    <a href="index.html" class="block py-2 text-charcoal font-body font-medium uppercase">ACCUEIL</a>
-                    <a href="portfolio.html" class="block py-2 text-bronze font-body font-medium uppercase">PORTFOLIO</a>
-                    <a href="studio.html" class="block py-2 text-charcoal font-body font-medium uppercase">STUDIO</a>
-                    <a href="sur-mesure.html" class="block py-2 text-charcoal font-body font-medium uppercase">SUR-MESURE</a>
-                    <a href="processus.html" class="block py-2 text-charcoal font-body font-medium uppercase">PROCESSUS</a>
-                    <a href="partenaires.html" class="block py-2 text-charcoal font-body font-medium uppercase">PARTENAIRES</a>
-                    <a href="contact.html" class="block py-2 text-charcoal font-body font-medium uppercase">CONTACT</a>
+                    <a href="index.html" data-translate-key="nav_home" class="block py-2 text-charcoal font-body font-medium uppercase">ACCUEIL</a>
+                    <a href="portfolio.html" data-translate-key="nav_portfolio" class="block py-2 text-charcoal font-body font-medium uppercase">PORTFOLIO</a>
+                    <a href="studio.html" data-translate-key="nav_studio" class="block py-2 text-bronze font-body font-medium uppercase">STUDIO</a>
+                    <a href="sur-mesure.html" data-translate-key="nav_bespoke" class="block py-2 text-charcoal font-body font-medium uppercase">SUR-MESURE</a>
+                    <a href="processus.html" data-translate-key="nav_process" class="block py-2 text-charcoal font-body font-medium uppercase">PROCESSUS</a>
+                    <a href="partenaires.html" data-translate-key="nav_partners" class="block py-2 text-charcoal font-body font-medium uppercase">PARTENAIRES</a>
+                    <a href="contact.html" data-translate-key="nav_contact" class="block py-2 text-charcoal font-body font-medium uppercase">CONTACT</a>
+
+                    <div id="lang-selector-mobile" class="pt-4 border-t border-charcoal/10">
+                        <h4 data-translate-key="lang_selector_title" class="text-sm font-title font-medium text-charcoal mb-2 uppercase">Choisir la Langue</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <button class="lang-button text-charcoal text-sm" data-lang="fr">Français</button>
+                            <button class="lang-button text-charcoal text-sm" data-lang="en">English</button>
+                            <button class="lang-button text-charcoal text-sm" data-lang="nl">Nederlands</button>
+                            <button class="lang-button text-charcoal text-sm" data-lang="de">Deutsch</button>
+                            <button class="lang-button text-charcoal text-sm" data-lang="es">Español</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </header>
 
     <main>
-        <section class="page-section bg-pure-white">
+        <section class="page-section bg-light-gray">
             <div class="max-w-7xl mx-auto px-6">
                 <div class="text-center mb-20">
-                    <h2 class="text-4xl md:text-5xl font-title font-bold text-charcoal mb-8 tracking-widest uppercase fade-in-up elegant-line">
-                        NOS RÉALISATIONS
+                    <h2 data-translate-key="section_title" class="text-4xl md:text-5xl font-title font-bold text-charcoal mb-8 tracking-widest uppercase fade-in-up elegant-line">
+                        MOSAIA STUDIO
                     </h2>
-                    <p class="text-xl text-medium-gray leading-relaxed font-body font-light fade-in-up delay-1">
-                        Chaque projet est une œuvre unique, conçue pour dialoguer avec la lumière, l’espace et la matière.
+                    <p data-translate-key="section_subtitle" class="text-xl text-medium-gray leading-relaxed font-body font-light fade-in-up delay-1 max-w-3xl mx-auto">
+                        Fondé à Altea Pueblo, Mosaia Studio est né de la rencontre entre la tradition méditerranéenne et le design contemporain.
                     </p>
                 </div>
 
-                <div class="flex justify-center space-x-6 mb-16 font-title font-medium uppercase text-sm tracking-widest fade-in-up delay-2">
-                    <button class="filter-btn text-bronze border-b-2 border-bronze pb-2 hover:text-charcoal hover:border-charcoal transition-all">Residential</button>
-                    <button class="filter-btn text-charcoal border-b-2 border-transparent pb-2 hover:border-bronze transition-all">Commercial</button>
-                    <button class="filter-btn text-charcoal border-b-2 border-transparent pb-2 hover:border-bronze transition-all">Civil & Public</button>
-                </div>
+                <div class="grid md:grid-cols-2 gap-16 items-start mb-20">
+                    <div class="fade-in-up delay-2 p-8 bg-pure-white shadow-lg">
+                        <h3 data-translate-key="vision_title" class="text-2xl font-title font-bold uppercase mb-4 text-bronze">NOTRE VISION</h3>
+                        <div class="w-12 h-px bg-charcoal mb-6"></div>
+                        <p data-translate-key="vision_text" class="text-lg text-medium-gray leading-relaxed">
+                            Nous croyons en un art durable, précis, et émotionnel — ravivant le lien entre la main et la matière. Notre mission est de créer des œuvres qui transcendent la simple décoration.
+                        </p>
+                    </div>
 
-                <div class="mb-16 max-w-4xl mx-auto text-center text-sm text-medium-gray fade-in-up delay-3">
-                    <h4 class="font-title font-bold uppercase text-charcoal mb-3">Residential :</h4>
-                    <p>Swimming pools, Art installations, Floors, Fireplace surrounds, Decorative walls.</p>
+                    <div class="fade-in-up delay-3">
+                        <div class="w-full h-64 bg-gray-300 mb-6 bg-cover bg-center" style="background-color: #D1D5DB;">
+                            </div>
+                        <h3 data-translate-key="tech_title" class="text-2xl font-title font-bold uppercase mb-4 text-charcoal">ART & TECHNOLOGIE</h3>
+                        <p data-translate-key="tech_text" class="text-lg text-medium-gray leading-relaxed">
+                            Dans notre atelier, les gestes anciens rencontrent la précision robotisée : la technologie amplifie la main de l’artisan. Chaque tesselle est placée avec une double exigence : passion et exactitude.
+                        </p>
+                    </div>
                 </div>
-
-                <div class="masonry-grid fade-in-up delay-4">
-                    <div class="masonry-item"><div class="bg-gray-200 h-96 w-full shadow-lg hover:shadow-xl transition-shadow" style="background-color: #E5E7EB;"></div></div>
-                    <div class="masonry-item"><div class="bg-gray-200 h-64 w-full shadow-lg hover:shadow-xl transition-shadow" style="background-color: #D1D5DB;"></div></div>
-                    <div class="masonry-item"><div class="bg-gray-200 h-80 w-full shadow-lg hover:shadow-xl transition-shadow" style="background-color: #F3F4F6;"></div></div>
-                    <div class="masonry-item"><div class="bg-gray-200 h-72 w-full shadow-lg hover:shadow-xl transition-shadow" style="background-color: #E5E7EB;"></div></div>
-                    <div class="masonry-item"><div class="bg-gray-200 h-100 w-full shadow-lg hover:shadow-xl transition-shadow" style="background-color: #D1D5DB;"></div></div>
-                    <div class="masonry-item"><div class="bg-gray-200 h-60 w-full shadow-lg hover:shadow-xl transition-shadow" style="background-color: #F3F4F6;"></div></div>
+                
+                <div class="text-center pt-10">
+                    <div class="w-16 h-px bg-bronze mx-auto mb-10 fade-in-up delay-4"></div>
+                    <p data-translate-key="quote" class="text-3xl font-title font-light italic text-charcoal/70 fade-in-up delay-4">
+                        Chaque carreau raconte une histoire.
+                    </p>
                 </div>
             </div>
         </section>
@@ -116,7 +139,7 @@
         <div class="max-w-7xl mx-auto px-6">
             <div class="flex flex-col lg:flex-row justify-between items-center space-y-4 lg:space-y-0">
                 <div class="text-center lg:text-left">
-                    <p class="text-sm opacity-80 font-body font-light tracking-wide uppercase">© MOSAIA STUDIO – PAR AMARU BRANDS</p>
+                    <p data-translate-key="footer_copyright" class="text-sm opacity-80 font-body font-light tracking-wide uppercase">© MOSAIA STUDIO – PAR AMARU BRANDS</p>
                 </div>
                 
                 <div class="flex space-x-6">
@@ -129,12 +152,71 @@
                 </div>
                 
                 <div class="text-center lg:text-right">
-                    <p class="text-sm opacity-80 font-title font-light tracking-wider uppercase">L'ART DE LA MOSAÏQUE QUI ÉVEILLE L'ÉMOTION ET DURE</p>
+                    <p data-translate-key="footer_tagline" class="text-sm opacity-80 font-title font-light tracking-wider uppercase">L'ART DE LA MOSAÏQUE QUI ÉVEILLE L'ÉMOTION ET DURE</p>
                 </div>
             </div>
         </div>
     </footer>
+    
     <script>
+        // --- 1. DONNÉES DE TRADUCTION ---
+        const translations = {
+            // Page & Navigation
+            'page_title': { fr: "Mosaia Studio - Notre Studio", en: "Mosaia Studio - Our Studio", nl: "Mosaia Studio - Onze Studio", de: "Mosaia Studio - Unser Studio", es: "Mosaia Studio - Nuestro Estudio" },
+            'title_studio': { fr: "MOSAIA STUDIO", en: "MOSAIA STUDIO", nl: "MOSAIA STUDIO", de: "MOSAIA STUDIO", es: "MOSAIA STUDIO" },
+            'nav_home': { fr: "ACCUEIL", en: "HOME", nl: "STARTPAGINA", de: "STARTSEITE", es: "INICIO" },
+            'nav_portfolio': { fr: "PORTFOLIO", en: "PORTFOLIO", nl: "PORTFOLIO", de: "PORTFOLIO", es: "PORTAFOLIO" },
+            'nav_studio': { fr: "STUDIO", en: "STUDIO", nl: "STUDIO", de: "STUDIO", es: "ESTUDIO" },
+            'nav_bespoke': { fr: "SUR-MESURE", en: "BESPOKE", nl: "MAATWERK", de: "MAẞARBEIT", es: "A MEDIDA" },
+            'nav_process': { fr: "PROCESSUS", en: "PROCESS", nl: "PROCES", de: "PROZESS", es: "PROCESO" },
+            'nav_partners': { fr: "PARTENAIRES", en: "PARTNERS", nl: "PARTNERS", de: "PARTNER", es: "SOCIOS" },
+            'nav_contact': { fr: "CONTACT", en: "CONTACT", nl: "CONTACT", de: "KONTAKT", es: "CONTACTO" },
+            'lang_selector_title': { fr: "Choisir la Langue", en: "Choose Language", nl: "Taal Kiezen", de: "Sprache Wählen", es: "Elegir Idioma" },
+            
+            // Studio Section
+            'section_title': { fr: "MOSAIA STUDIO", en: "MOSAIA STUDIO", nl: "MOSAIA STUDIO", de: "MOSAIA STUDIO", es: "MOSAIA STUDIO" },
+            'section_subtitle': { fr: "Fondé à Altea Pueblo, Mosaia Studio est né de la rencontre entre la tradition méditerranéenne et le design contemporain.", en: "Founded in Altea Pueblo, Mosaia Studio was born from the encounter between Mediterranean tradition and contemporary design.", nl: "Opgericht in Altea Pueblo, ontstond Mosaia Studio uit de ontmoeting tussen mediterrane traditie en hedendaags design.", de: "Gegründet in Altea Pueblo, entstand Mosaia Studio aus der Begegnung zwischen mediterraner Tradition und zeitgenössischem Design.", es: "Fundado en Altea Pueblo, Mosaia Studio nace del encuentro entre la tradición mediterránea y el diseño contemporáneo." },
+            'vision_title': { fr: "NOTRE VISION", en: "OUR VISION", nl: "ONZE VISIE", de: "UNSERE VISION", es: "NUESTRA VISIÓN" },
+            'vision_text': { fr: "Nous croyons en un art durable, précis, et émotionnel — ravivant le lien entre la main et la matière. Notre mission est de créer des œuvres qui transcendent la simple décoration.", en: "We believe in a durable, precise, and emotional art — reviving the link between the hand and the material. Our mission is to create works that transcend simple decoration.", nl: "Wij geloven in duurzame, precieze en emotionele kunst — die de band tussen hand en materie nieuw leven inblaast. Onze missie is om werken te creëren die de eenvoudige decoratie overstijgen.", de: "Wir glauben an eine dauerhafte, präzise und emotionale Kunst – die die Verbindung zwischen Hand und Material wiederbelebt. Unsere Mission ist es, Werke zu schaffen, die über die bloße Dekoration hinausgehen.", es: "Creemos en un arte duradero, preciso y emocional — reviviendo el vínculo entre la mano y la materia. Nuestra misión es crear obras que trasciendan la simple decoración." },
+            'tech_title': { fr: "ART & TECHNOLOGIE", en: "ART & TECHNOLOGY", nl: "KUNST & TECHNOLOGIE", de: "KUNST & TECHNOLOGIE", es: "ARTE & TECNOLOGÍA" },
+            'tech_text': { fr: "Dans notre atelier, les gestes anciens rencontrent la précision robotisée : la technologie amplifie la main de l’artisan. Chaque tesselle est placée avec une double exigence : passion et exactitude.", en: "In our workshop, ancient gestures meet robotic precision: technology amplifies the artisan's hand. Every tessera is placed with a double requirement: passion and exactitude.", nl: "In ons atelier ontmoeten oude gebaren robotprecisie: technologie versterkt de hand van de ambachtsman. Elke tessera wordt geplaatst met een dubbele eis: passie en nauwkeurigheid.", de: "In unserer Werkstatt trifft altes Handwerk auf robotergestützte Präzision: Die Technologie verstärkt die Hand des Handwerkers. Jede Tesselle wird mit doppelter Anforderung platziert: Leidenschaft und Exaktheit.", es: "En nuestro taller, los gestos ancestrales se encuentran con la precisión robotizada: la tecnología amplifica la mano del artesano. Cada tesela se coloca con una doble exigencia: pasión y exactitud." },
+            'quote': { fr: "Chaque carreau raconte une histoire.", en: "Every tile tells a story.", nl: "Elke tegel vertelt een verhaal.", de: "Jede Fliese erzählt eine Geschichte.", es: "Cada azulejo cuenta una historia." },
+            
+            // Footer
+            'footer_copyright': { fr: "© MOSAIA STUDIO – PAR AMARU BRANDS", en: "© MOSAIA STUDIO – BY AMARU BRANDS", nl: "© MOSAIA STUDIO – DOOR AMARU BRANDS", de: "© MOSAIA STUDIO – VON AMARU BRANDS", es: "© MOSAIA STUDIO – POR AMARU BRANDS" },
+            'footer_tagline': { fr: "L'ART DE LA MOSAÏQUE QUI ÉVEILLE L'ÉMOTION ET DURE", en: "THE ART OF MOSAIC THAT AWAKENS EMOTION AND ENDURES", nl: "DE KUNST VAN MOZAÏEK DAT EMOTIE OPROEPT EN VOORTDUURT", de: "DIE KUNST DES MOSAIKS, DIE EMOTIONEN WECKT UND BESTEHT", es: "EL ARTE DEL MOSAICO QUE DESPIERTA EMOCIÓN Y PERDURA" }
+        };
+
+        let currentLang = 'fr'; // Langue par défaut
+
+        // --- 2. FONCTION DE TRADUCTION ---
+        function switchLanguage(lang) {
+            currentLang = lang;
+            document.documentElement.lang = lang; // Met à jour l'attribut lang de la page
+
+            // Met à jour le titre
+            document.querySelector('title').textContent = translations['page_title'][lang];
+
+            // Met à jour tous les éléments avec l'attribut data-translate-key
+            document.querySelectorAll('[data-translate-key]').forEach(element => {
+                const key = element.getAttribute('data-translate-key');
+                if (translations[key] && translations[key][lang]) {
+                    element.textContent = translations[key][lang];
+                }
+            });
+
+            // Gère les classes 'active' pour les boutons de langue
+            document.querySelectorAll('.lang-button').forEach(button => {
+                button.classList.remove('active');
+                if (button.getAttribute('data-lang') === lang) {
+                    button.classList.add('active');
+                }
+            });
+        }
+
+        // --- 3. LOGIQUE MOBILE ET INITIALISATION ---
+
+        // Animation au scroll
         const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -145,15 +227,35 @@
                 }
             });
         }, observerOptions);
-        document.querySelectorAll('.fade-in-up').forEach(element => {
-            element.classList.add('opacity-0', 'translate-y-[40px]');
-            observer.observe(element);
+        
+        document.addEventListener('DOMContentLoaded', () => {
+             document.querySelectorAll('.fade-in-up').forEach(element => {
+                element.classList.add('opacity-0', 'translate-y-[40px]');
+                observer.observe(element);
+            });
+            
+            // Initialisation de la langue par défaut (français)
+            switchLanguage(currentLang);
         });
+
+        // Toggle du menu mobile
         function toggleMobileMenu() {
             const mobileMenu = document.getElementById('mobileMenu');
             mobileMenu.classList.toggle('hidden');
         }
         document.getElementById('mobileMenuBtn').addEventListener('click', toggleMobileMenu);
+
+        // Écouteurs d'événements pour les sélecteurs de langue (Desktop et Mobile)
+        document.querySelectorAll('.lang-button').forEach(button => {
+            button.addEventListener('click', (e) => {
+                const lang = e.target.getAttribute('data-lang');
+                switchLanguage(lang);
+                // Ferme le menu mobile si la sélection vient de là (sur mobile)
+                if (window.innerWidth < 768 && document.getElementById('mobileMenu').classList.contains('hidden') === false) {
+                     document.getElementById('mobileMenu').classList.add('hidden');
+                }
+            });
+        });
     </script>
 </body>
 </html>
