@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-translate-key="page_title">Mosaia Studio - Processus</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { 'bronze': '#C99B4F', 'charcoal': '#1A1A1A', 'pure-white': '#FFFFFF', 'light-gray': '#F8F8F8', 'medium-gray': '#666666' },
+                    fontFamily: { 'title': ['Montserrat', 'sans-serif'], 'body': ['Open Sans', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <style>
+        .fade-in-up { animation: fadeInUp 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; opacity: 0; transform: translateY(40px); }
+        .fade-in-up.delay-1 { animation-delay: 0.3s; }
+        .fade-in-up.delay-2 { animation-delay: 0.6s; }
+        @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+        .elegant-line { position: relative; }
+        .elegant-line::after { content: ''; position: absolute; bottom: -12px; left: 50%; transform: translateX(-50%); width: 80px; height: 1px; background: linear-gradient(90deg, transparent, #C99B4F, transparent); }
+        .cta-primary { background: linear-gradient(135deg, #C99B4F, #B8894A); transition: all 0.4s ease; font-family: 'Montserrat', sans-serif; font-weight: 600; }
+        .cta-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(201, 155, 79, 0.2); background: #1A1A1A; color: #C99B4F; }
+        .nav-link { position: relative; transition: all 0.3s ease; }
+        .nav-link:hover { color: #C99B4F; }
+        .nav-link::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: #C99B4F; transition: width 0.3s ease; }
+        .nav-link:hover::after { width: 100%; }
+        .page-section { padding-top: 100px; padding-bottom: 100px; }
+        /* Style pour le sélecteur de langue */
+        #language-selector select { border: none; background: transparent; color: #1A1A1A; font-family: 'Montserrat', sans-serif; font-weight: 600; text-transform: uppercase; font-size: 0.875rem; padding: 0.5rem 0; margin-right: 0.5rem; cursor: pointer; }
+        #language-selector.mobile select { color: #1A1A1A; width: 100%; border-bottom: 1px solid #1A1A1A1A; padding-bottom: 1rem; }
+    </style>
+</head>
+<body class="bg-pure-white font-body text-charcoal">
+    <header class="bg-pure-white/98 backdrop-blur-md shadow-sm sticky top-0 z-50 border-b border-charcoal/5">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0">
+                    <a href="index.html" class="text-3xl font-title font-bold text-charcoal tracking-wider uppercase hover:text-bronze transition-colors">MOSAIA STUDIO</a>
+                </div>
+                <nav class="hidden md:block">
+                    <div class="flex items-center space-x-8 lg:space-x-10">
+                        <div id="language-selector-desktop">
+                            <select id="lang-select-desktop" class="text-sm">
+                                <option value="fr">FR</option>
+                                <option value="en">EN</option>
+                                <option value="nl">NL</option>
+                                <option value="de">DE</option>
+                                <option value="es">ES</option>
+                            </select>
+                        </div>
+                        <a href="index.html" class="nav-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase" data-translate-key="nav_home">ACCUEIL</a>
+                        <a href="portfolio.html" class="nav-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase" data-translate-key="nav_portfolio">PORTFOLIO</a>
+                        <a href="studio.html" class="nav-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase" data-translate-key="nav_studio">STUDIO</a>
+                        <a href="sur-mesure.html" class="nav-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase" data-translate-key="nav_bespoke">SUR-MESURE</a>
+                        <a href="processus.html" class="nav-link text-bronze border-b-2 border-bronze px-1 py-2 text-sm font-body font-medium tracking-wide uppercase" data-translate-key="nav_process">PROCESSUS</a>
+                        <a href="partenaires.html" class="nav-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase" data-translate-key="nav_partners">PARTENAIRES</a>
+                        <a href="contact.html" class="nav-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase" data-translate-key="nav_contact">CONTACT</a>
+                    </div>
+                </nav>
+                <div class="md:hidden">
+                    <button id="mobileMenuBtn" class="text-charcoal hover:text-bronze p-2">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>
+                    </button>
+                </div>
+            </div>
+            <div id="mobileMenu" class="md:hidden bg-pure-white border-t border-charcoal/10 hidden">
+                <div class="px-6 py-4 space-y-2">
+                    <div id="language-selector-mobile" class="pb-4 mb-2">
+                        <select id="lang-select-mobile" class="text-base w-full">
+                            <option value="fr">FR</option>
+                            <option value="en">EN</option>
+                            <option value="nl">NL</option>
+                            <option value="de">DE</option>
+                            <option value="es">ES</option>
+                        </select>
+                    </div>
+                    <a href="index.html" class="block py-2 text-charcoal font-body font-medium uppercase" data-translate-key="nav_home">ACCUEIL</a>
+                    <a href="portfolio.html" class="block py-2 text-charcoal font-body font-medium uppercase" data-translate-key="nav_portfolio">PORTFOLIO</a>
+                    <a href="studio.html" class="block py-2 text-charcoal font-body font-medium uppercase" data-translate-key="nav_studio">STUDIO</a>
+                    <a href="sur-mesure.html" class="block py-2 text-charcoal font-body font-medium uppercase" data-translate-key="nav_bespoke">SUR-MESURE</a>
+                    <a href="processus.html" class="block py-2 text-bronze font-body font-medium uppercase" data-translate-key="nav_process">PROCESSUS</a>
+                    <a href="partenaires.html" class="block py-2 text-charcoal font-body font-medium uppercase" data-translate-key="nav_partners">PARTENAIRES</a>
+                    <a href="contact.html" class="block py-2 text-charcoal font-body font-medium uppercase" data-translate-key="nav_contact">CONTACT</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-section bg-light-gray">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="text-center mb-20">
+                    <h2 class="text-4xl md:text-5xl font-title font-bold text-charcoal mb-8 tracking-widest uppercase fade-in-up elegant-line" data-translate-key="process_title">
+                        PRÉCISION ET PASSION
+                    </h2>
+                    <p class="text-xl text-medium-gray leading-relaxed font-body font-light fade-in-up delay-1 max-w-4xl mx-auto" data-translate-key="process_subtitle">
+                        Le robot Mosaia, cœur de notre production, incarne la précision et la passion du détail, permettant une exécution parfaite.
+                    </p>
+                </div>
+
+                <h3 class="text-3xl font-title font-bold uppercase mb-12 text-center text-charcoal fade-in-up delay-2" data-translate-key="steps_section_title">Les 6 Étapes de Production</h3>
+                <div class="grid md:grid-cols-6 gap-6 text-center max-w-6xl mx-auto">
+                    <div class="fade-in-up delay-3">
+                        <div class="text-4xl text-bronze mb-3">📤</div>
+                        <h4 class="font-title font-bold uppercase text-charcoal text-sm" data-translate-key="step_1_title">TÉLÉCHARGEMENT DU DESIGN</h4>
+                    </div>
+                    <div class="fade-in-up delay-4">
+                        <div class="text-4xl text-bronze mb-3">🌈</div>
+                        <h4 class="font-title font-bold uppercase text-charcoal text-sm" data-translate-key="step_2_title">TRI DES COULEURS</h4>
+                    </div>
+                    <div class="fade-in-up delay-5">
+                        <div class="text-4xl text-bronze mb-3">🤖</div>
+                        <h4 class="font-title font-bold uppercase text-charcoal text-sm" data-translate-key="step_3_title">PLACEMENT AUTOMATISÉ</h4>
+                    </div>
+                    <div class="fade-in-up delay-6">
+                        <div class="text-4xl text-bronze mb-3">🔎</div>
+                        <h4 class="font-title font-bold uppercase text-charcoal text-sm" data-translate-key="step_4_title">CONTRÔLE QUALITÉ</h4>
+                    </div>
+                    <div class="fade-in-up delay-7">
+                        <div class="text-4xl text-bronze mb-3">🔗</div>
+                        <h4 class="font-title font-bold uppercase text-charcoal text-sm" data-translate-key="step_5_title">MONTAGE SUR FILET</h4>
+                    </div>
+                    <div class="fade-in-up delay-8">
+                        <div class="text-4xl text-bronze mb-3">📦</div>
+                        <h4 class="font-title font-bold uppercase text-charcoal text-sm" data-translate-key="step_6_title">EXPÉDITION</h4>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-12 mt-20 text-center max-w-5xl mx-auto">
+                    <div class="fade-in-up delay-3 p-6 bg-pure-white shadow-md">
+                        <div class="text-5xl text-bronze mb-4">⚡</div>
+                        <h4 class="text-xl font-title font-bold uppercase mb-2" data-translate-key="feature_speed_title">VITESSE</h4>
+                        <p class="text-sm text-medium-gray" data-translate-key="feature_speed_text">Production rapide sans compromis sur la qualité, respectant les délais serrés.</p>
+                    </div>
+                    <div class="fade-in-up delay-4 p-6 bg-pure-white shadow-md">
+                        <div class="text-5xl text-bronze mb-4">🎯</div>
+                        <h4 class="text-xl font-title font-bold uppercase mb-2" data-translate-key="feature_accuracy_title">PRÉCISION</h4>
+                        <p class="text-sm text-medium-gray" data-translate-key="feature_accuracy_text">Positionnement des tesselles au micron près, pour des compositions parfaites.</p>
+                    </div>
+                    <div class="fade-in-up delay-5 p-6 bg-pure-white shadow-md">
+                        <div class="text-5xl text-bronze mb-4">🔄</div>
+                        <h4 class="text-xl font-title font-bold uppercase mb-2" data-translate-key="feature_consistency_title">UNIFORMITÉ</h4>
+                        <p class="text-sm text-medium-gray" data-translate-key="feature_consistency_text">Uniformité de la qualité sur les grands projets et les reproductions complexes.</p>
+                    </div>
+                </div>
+               
+                <p class="text-center text-sm font-title font-bold uppercase text-bronze mt-8 fade-in-up delay-6" data-translate-key="final_inspection_text">INSPECTION FINALE HUMAINE. L'œil de l'artisan veille à la perfection finale.</p>
+
+                <div class="text-center pt-20">
+                    <p class="text-2xl font-title font-light italic text-charcoal/70 fade-in-up delay-7" data-translate-key="quote_text">
+                        Chez Mosaia, la technologie sublime l’artisanat, elle ne le remplace jamais.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-charcoal text-pure-white py-12 border-t border-bronze/10">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col lg:flex-row justify-between items-center space-y-4 lg:space-y-0">
+                <div class="text-center lg:text-left">
+                    <p class="text-sm opacity-80 font-body font-light tracking-wide uppercase" data-translate-key="footer_copyright">© MOSAIA STUDIO – PAR AMARU BRANDS</p>
+                </div>
+               
+                <div class="flex space-x-6">
+                    <a href="#" class="text-pure-white/80 hover:text-bronze transition-colors duration-300 transform hover:scale-110" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM12 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                    </a>
+                    <a href="#" class="text-pure-white/80 hover:text-bronze transition-colors duration-300 transform hover:scale-110" target="_blank" rel="noopener noreferrer" aria-label="Pinterest">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.374 0 0 5.374 0 12s5.374 12 12 12c.343 0 .682-.015 1.017-.043-.096-.996-.264-2.317-.264-3.245 0-1.264.476-2.129 1.017-2.129.476 0 .714.357.714.833 0 .508-.321 1.269-.321 1.968 0 .833.714 1.508 1.548 1.508 1.468 0 2.456-1.548 2.456-3.611 0-1.889-1.349-3.301-3.301-3.301-2.317 0-3.683 1.746-3.683 3.571 0 .714.274 1.484.619 1.905.095.119.107.222.079.341-.021.095-.071.278-.095.357-.032.119-.127.151-.238.095-.833-.389-1.357-1.603-1.357-2.587 0-2.095 1.524-4.016 4.397-4.016 2.309 0 4.103 1.643 4.103 3.841 0 2.293-1.444 4.135-3.452 4.135-.675 0-1.31-.349-1.524-.778 0 0-.333 1.27-.405 1.579-.147.563-.544 1.27-.81 1.698C10.85 23.846 11.417 24 12 24c6.626 0 12-5.374 12-12S18.626 0 12 0z"/></svg>
+                    </a>
+                </div>
+               
+                <div class="text-center lg:text-right">
+                    <p class="text-sm opacity-80 font-title font-light tracking-wider uppercase" data-translate-key="footer_tagline">L'ART DE LA MOSAÏQUE QUI ÉVEILLE L'ÉMOTION ET DURE</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // --- LOGIQUE DE TRADUCTION (i18n) ---
+        const translations = {
+            fr: {
+                page_title: "Mosaia Studio - Processus",
+                nav_home: "ACCUEIL", nav_portfolio: "PORTFOLIO", nav_studio: "STUDIO", nav_bespoke: "SUR-MESURE", nav_process: "PROCESSUS", nav_partners: "PARTENAIRES", nav_contact: "CONTACT",
+                process_title: "PRÉCISION ET PASSION",
+                process_subtitle: "Le robot Mosaia, cœur de notre production, incarne la précision et la passion du détail, permettant une exécution parfaite.",
+                steps_section_title: "Les 6 Étapes de Production",
+                step_1_title: "TÉLÉCHARGEMENT DU DESIGN", step_2_title: "TRI DES COULEURS", step_3_title: "PLACEMENT AUTOMATISÉ", step_4_title: "CONTRÔLE QUALITÉ", step_5_title: "MONTAGE SUR FILET", step_6_title: "EXPÉDITION",
+                feature_speed_title: "VITESSE", feature_speed_text: "Production rapide sans compromis sur la qualité, respectant les délais serrés.",
+                feature_accuracy_title: "PRÉCISION", feature_accuracy_text: "Positionnement des tesselles au micron près, pour des compositions parfaites.",
+                feature_consistency_title: "UNIFORMITÉ", feature_consistency_text: "Uniformité de la qualité sur les grands projets et les reproductions complexes.",
+                final_inspection_text: "INSPECTION FINALE HUMAINE. L'œil de l'artisan veille à la perfection finale.",
+                quote_text: "Chez Mosaia, la technologie sublime l’artisanat, elle ne le remplace jamais.",
+                footer_copyright: "© MOSAIA STUDIO – PAR AMARU BRANDS",
+                footer_tagline: "L'ART DE LA MOSAÏQUE QUI ÉVEILLE L'ÉMOTION ET DURE"
+            },
+            en: {
+                page_title: "Mosaia Studio - Process",
+                nav_home: "HOME", nav_portfolio: "PORTFOLIO", nav_studio: "STUDIO", nav_bespoke: "BESPOKE", nav_process: "PROCESS", nav_partners: "PARTNERS", nav_contact: "CONTACT",
+                process_title: "PRECISION AND PASSION",
+                process_subtitle: "The Mosaia robot, the heart of our production, embodies precision and a passion for detail, enabling perfect execution.",
+                steps_section_title: "The 6 Production Steps",
+                step_1_title: "DESIGN UPLOAD", step_2_title: "COLOR SORTING", step_3_title: "AUTOMATED PLACEMENT", step_4_title: "QUALITY CONTROL", step_5_title: "MESH MOUNTING", step_6_title: "SHIPMENT",
+                feature_speed_title: "SPEED", feature_speed_text: "Fast production without compromising quality, meeting tight deadlines.",
+                feature_accuracy_title: "ACCURACY", feature_accuracy_text: "Tesserae positioning to the nearest micron, for perfect compositions.",
+                feature_consistency_title: "CONSISTENCY", feature_consistency_text: "Uniformity of quality across large projects and complex reproductions.",
+                final_inspection_text: "HUMAN FINAL INSPECTION. The artisan's eye ensures the final perfection.",
+                quote_text: "At Mosaia, technology enhances craftsmanship; it never replaces it.",
+                footer_copyright: "© MOSAIA STUDIO – BY AMARU BRANDS",
+                footer_tagline: "THE ART OF MOSAIC THAT AWAKENS EMOTION AND LASTS"
+            },
+            nl: {
+                page_title: "Mosaia Studio - Proces",
+                nav_home: "HOME", nav_portfolio: "PORTFOLIO", nav_studio: "STUDIO", nav_bespoke: "OP MAAT", nav_process: "PROCES", nav_partners: "PARTNERS", nav_contact: "CONTACT",
+                process_title: "NAUWKEURIGHEID EN PASSIE",
+                process_subtitle: "De Mosaia-robot, het hart van onze productie, belichaamt precisie en een passie voor detail, wat een perfecte uitvoering mogelijk maakt.",
+                steps_section_title: "De 6 Productiestappen",
+                step_1_title: "ONTWERP UPLOADEN", step_2_title: "KLEURSORTERING", step_3_title: "GEAUTOMATISEERDE PLAATSING", step_4_title: "KWALITEITSCONTROLE", step_5_title: "OP NET MONTEREN", step_6_title: "VERZENDING",
+                feature_speed_title: "SNELHEID", feature_speed_text: "Snelle productie zonder kwaliteitsverlies, met respect voor strakke deadlines.",
+                feature_accuracy_title: "NAUWKEURIGHEID", feature_accuracy_text: "Plaatsing van de tesserae tot op de micron nauwkeurig, voor perfecte composities.",
+                feature_consistency_title: "CONSISTENTIE", feature_consistency_text: "Uniforme kwaliteit voor grote projecten en complexe reproducties.",
+                final_inspection_text: "MENSELIJKE EINDINSPECTIE. Het oog van de ambachtsman zorgt voor de uiteindelijke perfectie.",
+                quote_text: "Bij Mosaia verfijnt technologie het vakmanschap; het vervangt het nooit.",
+                footer_copyright: "© MOSAIA STUDIO – DOOR AMARU BRANDS",
+                footer_tagline: "DE KUNST VAN MOZAÏEK DAT EMOTIE OPWEKT EN BLIJFT"
+            },
+            de: {
+                page_title: "Mosaia Studio - Prozess",
+                nav_home: "STARTSEITE", nav_portfolio: "PORTFOLIO", nav_studio: "STUDIO", nav_bespoke: "MASSARBEIT", nav_process: "PROZESS", nav_partners: "PARTNER", nav_contact: "KONTAKT",
+                process_title: "PRÄZISION UND LEIDENSCHAFT",
+                process_subtitle: "Der Mosaia-Roboter, das Herzstück unserer Produktion, verkörpert Präzision und Detailleidenschaft und ermöglicht eine perfekte Ausführung.",
+                steps_section_title: "Die 6 Produktionsschritte",
+                step_1_title: "DESIGN-UPLOAD", step_2_title: "FARBSORTIERUNG", step_3_title: "AUTOMATISIERTE PLATZIERUNG", step_4_title: "QUALITÄTSKONTROLLE", step_5_title: "NETZMONTIERUNG", step_6_title: "VERSAND",
+                feature_speed_title: "GESCHWINDIGKEIT", feature_speed_text: "Schnelle Produktion ohne Qualitätseinbußen, unter Einhaltung knapper Fristen.",
+                feature_accuracy_title: "PRÄZISION", feature_accuracy_text: "Positionierung der Mosaiksteine auf den Mikrometer genau, für perfekte Kompositionen.",
+                feature_consistency_title: "KONSISTENZ", feature_consistency_text: "Gleichbleibende Qualität bei großen Projekten und komplexen Reproduktionen.",
+                final_inspection_text: "MENSCHLICHE ENDINSPEKTION. Das Auge des Handwerkers sorgt für die endgültige Perfektion.",
+                quote_text: "Bei Mosaia veredelt Technologie das Handwerk, sie ersetzt es niemals.",
+                footer_copyright: "© MOSAIA STUDIO – VON AMARU BRANDS",
+                footer_tagline: "DIE KUNST DES MOSAIKS, DIE EMOTIONEN WECKT UND BESTÄNDIG IST"
+            },
+            es: {
+                page_title: "Mosaia Studio - Proceso",
+                nav_home: "INICIO", nav_portfolio: "PORTAFOLIO", nav_studio: "ESTUDIO", nav_bespoke: "A MEDIDA", nav_process: "PROCESO", nav_partners: "SOCIOS", nav_contact: "CONTACTO",
+                process_title: "PRECISIÓN Y PASIÓN",
+                process_subtitle: "El robot Mosaia, corazón de nuestra producción, encarna la precisión y la pasión por el detalle, permitiendo una ejecución perfecta.",
+                steps_section_title: "Las 6 Etapas de Producción",
+                step_1_title: "CARGA DEL DISEÑO", step_2_title: "CLASIFICACIÓN POR COLOR", step_3_title: "COLOCACIÓN AUTOMATIZADA", step_4_title: "CONTROL DE CALIDAD", step_5_title: "MONTAJE EN MALLA", step_6_title: "ENVÍO",
+                feature_speed_title: "VELOCIDAD", feature_speed_text: "Producción rápida sin comprometer la calidad, respetando los plazos ajustados.",
+                feature_accuracy_title: "PRECISIÓN", feature_accuracy_text: "Posicionamiento de las teselas al micrón, para composiciones perfectas.",
+                feature_consistency_title: "CONSISTENCIA", feature_consistency_text: "Uniformidad de la calidad en grandes proyectos y reproducciones complejas.",
+                final_inspection_text: "INSPECCIÓN FINAL HUMANA. El ojo del artesano vela por la perfección final.",
+                quote_text: "En Mosaia, la tecnología sublima la artesanía, nunca la reemplaza.",
+                footer_copyright: "© MOSAIA STUDIO – POR AMARU BRANDS",
+                footer_tagline: "EL ARTE DEL MOSAICO QUE DESPIERTA LA EMOCIÓN Y PERDURA"
+            }
+        };
+
+        // Fonction principale pour appliquer la traduction
+        function translatePage(lang) {
+            const currentTranslations = translations[lang];
+            if (!currentTranslations) return;
+
+            // 1. Mise à jour de l'attribut lang de la page
+            document.documentElement.lang = lang;
+
+            // 2. Traduction du titre de la page
+            const pageTitleElement = document.querySelector('title');
+            if (pageTitleElement) {
+                const key = pageTitleElement.getAttribute('data-translate-key');
+                if (key && currentTranslations[key]) {
+                    pageTitleElement.textContent = currentTranslations[key];
+                }
+            }
+
+            // 3. Traduction de tous les éléments avec data-translate-key
+            document.querySelectorAll('[data-translate-key]').forEach(element => {
+                const key = element.getAttribute('data-translate-key');
+                if (currentTranslations[key]) {
+                    // Pour les liens de navigation, on s'assure de ne pas écraser les classes CSS
+                    element.textContent = currentTranslations[key];
+                }
+            });
+
+            // 4. Mettre à jour les sélecteurs de langue pour refléter le bon choix
+            document.getElementById('lang-select-desktop').value = lang;
+            document.getElementById('lang-select-mobile').value = lang;
+
+            // 5. Sauvegarder la langue dans le stockage local
+            localStorage.setItem('userLanguage', lang);
+        }
+
+        // Fonction pour gérer le changement de langue
+        function handleLangChange(event) {
+            const newLang = event.target.value;
+            translatePage(newLang);
+        }
+
+        // Fonction pour initialiser la langue au chargement
+        function initializeLanguage() {
+            // Récupérer la langue sauvegardée, sinon utiliser 'fr' (défaut)
+            const savedLang = localStorage.getItem('userLanguage') || 'fr';
+            
+            // Appliquer la traduction
+            translatePage(savedLang);
+
+            // Attacher les écouteurs d'événements aux deux sélecteurs
+            document.getElementById('lang-select-desktop').addEventListener('change', handleLangChange);
+            document.getElementById('lang-select-mobile').addEventListener('change', handleLangChange);
+        }
+
+        // --- LOGIQUE D'ANIMATION ET MENU MOBILE (existante) ---
+        const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in-up');
+                    entry.target.classList.remove('opacity-0', 'translate-y-[40px]');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+        document.querySelectorAll('.fade-in-up').forEach(element => {
+            element.classList.add('opacity-0', 'translate-y-[40px]');
+            observer.observe(element);
+        });
+        
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('hidden');
+        }
+        document.getElementById('mobileMenuBtn').addEventListener('click', toggleMobileMenu);
+
+        // Initialisation de la langue au chargement de la page
+        document.addEventListener('DOMContentLoaded', initializeLanguage);
+    </script>
+</body>
+</html>
