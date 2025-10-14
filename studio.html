@@ -44,14 +44,14 @@
         .lang-button:hover { background: rgba(201, 155, 79, 0.1); border-color: #C99B4F; }
         .lang-button.active { background: #C99B4F; color: #1A1A1A; font-weight: 600; border-color: #C99B4F; }
         
-        /* Style pour le lien de langue ACTIF dans le dropdown DESKTOP */
+        /* NOUVEAU: Style pour le lien de langue ACTIF dans le dropdown DESKTOP */
         .lang-option.active-desktop {
-            background-color: #C99B4F !important;
-            color: #1A1A1A !important;
+            background-color: #C99B4F !important; /* Couleur bronze */
+            color: #1A1A1A !important; /* Couleur charcoal */
             font-weight: 600;
         }
         
-        /* STYLE POUR L'ANIMATION DU DROPDOWN DESKTOP */
+        /* NOUVEAU STYLE POUR L'ANIMATION DU DROPDOWN DESKTOP */
         #dropdown-arrow {
             transition: transform 0.3s ease;
         }
@@ -65,7 +65,7 @@
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 <div class="flex-shrink-0">
-                    <a href="index.html" id="logo-link">
+                    <a href="index.html">
                         <img src="https://raw.githubusercontent.com/allo-les-anges/mosaia/main/mosaia-assets/logos/logo%20mosaia%202.png" 
                              alt="Mosaia Studio Logo" 
                              class="h-10 lg:h-12 w-auto">
@@ -209,7 +209,7 @@
     </footer>
     
 <script>
-    // --- 1. DONNÉES DE TRADUCTION (inchangées) ---
+    // --- 1. DONNÉES DE TRADUCTION ---
     const translations = {
         'page_title': { fr: "Mosaia Studio - Notre Studio", en: "Mosaia Studio - Our Studio", nl: "Mosaia Studio - Onze Studio", de: "Mosaia Studio - Unser Studio", es: "Mosaia Studio - Nuestro Estudio" },
         'nav_home': { fr: "ACCUEIL", en: "HOME", nl: "STARTPAGINA", de: "STARTSEITE", es: "INICIO" },
@@ -235,46 +235,17 @@
         'footer_tagline': { fr: "L'ART DE LA MOSAÏQUE QUI ÉVEILLE L'ÉMOTION ET DURE", en: "THE ART OF MOSAIC THAT AWAKENS EMOTION AND ENDURES", nl: "DE KUNST VAN MOZAÏEK DAT EMOTIE OPROEPT EN VOORTDUURT", de: "DIE KUNST DES MOSAIKS, DIE EMOTIONEN WECKT UND BESTEHT", es: "EL ARTE DU MOSAICO QUE DESPIERTA EMOCIÓN Y PERDURA" }
     };
 
-    // **Détermination de la langue**
-    // 1. Essayer de récupérer la langue du localStorage.
-    // 2. Si non trouvée, vérifier si un paramètre 'lang' est présent dans l'URL (pour les liens inter-pages).
-    // 3. Sinon, utiliser 'fr' par défaut.
-    const urlParams = new URLSearchParams(window.location.search);
-    let currentLang = localStorage.getItem('mosaiaLang') || urlParams.get('lang') || 'fr';
-    
-    // --- NOUVELLE FONCTION: Gérer les liens de navigation pour la persistance ---
-    function updateNavigationLinks(lang) {
-        // Sélectionne tous les liens internes (ceux qui ont un attribut `href` pointant vers un fichier HTML)
-        const navigationLinks = document.querySelectorAll('a[href$=".html"], a[id="logo-link"]');
+    // **INITIALISATION DE LA LANGUE PERSISTANTE (DOIT ÊTRE FAIT AVANT DOMContentLoaded)**
+    // Détermine la langue stockée ou utilise 'fr' par défaut.
+    let currentLang = localStorage.getItem('mosaiaLang') || 'fr';
 
-        navigationLinks.forEach(link => {
-            let href = link.getAttribute('href');
-            
-            // Évite de modifier les liens externes ou les ancres (comme #)
-            if (href && !href.startsWith('#') && !href.startsWith('http')) {
-                const url = new URL(href, window.location.origin);
-                
-                // Supprime l'ancien paramètre de langue
-                url.searchParams.delete('lang');
-                
-                // Ajoute le nouveau paramètre de langue
-                url.searchParams.set('lang', lang);
-
-                link.setAttribute('href', url.pathname + url.search);
-            }
-        });
-    }
-
-    // --- 2. FONCTION DE TRADUCTION (Légèrement mise à jour) ---
+    // --- 2. FONCTION DE TRADUCTION ---
     function switchLanguage(lang) {
         currentLang = lang;
         document.documentElement.lang = lang;
         
         // **SAUVEGARDE DANS LOCALSTORAGE**
         localStorage.setItem('mosaiaLang', lang);
-
-        // Met à jour les liens de navigation pour la page suivante
-        updateNavigationLinks(lang); // <--- APPEL IMPORTANT AJOUTÉ
 
         // Met à jour le titre
         const titleElement = document.querySelector('title');
@@ -293,13 +264,15 @@
 
         // Gère les classes 'active' pour les boutons de langue MOBILE
         document.querySelectorAll('#lang-selector-mobile .lang-button').forEach(button => {
+            // Retire la classe 'active' à tous
             button.classList.remove('active');
             if (button.getAttribute('data-lang') === lang) {
+                // Ajoute la classe 'active' au bouton sélectionné
                 button.classList.add('active');
             }
         });
         
-        // Gère les classes 'active' pour les liens de langue DESKTOP
+        // NOUVEAU: Gère les classes 'active' pour les liens de langue DESKTOP
         document.querySelectorAll('#lang-menu .lang-option').forEach(link => {
             link.classList.remove('active-desktop');
             if (link.getAttribute('data-lang') === lang) {
@@ -313,24 +286,26 @@
             currentLangDisplay.textContent = lang.toUpperCase();
         }
 
-        // Retire la classe pour afficher le contenu (résout FOUC)
+        // NOUVEAU: Retire la classe pour afficher le contenu (résout FOUC)
         document.body.classList.add('lang-loaded');
     }
 
-    // **APPLICATION IMMÉDIATE DE LA LANGUE STOCKÉE ET GESTION DES LIENS**
-    // Cette ligne est exécutée immédiatement pour traduire et préparer les liens.
+    // **APPLICATION IMMÉDIATE DE LA LANGUE STOCKÉE**
+    // Cette ligne est exécutée immédiatement pour traduire le HTML de base.
     switchLanguage(currentLang);
 
 
-    // --- 3. LOGIQUE GLOBALE, DROPDOWN & ÉCOUTEURS (légèrement ajusté) ---
+    // --- 3. LOGIQUE GLOBALE, DROPDOWN & ÉCOUTEURS ---
     
     document.addEventListener('DOMContentLoaded', () => {
-        
-        // ... (LOGIQUE D'ANIMATION ET MENU MOBILE INCHANGÉS) ...
+        // ----------------------------------------------
+        // LOGIQUE D'ANIMATION AU SCROLL (Reste inchangée)
+        // ----------------------------------------------
         const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
+                    // Supprime les classes de masquage initial (ajusté pour coller au CSS initial)
                     entry.target.classList.add('fade-in-up');
                     entry.target.classList.remove('opacity-0', 'translate-y-[40px]');
                     observer.unobserve(entry.target);
@@ -339,12 +314,17 @@
         }, observerOptions);
         
         document.querySelectorAll('.fade-in-up').forEach(element => {
+            // S'assure que les classes initiales sont là pour l'animation
             element.classList.add('opacity-0', 'translate-y-[40px]');
             observer.observe(element);
         });
         
+        // ----------------------------------------------
+        // GESTION DU MENU MOBILE (Reste inchangée)
+        // ----------------------------------------------
         const mobileMenu = document.getElementById('mobileMenu');
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+
         function toggleMobileMenu() {
             if (!mobileMenu || !mobileMenuBtn) return;
             const isHidden = mobileMenu.classList.toggle('hidden');
@@ -353,7 +333,7 @@
         if (mobileMenuBtn) mobileMenuBtn.addEventListener('click', toggleMobileMenu);
 
         // ----------------------------------------------
-        // LOGIQUE DU SÉLECTEUR DE LANGUE DESKTOP
+        // LOGIQUE DU SÉLECTEUR DE LANGUE DESKTOP (Reste inchangée)
         // ----------------------------------------------
         const langDropdownBtn = document.getElementById('lang-dropdown-btn');
         const langMenu = document.getElementById('lang-menu');
@@ -382,7 +362,7 @@
             // Écouteurs pour la sélection de langue DESKTOP
             document.querySelectorAll('#lang-menu .lang-option').forEach(link => {
                 link.addEventListener('click', (e) => {
-                    e.preventDefault(); // Empêche le changement de page immédiat
+                    e.preventDefault();
                     const lang = link.getAttribute('data-lang');
                     switchLanguage(lang);
                     // Ferme le dropdown après sélection
