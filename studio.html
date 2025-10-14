@@ -196,7 +196,7 @@
   <script>
     // --- 1. DONNÉES DE TRADUCTION ---
     const translations = {
-        // Page & Navigation
+        // ... (vos données de traduction sont parfaites et restent ici)
         'page_title': { fr: "Mosaia Studio - Notre Studio", en: "Mosaia Studio - Our Studio", nl: "Mosaia Studio - Onze Studio", de: "Mosaia Studio - Unser Studio", es: "Mosaia Studio - Nuestro Estudio" },
         'nav_home': { fr: "ACCUEIL", en: "HOME", nl: "STARTPAGINA", de: "STARTSEITE", es: "INICIO" },
         'nav_portfolio': { fr: "PORTFOLIO", en: "PORTFOLIO", nl: "PORTFOLIO", de: "PORTFOLIO", es: "PORTAFOLIO" },
@@ -218,20 +218,19 @@
         
         // Footer
         'footer_copyright': { fr: "© MOSAIA STUDIO – PAR AMARU BRANDS", en: "© MOSAIA STUDIO – BY AMARU BRANDS", nl: "© MOSAIA STUDIO – DOOR AMARU BRANDS", de: "© MOSAIA STUDIO – VON AMARU BRANDS", es: "© MOSAIA STUDIO – POR AMARU BRANDS" },
-        'footer_tagline': { fr: "L'ART DE LA MOSAÏQUE QUI ÉVEILLE L'ÉMOTION ET DURE", en: "THE ART OF MOSAIC THAT AWAKENS EMOTION AND ENDURES", nl: "DE KUNST VAN MOZAÏEK DAT EMOTIE OPROEPT EN VOORTDUURT", de: "DIE KUNST DES MOSAIKS, DIE EMOTIONEN WECKT UND BESTEHT", es: "EL ARTE DEL MOSAICO QUE DESPIERTA EMOCIÓN Y PERDURA" }
+        'footer_tagline': { fr: "L'ART DE LA MOSAÏQUE QUI ÉVEILLE L'ÉMOTION ET DURE", en: "THE ART OF MOSAIC THAT AWAKENS EMOTION AND ENDURES", nl: "DE KUNST VAN MOZAÏEK DAT EMOTIE OPROEPT EN VOORTDUURT", de: "DIE KUNST DES MOSAIKS, DIE EMOTIONEN WECKT UND BESTEHT", es: "EL ARTE DU MOSAICO QUE DESPIERTA EMOCIÓN Y PERDURA" }
     };
 
-    // **AJOUT POUR LA PERSISTANCE : Détermination de la langue initiale**
-    // Récupère la langue stockée dans localStorage, sinon utilise 'fr'
+    // **INITIALISATION DE LA LANGUE PERSISTANTE (DOIT ÊTRE FAIT AVANT DOMContentLoaded)**
+    // Détermine la langue stockée ou utilise 'fr' par défaut.
     let currentLang = localStorage.getItem('mosaiaLang') || 'fr';
 
-    // --- 2. FONCTION DE TRADUCTION (MISE À JOUR AVEC PERSISTANCE) ---
+    // --- 2. FONCTION DE TRADUCTION ---
     function switchLanguage(lang) {
-        // 1. Mise à jour de la variable globale et de l'attribut lang
         currentLang = lang;
         document.documentElement.lang = lang;
         
-        // **ADAPTATION POUR LA PERSISTANCE : Stockage de la langue dans localStorage**
+        // **SAUVEGARDE DANS LOCALSTORAGE**
         localStorage.setItem('mosaiaLang', lang);
 
         // Met à jour le titre
@@ -240,7 +239,6 @@
         if (translations[pageKey] && translations[pageKey][lang]) {
             titleElement.textContent = translations[pageKey][lang];
         }
-
 
         // Met à jour tous les éléments avec l'attribut data-translate-key
         document.querySelectorAll('[data-translate-key]').forEach(element => {
@@ -252,16 +250,11 @@
 
         // Gère les classes 'active' pour les boutons de langue MOBILE
         document.querySelectorAll('#lang-selector-mobile .lang-button').forEach(button => {
-            // Logique pour retirer toutes les classes "actives" si vous utilisez du Tailwind pour l'état actif
-            // Exemple : button.classList.remove('text-bronze', 'font-bold', 'border-b', 'border-bronze', 'text-charcoal');
-            
-            button.classList.remove('active'); // Suppose que 'active' gère l'état visuel
+            // Retire la classe 'active' à tous
+            button.classList.remove('active');
             if (button.getAttribute('data-lang') === lang) {
+                // Ajoute la classe 'active' au bouton sélectionné
                 button.classList.add('active');
-                // Si vous utilisez Tailwind, ajoutez les classes spécifiques ici
-                // Exemple : button.classList.add('text-bronze', 'font-bold', 'border-b', 'border-bronze');
-            } else {
-                // Exemple : button.classList.add('text-charcoal');
             }
         });
 
@@ -269,17 +262,24 @@
         const currentLangDisplay = document.getElementById('current-lang-display');
         if (currentLangDisplay) {
             currentLangDisplay.textContent = lang.toUpperCase();
+            // Optionnel : Vous pourriez ajouter ici la classe 'active' pour le lien dans le menu déroulant desktop
+            // (bien que l'affichage du FR/EN/etc. gère déjà cela)
         }
     }
 
-    // --- 3. LOGIQUE GLOBALE, DROPDOWN & INITIALISATION ---
+    // **APPLICATION IMMÉDIATE DE LA LANGUE STOCKÉE**
+    // Cette ligne garantit que la langue est chargée et appliquée avant que la page entière ne soit rendue,
+    // minimisant l'effet de flash. Elle est exécutée immédiatement.
+    switchLanguage(currentLang);
+
+
+    // --- 3. LOGIQUE GLOBALE, DROPDOWN & ÉCOUTEURS ---
     
     document.addEventListener('DOMContentLoaded', () => {
-        // **ADAPTATION POUR L'INITIALISATION : Appliquer la langue persistante**
-        switchLanguage(currentLang);
+        // La logique d'initialisation de la langue est maintenant déplacée au-dessus de DOMContentLoaded.
 
         // ----------------------------------------------
-        // LOGIQUE D'ANIMATION AU SCROLL
+        // LOGIQUE D'ANIMATION AU SCROLL (Reste inchangée)
         // ----------------------------------------------
         const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
         const observer = new IntersectionObserver((entries) => {
@@ -293,13 +293,12 @@
         }, observerOptions);
         
         document.querySelectorAll('.fade-in-up').forEach(element => {
-            // S'assure que les classes initiales sont là pour l'animation CSS
             element.classList.add('opacity-0', 'translate-y-[40px]');
             observer.observe(element);
         });
         
         // ----------------------------------------------
-        // GESTION DU MENU MOBILE
+        // GESTION DU MENU MOBILE (Reste inchangée)
         // ----------------------------------------------
         const mobileMenu = document.getElementById('mobileMenu');
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
@@ -312,12 +311,12 @@
         if (mobileMenuBtn) mobileMenuBtn.addEventListener('click', toggleMobileMenu);
 
         // ----------------------------------------------
-        // LOGIQUE DU SÉLECTEUR DE LANGUE DESKTOP
+        // LOGIQUE DU SÉLECTEUR DE LANGUE DESKTOP (Reste inchangée)
         // ----------------------------------------------
         const langDropdownBtn = document.getElementById('lang-dropdown-btn');
         const langMenu = document.getElementById('lang-menu');
         const dropdownArrow = document.getElementById('dropdown-arrow');
-        const langDropdownContainer = document.getElementById('lang-dropdown-container'); // Ajout de la référence
+        const langDropdownContainer = document.getElementById('lang-dropdown-container');
 
         if (langDropdownBtn && langMenu && dropdownArrow && langDropdownContainer) {
             // Gestion de l'ouverture/fermeture du menu déroulant Desktop
@@ -338,14 +337,12 @@
                 }
             });
             
-            // Écouteurs pour la sélection de langue DESKTOP (links: .lang-option)
+            // Écouteurs pour la sélection de langue DESKTOP
             document.querySelectorAll('#lang-menu .lang-option').forEach(link => {
                 link.addEventListener('click', (e) => {
                     e.preventDefault();
                     const lang = link.getAttribute('data-lang');
-                    // switchLanguage va sauvegarder dans localStorage
                     switchLanguage(lang);
-                    // Ferme le menu déroulant après la sélection
                     langMenu.classList.add('hidden');
                     langDropdownBtn.setAttribute('aria-expanded', 'false');
                     dropdownArrow.classList.remove('rotate-180');
@@ -353,13 +350,11 @@
             });
         }
 
-        // Écouteurs pour la sélection de langue MOBILE (buttons: #lang-selector-mobile .lang-button)
+        // Écouteurs pour la sélection de langue MOBILE
         document.querySelectorAll('#lang-selector-mobile .lang-button').forEach(button => {
             button.addEventListener('click', (e) => {
                 const lang = button.getAttribute('data-lang');
-                // switchLanguage va sauvegarder dans localStorage
                 switchLanguage(lang);
-                // Ferme le menu mobile après la sélection
                 if (mobileMenu) mobileMenu.classList.add('hidden');
                 if (mobileMenuBtn) mobileMenuBtn.setAttribute('aria-expanded', 'false');
             });
