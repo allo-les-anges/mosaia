@@ -190,7 +190,7 @@
     </footer>
     
     <script>
-        // --- 1. DONNÉES DE TRADUCTION ---
+        // --- 1. DONNÉES DE TRADUCTION (Rien ne change ici) ---
         const translations = {
             // Page & Navigation
             'page_title': { fr: "Mosaia Studio - Notre Studio", en: "Mosaia Studio - Our Studio", nl: "Mosaia Studio - Onze Studio", de: "Mosaia Studio - Unser Studio", es: "Mosaia Studio - Nuestro Estudio" },
@@ -218,56 +218,18 @@
             'footer_tagline': { fr: "L'ART DE LA MOSAÏQUE QUI ÉVEILLE L'ÉMOTION ET DURE", en: "THE ART OF MOSAIC THAT AWAKENS EMOTION AND ENDURES", nl: "DE KUNST VAN MOZAÏEK DAT EMOTIE OPROEPT EN VOORTDUURT", de: "DIE KUNST DES MOSAIKS, DIE EMOTIONEN WECKT UND BESTEHT", es: "EL ARTE DEL MOSAICO QUE DESPIERTA EMOCIÓN Y PERDURA" }
         };
 
-        // --- FONCTIONS DE TRADUCTION ET DE MISE À JOUR DE LA NAVIGATION ---
-        
-        // Fonction corrigée pour mettre à jour les liens de navigation avec le paramètre de langue
-        function updateNavigationLinks(lang) {
-            const navigationLinks = document.querySelectorAll('.nav-lang-link, #logo-link');
-
-            navigationLinks.forEach(link => {
-                let href = link.getAttribute('href');
-                
-                // S'assurer que ce n'est pas un lien vide ou externe
-                if (href && !href.startsWith('#') && !href.startsWith('http')) {
-                    
-                    // 1. Déterminer le chemin de base (ex: 'index.html', 'portfolio.html')
-                    const baseFilename = href.substring(href.lastIndexOf('/') + 1).split('?')[0];
-
-                    // 2. Construire l'URL (pour pouvoir manipuler les paramètres facilement)
-                    // Utiliser l'URL de la page actuelle comme base pour éviter les problèmes de chemin relatif.
-                    const url = new URL(baseFilename, window.location.href.split('?')[0]); 
-                    
-                    // 3. Supprimer l'ancien paramètre 'lang'
-                    url.searchParams.delete('lang');
-                    
-                    // 4. Ajouter le nouveau paramètre de langue (sauf pour 'fr')
-                    if (lang !== 'fr') {
-                         url.searchParams.set('lang', lang);
-                    }
-                    
-                    // 5. Réécriture du href avec le nom du fichier de base et les paramètres.
-                    let newHref = baseFilename;
-                    
-                    if (url.search) {
-                         newHref += url.search;
-                    }
-
-                    link.setAttribute('href', newHref);
-                }
-            });
-        }
-        
-        let currentLang = 'fr';
+        // Langue par défaut et nom du fichier actuel
+        let currentLang = 'en'; 
         const pageFileName = 'studio.html'; // Nom du fichier actuel pour la détection de page active
+        const supportedLangs = ['fr', 'en', 'nl', 'de', 'es'];
 
+        // --- FONCTION PRINCIPALE DE TRADUCTION ET MISE À JOUR VISUELLE ---
         function switchLanguage(lang) {
             currentLang = lang;
             document.documentElement.lang = lang;
             
+            // Persistance : enregistrement de la langue sélectionnée
             localStorage.setItem('mosaiaLang', lang);
-
-            // MISE À JOUR CRUCIALE des liens de navigation
-            updateNavigationLinks(lang);
 
             // Met à jour le titre
             const titleElement = document.querySelector('title');
@@ -324,15 +286,32 @@
                 }
             });
         }
+        
+        // --- LOGIQUE D'INITIALISATION (Mise en œuvre de la stratégie retenue) ---
 
-        // --- INITIALISATION AU CHARGEMENT (exécutée rapidement) ---
-        const urlParams = new URLSearchParams(window.location.search);
-        const urlLang = urlParams.get('lang');
-        
-        let initialLang = urlLang || localStorage.getItem('mosaiaLang') || 'fr';
-        
-        // Applique la traduction et l'état des liens dès que possible
-        switchLanguage(initialLang);
+        function initializeLanguage() {
+            let initialLang = localStorage.getItem('mosaiaLang');
+
+            // 1. Si la langue est déjà dans localStorage, on l'utilise
+            if (initialLang && supportedLangs.includes(initialLang)) {
+                 switchLanguage(initialLang);
+                 return;
+            }
+
+            // 2. Si non, on tente la détection du navigateur (première fois seulement)
+            const browserLang = navigator.language.substring(0, 2);
+            if (supportedLangs.includes(browserLang)) {
+                initialLang = browserLang;
+            } else {
+                // 3. Sinon, on utilise la langue par défaut (anglais 'en')
+                initialLang = 'en';
+            }
+
+            switchLanguage(initialLang);
+        }
+
+        // Exécution de l'initialisation de la langue
+        initializeLanguage();
         
         // --- LOGIQUE DOMContentLoaded (pour les interactions) ---
         document.addEventListener('DOMContentLoaded', () => {
@@ -391,7 +370,6 @@
             // Écouteurs pour la sélection de langue MOBILE
             document.querySelectorAll('#lang-selector-mobile .lang-button').forEach(button => {
                 button.addEventListener('click', (e) => {
-                    // Pas besoin de preventDefault car c'est un <button>
                     const lang = button.getAttribute('data-lang');
                     switchLanguage(lang);
                     if (mobileMenu) mobileMenu.classList.add('hidden');
@@ -418,6 +396,6 @@
             });
 
         }); // Fin DOMContentLoaded
-    </script> 
+    </script>
 </body>
 </html>
