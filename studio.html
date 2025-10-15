@@ -17,17 +17,33 @@
         }
     </script>
     <style>
-        .fade-in-up { /* Les animations sont gérées par la librairie Intersection Observer dans le script */ }
+        /* La classe fade-in-up est gérée par JS pour l'animation Intersection Observer */
+        .fade-in-up { 
+            /* Les classes initiales 'opacity-0 translate-y-[40px]' sont ajoutées par le script au chargement */
+            /* Les classes de transition sont gérées par Tailwind ci-dessous */
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        /* Effet de ligne élégante sous les titres de section */
         .elegant-line { position: relative; }
         .elegant-line::after { content: ''; position: absolute; bottom: -12px; left: 50%; transform: translateX(-50%); width: 80px; height: 1px; background: linear-gradient(90deg, transparent, #C99B4F, transparent); }
+        
+        /* Styles des boutons CTA (non utilisés ici mais conservés pour cohérence) */
         .cta-primary { background: linear-gradient(135deg, #C99B4F, #B8894A); transition: all 0.4s ease; font-family: 'Montserrat', sans-serif; font-weight: 600; }
         .cta-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(201, 155, 79, 0.2); background: #1A1A1A; color: #C99B4F; }
+        
+        /* Styles des liens de navigation desktop */
         .nav-link { position: relative; transition: all 0.3s ease; }
         .nav-link:hover { color: #C99B4F; }
+        /* Ligne de soulignement au survol ou sur la page courante */
         .nav-link::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: #C99B4F; transition: width 0.3s ease; }
-        .nav-link.active::after, .nav-link:hover::after { width: 100%; } /* Ajout de la classe active pour le lien courant */
+        .nav-link.active::after, .nav-link:hover::after { width: 100%; } 
+        /* La classe 'active' est maintenant gérée par JS pour la couleur et le soulignement */
+        
+        /* Espacement des sections */
         .page-section { padding-top: 100px; padding-bottom: 100px; }
 
+        /* Styles des boutons de langue */
         .lang-button { background: none; border: 1px solid transparent; padding: 4px 8px; border-radius: 4px; transition: all 0.3s; }
         .lang-button:hover { background: rgba(201, 155, 79, 0.1); border-color: #C99B4F; color: #C99B4F; }
         .lang-button.active { background: #C99B4F; color: #1A1A1A !important; font-weight: 600; border-color: #C99B4F; }
@@ -35,6 +51,7 @@
         /* Style pour les liens de langue actifs dans le dropdown desktop */
         .lang-option.active-desktop { color: #C99B4F !important; font-weight: 600; background-color: #F8F8F8; }
         
+        /* Flèche du dropdown de langue */
         #dropdown-arrow { transition: transform 0.3s ease; }
         .rotate-180 { transform: rotate(180deg); }
     </style>
@@ -55,7 +72,7 @@
                     <div class="flex items-center space-x-8 lg:space-x-10">
                         <a href="index.html" data-translate-key="nav_home" class="nav-link nav-lang-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase">ACCUEIL</a>
                         <a href="portfolio.html" data-translate-key="nav_portfolio" class="nav-link nav-lang-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase">PORTFOLIO</a>
-                        <a href="studio.html" data-translate-key="nav_studio" class="nav-link nav-lang-link text-bronze border-b-2 border-bronze px-1 py-2 text-sm font-body font-medium tracking-wide uppercase active">STUDIO</a>
+                        <a href="studio.html" data-translate-key="nav_studio" class="nav-link nav-lang-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase">STUDIO</a>
                         <a href="sur-mesure.html" data-translate-key="nav_bespoke" class="nav-link nav-lang-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase">SUR-MESURE</a>
                         <a href="processus.html" data-translate-key="nav_process" class="nav-link nav-lang-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase">PROCESSUS</a>
                         <a href="partenaires.html" data-translate-key="nav_partners" class="nav-link nav-lang-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase">PARTENAIRES</a>
@@ -63,19 +80,19 @@
                         
                         <div class="relative ml-4 pl-4 border-l border-charcoal/10" id="lang-dropdown-container">
                             <button id="lang-dropdown-btn" 
-                                        class="lang-button text-charcoal text-sm font-title font-medium flex items-center p-2" 
-                                        aria-expanded="false" 
-                                        aria-controls="lang-menu"
-                                        aria-label="Sélectionner la langue">
+                                            class="lang-button text-charcoal text-sm font-title font-medium flex items-center p-2" 
+                                            aria-expanded="false" 
+                                            aria-controls="lang-menu"
+                                            aria-label="Sélectionner la langue">
                                 <span id="current-lang-display" class="font-semibold text-bronze">FR</span>
                                 <svg class="h-4 w-4 ml-1 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" id="dropdown-arrow"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
                             </button>
                             
                             <div id="lang-menu" 
-                                    class="absolute right-0 mt-3 w-32 bg-pure-white shadow-xl rounded-md ring-1 ring-charcoal/5 hidden origin-top-right py-1 z-50" 
-                                    role="menu" 
-                                    aria-orientation="vertical" 
-                                    aria-labelledby="lang-dropdown-btn">
+                                         class="absolute right-0 mt-3 w-32 bg-pure-white shadow-xl rounded-md ring-1 ring-charcoal/5 hidden origin-top-right py-1 z-50" 
+                                         role="menu" 
+                                         aria-orientation="vertical" 
+                                         aria-labelledby="lang-dropdown-btn">
                                 <a href="#" class="block px-4 py-2 text-sm text-charcoal hover:bg-light-gray lang-option" role="menuitem" data-lang="fr">Français</a>
                                 <a href="#" class="block px-4 py-2 text-sm text-charcoal hover:bg-light-gray lang-option" role="menuitem" data-lang="en">English</a>
                                 <a href="#" class="block px-4 py-2 text-sm text-charcoal hover:bg-light-gray lang-option" role="menuitem" data-lang="nl">Nederlands</a>
@@ -100,13 +117,13 @@
             
             <div id="mobileMenu" class="md:hidden bg-pure-white border-t border-charcoal/10 hidden">
                 <div class="px-6 py-4 space-y-2">
-                    <a href="index.html" data-translate-key="nav_home" class="nav-lang-link block py-2 text-bronze font-body font-medium uppercase">ACCUEIL</a>
-                    <a href="portfolio.html" data-translate-key="nav_portfolio" class="nav-lang-link block py-2 text-charcoal font-body font-medium uppercase">PORTFOLIO</a>
-                    <a href="studio.html" data-translate-key="nav_studio" class="nav-lang-link block py-2 text-charcoal font-body font-medium uppercase">STUDIO</a>
-                    <a href="sur-mesure.html" data-translate-key="nav_bespoke" class="nav-lang-link block py-2 text-charcoal font-body font-medium uppercase">SUR-MESURE</a>
-                    <a href="processus.html" data-translate-key="nav_process" class="nav-lang-link block py-2 text-charcoal font-body font-medium uppercase">PROCESSUS</a>
-                    <a href="partenaires.html" data-translate-key="nav_partners" class="nav-lang-link block py-2 text-charcoal font-body font-medium uppercase">PARTENAIRES</a>
-                    <a href="contact.html" data-translate-key="nav_contact" class="nav-lang-link block py-2 text-charcoal font-body font-medium uppercase">CONTACT</a>
+                    <a href="index.html" data-translate-key="nav_home" class="nav-lang-link block py-2 text-charcoal hover:text-bronze font-body font-medium uppercase">ACCUEIL</a>
+                    <a href="portfolio.html" data-translate-key="nav_portfolio" class="nav-lang-link block py-2 text-charcoal hover:text-bronze font-body font-medium uppercase">PORTFOLIO</a>
+                    <a href="studio.html" data-translate-key="nav_studio" class="nav-lang-link block py-2 text-charcoal hover:text-bronze font-body font-medium uppercase">STUDIO</a>
+                    <a href="sur-mesure.html" data-translate-key="nav_bespoke" class="nav-lang-link block py-2 text-charcoal hover:text-bronze font-body font-medium uppercase">SUR-MESURE</a>
+                    <a href="processus.html" data-translate-key="nav_process" class="nav-lang-link block py-2 text-charcoal hover:text-bronze font-body font-medium uppercase">PROCESSUS</a>
+                    <a href="partenaires.html" data-translate-key="nav_partners" class="nav-lang-link block py-2 text-charcoal hover:text-bronze font-body font-medium uppercase">PARTENAIRES</a>
+                    <a href="contact.html" data-translate-key="nav_contact" class="nav-lang-link block py-2 text-charcoal hover:text-bronze font-body font-medium uppercase">CONTACT</a>
                     
                     <div id="lang-selector-mobile" class="pt-4 border-t border-charcoal/10">
                         <h4 data-translate-key="lang_selector_title" class="text-sm font-title font-medium text-charcoal mb-2 uppercase">Choisir la Langue</h4>
@@ -237,7 +254,6 @@
                          url.searchParams.set('lang', lang);
                     }
                     
-
                     // Réécrire le href (pathname + search)
                     link.setAttribute('href', url.pathname + url.search);
                 }
@@ -246,7 +262,8 @@
 
         // --- FONCTION PRINCIPALE DE TRADUCTION ET MISE À JOUR ---
         let currentLang = 'fr';
-        const pageFileName = 'studio.html'; // Nom du fichier actuel
+        // Ajustement : pour une gestion plus robuste de la page courante, on utilise l'URL.pathname
+        const currentPagePath = window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1) || 'index.html';
 
         function switchLanguage(lang) {
             currentLang = lang;
@@ -292,10 +309,26 @@
             }
             
             // Gère le lien de la page courante dans la navigation (visuel)
-            document.querySelectorAll('.nav-lang-link').forEach(link => {
-                link.classList.remove('active', 'text-bronze', 'border-b-2');
-                if (link.getAttribute('href').includes(pageFileName)) {
-                    link.classList.add('active', 'text-bronze', 'border-b-2');
+            document.querySelectorAll('.nav-link').forEach(link => {
+                // On réinitialise les classes du lien nav-link pour les liens desktop
+                link.classList.remove('active', 'text-bronze');
+                link.classList.add('text-charcoal'); // S'assurer que la couleur par défaut est là
+
+                // On vérifie le href du lien (sans les paramètres de langue pour la comparaison)
+                let linkPath = link.getAttribute('href');
+                if (linkPath) {
+                    linkPath = linkPath.split('?')[0].substring(linkPath.lastIndexOf('/') + 1) || 'index.html';
+                }
+
+                // Pour la navigation desktop
+                if (link.closest('nav') && linkPath === currentPagePath) {
+                    link.classList.add('active', 'text-bronze');
+                    link.classList.remove('text-charcoal'); // Appliquer la couleur bronze
+                } 
+                // Pour la navigation mobile (pas de classe .nav-link, seulement .nav-lang-link)
+                else if (!link.closest('nav') && linkPath === currentPagePath) {
+                    link.classList.remove('text-charcoal', 'hover:text-bronze');
+                    link.classList.add('text-bronze');
                 }
             });
         }
@@ -305,14 +338,19 @@
         const urlParams = new URLSearchParams(window.location.search);
         const urlLang = urlParams.get('lang');
         
+        // Liste des langues valides pour éviter les erreurs
+        const validLangs = ['fr', 'en', 'nl', 'de', 'es'];
+        
         let initialLang = urlLang || localStorage.getItem('mosaiaLang') || 'fr';
+        if (!validLangs.includes(initialLang)) {
+            initialLang = 'fr';
+        }
         
         // Applique la traduction
         switchLanguage(initialLang);
         
         // --- LOGIQUE DOMContentLoaded ---
         document.addEventListener('DOMContentLoaded', () => {
-            // (La logique d'initialisation de la langue est déplacée avant DOMContentLoaded pour être plus rapide)
             
             // ----------------------------------------------
             // GESTION DU MENU MOBILE
@@ -382,15 +420,25 @@
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
+                        // Enlève les classes initiales pour déclencher la transition
                         entry.target.classList.remove('opacity-0', 'translate-y-[40px]');
+                        // On n'a plus besoin d'observer l'élément une fois l'animation jouée
                         observer.unobserve(entry.target);
                     }
                 });
             }, observerOptions);
 
             document.querySelectorAll('.fade-in-up').forEach(element => {
+                // Initialise les éléments en dehors de l'écran ou invisibles
                 element.classList.add('opacity-0', 'translate-y-[40px]');
-                observer.observe(element);
+                
+                // Ajout des classes de délai pour décaler l'animation
+                const delay = element.classList.contains('delay-1') ? 200 : element.classList.contains('delay-2') ? 400 : element.classList.contains('delay-3') ? 600 : element.classList.contains('delay-4') ? 800 : 0;
+                
+                // On met un petit timeout pour s'assurer que les classes initiales sont appliquées avant d'observer
+                setTimeout(() => {
+                    observer.observe(element);
+                }, delay); // Le délai assure le décalage dans l'animation initiale
             });
 
         }); // Fin DOMContentLoaded
