@@ -1,18 +1,28 @@
+C'est une excellente clarification de la stratégie. Revenir à une approche **sans modification d'URL** (pas de `/en/` ou `/fr/`) et en utilisant le **stockage local pour la persistance** simplifie énormément l'architecture et élimine les problèmes de liens cassés sur GitHub Pages.
+
+J'ai révisé le script complet de `sur-mesure.html` en appliquant cette nouvelle stratégie :
+
+1.  **Langue par défaut :** Anglais (`en`).
+2.  **Initialisation :** Basée sur `localStorage` (persistance), sinon sur `navigator.language` (première visite), sinon Anglais.
+3.  **Liens de Navigation :** Les `href` restent simples (ex: `index.html`, `contact.html`). Le JavaScript ne fait que mettre à jour le **texte** des liens. La fonction `updateNavigationLinks` n'est plus nécessaire.
+4.  **Liens Absolus :** Je vais utiliser le chemin relatif standard dans le code (ex: `index.html`), ce qui fonctionne parfaitement avec GitHub Pages, même avec une URL de base personnalisée.
+
+Voici le code HTML et JavaScript mis à jour pour `sur-mesure.html` :
+
+-----
+
+## Code HTML & JavaScript Révisé (`sur-mesure.html`)
+
+```html
 <!DOCTYPE html>
-<html lang="fr" class="scroll-smooth">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-translate-key="page_title">Mosaia Studio - Sur-Mesure</title>
+    <title data-translate-key="page_title">Mosaia Studio - Bespoke</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     
-    <link rel="alternate" hreflang="fr" href="https://votresite.com/sur-mesure.html" />
-    <link rel="alternate" hreflang="en" href="https://votresite.com/en/sur-mesure.html" />
-    <link rel="alternate" hreflang="nl" href="https://votresite.com/nl/sur-mesure.html" />
-    <link rel="alternate" hreflang="de" href="https://votresite.com/de/sur-mesure.html" />
-    <link rel="alternate" hreflang="es" href="https://votresite.com/es/sur-mesure.html" />
-
     <script>
         tailwind.config = {
             theme: {
@@ -76,7 +86,7 @@
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 <div class="flex-shrink-0">
-                    <a href="index.html" class="nav-lang-link">
+                    <a href="index.html">
                         <img src="https://raw.githubusercontent.com/allo-les-anges/mosaia/main/mosaia-assets/logos/logo%20mosaia%202.png" 
                              alt="Mosaia Studio Logo" 
                              class="h-10 lg:h-12 w-auto">
@@ -85,13 +95,13 @@
                 
                 <nav class="hidden md:block">
                     <div class="flex items-center space-x-8 lg:space-x-10">
-                        <a href="index.html" data-translate-key="nav_home" class="nav-link nav-lang-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase">ACCUEIL</a>
-                        <a href="portfolio.html" data-translate-key="nav_portfolio" class="nav-link nav-lang-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase">PORTFOLIO</a>
-                        <a href="studio.html" data-translate-key="nav_studio" class="nav-link nav-lang-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase">STUDIO</a>
-                        <a href="sur-mesure.html" data-translate-key="nav_bespoke" class="nav-link nav-lang-link text-bronze border-b-2 border-bronze px-1 py-2 text-sm font-body font-medium tracking-wide uppercase active">SUR-MESURE</a>
-                        <a href="processus.html" data-translate-key="nav_process" class="nav-link nav-lang-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase">PROCESSUS</a>
-                        <a href="partenaires.html" data-translate-key="nav_partners" class="nav-link nav-lang-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase">PARTENAIRES</a>
-                        <a href="contact.html" data-translate-key="nav_contact" class="nav-link nav-lang-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase">CONTACT</a>
+                        <a href="index.html" data-translate-key="nav_home" class="nav-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase">HOME</a>
+                        <a href="portfolio.html" data-translate-key="nav_portfolio" class="nav-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase">PORTFOLIO</a>
+                        <a href="studio.html" data-translate-key="nav_studio" class="nav-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase">STUDIO</a>
+                        <a href="sur-mesure.html" data-translate-key="nav_bespoke" class="nav-link text-bronze border-b-2 border-bronze px-1 py-2 text-sm font-body font-medium tracking-wide uppercase active">BESPOKE</a>
+                        <a href="processus.html" data-translate-key="nav_process" class="nav-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase">PROCESS</a>
+                        <a href="partenaires.html" data-translate-key="nav_partners" class="nav-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase">PARTNERS</a>
+                        <a href="contact.html" data-translate-key="nav_contact" class="nav-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase">CONTACT</a>
                         
                         <div class="relative ml-4 pl-4 border-l border-charcoal/10" id="lang-dropdown-container">
                             <button id="lang-dropdown-btn" 
@@ -99,7 +109,7 @@
                                     aria-expanded="false" 
                                     aria-controls="lang-menu"
                                     aria-label="Sélectionner la langue">
-                                <span id="current-lang-display" class="font-semibold text-bronze">FR</span>
+                                <span id="current-lang-display" class="font-semibold text-bronze">EN</span>
                                 <svg class="h-4 w-4 ml-1 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" id="dropdown-arrow"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
                             </button>
                             
@@ -132,16 +142,16 @@
             
             <div id="mobileMenu" class="md:hidden bg-pure-white border-t border-charcoal/10 hidden">
                 <div class="px-6 py-4 space-y-2">
-                    <a href="index.html" data-translate-key="nav_home" class="nav-lang-link block py-2 text-charcoal font-body font-medium uppercase">ACCUEIL</a>
-                    <a href="portfolio.html" data-translate-key="nav_portfolio" class="nav-lang-link block py-2 text-charcoal font-body font-medium uppercase">PORTFOLIO</a>
-                    <a href="studio.html" data-translate-key="nav_studio" class="nav-lang-link block py-2 text-charcoal font-body font-medium uppercase">STUDIO</a>
-                    <a href="sur-mesure.html" data-translate-key="nav_bespoke" class="nav-lang-link block py-2 text-bronze font-body font-medium uppercase">SUR-MESURE</a>
-                    <a href="processus.html" data-translate-key="nav_process" class="nav-lang-link block py-2 text-charcoal font-body font-medium uppercase">PROCESSUS</a>
-                    <a href="partenaires.html" data-translate-key="nav_partners" class="nav-lang-link block py-2 text-charcoal font-body font-medium uppercase">PARTENAIRES</a>
-                    <a href="contact.html" data-translate-key="nav_contact" class="nav-lang-link block py-2 text-charcoal font-body font-medium uppercase">CONTACT</a>
+                    <a href="index.html" data-translate-key="nav_home" class="block py-2 text-charcoal font-body font-medium uppercase">HOME</a>
+                    <a href="portfolio.html" data-translate-key="nav_portfolio" class="block py-2 text-charcoal font-body font-medium uppercase">PORTFOLIO</a>
+                    <a href="studio.html" data-translate-key="nav_studio" class="block py-2 text-charcoal font-body font-medium uppercase">STUDIO</a>
+                    <a href="sur-mesure.html" data-translate-key="nav_bespoke" class="block py-2 text-bronze font-body font-medium uppercase">BESPOKE</a>
+                    <a href="processus.html" data-translate-key="nav_process" class="block py-2 text-charcoal font-body font-medium uppercase">PROCESS</a>
+                    <a href="partenaires.html" data-translate-key="nav_partners" class="block py-2 text-charcoal font-body font-medium uppercase">PARTNERS</a>
+                    <a href="contact.html" data-translate-key="nav_contact" class="block py-2 text-charcoal font-body font-medium uppercase">CONTACT</a>
                     
                     <div id="lang-selector-mobile" class="pt-4 border-t border-charcoal/10">
-                        <h4 data-translate-key="lang_selector_title" class="text-sm font-title font-medium text-charcoal mb-2 uppercase">Choisir la Langue</h4>
+                        <h4 data-translate-key="lang_selector_title" class="text-sm font-title font-medium text-charcoal mb-2 uppercase">Choose Language</h4>
                         <div class="flex flex-wrap gap-2">
                             <button class="lang-button text-charcoal text-sm" data-lang="fr">Français</button>
                             <button class="lang-button text-charcoal text-sm" data-lang="en">English</button>
@@ -159,66 +169,66 @@
             <div class="max-w-7xl mx-auto px-6">
                 <div class="text-center mb-20">
                     <h2 data-translate-key="section_title" class="text-4xl md:text-5xl font-title font-bold text-charcoal mb-8 tracking-widest uppercase fade-in-up elegant-line">
-                        VOTRE VISION, NOTRE ART
+                        YOUR VISION, OUR ART
                     </h2>
                     <p data-translate-key="section_subtitle" class="text-xl text-medium-gray leading-relaxed font-body font-light fade-in-up delay-1 max-w-4xl mx-auto">
-                        Chaque mosaïque Mosaia Studio commence par une idée, une émotion, une vision. Nous traduisons votre inspiration en une œuvre d'art éternelle.
+                        Every Mosaia Studio mosaic begins with an idea, an emotion, a vision. We translate your inspiration into an eternal work of art.
                     </p>
                 </div>
 
-                <h3 data-translate-key="process_title" class="text-3xl font-title font-bold uppercase mb-12 text-center text-charcoal fade-in-up delay-2">Notre Processus de Création</h3>
+                <h3 data-translate-key="process_title" class="text-3xl font-title font-bold uppercase mb-12 text-center text-charcoal fade-in-up delay-2">Our Creation Process</h3>
                 <div class="grid md:grid-cols-5 gap-8 max-w-6xl mx-auto">
                     <div class="timeline-item p-4 hover:bg-light-gray transition-colors fade-in-up delay-3">
                         <h4 data-translate-key="step1_title" class="font-title font-bold uppercase text-bronze mb-2">1. Concept & Inspiration</h4>
-                        <p data-translate-key="step1_text" class="text-sm text-medium-gray">Échanges initiaux pour capturer votre idée et l'environnement du projet.</p>
+                        <p data-translate-key="step1_text" class="text-sm text-medium-gray">Initial discussions to capture your idea and the project's environment.</p>
                     </div>
                     <div class="timeline-item p-4 hover:bg-light-gray transition-colors fade-in-up delay-4">
                         <h4 data-translate-key="step2_title" class="font-title font-bold uppercase text-bronze mb-2">2. Digital Design</h4>
-                        <p data-translate-key="step2_text" class="text-sm text-medium-gray">Modélisation et rendu 3D de la mosaïque dans son contexte architectural.</p>
+                        <p data-translate-key="step2_text" class="text-sm text-medium-gray">3D modeling and rendering of the mosaic within its architectural context.</p>
                     </div>
                     <div class="timeline-item p-4 hover:bg-light-gray transition-colors fade-in-up delay-5">
                         <h4 data-translate-key="step3_title" class="font-title font-bold uppercase text-bronze mb-2">3. Material Selection</h4>
-                        <p data-translate-key="step3_text" class="text-sm text-medium-gray">Sélection des tesselles (verre, pierre, métal) et vérification des textures.</p>
+                        <p data-translate-key="step3_text" class="text-sm text-medium-gray">Selection of tesserae (glass, stone, metal) and texture verification.</p>
                     </div>
                     <div class="timeline-item p-4 hover:bg-light-gray transition-colors fade-in-up delay-6">
                         <h4 data-translate-key="step4_title" class="font-title font-bold uppercase text-bronze mb-2">4. Color Mapping</h4>
-                        <p data-translate-key="step4_text" class="text-sm text-medium-gray">Cartographie précise des couleurs pour assurer la fidélité de l'œuvre finale.</p>
+                        <p data-translate-key="step4_text" class="text-sm text-medium-gray">Precise color mapping to ensure the fidelity of the final work.</p>
                     </div>
                     <div class="timeline-item p-4 hover:bg-light-gray transition-colors fade-in-up delay-7">
                         <h4 data-translate-key="step5_title" class="font-title font-bold uppercase text-bronze mb-2">5. Approval & Production</h4>
-                        <p data-translate-key="step5_text" class="text-sm text-medium-gray">Validation finale par le client avant le lancement de la production robotisée.</p>
+                        <p data-translate-key="step5_text" class="text-sm text-medium-gray">Final client validation before launching robotic production.</p>
                     </div>
                 </div>
 
-                <h3 data-translate-key="advantages_title" class="text-3xl font-title font-bold uppercase mb-12 text-center text-charcoal mt-20 fade-in-up">Avantages du Sur-Mesure</h3>
+                <h3 data-translate-key="advantages_title" class="text-3xl font-title font-bold uppercase mb-12 text-center text-charcoal mt-20 fade-in-up">Bespoke Advantages</h3>
                 <div class="grid md:grid-cols-4 gap-10 text-center max-w-6xl mx-auto">
                     <div class="fade-in-up delay-3">
                         <div class="text-5xl text-charcoal advantage-icon mb-4" aria-hidden="true">🖥️</div>
                         <h4 data-translate-key="advantage1_title" class="font-title font-bold uppercase mb-2">Visual Previews</h4>
-                        <p data-translate-key="advantage1_text" class="text-sm text-medium-gray">Visualisez le résultat avant la production grâce à nos rendus photoréalistes.</p>
+                        <p data-translate-key="advantage1_text" class="text-sm text-medium-gray">Visualize the result before production with our photorealistic renderings.</p>
                     </div>
                     <div class="fade-in-up delay-4">
                         <div class="text-5xl text-charcoal advantage-icon mb-4" aria-hidden="true">📐</div>
                         <h4 data-translate-key="advantage2_title" class="font-title font-bold uppercase mb-2">Precision Mapping</h4>
-                        <p data-translate-key="advantage2_text" class="text-sm text-medium-gray">Une précision au millimètre garantie par notre technologie de cartographie.</p>
+                        <p data-translate-key="advantage2_text" class="text-sm text-medium-gray">Millimeter precision guaranteed by our mapping technology.</p>
                     </div>
                     <div class="fade-in-up delay-5">
                         <div class="text-5xl text-charcoal advantage-icon mb-4" aria-hidden="true">🎨</div>
                         <h4 data-translate-key="advantage3_title" class="font-title font-bold uppercase mb-2">Full Customization</h4>
-                        <p data-translate-key="advantage3_text" class="text-sm text-medium-gray">Liberté totale sur les couleurs, la taille et les matériaux de chaque tesselle.</p>
+                        <p data-translate-key="advantage3_text" class="text-sm text-medium-gray">Total freedom over colors, size, and materials for each tessera.</p>
                     </div>
                     <div class="fade-in-up delay-6">
                         <div class="text-5xl text-charcoal advantage-icon mb-4" aria-hidden="true">🤝</div>
                         <h4 data-translate-key="advantage4_title" class="font-title font-bold uppercase mb-2">Collaboration</h4>
-                        <p data-translate-key="advantage4_text" class="text-sm text-medium-gray">Travail en étroite collaboration avec architectes et designers pour l'intégration.</p>
+                        <p data-translate-key="advantage4_text" class="text-sm text-medium-gray">Close collaboration with architects and designers for integration.</p>
                     </div>
                 </div>
 
                 <div class="text-center pt-20">
                     <p data-translate-key="conclusion_text" class="text-xl text-medium-gray leading-relaxed font-body font-light max-w-4xl mx-auto fade-in-up delay-7">
-                        Nos experts accompagnent chaque client à chaque étape, garantissant beauté, durabilité et émotion.
+                        Our experts support every client at every step, guaranteeing beauty, durability, and emotion.
                     </p>
-                    <a href="contact.html" data-translate-key="cta_quote" class="nav-lang-link cta-primary mt-10 inline-block px-8 py-3 text-pure-white tracking-widest uppercase fade-in-up delay-8">DEMANDER UN DEVIS</a>
+                    <a href="contact.html" data-translate-key="cta_quote" class="cta-primary mt-10 inline-block px-8 py-3 text-pure-white tracking-widest uppercase fade-in-up delay-8">REQUEST A QUOTE</a>
                 </div>
             </div>
         </section>
@@ -228,7 +238,7 @@
         <div class="max-w-7xl mx-auto px-6">
             <div class="flex flex-col lg:flex-row justify-between items-center space-y-4 lg:space-y-0">
                 <div class="text-center lg:text-left">
-                    <p data-translate-key="footer_copyright" class="text-sm opacity-80 font-body font-light tracking-wide uppercase">© MOSAIA STUDIO – PAR AMARU BRANDS</p>
+                    <p data-translate-key="footer_copyright" class="text-sm opacity-80 font-body font-light tracking-wide uppercase">© MOSAIA STUDIO – BY AMARU BRANDS</p>
                 </div>
                 
                 <div class="flex space-x-6">
@@ -241,7 +251,7 @@
                 </div>
                 
                 <div class="text-center lg:text-right">
-                    <p data-translate-key="footer_tagline" class="text-sm opacity-80 font-title font-light tracking-wider uppercase">L'ART DE LA MOSAÏQUE QUI ÉVEILLE L'ÉMOTION ET DURE</p>
+                    <p data-translate-key="footer_tagline" class="text-sm opacity-80 font-title font-light tracking-wider uppercase">THE ART OF MOSAIC THAT AWAKENS EMOTION AND ENDURES</p>
                 </div>
             </div>
         </div>
@@ -261,7 +271,7 @@
         'nav_partners': { fr: "PARTENAIRES", en: "PARTNERS", nl: "PARTNERS", de: "PARTNER", es: "SOCIOS" },
         'nav_contact': { fr: "CONTACT", en: "CONTACT", nl: "CONTACT", de: "KONTAKT", es: "CONTACTO" },
         'lang_selector_title': { fr: "Choisir la Langue", en: "Choose Language", nl: "Taal Kiezen", de: "Sprache Wählen", es: "Elegir Idioma" },
-        'menu_btn': { fr: "Menu", en: "Menu", nl: "Menu", de: "Menü", es: "Menú" }, // Clé manquante ajoutée
+        'menu_btn': { fr: "Menu", en: "Menu", nl: "Menu", de: "Menü", es: "Menú" },
         
         // Sur-Mesure Section
         'section_title': { fr: "VOTRE VISION, NOTRE ART", en: "YOUR VISION, OUR ART", nl: "UW VISIE, ONZE KUNST", de: "IHRE VISION, UNSERE KUNST", es: "SU VISIÓN, NUESTRO ARTE" },
@@ -270,7 +280,7 @@
         // Processus de Création
         'process_title': { fr: "Notre Processus de Création", en: "Our Creation Process", nl: "Ons Creatieproces", de: "Unser Schaffensprozess", es: "Nuestro Proceso de Creación" },
         'step1_title': { fr: "1. Concept & Inspiration", en: "1. Concept & Inspiration", nl: "1. Concept & Inspiratie", de: "1. Konzept & Inspiration", es: "1. Concepto e Inspiración" },
-        'step1_text': { fr: "Échanges initiaux pour capturer votre idée et l'environnement du projet.", en: "Initial discussions to capture your idea and the project's environment.", nl: "Eerste gesprekken om uw idee en de projectomgeving vast te leggen.", de: "Erste Gespräche zur Erfassung Ihrer Idee und des Projektumfelds.", es: "Intercambios iniciales para capturar su idea y el entorno del proyecto." },
+        'step1_text': { fr: "Échanges initiaux pour capturer votre idée et l'environnement du projet.", en: "Initial discussions to capture your idea and the project's environment.", nl: "Eerste gesprekken om uw idee en de projectomgeving vast te leggen.", de: "Erste Gespräche zur Erfassung Ihrer Idee und des Projektumfelds.", es: "Intercambios iniciales para capturar su idea et le entorno del proyecto." },
         'step2_title': { fr: "2. Digital Design", en: "2. Digital Design", nl: "2. Digitaal Ontwerp", de: "2. Digitales Design", es: "2. Diseño Digital" },
         'step2_text': { fr: "Modélisation et rendu 3D de la mosaïque dans son contexte architectural.", en: "3D modeling and rendering of the mosaic within its architectural context.", nl: "3D-modellering en rendering van het mozaïek in zijn architecturale context.", de: "3D-Modellierung und Rendering des Mosaiks in seinem architektonischen Kontext.", es: "Modelado 3D y renderizado del mosaico en su contexto arquitectónico." },
         'step3_title': { fr: "3. Material Selection", en: "3. Material Selection", nl: "3. Materiaalkeuze", de: "3. Materialauswahl", es: "3. Selección de Materiales" },
@@ -297,137 +307,69 @@
         'footer_copyright': { fr: "© MOSAIA STUDIO – PAR AMARU BRANDS", en: "© MOSAIA STUDIO – BY AMARU BRANDS", nl: "© MOSAIA STUDIO – DOOR AMARU BRANDS", de: "© MOSAIA STUDIO – VON AMARU BRANDS", es: "© MOSAIA STUDIO – POR AMARU BRANDS" },
         'footer_tagline': { fr: "L'ART DE LA MOSAÏQUE QUI ÉVEILLE L'ÉMOTION ET DURE", en: "THE ART OF MOSAIC THAT AWAKENS EMOTION AND ENDURES", nl: "DE KUNST VAN MOZAÏEK DAT EMOTIE OPROEPT EN VOORTDUURT", de: "DIE KUNST DES MOSAIKS, DIE EMOTIONEN WECKT UND BESTEHT", es: "EL ARTE DEL MOSAICO QUE DESPIERTA EMOCIÓN Y PERDURA" }
     };
+    
+    // Langue par défaut de la stratégie : Anglais
+    const DEFAULT_LANG = 'en';
+    const SUPPORTED_LANGS = ['fr', 'en', 'nl', 'de', 'es'];
+    let currentLang = DEFAULT_LANG;
 
-    let currentLang = 'fr';
-    const supportedLangs = ['en', 'nl', 'de', 'es'];
-
-    // --- 2. FONCTION POUR METTRE À JOUR LE CONTENU ET L'INTERFACE ---
-    function updateContentTranslations(lang) {
+    // --- 2. FONCTION DE MISE À JOUR DU CONTENU ET DE L'INTERFACE ---
+    function switchLanguage(lang) {
+        // Validation et persistance
+        if (!SUPPORTED_LANGS.includes(lang)) {
+            lang = DEFAULT_LANG;
+        }
+        localStorage.setItem('mosaiaLang', lang);
         currentLang = lang;
         document.documentElement.lang = lang; 
 
-        // Met à jour le titre
-        const newTitle = translations['page_title'][lang] || document.title;
+        // Met à jour le titre de la page
+        const newTitle = translations['page_title'][lang] || translations['page_title'][DEFAULT_LANG];
         document.title = newTitle;
         document.querySelector('title').textContent = newTitle;
-
-        // Met à jour tous les éléments avec l'attribut data-translate-key
+        
+        // Met à jour tous les éléments traduisibles
         document.querySelectorAll('[data-translate-key]').forEach(element => {
             const key = element.getAttribute('data-translate-key');
             if (translations[key] && translations[key][lang]) {
                 element.textContent = translations[key][lang];
+            } else if (translations[key] && translations[key][DEFAULT_LANG]) {
+                // S'assurer d'avoir toujours un fallback (Anglais)
+                element.textContent = translations[key][DEFAULT_LANG];
             }
         });
 
-        // Gère les classes 'active' pour les liens de navigation (Desktop)
+        // Gère les classes 'active' pour les liens de navigation
         document.querySelectorAll('.nav-link').forEach(link => {
             link.classList.remove('active', 'text-bronze', 'border-b-2', 'border-bronze');
             link.classList.add('text-charcoal');
-            if (link.getAttribute('data-translate-key') === 'nav_bespoke') {
-                if (link.getAttribute('href').includes(window.location.pathname.split('/').pop())) {
-                     link.classList.add('active', 'text-bronze', 'border-b-2', 'border-bronze');
-                     link.classList.remove('text-charcoal');
-                }
+            
+            // Logique pour déterminer si le lien est actif pour la page actuelle
+            const pageName = window.location.pathname.split('/').pop() || 'index.html'; // Fallback pour la racine
+            const linkHref = link.getAttribute('href') || '';
+
+            if (linkHref === pageName) {
+                 link.classList.add('active', 'text-bronze', 'border-b-2', 'border-bronze');
+                 link.classList.remove('text-charcoal');
             }
         });
         
         // Gère les classes 'active' pour les options de langue
         document.querySelectorAll('.lang-button, .lang-option').forEach(element => {
-            element.classList.remove('active', 'text-bronze', 'font-semibold');
+            element.classList.remove('active');
             
             if (element.getAttribute('data-lang') === lang) {
                 element.classList.add('active');
                 
                 // Mettre à jour l'affichage de la langue actuelle dans le bouton desktop
-                if (element.id !== 'lang-dropdown-btn') { // Évite de cibler le bouton parent du dropdown
-                    const currentLangDisplay = document.getElementById('current-lang-display');
-                    if(currentLangDisplay) {
-                        currentLangDisplay.textContent = lang.toUpperCase();
-                    }
+                const currentLangDisplay = document.getElementById('current-lang-display');
+                if(currentLangDisplay) {
+                    currentLangDisplay.textContent = lang.toUpperCase();
                 }
             }
         });
-
-        // Met à jour les liens de navigation après la traduction
-        updateNavigationLinks(lang);
-    }
-    
-    // --- 3. FONCTION POUR GÉRER LES LIENS DE NAVIGATION (ex: sur-mesure.html vers /en/sur-mesure.html) ---
-    function updateNavigationLinks(lang) {
-        const isDefaultLang = (lang === 'fr');
         
-        document.querySelectorAll('.nav-lang-link').forEach(link => {
-            const href = link.getAttribute('href');
-            if (!href || href === '#') return;
-
-            // Détermine le nom du fichier actuel (ex: sur-mesure.html)
-            const fileName = href.split('/').pop();
-            
-            if (isDefaultLang) {
-                // Pour le Français (FR), utilise le lien de base (ex: sur-mesure.html)
-                link.href = fileName;
-            } else {
-                // Pour les autres langues, ajoute le préfixe (ex: /en/sur-mesure.html)
-                link.href = `/${lang}/${fileName}`;
-            }
-        });
-    }
-
-    // --- 4. FONCTION CLÉ : GESTION DU CHANGEMENT DE LANGUE ET DE LA REDIRECTION ---
-    function switchLanguage(lang) {
-        // Étape 1 : Enregistre la langue sélectionnée pour la persistance
-        localStorage.setItem('mosaiaLang', lang);
-        
-        // Étape 2 : Détermine la nouvelle URL de la page
-        const currentPath = window.location.pathname.replace(/\/$/, '');
-        const currentFileName = 'sur-mesure.html'; // Nom du fichier actuel
-        const supportedLangs = ['en', 'nl', 'de', 'es'];
-
-        // Détermine la langue actuelle basée sur l'URL
-        const currentLangMatch = currentPath.match(new RegExp(`\/(${supportedLangs.join('|')})\/`));
-        const oldLang = currentLangMatch ? currentLangMatch[1] : 'fr';
-
-        let newUrl;
-
-        if (lang === 'fr') {
-            // Si la nouvelle langue est 'fr', on redirige vers la racine
-            if (oldLang !== 'fr') {
-                // Remplace le préfixe /lang/ par / (ou enlève le préfixe)
-                newUrl = currentPath.replace(new RegExp(`\/${oldLang}\/`), '/');
-            } else {
-                newUrl = currentFileName; // Déjà en FR, l'URL est le nom du fichier
-            }
-            
-            // Nettoyer l'URL pour n'avoir que le nom du fichier
-            if (newUrl.endsWith(`/${currentFileName}`)) {
-                newUrl = currentFileName;
-            }
-
-        } else {
-            // Si la nouvelle langue est autre que 'fr'
-            if (oldLang === 'fr') {
-                // Ajoute le nouveau préfixe
-                newUrl = `/${lang}/${currentFileName}`;
-            } else {
-                // Remplace l'ancien préfixe par le nouveau
-                newUrl = currentPath.replace(`/${oldLang}/`, `/${lang}/`);
-            }
-        }
-        
-        // La redirection n'a lieu que si la nouvelle URL est différente de l'actuelle
-        // On normalise les chemins pour la comparaison (avec ou sans slash initial)
-        const currentPathNormalized = currentPath.startsWith('/') ? currentPath.substring(1) : currentPath;
-        const newUrlNormalized = newUrl.startsWith('/') ? newUrl.substring(1) : newUrl;
-
-        if (currentPathNormalized === newUrlNormalized || currentPathNormalized.endsWith(newUrlNormalized)) {
-            // Si l'URL est déjà correcte, on met juste à jour le contenu
-            updateContentTranslations(lang);
-        } else {
-            // Redirection vers la nouvelle URL
-            window.location.href = newUrl.startsWith('/') ? newUrl : `/${newUrl}`;
-        }
-        
-        // Ferme le dropdown desktop après la sélection
+        // Ferme les menus si la sélection vient de là (logique maintenue)
         const langMenu = document.getElementById('lang-menu');
         const arrow = document.getElementById('dropdown-arrow');
         const langDropdownBtn = document.getElementById('lang-dropdown-btn');
@@ -437,7 +379,6 @@
             langDropdownBtn.setAttribute('aria-expanded', 'false');
         }
 
-        // Ferme le menu mobile si la sélection vient de là
         const mobileMenu = document.getElementById('mobileMenu');
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         if (mobileMenu && mobileMenuBtn && !mobileMenu.classList.contains('hidden')) {
@@ -447,26 +388,23 @@
     }
 
 
-    // --- 5. INITIALISATION LORS DU CHARGEMENT DE LA PAGE ---
+    // --- 3. INITIALISATION LORS DU CHARGEMENT DE LA PAGE ---
     document.addEventListener('DOMContentLoaded', () => {
         
-        // Récupère la langue du Stockage Local
-        let storedLang = localStorage.getItem('mosaiaLang');
-        
-        // Détecte la langue dans l'URL (ex: pour quelqu'un qui arrive directement sur /en/sur-mesure.html)
-        const pathLangMatch = window.location.pathname.match(new RegExp(`\/(${supportedLangs.join('|')})\/`));
-        let urlLang = pathLangMatch ? pathLangMatch[1] : 'fr';
+        let initialLang = localStorage.getItem('mosaiaLang');
 
-        // Logique d'initialisation :
-        if (storedLang && storedLang !== urlLang) {
-            // L'utilisateur a une préférence stockée qui ne correspond pas à l'URL actuelle -> Redirection
-            switchLanguage(storedLang);
-            return;
+        if (!initialLang) {
+            // Première visite : Détection du navigateur
+            const browserLang = navigator.language.split('-')[0]; // ex: 'fr-FR' -> 'fr'
+            if (SUPPORTED_LANGS.includes(browserLang)) {
+                initialLang = browserLang;
+            } else {
+                initialLang = DEFAULT_LANG;
+            }
         }
 
-        // Initialise la langue sur la base de l'URL (ou la langue stockée si l'URL est la base FR)
-        const initialLang = urlLang || storedLang || 'fr';
-        updateContentTranslations(initialLang); 
+        // Applique la langue initiale (qui va aussi sauvegarder dans localStorage)
+        switchLanguage(initialLang); 
 
         // --- GESTION DU MENU MOBILE ---
         const mobileMenu = document.getElementById('mobileMenu');
@@ -498,6 +436,7 @@
             });
         }
         
+        // Fermer le dropdown en cliquant à l'extérieur
         document.addEventListener('click', (event) => {
             if (langDropdownContainer && langMenu && dropdownArrow && !langDropdownContainer.contains(event.target) && !langMenu.classList.contains('hidden')) {
                 langMenu.classList.add('hidden');
@@ -507,22 +446,21 @@
         });
 
         // --- ÉCOUTEURS D'ÉVÉNEMENTS POUR LE CHANGEMENT DE LANGUE ---
-        document.querySelectorAll('.lang-option, .lang-button').forEach(button => {
-            button.addEventListener('click', (e) => {
+        document.querySelectorAll('.lang-option, .lang-button').forEach(element => {
+            element.addEventListener('click', (e) => {
                 e.preventDefault(); 
                 const lang = e.currentTarget.getAttribute('data-lang');
-                
-                // Ne fait rien si la langue est déjà active et que l'URL est correcte (la fonction switchLanguage gère la comparaison)
                 switchLanguage(lang);
             });
         });
         
-        // --- LOGIQUE D'ANIMATION (Mise à jour pour un meilleur contrôle) ---
+        // --- LOGIQUE D'ANIMATION ---
         const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
         const observer = new IntersectionObserver((entries, obs) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('loaded');
+                    // Utilise 'loaded' au lieu de 'fade-in-up' pour le déclencheur
+                    entry.target.classList.add('loaded'); 
                     obs.unobserve(entry.target);
                 }
             });
@@ -535,3 +473,4 @@
     </script>
 </body>
 </html>
+```
