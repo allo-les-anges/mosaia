@@ -25,7 +25,9 @@
         .nav-link { position: relative; transition: all 0.3s ease; }
         .nav-link:hover { color: #C99B4F; }
         .nav-link::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: #C99B4F; transition: width 0.3s ease; }
-        .nav-link.active::after, .nav-link:hover::after { width: 100%; } /* Ajout de la classe active pour le lien courant */
+        /* Ajout de la couleur de surbrillance pour l'état actif (géré par JS) */
+        .nav-link.active { color: #C99B4F; } 
+        .nav-link.active::after, .nav-link:hover::after { width: 100%; } 
         .page-section { padding-top: 100px; padding-bottom: 100px; }
 
         .lang-button { background: none; border: 1px solid transparent; padding: 4px 8px; border-radius: 4px; transition: all 0.3s; }
@@ -55,7 +57,7 @@
                     <div class="flex items-center space-x-8 lg:space-x-10">
                         <a href="index.html" data-translate-key="nav_home" class="nav-link nav-lang-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase">ACCUEIL</a>
                         <a href="portfolio.html" data-translate-key="nav_portfolio" class="nav-link nav-lang-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase">PORTFOLIO</a>
-                        <a href="studio.html" data-translate-key="nav_studio" class="nav-link nav-lang-link text-bronze border-b-2 border-bronze px-1 py-2 text-sm font-body font-medium tracking-wide uppercase active">STUDIO</a>
+                        <a href="studio.html" data-translate-key="nav_studio" class="nav-link nav-lang-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase">STUDIO</a>
                         <a href="sur-mesure.html" data-translate-key="nav_bespoke" class="nav-link nav-lang-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase">SUR-MESURE</a>
                         <a href="processus.html" data-translate-key="nav_process" class="nav-link nav-lang-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase">PROCESSUS</a>
                         <a href="partenaires.html" data-translate-key="nav_partners" class="nav-link nav-lang-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase">PARTENAIRES</a>
@@ -100,7 +102,7 @@
             
             <div id="mobileMenu" class="md:hidden bg-pure-white border-t border-charcoal/10 hidden">
                 <div class="px-6 py-4 space-y-2">
-                    <a href="index.html" data-translate-key="nav_home" class="nav-lang-link block py-2 text-bronze font-body font-medium uppercase">ACCUEIL</a>
+                    <a href="index.html" data-translate-key="nav_home" class="nav-lang-link block py-2 text-charcoal font-body font-medium uppercase">ACCUEIL</a>
                     <a href="portfolio.html" data-translate-key="nav_portfolio" class="nav-lang-link block py-2 text-charcoal font-body font-medium uppercase">PORTFOLIO</a>
                     <a href="studio.html" data-translate-key="nav_studio" class="nav-lang-link block py-2 text-charcoal font-body font-medium uppercase">STUDIO</a>
                     <a href="sur-mesure.html" data-translate-key="nav_bespoke" class="nav-lang-link block py-2 text-charcoal font-body font-medium uppercase">SUR-MESURE</a>
@@ -111,7 +113,7 @@
                     <div id="lang-selector-mobile" class="pt-4 border-t border-charcoal/10">
                         <h4 data-translate-key="lang_selector_title" class="text-sm font-title font-medium text-charcoal mb-2 uppercase">Choisir la Langue</h4>
                         <div class="flex flex-wrap gap-2">
-                            <button class="lang-button text-charcoal text-sm active" data-lang="fr">Français</button>
+                            <button class="lang-button text-charcoal text-sm" data-lang="fr">Français</button>
                             <button class="lang-button text-charcoal text-sm" data-lang="en">English</button>
                             <button class="lang-button text-charcoal text-sm" data-lang="nl">Nederlands</button>
                             <button class="lang-button text-charcoal text-sm" data-lang="de">Deutsch</button>
@@ -145,7 +147,7 @@
                     </div>
 
                     <div class="fade-in-up delay-3">
-                        <div class="w-full h-64 bg-gray-300 mb-6 bg-cover bg-center" style="background-color: #D1D5DB;">
+                        <div class="w-full h-64 mb-6 bg-cover bg-center rounded-lg shadow-md" style="background-image: url('https://picsum.photos/id/197/800/600');">
                             </div>
                         <h3 data-translate-key="tech_title" class="text-2xl font-title font-bold uppercase mb-4 text-charcoal">ART & TECHNOLOGIE</h3>
                         <p data-translate-key="tech_text" class="text-lg text-medium-gray leading-relaxed">
@@ -216,9 +218,10 @@
             'footer_tagline': { fr: "L'ART DE LA MOSAÏQUE QUI ÉVEILLE L'ÉMOTION ET DURE", en: "THE ART OF MOSAIC THAT AWAKENS EMOTION AND ENDURES", nl: "DE KUNST VAN MOZAÏEK DAT EMOTIE OPROEPT EN VOORTDUURT", de: "DIE KUNST DES MOSAIKS, DIE EMOTIONEN WECKT UND BESTEHT", es: "EL ARTE DEL MOSAICO QUE DESPIERTA EMOCIÓN Y PERDURA" }
         };
 
-        // Fonction pour mettre à jour les liens de navigation avec le paramètre de langue
+        // --- FONCTIONS DE TRADUCTION ET DE MISE À JOUR DE LA NAVIGATION ---
+        
+        // Fonction corrigée pour mettre à jour les liens de navigation avec le paramètre de langue
         function updateNavigationLinks(lang) {
-            // Cible les liens internes (navigation + logo)
             const navigationLinks = document.querySelectorAll('.nav-lang-link, #logo-link');
 
             navigationLinks.forEach(link => {
@@ -226,36 +229,44 @@
                 
                 // S'assurer que ce n'est pas un lien vide ou externe
                 if (href && !href.startsWith('#') && !href.startsWith('http')) {
-                    // Utiliser l'objet URL pour manipuler les paramètres
-                    const url = new URL(href, window.location.origin);
                     
-                    // Supprimer l'ancien paramètre 'lang' pour éviter les doublons
+                    // 1. Déterminer le chemin de base (ex: 'index.html', 'portfolio.html')
+                    const baseFilename = href.substring(href.lastIndexOf('/') + 1).split('?')[0];
+
+                    // 2. Construire l'URL (pour pouvoir manipuler les paramètres facilement)
+                    // Utiliser l'URL de la page actuelle comme base pour éviter les problèmes de chemin relatif.
+                    const url = new URL(baseFilename, window.location.href.split('?')[0]); 
+                    
+                    // 3. Supprimer l'ancien paramètre 'lang'
                     url.searchParams.delete('lang');
                     
-                    // Ajouter le nouveau paramètre de langue (sauf pour 'fr' si vous préférez une URL propre)
+                    // 4. Ajouter le nouveau paramètre de langue (sauf pour 'fr')
                     if (lang !== 'fr') {
                          url.searchParams.set('lang', lang);
                     }
                     
+                    // 5. Réécriture du href avec le nom du fichier de base et les paramètres.
+                    let newHref = baseFilename;
+                    
+                    if (url.search) {
+                         newHref += url.search;
+                    }
 
-                    // Réécrire le href (pathname + search)
-                    link.setAttribute('href', url.pathname + url.search);
+                    link.setAttribute('href', newHref);
                 }
             });
         }
-
-        // --- FONCTION PRINCIPALE DE TRADUCTION ET MISE À JOUR ---
+        
         let currentLang = 'fr';
-        const pageFileName = 'studio.html'; // Nom du fichier actuel
+        const pageFileName = 'studio.html'; // Nom du fichier actuel pour la détection de page active
 
         function switchLanguage(lang) {
             currentLang = lang;
             document.documentElement.lang = lang;
             
-            // Stockage de la langue sélectionnée pour la prochaine visite
             localStorage.setItem('mosaiaLang', lang);
 
-            // Mise à jour des liens de navigation avec le nouveau paramètre
+            // MISE À JOUR CRUCIALE des liens de navigation
             updateNavigationLinks(lang);
 
             // Met à jour le titre
@@ -273,7 +284,7 @@
                 }
             });
 
-            // Gère les classes 'active' pour les sélecteurs de langue
+            // Gère les classes 'active' pour les sélecteurs de langue (desktop et mobile)
             document.querySelectorAll('.lang-button, .lang-option').forEach(element => {
                 element.classList.remove('active', 'active-desktop');
                 if (element.getAttribute('data-lang') === lang) {
@@ -292,27 +303,39 @@
             }
             
             // Gère le lien de la page courante dans la navigation (visuel)
-            document.querySelectorAll('.nav-lang-link').forEach(link => {
-                link.classList.remove('active', 'text-bronze', 'border-b-2');
+            document.querySelectorAll('.nav-link').forEach(link => {
+                // Nettoyer les classes 'active' et de couleur
+                link.classList.remove('active', 'text-bronze');
+                link.classList.add('text-charcoal'); 
+                
+                // Le lien actif est celui qui correspond au nom de fichier de la page courante
                 if (link.getAttribute('href').includes(pageFileName)) {
-                    link.classList.add('active', 'text-bronze', 'border-b-2');
+                    link.classList.add('active', 'text-bronze');
+                    link.classList.remove('text-charcoal');
+                }
+            });
+             // Pour le menu mobile
+            document.querySelectorAll('#mobileMenu a.nav-lang-link').forEach(link => {
+                link.classList.remove('text-bronze', 'text-charcoal');
+                if (link.getAttribute('href').includes(pageFileName)) {
+                    link.classList.add('text-bronze');
+                } else {
+                    link.classList.add('text-charcoal');
                 }
             });
         }
 
-        // --- INITIALISATION AU CHARGEMENT ---
-        // 1. Détecte la langue (priorité URL, puis localStorage)
+        // --- INITIALISATION AU CHARGEMENT (exécutée rapidement) ---
         const urlParams = new URLSearchParams(window.location.search);
         const urlLang = urlParams.get('lang');
         
         let initialLang = urlLang || localStorage.getItem('mosaiaLang') || 'fr';
         
-        // Applique la traduction
+        // Applique la traduction et l'état des liens dès que possible
         switchLanguage(initialLang);
         
-        // --- LOGIQUE DOMContentLoaded ---
+        // --- LOGIQUE DOMContentLoaded (pour les interactions) ---
         document.addEventListener('DOMContentLoaded', () => {
-            // (La logique d'initialisation de la langue est déplacée avant DOMContentLoaded pour être plus rapide)
             
             // ----------------------------------------------
             // GESTION DU MENU MOBILE
@@ -355,7 +378,7 @@
                 // Écouteurs pour la sélection de langue DESKTOP
                 document.querySelectorAll('#lang-menu .lang-option').forEach(link => {
                     link.addEventListener('click', (e) => {
-                        e.preventDefault();
+                        e.preventDefault(); // <-- Empêche la navigation vers #
                         const lang = link.getAttribute('data-lang');
                         switchLanguage(lang);
                         langMenu.classList.add('hidden');
@@ -368,6 +391,7 @@
             // Écouteurs pour la sélection de langue MOBILE
             document.querySelectorAll('#lang-selector-mobile .lang-button').forEach(button => {
                 button.addEventListener('click', (e) => {
+                    // Pas besoin de preventDefault car c'est un <button>
                     const lang = button.getAttribute('data-lang');
                     switchLanguage(lang);
                     if (mobileMenu) mobileMenu.classList.add('hidden');
@@ -376,7 +400,7 @@
             });
             
             // ----------------------------------------------
-            // LOGIQUE D'ANIMATION AU SCROLL
+            // LOGIQUE D'ANIMATION AU SCROLL (Intersection Observer)
             // ----------------------------------------------
             const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
             const observer = new IntersectionObserver((entries) => {
@@ -389,7 +413,7 @@
             }, observerOptions);
 
             document.querySelectorAll('.fade-in-up').forEach(element => {
-                element.classList.add('opacity-0', 'translate-y-[40px]');
+                element.classList.add('opacity-0', 'translate-y-[40px]', 'transition', 'duration-1000', 'ease-out');
                 observer.observe(element);
             });
 
