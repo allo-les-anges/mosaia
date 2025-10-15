@@ -190,7 +190,7 @@
     </footer>
     
     <script>
-        // --- 1. DONNÉES DE TRADUCTION (Rien ne change ici) ---
+        // --- 1. DONNÉES DE TRADUCTION ---
         const translations = {
             // Page & Navigation
             'page_title': { fr: "Mosaia Studio - Notre Studio", en: "Mosaia Studio - Our Studio", nl: "Mosaia Studio - Onze Studio", de: "Mosaia Studio - Unser Studio", es: "Mosaia Studio - Nuestro Estudio" },
@@ -215,12 +215,12 @@
             
             // Footer
             'footer_copyright': { fr: "© MOSAIA STUDIO – PAR AMARU BRANDS", en: "© MOSAIA STUDIO – BY AMARU BRANDS", nl: "© MOSAIA STUDIO – DOOR AMARU BRANDS", de: "© MOSAIA STUDIO – VON AMARU BRANDS", es: "© MOSAIA STUDIO – POR AMARU BRANDS" },
-            'footer_tagline': { fr: "L'ART DE LA MOSAÏQUE QUI ÉVEILLE L'ÉMOTION ET DURE", en: "THE ART OF MOSAIC THAT AWAKENS EMOTION AND ENDURES", nl: "DE KUNST VAN MOZAÏEK DAT EMOTIE OPROEPT EN VOORTDUURT", de: "DIE KUNST DES MOSAIKS, DIE EMOTIONEN WECKT UND BESTEHT", es: "EL ARTE DEL MOSAICO QUE DESPIERTA EMOCIÓN Y PERDURA" }
+            'footer_tagline': { fr: "L'ART DE LA MOSAÏQUE QUI ÉVEILLE L'ÉMOTION ET DURE", en: "THE ART OF MOSAIC THAT AWAKENS EMOTION AND ENDURES", nl: "DE KUNST VAN MOZAÏEK DAT EMOTIE OPROEPT EN VOORTDUURT", de: "DIE KUNST DES MOSAIKS, DIE EMOTIONEN WECKT UND BESTEHT", es: "EL ARTE DU MOSAICO QUE DESPIERTA EMOCIÓN Y PERDURA" }
         };
 
         // Langue par défaut et nom du fichier actuel
         let currentLang = 'en'; 
-        const pageFileName = 'studio.html'; // Nom du fichier actuel pour la détection de page active
+        const pageFileName = 'studio.html'; 
         const supportedLangs = ['fr', 'en', 'nl', 'de', 'es'];
 
         // --- FONCTION PRINCIPALE DE TRADUCTION ET MISE À JOUR VISUELLE ---
@@ -288,7 +288,6 @@
         }
         
         // --- LOGIQUE D'INITIALISATION (Mise en œuvre de la stratégie retenue) ---
-
         function initializeLanguage() {
             let initialLang = localStorage.getItem('mosaiaLang');
 
@@ -306,7 +305,8 @@
                 // 3. Sinon, on utilise la langue par défaut (anglais 'en')
                 initialLang = 'en';
             }
-
+            
+            // Applique la langue trouvée ou par défaut, et l'enregistre dans localStorage pour la persistence
             switchLanguage(initialLang);
         }
 
