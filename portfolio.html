@@ -1,3 +1,12 @@
+J'ai bien noté la nouvelle structure d'URL pour votre dépôt GitHub Pages.
+
+La nouvelle URL de base est : `https://allo-les-anges.github.io/mosaia/`
+
+J'ai mis à jour le code JavaScript en conséquence. Le reste de la logique (multilingue, persistance, navigation active et filtres de portfolio) reste inchangé et correct.
+
+Voici le code HTML/JavaScript complet et révisé pour la page Portfolio :
+
+```html
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
@@ -30,7 +39,7 @@
         .nav-link { position: relative; transition: all 0.3s ease; }
         .nav-link:hover { color: #C99B4F; }
         .nav-link::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: #C99B4F; transition: width 0.3s ease; }
-        .nav-link:hover::after, .nav-link.active::after { width: 100%; } /* Ajout de .nav-link.active */
+        .nav-link:hover::after, .nav-link.active::after { width: 100%; }
         .page-section { padding-top: 100px; padding-bottom: 100px; }
         /* Masonry Grid Styles */
         .masonry-grid { column-count: 3; column-gap: 1.5rem; }
@@ -195,13 +204,13 @@
     
     <script>
         // --- 0. CONFIGURATION GLOBALE ---
-        const BASE_URL = 'https://allo-les-anges.github.io/';
+        // NOUVELLE BASE_URL MISE À JOUR SELON VOTRE DEMANDE
+        const BASE_URL = 'https://allo-les-anges.github.io/mosaia/'; 
         const CURRENT_PAGE = 'portfolio.html'; 
         const DEFAULT_LANG = 'en';
         let currentLang = DEFAULT_LANG; 
 
         // --- 1. DONNÉES DE TRADUCTION ---
-        // J'ai complété les traductions pour tous les filtres et descriptions
         const translations = {
             // Page & Navigation
             'page_title': { fr: "Mosaia Studio - Portfolio", en: "Mosaia Studio - Portfolio", nl: "Mosaia Studio - Portfolio", de: "Mosaia Studio - Portfolio", es: "Mosaia Studio - Portafolio" },
@@ -246,10 +255,9 @@
          */
         function updateNavigationLinks() {
             document.querySelectorAll('a[href]').forEach(link => {
-                // On utilise ici l'attribut `href` pour identifier les liens internes
                 const pageName = link.getAttribute('href');
                 if (pageName && pageName.endsWith('.html')) {
-                    // Construction du lien absolu (ex: https://allo-les-anges.github.io/portfolio.html)
+                    // Utilise la nouvelle BASE_URL
                     link.href = BASE_URL + pageName;
                 }
             });
@@ -279,7 +287,6 @@
             const currentLangDisplay = document.getElementById('current-lang-display');
             if (currentLangDisplay) {
                 currentLangDisplay.textContent = lang.toUpperCase();
-                // Assurez-vous que le texte dans le bouton est le code de langue, et non la traduction
             }
 
             // Gère l'état actif des liens de navigation et des sélecteurs de langue
@@ -289,12 +296,11 @@
                 if (element.classList.contains('nav-link')) {
                     const linkPage = element.getAttribute('href');
                     element.classList.remove('active', 'text-bronze', 'border-b-2', 'border-bronze');
-                    element.classList.add('text-charcoal'); // Reset couleur par défaut
+                    element.classList.add('text-charcoal'); 
                     
                     if (linkPage === CURRENT_PAGE) {
                         element.classList.add('active', 'text-bronze');
-                        // Ajout de la ligne bronze pour le desktop (le ::after gère le :hover)
-                        if (!element.parentElement.classList.contains('md:hidden')) { // Si c'est le menu desktop
+                        if (!element.parentElement.classList.contains('md:hidden')) { 
                              element.classList.add('border-b-2', 'border-bronze');
                         }
                     }
@@ -310,8 +316,9 @@
             });
             
             // 3. Mise à jour de la zone de description de catégorie après traduction
-            // On force la mise à jour de la catégorie affichée (par défaut 'residential')
-            updateCategoryInfo('residential');
+            // Le filtre 'residential' est le filtre par défaut
+            const activeFilter = document.querySelector('.filter-btn.active')?.getAttribute('data-filter') || 'residential';
+            updateCategoryInfo(activeFilter);
             
             // Met à jour les liens de navigation avec la BASE_URL
             updateNavigationLinks();
@@ -364,12 +371,13 @@
             // --- INITIALISATION DE LA LANGUE (Stratégie) ---
             let initialLang = DEFAULT_LANG; 
             const storedLang = localStorage.getItem('userLanguage');
+            const availableLangs = Object.keys(translations.page_title); // ['fr', 'en', 'nl', ...]
 
-            if (storedLang) {
+            if (storedLang && availableLangs.includes(storedLang)) {
                 initialLang = storedLang;
             } else if (navigator.language) {
                 const browserLang = navigator.language.substring(0, 2).toLowerCase();
-                if (translations['page_title'][browserLang]) { 
+                if (availableLangs.includes(browserLang)) { 
                     initialLang = browserLang;
                     localStorage.setItem('userLanguage', initialLang);
                 }
@@ -446,10 +454,8 @@
             function filterPortfolio(filter) {
                 // Mise à jour des boutons de filtre
                 filterButtons.forEach(btn => {
-                    btn.classList.remove('active');
-                    btn.classList.add('text-charcoal');
-                    btn.classList.remove('text-bronze');
-                    btn.classList.remove('border-bronze');
+                    btn.classList.remove('active', 'text-bronze', 'border-bronze');
+                    btn.classList.add('text-charcoal'); // Reset couleur par défaut
 
                     if (btn.getAttribute('data-filter') === filter) {
                         btn.classList.add('active', 'text-bronze', 'border-bronze');
@@ -463,7 +469,7 @@
                 // Affichage/Masquage des items
                 masonryItems.forEach(item => {
                     const itemCategory = item.getAttribute('data-category');
-                    if (itemCategory === filter || filter === 'all') { // Ajout de 'all' si vous voulez un bouton 'Tout'
+                    if (itemCategory === filter || filter === 'all') { 
                         item.style.display = 'inline-block';
                     } else {
                         item.style.display = 'none';
@@ -480,7 +486,6 @@
             });
             
             // Initialisation du filtre
-            // Le filtre 'residential' est actif par défaut dans le HTML
             filterPortfolio('residential'); 
 
             // Initialisation des animations
@@ -492,3 +497,4 @@
     </script>
 </body>
 </html>
+```
