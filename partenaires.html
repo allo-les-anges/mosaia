@@ -195,9 +195,7 @@
             </div>
         </div>
     </footer>
-    
     <script>
-       <script>
 // --- LOGIQUE DE TRADUCTION (i18n) ---
 const translations = {
     fr: {
@@ -217,7 +215,7 @@ const translations = {
         // Footer
         footer_copyright: "© MOSAIA STUDIO – PAR AMARU BRANDS",
         footer_tagline: "L'ART DE LA MOSAÏQUE QUI ÉVEILLE L'ÉMOTION ET DURE",
-        lang_selector_title: "Choisir la Langue" // Ajouté pour le mobile
+        lang_selector_title: "Choisir la Langue" 
     },
     en: {
         page_title: "Mosaia Studio - Partners",
@@ -297,32 +295,45 @@ const translations = {
     }
 };
 
-// Fonction pour mettre à jour l'affichage de la langue active dans le bouton desktop
-function updateDesktopLangDisplay(lang) {
+/**
+ * Met à jour l'affichage de la langue active dans le sélecteur desktop et mobile.
+ * @param {string} lang - Le code de la langue ('fr', 'en', etc.).
+ */
+function updateLangIndicators(lang) {
+    // 1. Mise à jour de l'affichage du bouton desktop
     const currentLangDisplay = document.getElementById('current-lang-display');
     if (currentLangDisplay) {
         currentLangDisplay.textContent = lang.toUpperCase();
     }
-    // Mise à jour de la classe active pour le menu déroulant desktop
+
+    // 2. Mise à jour de la classe active pour le menu déroulant desktop
     document.querySelectorAll('#lang-menu .lang-option').forEach(link => {
         link.classList.remove('font-bold', 'bg-light-gray', 'text-bronze');
+        link.classList.add('text-charcoal'); // S'assurer que les inactifs ont la bonne couleur de base
         if (link.getAttribute('data-lang') === lang) {
             link.classList.add('font-bold', 'bg-light-gray', 'text-bronze');
+            link.classList.remove('text-charcoal');
         }
     });
-    // Mise à jour de la classe active pour le menu mobile
+
+    // 3. Mise à jour de la classe active pour le menu mobile
     document.querySelectorAll('#lang-selector-mobile .lang-button').forEach(button => {
         button.classList.remove('text-bronze', 'font-semibold', 'underline');
+        button.classList.add('text-charcoal'); // S'assurer que les inactifs ont la bonne couleur de base
         if (button.getAttribute('data-lang') === lang) {
             button.classList.add('text-bronze', 'font-semibold', 'underline');
+            button.classList.remove('text-charcoal');
         }
     });
 }
 
-// Fonction principale pour appliquer la traduction et gérer la persistance
+/**
+ * Applique la traduction à tous les éléments marqués et sauvegarde la langue.
+ * @param {string} lang - Le code de la langue à appliquer.
+ */
 function translatePage(lang) {
     const currentTranslations = translations[lang];
-    if (!currentTranslations) return;
+    if (!currentTranslations) return; // Sécurité
 
     // 1. Mise à jour de l'attribut lang de la page
     document.documentElement.lang = lang;
@@ -331,7 +342,7 @@ function translatePage(lang) {
     localStorage.setItem('userLanguage', lang);
 
     // 2. Traduction du titre de la page
-    const pageTitleElement = document.querySelector('title');
+    const pageTitleElement = document.querySelector('[data-translate-key="page_title"]');
     if (pageTitleElement && currentTranslations['page_title']) {
         pageTitleElement.textContent = currentTranslations['page_title'];
     }
@@ -341,38 +352,54 @@ function translatePage(lang) {
         const key = element.getAttribute('data-translate-key');
         if (currentTranslations[key]) {
             if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                // Pour les placeholders des champs de formulaire
                 if (key.startsWith('form_placeholder_')) {
                     element.setAttribute('placeholder', currentTranslations[key]);
                 }
-            } else {
+            } else if (element.tagName !== 'TITLE') { // Évite de traduire le titre deux fois
+                // Pour le contenu textuel
                 element.textContent = currentTranslations[key];
             }
         }
     });
 
     // 4. Mettre à jour les indicateurs de langue
-    updateDesktopLangDisplay(lang);
+    updateLangIndicators(lang);
 }
 
-// Fonction pour gérer le clic sur un bouton/lien de langue
+/**
+ * Gère le clic sur un sélecteur de langue.
+ * @param {Event} event - L'événement de clic.
+ */
 function handleLangClick(event) {
-    event.preventDefault(); // Empêche le rechargement de la page pour les liens <a>
+    event.preventDefault(); 
     const newLang = event.currentTarget.getAttribute('data-lang');
     if (newLang) {
         translatePage(newLang);
+        // Optionnel : Fermer le menu dropdown après la sélection sur desktop
+        const langMenu = document.getElementById('lang-menu');
+        if (langMenu && !langMenu.classList.contains('hidden')) {
+             document.getElementById('lang-dropdown-btn').click(); 
+        }
     }
 }
 
-// Fonction pour initialiser la langue au chargement
+/**
+ * Initialise la langue au chargement de la page et attache les écouteurs d'événements.
+ */
 function initializeLanguage() {
     // **PERSISTANCE : Récupérer la langue sauvegardée, sinon utiliser 'fr' (défaut)**
+    // Si la page précédente a sauvegardé une langue, elle est récupérée ici.
     const savedLang = localStorage.getItem('userLanguage') || 'fr';
     
-    // Appliquer la traduction
-    translatePage(savedLang);
+    // Vérifier si la langue sauvegardée est supportée, sinon utiliser 'fr'
+    const initialLang = translations[savedLang] ? savedLang : 'fr';
+
+    // Appliquer la traduction initiale
+    translatePage(initialLang);
 
     // Attacher les écouteurs d'événements à TOUS les sélecteurs de langue
-    document.querySelectorAll('.lang-option, .lang-button').forEach(element => {
+    document.querySelectorAll('.lang-option, #lang-selector-mobile .lang-button').forEach(element => {
         element.addEventListener('click', handleLangClick);
     });
 
@@ -381,9 +408,8 @@ function initializeLanguage() {
     const langMenu = document.getElementById('lang-menu');
     if (langDropdownBtn && langMenu) {
         langDropdownBtn.addEventListener('click', () => {
-            const isExpanded = langDropdownBtn.getAttribute('aria-expanded') === 'true' || false;
+            const isExpanded = langMenu.classList.toggle('hidden');
             langDropdownBtn.setAttribute('aria-expanded', !isExpanded);
-            langMenu.classList.toggle('hidden');
             document.getElementById('dropdown-arrow').classList.toggle('rotate-180');
         });
 
@@ -396,26 +422,15 @@ function initializeLanguage() {
             }
         });
     }
-
-    // Initialisation des animations après l'initialisation de la langue
-    initializeAnimations();
-
-    // Initialisation du menu mobile
-    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-    if (mobileMenuBtn) {
-        mobileMenuBtn.addEventListener('click', toggleMobileMenu);
-    }
 }
 
-// --- LOGIQUE D'ANIMATION ET MENU MOBILE (inchangée) ---
+// --- LOGIQUE D'ANIMATION ET MENU MOBILE ---
 
 function initializeAnimations() {
-    // ... (votre code d'animation IntersectionObserver) ...
     const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                // L'animation est déjà dans le CSS, on retire juste les classes initiales
                 entry.target.classList.remove('opacity-0', 'translate-y-[40px]');
                 observer.unobserve(entry.target);
             }
@@ -433,13 +448,21 @@ function toggleMobileMenu() {
     const mobileMenu = document.getElementById('mobileMenu');
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     if (mobileMenu) {
-        const isExpanded = mobileMenu.classList.toggle('hidden');
-        mobileMenuBtn.setAttribute('aria-expanded', !isExpanded);
+        const isHidden = mobileMenu.classList.toggle('hidden');
+        mobileMenuBtn.setAttribute('aria-expanded', !isHidden);
     }
 }
 
-// Initialisation de la langue et des événements au chargement de la page
-document.addEventListener('DOMContentLoaded', initializeLanguage);
+// Initialisation de la langue, du menu et des animations au chargement de la page
+document.addEventListener('DOMContentLoaded', () => {
+    initializeLanguage(); // DOIT être appelé en premier pour la traduction
+    initializeAnimations();
+    // Initialisation du menu mobile après l'initialisation de la langue
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    if (mobileMenuBtn) {
+        mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+    }
+});
 </script>
 </body>
 </html>
