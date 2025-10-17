@@ -60,6 +60,16 @@
         .lang-button.active { background: #C99B4F; color: #1A1A1A; font-weight: 600; border-color: #C99B4F; }
         /* Style pour les options du dropdown sur desktop */
         .lang-option.active { background-color: #F8F8F8; color: #C99B4F; font-weight: 600; }
+        
+        /* NOUVEAU STYLE CARROUSEL (SIMPLE LOOP) */
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        .carousel-item {
+            flex-shrink: 0;
+            width: 100%; /* Sera ajusté par JS/Tailwind en fonction du nombre d'éléments visibles */
+        }
     </style>
 </head>
 <body class="bg-pure-white font-body text-charcoal">
@@ -69,8 +79,8 @@
             <div class="flex-shrink-0">
                 <a href="index.html" data-page-name="index.html"> 
                     <img src="https://raw.githubusercontent.com/allo-les-anges/mosaia/main/mosaia-assets/logos/logo%20mosaia%202.png" 
-                            alt="Mosaia Studio Logo" 
-                            class="h-10 lg:h-12 w-auto">
+                                alt="Mosaia Studio Logo" 
+                                class="h-10 lg:h-12 w-auto">
                 </a>
             </div>
                 
@@ -86,19 +96,19 @@
                         
                         <div class="relative ml-4 pl-4 border-l border-charcoal/10" id="lang-dropdown-container">
                             <button id="lang-dropdown-btn" 
-                                    class="lang-button text-charcoal text-sm font-title font-medium flex items-center p-2" 
-                                    aria-expanded="false" 
-                                    aria-controls="lang-menu"
-                                    aria-label="Sélectionner la langue">
+                                        class="lang-button text-charcoal text-sm font-title font-medium flex items-center p-2" 
+                                        aria-expanded="false" 
+                                        aria-controls="lang-menu"
+                                        aria-label="Sélectionner la langue">
                                 <span id="current-lang-display" class="font-semibold text-charcoal">EN</span>
                                 <svg class="h-4 w-4 ml-1 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" id="dropdown-arrow"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
                             </button>
                             
                             <div id="lang-menu" 
-                                    class="absolute right-0 mt-3 w-32 bg-pure-white shadow-xl rounded-md ring-1 ring-charcoal/5 hidden origin-top-right py-1 z-50" 
-                                    role="menu" 
-                                    aria-orientation="vertical" 
-                                    aria-labelledby="lang-dropdown-btn">
+                                        class="absolute right-0 mt-3 w-32 bg-pure-white shadow-xl rounded-md ring-1 ring-charcoal/5 hidden origin-top-right py-1 z-50" 
+                                        role="menu" 
+                                        aria-orientation="vertical" 
+                                        aria-labelledby="lang-dropdown-btn">
                                 <a href="#" class="block px-4 py-2 text-sm text-charcoal hover:bg-light-gray lang-option" role="menuitem" data-lang="fr">Français</a>
                                 <a href="#" class="block px-4 py-2 text-sm text-charcoal hover:bg-light-gray lang-option active" role="menuitem" data-lang="en">English</a>
                                 <a href="#" class="block px-4 py-2 text-sm text-charcoal hover:bg-light-gray lang-option" role="menuitem" data-lang="nl">Nederlands</a>
@@ -111,11 +121,11 @@
                 
                 <div class="md:hidden flex items-center space-x-4">
                     <button id="mobileMenuBtn" 
-                            class="text-charcoal hover:text-bronze p-2" 
-                            data-translate-key="menu_btn"
-                            aria-label="Menu mobile" 
-                            aria-expanded="false" 
-                            aria-controls="mobileMenu">
+                                class="text-charcoal hover:text-bronze p-2" 
+                                data-translate-key="menu_btn"
+                                aria-label="Menu mobile" 
+                                aria-expanded="false" 
+                                aria-controls="mobileMenu">
                         <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>
                     </button>
                 </div>
@@ -178,7 +188,7 @@
             
             <div class="fade-in-up delay-1 bg-pure-white p-8 shadow-lg hover:shadow-xl transition-all duration-300">
                 <div class="mb-4">
-<img src="https://raw.githubusercontent.com/allo-les-anges/mosaia/main/mosaia-assets/logos/image1-index.png" alt="Image 1" />
+<img src="https://raw.githubusercontent.com/allo-les-anges/mosaia/main/mosaia-assets/logos/image1-index.png" alt="Image Piscines" />
                 </div>
                 <h4 data-translate-key="domain_pools_title" class="text-xl font-title font-bold uppercase mb-4">POOLS</h4>
                 <p data-translate-key="domain_pools_desc" class="text-medium-gray">Transform your pool into a durable and sophisticated aquatic work of art.</p>
@@ -186,7 +196,7 @@
             
             <div class="fade-in-up delay-2 bg-pure-white p-8 shadow-lg hover:shadow-xl transition-all duration-300">
                 <div class="mb-4">
-<img src="https://raw.githubusercontent.com/allo-les-anges/mosaia/main/mosaia-assets/logos/image2-index.png" alt="Image 1" />
+<img src="https://raw.githubusercontent.com/allo-les-anges/mosaia/main/mosaia-assets/logos/image2-index.png" alt="Image Murs & Façades" />
                 </div>
                 <h4 data-translate-key="domain_walls_title" class="text-xl font-title font-bold uppercase mb-4">WALLS & FACADES</h4>
                 <p data-translate-key="domain_walls_desc" class="text-medium-gray">Exceptional architectural coverings for interiors and exteriors, redefining the space.</p>
@@ -194,7 +204,7 @@
             
             <div class="fade-in-up delay-3 bg-pure-white p-8 shadow-lg hover:shadow-xl transition-all duration-300">
                 <div class="mb-4">
-<img src="https://raw.githubusercontent.com/allo-les-anges/mosaia/main/mosaia-assets/logos/image3-index.png" alt="Image 1" />
+<img src="https://raw.githubusercontent.com/allo-les-anges/mosaia/main/mosaia-assets/logos/image3-index.png" alt="Image Oeuvres d'Art" />
                 </div>
                 <h4 data-translate-key="domain_artworks_title" class="text-xl font-title font-bold uppercase mb-4">ARTWORKS</h4>
                 <p data-translate-key="domain_artworks_desc" class="text-medium-gray">Unique artworks and custom installations. The pure expression of your creative vision.</p>
@@ -204,7 +214,41 @@
     </div>
 </section>
 
-        <section class="min-h-[400px] bg-charcoal flex items-center justify-center bg-fixed bg-center bg-cover" style="background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><rect width="100%" height="100%" fill="%231A1A1A"/><circle cx="500" cy="500" r="400" fill="%23C99B4F" opacity="0.05"/></svg>');">
+<section class="page-section bg-pure-white overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6 text-center">
+        <h3 data-translate-key="carousel_title" class="text-3xl font-title font-bold text-charcoal mb-16 tracking-widest uppercase fade-in-up elegant-line">A SELECTION OF OUR MATERIALS</h3>
+    </div>
+    
+    <div class="relative max-w-7xl mx-auto">
+        <div id="carousel-container" class="overflow-hidden">
+            <div id="carousel-track" class="carousel-track flex">
+                <div class="carousel-item p-4 lg:p-6 w-full md:w-1/3 lg:w-1/4">
+                    <img src="getty-images-cb0Ft3TXPt4-unsplash.jpg" alt="Material 1" class="w-full h-auto object-cover shadow-lg hover:shadow-xl transition-shadow duration-300">
+                </div>
+                <div class="carousel-item p-4 lg:p-6 w-full md:w-1/3 lg:w-1/4">
+                    <img src="gower-brown-9MvxNFLcsBU-unsplash.jpg" alt="Material 2" class="w-full h-auto object-cover shadow-lg hover:shadow-xl transition-shadow duration-300">
+                </div>
+                <div class="carousel-item p-4 lg:p-6 w-full md:w-1/3 lg:w-1/4">
+                    <img src="armand-khoury-cGpQM-snU20-unsplash.jpg" alt="Material 3" class="w-full h-auto object-cover shadow-lg hover:shadow-xl transition-shadow duration-300">
+                </div>
+                <div class="carousel-item p-4 lg:p-6 w-full md:w-1/3 lg:w-1/4">
+                    <img src="getty-images-cb0Ft3TXPt4-unsplash.jpg-ef7136ee-fac2-43e4-b2dd-20428a5a4c70" alt="Material 4" class="w-full h-auto object-cover shadow-lg hover:shadow-xl transition-shadow duration-300">
+                </div>
+                <div class="carousel-item p-4 lg:p-6 w-full md:w-1/3 lg:w-1/4">
+                    <img src="armand-khoury-cGpQM-snU20-unsplash.jpg-5d0d2952-1bc4-4e3c-af96-19e000730c1f" alt="Material 5" class="w-full h-auto object-cover shadow-lg hover:shadow-xl transition-shadow duration-300">
+                </div>
+                </div>
+        </div>
+
+        <button id="carousel-prev" class="absolute left-0 top-1/2 -translate-y-1/2 bg-charcoal/50 hover:bg-bronze p-3 text-pure-white transition-all z-30 ml-4 rounded-full" aria-label="Previous image">
+            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+        </button>
+        <button id="carousel-next" class="absolute right-0 top-1/2 -translate-y-1/2 bg-charcoal/50 hover:bg-bronze p-3 text-pure-white transition-all z-30 mr-4 rounded-full" aria-label="Next image">
+            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+        </button>
+    </div>
+</section>
+<section class="min-h-[400px] bg-charcoal flex items-center justify-center bg-fixed bg-center bg-cover" style="background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><rect width="100%" height="100%" fill="%231A1A1A"/><circle cx="500" cy="500" r="400" fill="%23C99B4F" opacity="0.05"/></svg>');">
             <div class="max-w-4xl mx-auto px-6 text-center">
                 <h3 class="text-4xl md:text-5xl font-title font-light text-pure-white leading-relaxed tracking-wide italic fade-in-up">
                     <span class="text-bronze font-normal" data-translate-key="quote_1_bronze">« Mosaic is not decoration,</span><br>
@@ -237,12 +281,11 @@
     
     <script>
         // --- 0. CONFIGURATION GLOBALE ---
-        // CORRECTION MAJEURE: Ajout du nom du dépôt '/mosaia/' à la BASE_URL
         const BASE_URL = 'https://allo-les-anges.github.io/mosaia/'; 
         const DEFAULT_LANG = 'en'; // Langue par défaut: Anglais
         let currentLang = DEFAULT_LANG; 
 
-        // --- 1. DONNÉES DE TRADUCTION ---
+        // --- 1. DONNÉES DE TRADUCTION (Mise à jour avec la clé du Carrousel) ---
         const translations = {
             'page_title': { fr: "Mosaia Studio - Accueil", en: "Mosaia Studio - Home", nl: "Mosaia Studio - Startpagina", de: "Mosaia Studio - Startseite", es: "Mosaia Studio - Inicio" },
             'nav_home': { fr: "ACCUEIL", en: "HOME", nl: "STARTPAGINA", de: "STARTSEITE", es: "INICIO" },
@@ -268,13 +311,16 @@
             'key_domains_title': { fr: "NOS DOMAINES CLÉS", en: "OUR KEY DOMAINS", nl: "ONZE BELANGRIJKSTE DOMEINEN", de: "UNSERE SCHLÜSSELBEREICHE", es: "NUESTROS DOMINIOS CLAVE" },
             
             'domain_pools_title': { fr: "PISCINES", en: "POOLS", nl: "ZWEMBADEN", de: "POOLS", es: "PISCINAS" },
-            'domain_pools_desc': { fr: "Transformez votre piscine en une œuvre d'art aquatique durable et sophistiquée.", en: "Transform your pool into a durable and sophisticated aquatic work of art.", nl: "Transformeer uw zwembad in een duurzaam en verfijnd waterkunstwerk.", de: "Verwandeln Sie Ihren Pool in ein langlebiges und raffiniertes Wasserkunstwerk.", es: "Transforma tu piscina en una obra de arte acuática duradera y sofisticada." },
+            'domain_pools_desc': { fr: "Transformez votre piscine en une œuvre d'art aquatique durable et sophistiquée.", en: "Transform your pool into a durable and sophisticated aquatic work of art.", nl: "Transformeer uw zwembad in een duurzaam en verfijnd waterkunstwerk.", de: "Verwandeln Sie Ihren Pool in ein langlebiges en raffiniertes Wasserkunstwerk.", es: "Transforma tu piscina en una obra de arte acuática duradera y sofisticada." },
             
             'domain_walls_title': { fr: "MURS & FAÇADES", en: "WALLS & FACADES", nl: "MUREN & GEVELS", de: "WÄNDE & FASSADEN", es: "MUROS & FACHADAS" },
             'domain_walls_desc': { fr: "Revêtements architecturaux d'exception pour intérieurs et extérieurs, redéfinissant l'espace.", en: "Exceptional architectural coverings for interiors and exteriors, redefining the space.", nl: "Uitzonderlijke architecturale bekleding voor interieur en exterieur, die de ruimte herdefinieert.", de: "Außergewöhnliche architektonische Verkleidungen für innen und außen, die den Raum neu definieren.", es: "Revestimientos arquitectónicos excepcionales para interiores y exteriores, redefiniendo el espacio." },
             
             'domain_artworks_title': { fr: "ARTWORKS", en: "ARTWORKS", nl: "KUNSTWERKEN", de: "KUNSTWERKE", es: "OBRAS DE ARTE" },
             'domain_artworks_desc': { fr: "Œuvres d'art uniques et installations personnalisées. L'expression pure de votre vision créative.", en: "Unique artworks and custom installations. The pure expression of your creative vision.", nl: "Unieke kunstwerken en gepersonaliseerde installaties. De pure uitdrukking van uw creatieve visie.", de: "Einzigartige Kunstwerke und kundenspezifische Installationen. Der reine Ausdruck Ihrer kreativen Vision.", es: "Obras de arte únicas e instalaciones personalizadas. La expresión pura de su visión creativa." },
+
+            // Nouvelle clé de traduction pour le carrousel
+            'carousel_title': { fr: "UNE SÉLECTION DE NOS MATÉRIAUX", en: "A SELECTION OF OUR MATERIALS", nl: "EEN SELECTIE VAN ONZE MATERIALEN", de: "EINE AUSWAHL UNSERER MATERIALIEN", es: "UNA SELECCIÓN DE NUESTROS MATERIALES" },
             
             'quote_1_bronze': { fr: "« La mosaïque n’est pas une décoration,", en: "« Mosaic is not decoration,", nl: "« Mozaïek is geen decoratie,", de: "« Mosaik ist keine Dekoration,", es: "« El mosaico no es una decoración," },
             'quote_2': { fr: "c’est une narration. »", en: "it is a narrative. »", nl: "het is een verhaal. »", de: "es ist eine Erzählung. »", es: "es una narración. »" },
@@ -289,11 +335,9 @@
          * Met à jour les liens de navigation et les CTA pour utiliser des chemins absolus GitHub Pages.
          */
         function updateNavigationLinks() {
-            // Cible les liens de navigation (desktop et mobile) et les CTA (avec l'attribut data-page-name)
             document.querySelectorAll('a[data-page-name]').forEach(link => {
                 const pageName = link.getAttribute('data-page-name');
                 if (pageName) {
-                    // Construction du lien absolu en utilisant la BASE_URL corrigée
                     link.href = BASE_URL + pageName;
                 }
             });
@@ -315,7 +359,6 @@
             document.querySelectorAll('[data-translate-key]').forEach(element => {
                 const key = element.getAttribute('data-translate-key');
                 if (translations[key]) {
-                    // Utilise la traduction, ou revient à l'anglais (DEFAULT_LANG) si la traduction est manquante
                     element.innerHTML = translations[key][lang] || translations[key][DEFAULT_LANG];
                 }
             });
@@ -324,20 +367,22 @@
             const currentLangDisplay = document.getElementById('current-lang-display');
             if (currentLangDisplay) {
                 currentLangDisplay.textContent = lang.toUpperCase();
-                // Mise à jour du style pour le bouton principal
                 currentLangDisplay.closest('.lang-button').classList.remove('active');
                 currentLangDisplay.closest('.lang-button').classList.add('text-bronze');
             }
 
             // Gère l'état actif des boutons et options
             document.querySelectorAll('.nav-link, .lang-button, .lang-option').forEach(element => {
-                // Gestion des liens de navigation actifs (à adapter si vous êtes sur une autre page)
+                // Gestion des liens de navigation actifs 
                 if (element.classList.contains('nav-link')) {
-                    // Logique simplifiée pour la page d'accueil (index.html)
                     element.classList.remove('active', 'text-bronze', 'border-b-2', 'border-bronze');
-                    // On vérifie si le lien est pour index.html ET qu'on est sur index.html (simplifié pour cet exemple)
-                    if (element.getAttribute('data-page-name') === 'index.html') {
+                    const currentPage = new URL(window.location.href).pathname.split('/').pop() || 'index.html';
+                    if (element.getAttribute('data-page-name') === currentPage) {
                         element.classList.add('active', 'text-bronze', 'border-b-2', 'border-bronze');
+                    }
+                    // Pour index.html, on ajoute une classe active simplifiée pour la démo
+                    if (element.getAttribute('data-page-name') === 'index.html' && currentPage === 'index.html') {
+                        element.classList.add('active', 'text-bronze'); // La classe 'active' est gérée par le CSS :after
                     }
                     return;
                 }
@@ -358,10 +403,7 @@
          * @param {string} lang - Code de la nouvelle langue.
          */
         function switchLanguage(lang) {
-            // Étape 1 : Enregistre la langue sélectionnée pour la persistance
             localStorage.setItem('userLanguage', lang);
-            
-            // Étape 2 : Met à jour le contenu de la page
             updateContentTranslations(lang); 
             
             // Ferme les menus (logic desktop et mobile)
@@ -383,14 +425,114 @@
             }
         }
 
-        // --- 3. GESTION DES ÉVÉNEMENTS & INITIALISATION ---
+        // --- 3. LOGIQUE DU CARROUSEL INFINI (NOUVEAU) ---
+        let currentIndex = 0;
+        let itemsPerView = 4; // Par défaut pour desktop
+        let itemCount; // Nombre total d'éléments (originaux + duplicatas)
+        let totalOriginalItems; // Nombre d'éléments originaux
+
+        function getItemsPerView() {
+            if (window.innerWidth >= 1024) return 4; // lg:w-1/4
+            if (window.innerWidth >= 768) return 3; // md:w-1/3
+            return 1; // w-full
+        }
+
+        function updateCarousel(isInitialSetup = false) {
+            const track = document.getElementById('carousel-track');
+            if (!track) return;
+
+            const items = track.querySelectorAll('.carousel-item');
+            if (items.length === 0) return;
+
+            itemsPerView = getItemsPerView();
+            const itemWidth = 100 / itemsPerView;
+
+            items.forEach(item => {
+                item.style.width = `${itemWidth}%`;
+            });
+
+            if (isInitialSetup) {
+                // Créer la boucle infinie en dupliquant les N premiers éléments à la fin, et N derniers au début
+                totalOriginalItems = items.length;
+                const clonedEnd = [];
+                const clonedStart = [];
+
+                // Clone les N premiers pour la fin
+                for (let i = 0; i < itemsPerView; i++) {
+                    clonedEnd.push(items[i].cloneNode(true));
+                }
+
+                // Clone les N derniers pour le début
+                for (let i = totalOriginalItems - itemsPerView; i < totalOriginalItems; i++) {
+                    clonedStart.push(items[i].cloneNode(true));
+                }
+                
+                // Insère les clones
+                clonedStart.reverse().forEach(clone => track.prepend(clone));
+                clonedEnd.forEach(clone => track.appendChild(clone));
+
+                // Met à jour itemCount après l'ajout des clones
+                itemCount = track.querySelectorAll('.carousel-item').length;
+                
+                // Positionne le carrousel sur le premier élément original (après les clones de départ)
+                currentIndex = itemsPerView; 
+                track.style.transition = 'none'; // Désactive la transition pour le repositionnement initial
+                track.style.transform = `translateX(-${currentIndex * itemWidth}%)`;
+
+                // Réactive la transition après un court délai
+                setTimeout(() => {
+                    track.style.transition = 'transform 0.5s ease-in-out';
+                }, 50);
+            }
+
+            // Le nombre total d'items après clonage est: (Original + 2 * itemsPerView)
+            itemCount = track.querySelectorAll('.carousel-item').length;
+            totalOriginalItems = itemCount - 2 * itemsPerView; // Recalcule le nombre d'éléments originaux si on ne passe pas par l'initialisation
+
+            // Ajuste la position en cas de redimensionnement pour rester sur le slide actif
+            track.style.transform = `translateX(-${currentIndex * itemWidth}%)`;
+        }
+
+
+        function moveCarousel(direction) {
+            const track = document.getElementById('carousel-track');
+            const itemWidth = 100 / itemsPerView;
+
+            let nextIndex = currentIndex + direction;
+
+            // Applique la transition pour le mouvement
+            track.style.transition = 'transform 0.5s ease-in-out';
+            track.style.transform = `translateX(-${nextIndex * itemWidth}%)`;
+            currentIndex = nextIndex;
+
+            // Logique de boucle infinie (teleportation)
+            if (currentIndex >= totalOriginalItems + itemsPerView) {
+                // Est sur le premier clone de fin -> saute au premier original (juste après les clones de début)
+                setTimeout(() => {
+                    currentIndex = itemsPerView;
+                    track.style.transition = 'none';
+                    track.style.transform = `translateX(-${currentIndex * itemWidth}%)`;
+                }, 500); // Temps doit correspondre à la durée de la transition CSS
+            } else if (currentIndex < itemsPerView) {
+                // Est sur le dernier clone de début -> saute au dernier original
+                setTimeout(() => {
+                    currentIndex = totalOriginalItems + itemsPerView - 1; 
+                    track.style.transition = 'none';
+                    track.style.transform = `translateX(-${currentIndex * itemWidth}%)`;
+                }, 500);
+            }
+        }
+
+
+        // --- 4. GESTION DES ÉVÉNEMENTS & INITIALISATION ---
 
         document.addEventListener('DOMContentLoaded', () => {
-            // A. Détermine la langue initiale
+            // A. Détermine la langue initiale et initialise le contenu
             let initialLang = localStorage.getItem('userLanguage') || DEFAULT_LANG;
-            
-            // B. Initialise le contenu et corrige les liens (même si la page charge vite, on le fait après le DOM)
             updateContentTranslations(initialLang);
+
+            // B. Initialisation du Carrousel
+            updateCarousel(true);
 
             // C. Ajout des écouteurs d'événements pour le changement de langue
             document.querySelectorAll('.lang-option, .lang-button[data-lang]').forEach(button => {
@@ -403,7 +545,7 @@
                 });
             });
 
-            // D. Gestion du menu mobile
+            // D. Gestion des menus (mobile et dropdown desktop)
             const mobileMenuBtn = document.getElementById('mobileMenuBtn');
             const mobileMenu = document.getElementById('mobileMenu');
             if (mobileMenuBtn) {
@@ -414,7 +556,6 @@
                 });
             }
 
-            // E. Gestion du dropdown de langue desktop
             const langDropdownBtn = document.getElementById('lang-dropdown-btn');
             const langMenu = document.getElementById('lang-menu');
             const dropdownArrow = document.getElementById('dropdown-arrow');
@@ -427,15 +568,32 @@
                     dropdownArrow.classList.toggle('rotate-180');
                 });
 
-                // Fermer le dropdown si on clique à l'extérieur
                 document.addEventListener('click', (event) => {
-                    if (!document.getElementById('lang-dropdown-container').contains(event.target) && !langMenu.classList.contains('hidden')) {
+                    if (document.getElementById('lang-dropdown-container') && !document.getElementById('lang-dropdown-container').contains(event.target) && !langMenu.classList.contains('hidden')) {
                         langMenu.classList.add('hidden');
                         langDropdownBtn.setAttribute('aria-expanded', 'false');
                         dropdownArrow.classList.remove('rotate-180');
                     }
                 });
             }
+
+            // E. Écouteurs pour les boutons du Carrousel
+            const prevButton = document.getElementById('carousel-prev');
+            const nextButton = document.getElementById('carousel-next');
+
+            if (prevButton && nextButton) {
+                prevButton.addEventListener('click', () => moveCarousel(-1));
+                nextButton.addEventListener('click', () => moveCarousel(1));
+            }
+
+            // F. Gestion du redimensionnement de la fenêtre pour le Carrousel (responsive)
+            window.addEventListener('resize', () => {
+                // Empêche de lancer updateCarousel trop souvent lors du redimensionnement
+                clearTimeout(window.resizeTimer);
+                window.resizeTimer = setTimeout(() => {
+                    updateCarousel(false); 
+                }, 250);
+            });
         });
     </script>
 </body>
