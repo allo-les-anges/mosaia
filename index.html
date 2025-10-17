@@ -1,11 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title data-translate-key="page_title">Mosaia Studio - Home</title>
+
+    <!-- Tailwind CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
     <script>
         tailwind.config = {
             theme: {
@@ -16,99 +21,92 @@
             }
         }
     </script>
+
     <style>
-        /* Styles CSS inchangés pour l'animation et le design */
-        .fade-in-up { animation: fadeInUp 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; opacity: 0; transform: translateY(40px); }
+        /* Animation & visual */
+        .fade-in-up { animation: fadeInUp 1.2s cubic-bezier(0.25,0.46,0.45,0.94) forwards; opacity: 0; transform: translateY(40px); }
         .fade-in-up.delay-1 { animation-delay: 0.3s; }
         .fade-in-up.delay-2 { animation-delay: 0.6s; }
         .fade-in-up.delay-3 { animation-delay: 0.9s; }
         @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+
         .elegant-line { position: relative; }
         .elegant-line::after { content: ''; position: absolute; bottom: -12px; left: 50%; transform: translateX(-50%); width: 80px; height: 1px; background: linear-gradient(90deg, transparent, #C99B4F, transparent); }
-        
-        /* Mise à jour du style hero-bg pour utiliser l'image réelle */
-        .hero-bg {
-            background-image: url('https://raw.githubusercontent.com/allo-les-anges/mosaia/main/mosaia-assets/logos/Hero%20background%20pool.png');
-            background-size: cover; background-position: center; background-attachment: fixed;
-            /* Ajout d'un overlay pour améliorer la lisibilité du texte blanc sur l'image */
-            position: relative;
-        }
-        .hero-bg::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            left: 0;
-            /* Overlay personnalisé */
-            background: linear-gradient(135deg, rgba(26, 26, 26, 0.75) 0%, rgba(201, 155, 79, 0.1) 50%, rgba(26, 26, 26, 0.85) 100%);
-            z-index: 1; /* S'assure que l'overlay est sous le contenu mais sur l'image */
-        }
-        
-        .cta-primary { background: linear-gradient(135deg, #C99B4F, #B8894A); transition: all 0.4s ease; position: relative; overflow: hidden; border: 1px solid rgba(201, 155, 79, 0.3); font-family: 'Montserrat', sans-serif; font-weight: 600; }
-        .cta-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(201, 155, 79, 0.2); background: #1A1A1A; color: #C99B4F; }
-        .cta-secondary { border: 2px solid #C99B4F; color: #C99B4F; transition: all 0.4s ease; font-family: 'Montserrat', sans-serif; font-weight: 500; }
-        .cta-secondary:hover { background: #C99B4F; border-color: #C99B4F; color: #1A1A1A; transform: translateY(-2px); }
+
+        .cta-primary { background: linear-gradient(135deg, #C99B4F, #B8894A); transition: all 0.4s ease; position: relative; overflow: hidden; border: 1px solid rgba(201,155,79,0.3); font-family:'Montserrat',sans-serif; font-weight:600; }
+        .cta-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(201,155,79,0.2); background:#1A1A1A; color:#C99B4F; }
+        .cta-secondary { border: 2px solid #C99B4F; color: #C99B4F; transition: all 0.4s ease; font-family:'Montserrat',sans-serif; font-weight:500; }
+        .cta-secondary:hover { background: #C99B4F; color: #1A1A1A; transform: translateY(-2px); }
+
         .nav-link { position: relative; transition: all 0.3s ease; }
         .nav-link:hover { color: #C99B4F; }
         .nav-link::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: #C99B4F; transition: width 0.3s ease; }
         .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+
         .page-section { padding-top: 100px; padding-bottom: 100px; }
-        /* Style pour les boutons de langue mobiles ou le bouton du dropdown */
+
+        /* Lang selector */
         .lang-button { background: none; border: 1px solid transparent; padding: 4px 8px; border-radius: 4px; transition: all 0.3s; }
-        .lang-button:hover { background: rgba(201, 155, 79, 0.1); border-color: #C99B4F; }
-        .lang-button.active { background: #C99B4F; color: #1A1A1A; font-weight: 600; border-color: #C99B4F; }
-        /* Style pour les options du dropdown sur desktop */
-        .lang-option.active { background-color: #F8F8F8; color: #C99B4F; font-weight: 600; }
-        
-        /* NOUVEAU STYLE CARROUSEL (SIMPLE LOOP) */
-        .carousel-track {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
+        .lang-button:hover { background: rgba(201,155,79,0.1); border-color:#C99B4F; }
+        .lang-button.active { background:#C99B4F; color:#1A1A1A; font-weight:600; border-color:#C99B4F; }
+
+        /* Dropdown arrow rotation */
+        #dropdown-arrow { transition: transform 0.25s ease; }
+        .rotate-180 { transform: rotate(180deg); }
+
+        /* HERO CAROUSEL styles */
+        .hero-carousel { position: relative; width: 100%; height: calc(100vh - 80px); /* subtract header height approx */ overflow: hidden; }
+        .carousel-slide { position: absolute; inset: 0; opacity: 0; transition: opacity 1.2s ease-in-out; }
+        .carousel-slide img { width: 100%; height: 100%; object-fit: cover; display:block; }
+        .carousel-slide.active { opacity: 1; z-index: 10; }
+
+        /* Overlay on carousel to keep white text readable */
+        .hero-carousel::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: 15;
+            background: linear-gradient(135deg, rgba(26,26,26,0.55) 0%, rgba(201,155,79,0.05) 50%, rgba(26,26,26,0.7) 100%);
+            pointer-events: none;
         }
-        .carousel-item {
-            flex-shrink: 0;
-            width: 100%; /* Sera ajusté par JS/Tailwind en fonction du nombre d'éléments visibles */
-        }
+
+        /* place hero content above overlay */
+        .hero-content { position: relative; z-index: 20; }
+
+        /* header */
+        header { background-color: rgba(255,255,255,0.98); backdrop-filter: blur(6px); position: sticky; top:0; z-index:40; border-bottom: 1px solid rgba(26,26,26,0.05); }
     </style>
 </head>
 <body class="bg-pure-white font-body text-charcoal">
-    <header class="bg-pure-white/98 backdrop-blur-md shadow-sm sticky top-0 z-50 border-b border-charcoal/5">
-    <div class="max-w-7xl mx-auto px-6 lg:px-8">
-        <div class="flex justify-between items-center h-20">
-            <div class="flex-shrink-0">
-                <a href="index.html" data-page-name="index.html"> 
-                    <img src="https://raw.githubusercontent.com/allo-les-anges/mosaia/main/mosaia-assets/logos/logo%20mosaia%202.png" 
-                                alt="Mosaia Studio Logo" 
-                                class="h-10 lg:h-12 w-auto">
-                </a>
-            </div>
-                
+
+    <!-- ====== HEADER ====== -->
+    <header class="bg-pure-white/98 shadow-sm">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex items-center space-x-4">
+                    <a href="index.html" data-page-name="index.html" class="flex items-center">
+                        <img src="https://raw.githubusercontent.com/allo-les-anges/mosaia/main/mosaia-assets/logos/logo%20mosaia%202.png" alt="Mosaia Studio Logo" class="h-10 lg:h-12 w-auto">
+                    </a>
+                </div>
+
                 <nav class="hidden md:block">
                     <div class="flex items-center space-x-8 lg:space-x-10">
-                        <a href="index.html" data-translate-key="nav_home" data-page-name="index.html" class="nav-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase active">HOME</a>
+                        <a href="index.html" data-translate-key="nav_home" data-page-name="index.html" class="nav-link text-bronze border-b-2 border-bronze px-1 py-2 text-sm font-body font-medium tracking-wide uppercase">HOME</a>
                         <a href="portfolio.html" data-translate-key="nav_portfolio" data-page-name="portfolio.html" class="nav-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase">PORTFOLIO</a>
                         <a href="studio.html" data-translate-key="nav_studio" data-page-name="studio.html" class="nav-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase">STUDIO</a>
                         <a href="sur-mesure.html" data-translate-key="nav_bespoke" data-page-name="sur-mesure.html" class="nav-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase">BESPOKE</a>
                         <a href="processus.html" data-translate-key="nav_process" data-page-name="processus.html" class="nav-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase">PROCESS</a>
                         <a href="partenaires.html" data-translate-key="nav_partners" data-page-name="partenaires.html" class="nav-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase">PARTNERS</a>
                         <a href="contact.html" data-translate-key="nav_contact" data-page-name="contact.html" class="nav-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase">CONTACT</a>
-                        
+
+                        <!-- Lang dropdown (desktop) -->
                         <div class="relative ml-4 pl-4 border-l border-charcoal/10" id="lang-dropdown-container">
-                            <button id="lang-dropdown-btn" 
-                                        class="lang-button text-charcoal text-sm font-title font-medium flex items-center p-2" 
-                                        aria-expanded="false" 
-                                        aria-controls="lang-menu"
-                                        aria-label="Sélectionner la langue">
-                                <span id="current-lang-display" class="font-semibold text-charcoal">EN</span>
+                            <button id="lang-dropdown-btn" class="lang-button text-charcoal text-sm font-title font-medium flex items-center p-2" aria-expanded="false" aria-controls="lang-menu" aria-label="Select language">
+                                <span id="current-lang-display" class="font-semibold text-bronze">EN</span>
                                 <svg class="h-4 w-4 ml-1 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" id="dropdown-arrow"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
                             </button>
-                            
-                            <div id="lang-menu" 
-                                        class="absolute right-0 mt-3 w-32 bg-pure-white shadow-xl rounded-md ring-1 ring-charcoal/5 hidden origin-top-right py-1 z-50" 
-                                        role="menu" 
-                                        aria-orientation="vertical" 
-                                        aria-labelledby="lang-dropdown-btn">
+
+                            <div id="lang-menu" class="absolute right-0 mt-3 w-36 bg-pure-white shadow-xl rounded-md ring-1 ring-charcoal/5 hidden origin-top-right py-1 z-50" role="menu" aria-orientation="vertical" aria-labelledby="lang-dropdown-btn">
                                 <a href="#" class="block px-4 py-2 text-sm text-charcoal hover:bg-light-gray lang-option" role="menuitem" data-lang="fr">Français</a>
                                 <a href="#" class="block px-4 py-2 text-sm text-charcoal hover:bg-light-gray lang-option active" role="menuitem" data-lang="en">English</a>
                                 <a href="#" class="block px-4 py-2 text-sm text-charcoal hover:bg-light-gray lang-option" role="menuitem" data-lang="nl">Nederlands</a>
@@ -116,31 +114,29 @@
                                 <a href="#" class="block px-4 py-2 text-sm text-charcoal hover:bg-light-gray lang-option" role="menuitem" data-lang="es">Español</a>
                             </div>
                         </div>
+
                     </div>
                 </nav>
-                
-                <div class="md:hidden flex items-center space-x-4">
-                    <button id="mobileMenuBtn" 
-                                class="text-charcoal hover:text-bronze p-2" 
-                                data-translate-key="menu_btn"
-                                aria-label="Menu mobile" 
-                                aria-expanded="false" 
-                                aria-controls="mobileMenu">
-                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobileMenuBtn" class="text-charcoal hover:text-bronze p-2" data-translate-key="menu_btn" aria-label="Mobile menu" aria-expanded="false" aria-controls="mobileMenu">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
                     </button>
                 </div>
             </div>
-            
+
+            <!-- Mobile nav -->
             <div id="mobileMenu" class="md:hidden bg-pure-white border-t border-charcoal/10 hidden">
                 <div class="px-6 py-4 space-y-2">
-                    <a href="index.html" data-translate-key="nav_home" data-page-name="index.html" class="block py-2 text-charcoal font-body font-medium uppercase active">HOME</a>
+                    <a href="index.html" data-translate-key="nav_home" data-page-name="index.html" class="block py-2 text-charcoal font-body font-medium uppercase">HOME</a>
                     <a href="portfolio.html" data-translate-key="nav_portfolio" data-page-name="portfolio.html" class="block py-2 text-charcoal font-body font-medium uppercase">PORTFOLIO</a>
                     <a href="studio.html" data-translate-key="nav_studio" data-page-name="studio.html" class="block py-2 text-charcoal font-body font-medium uppercase">STUDIO</a>
                     <a href="sur-mesure.html" data-translate-key="nav_bespoke" data-page-name="sur-mesure.html" class="block py-2 text-charcoal font-body font-medium uppercase">BESPOKE</a>
                     <a href="processus.html" data-translate-key="nav_process" data-page-name="processus.html" class="block py-2 text-charcoal font-body font-medium uppercase">PROCESS</a>
                     <a href="partenaires.html" data-translate-key="nav_partners" data-page-name="partenaires.html" class="block py-2 text-charcoal font-body font-medium uppercase">PARTNERS</a>
                     <a href="contact.html" data-translate-key="nav_contact" data-page-name="contact.html" class="block py-2 text-charcoal font-body font-medium uppercase">CONTACT</a>
-                    
+
                     <div id="lang-selector-mobile" class="pt-4 border-t border-charcoal/10">
                         <h4 data-translate-key="lang_selector_title" class="text-sm font-title font-medium text-charcoal mb-2 uppercase">Choose Language</h4>
                         <div class="flex flex-wrap gap-2">
@@ -156,99 +152,80 @@
         </div>
     </header>
 
+    <!-- ====== HERO: CAROUSEL (remplace le background statique) ====== -->
     <main>
-        <section class="hero-bg min-h-screen flex items-center justify-center relative page-section pt-0 pb-0">
-            <div class="max-w-6xl mx-auto px-6 text-center relative z-20 py-32 lg:py-0">
-                <h2 class="text-5xl md:text-6xl lg:text-7xl font-title font-bold text-pure-white mb-12 tracking-widest uppercase fade-in-up leading-tight elegant-line" data-translate-key="hero_title">
-                    THE ART OF MOSAIC<br>
-                    <span class="text-bronze font-light" data-translate-key="hero_title_bronze">THAT AWAKENS EMOTION</span><br>
-                    <span data-translate-key="hero_title_end">AND ENDURES</span>
-                </h2>
-                <div class="flex flex-col sm:flex-row gap-8 justify-center fade-in-up delay-1">
-                    <a href="portfolio.html" data-translate-key="cta_portfolio" data-page-name="portfolio.html" class="cta-primary px-10 py-4 text-pure-white tracking-widest uppercase">EXPLORE THE PORTFOLIO</a>
-                    <a href="sur-mesure.html" data-translate-key="cta_bespoke" data-page-name="sur-mesure.html" class="cta-secondary px-10 py-4 tracking-widest uppercase">START A BESPOKE PROJECT</a>
+        <section class="hero-carousel" aria-label="Hero carousel">
+            <!-- Slide 1 -->
+            <div class="carousel-slide active" role="group" aria-roledescription="slide" aria-label="Slide 1 of 3">
+                <img src="https://raw.githubusercontent.com/allo-les-anges/mosaia/main/mosaia-assets/logos/getty-images-cb0Ft3TXPt4-unsplash.jpg" alt="Luxury pool mosaic 1">
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="carousel-slide" role="group" aria-roledescription="slide" aria-label="Slide 2 of 3">
+                <img src="https://raw.githubusercontent.com/allo-les-anges/mosaia/main/mosaia-assets/logos/armand-khoury-cGpQM-snU20-unsplash.jpg" alt="Luxury pool mosaic 2">
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="carousel-slide" role="group" aria-roledescription="slide" aria-label="Slide 3 of 3">
+                <img src="https://raw.githubusercontent.com/allo-les-anges/mosaia/main/mosaia-assets/logos/gower-brown-9MvxNFLcsBU-unsplash.jpg" alt="Luxury pool mosaic 3">
+            </div>
+
+            <!-- Hero textual content — placed over carousel (same content as before) -->
+            <div class="hero-content flex items-center justify-center text-center absolute inset-0">
+                <div class="max-w-6xl mx-auto px-6 py-28">
+                    <h2 class="text-5xl md:text-6xl lg:text-7xl font-title font-bold text-pure-white mb-8 tracking-widest uppercase fade-in-up elegant-line" data-translate-key="hero_title">
+                        THE ART OF MOSAIC<br>
+                        <span class="text-bronze font-light" data-translate-key="hero_title_bronze">THAT AWAKENS EMOTION</span><br>
+                        <span data-translate-key="hero_title_end">AND ENDURES</span>
+                    </h2>
+
+                    <div class="flex flex-col sm:flex-row gap-6 justify-center fade-in-up delay-1">
+                        <a href="portfolio.html" data-translate-key="cta_portfolio" data-page-name="portfolio.html" class="cta-primary px-8 py-3 text-pure-white tracking-widest uppercase">EXPLORE THE PORTFOLIO</a>
+                        <a href="sur-mesure.html" data-translate-key="cta_bespoke" data-page-name="sur-mesure.html" class="cta-secondary px-8 py-3 tracking-widest uppercase">START A BESPOKE PROJECT</a>
+                    </div>
                 </div>
             </div>
         </section>
+
+        <!-- ... Rest of page sections (kept minimal here — you can restore your sections below) ... -->
 
         <section class="page-section bg-pure-white">
             <div class="max-w-4xl mx-auto px-6 text-center">
                 <div class="w-20 h-px bg-bronze mx-auto mb-10 fade-in-up"></div>
                 <p class="text-xl md:text-2xl text-medium-gray leading-relaxed font-body font-light tracking-wide fade-in-up delay-1" data-translate-key="intro_text">
-                    Born from a deep passion for craftsmanship and art, Mosaia Studio merges tradition with modern design, 
+                    Born from a deep passion for craftsmanship and art, Mosaia Studio merges tradition with modern design,
                     <span class="text-bronze font-normal" data-translate-key="intro_text_bronze">blending hand-crafted precision with artistic expression.</span>
                 </p>
             </div>
         </section>
 
         <section class="page-section bg-light-gray">
-    <div class="max-w-7xl mx-auto px-6 text-center">
-        <h3 data-translate-key="key_domains_title" class="text-3xl font-title font-bold text-charcoal mb-16 tracking-widest uppercase fade-in-up elegant-line">OUR KEY DOMAINS</h3>
-        <div class="grid md:grid-cols-3 gap-12 lg:gap-16">
-            
-            <div class="fade-in-up delay-1 bg-pure-white p-8 shadow-lg hover:shadow-xl transition-all duration-300">
-                <div class="mb-4">
-<img src="https://raw.githubusercontent.com/allo-les-anges/mosaia/main/mosaia-assets/logos/image1-index.png" alt="Image Piscines" />
-                </div>
-                <h4 data-translate-key="domain_pools_title" class="text-xl font-title font-bold uppercase mb-4">POOLS</h4>
-                <p data-translate-key="domain_pools_desc" class="text-medium-gray">Transform your pool into a durable and sophisticated aquatic work of art.</p>
-            </div>
-            
-            <div class="fade-in-up delay-2 bg-pure-white p-8 shadow-lg hover:shadow-xl transition-all duration-300">
-                <div class="mb-4">
-<img src="https://raw.githubusercontent.com/allo-les-anges/mosaia/main/mosaia-assets/logos/image2-index.png" alt="Image Murs & Façades" />
-                </div>
-                <h4 data-translate-key="domain_walls_title" class="text-xl font-title font-bold uppercase mb-4">WALLS & FACADES</h4>
-                <p data-translate-key="domain_walls_desc" class="text-medium-gray">Exceptional architectural coverings for interiors and exteriors, redefining the space.</p>
-            </div>
-            
-            <div class="fade-in-up delay-3 bg-pure-white p-8 shadow-lg hover:shadow-xl transition-all duration-300">
-                <div class="mb-4">
-<img src="https://raw.githubusercontent.com/allo-les-anges/mosaia/main/mosaia-assets/logos/image3-index.png" alt="Image Oeuvres d'Art" />
-                </div>
-                <h4 data-translate-key="domain_artworks_title" class="text-xl font-title font-bold uppercase mb-4">ARTWORKS</h4>
-                <p data-translate-key="domain_artworks_desc" class="text-medium-gray">Unique artworks and custom installations. The pure expression of your creative vision.</p>
-            </div>
-            
-        </div>
-    </div>
-</section>
+            <div class="max-w-7xl mx-auto px-6 text-center">
+                <h3 data-translate-key="key_domains_title" class="text-3xl font-title font-bold text-charcoal mb-16 tracking-widest uppercase fade-in-up elegant-line">OUR KEY DOMAINS</h3>
+                <div class="grid md:grid-cols-3 gap-12 lg:gap-16">
+                    <div class="fade-in-up delay-1 bg-pure-white p-8 shadow-lg hover:shadow-xl transition-all duration-300">
+                        <div class="mb-4"><img src="https://raw.githubusercontent.com/allo-les-anges/mosaia/main/mosaia-assets/logos/image1-index.png" alt="Pool example" /></div>
+                        <h4 data-translate-key="domain_pools_title" class="text-xl font-title font-bold uppercase mb-4">POOLS</h4>
+                        <p data-translate-key="domain_pools_desc" class="text-medium-gray">Transform your pool into a durable and sophisticated aquatic work of art.</p>
+                    </div>
 
-<section class="page-section bg-pure-white overflow-hidden">
-    <div class="max-w-7xl mx-auto px-6 text-center">
-        <h3 data-translate-key="carousel_title" class="text-3xl font-title font-bold text-charcoal mb-16 tracking-widest uppercase fade-in-up elegant-line">A SELECTION OF OUR MATERIALS</h3>
-    </div>
-    
-    <div class="relative max-w-7xl mx-auto">
-        <div id="carousel-container" class="overflow-hidden">
-            <div id="carousel-track" class="carousel-track flex">
-                <div class="carousel-item p-4 lg:p-6 w-full md:w-1/3 lg:w-1/4">
-                    <img src="getty-images-cb0Ft3TXPt4-unsplash.jpg" alt="Material 1" class="w-full h-auto object-cover shadow-lg hover:shadow-xl transition-shadow duration-300">
-                </div>
-                <div class="carousel-item p-4 lg:p-6 w-full md:w-1/3 lg:w-1/4">
-                    <img src="gower-brown-9MvxNFLcsBU-unsplash.jpg" alt="Material 2" class="w-full h-auto object-cover shadow-lg hover:shadow-xl transition-shadow duration-300">
-                </div>
-                <div class="carousel-item p-4 lg:p-6 w-full md:w-1/3 lg:w-1/4">
-                    <img src="armand-khoury-cGpQM-snU20-unsplash.jpg" alt="Material 3" class="w-full h-auto object-cover shadow-lg hover:shadow-xl transition-shadow duration-300">
-                </div>
-                <div class="carousel-item p-4 lg:p-6 w-full md:w-1/3 lg:w-1/4">
-                    <img src="getty-images-cb0Ft3TXPt4-unsplash.jpg-ef7136ee-fac2-43e4-b2dd-20428a5a4c70" alt="Material 4" class="w-full h-auto object-cover shadow-lg hover:shadow-xl transition-shadow duration-300">
-                </div>
-                <div class="carousel-item p-4 lg:p-6 w-full md:w-1/3 lg:w-1/4">
-                    <img src="armand-khoury-cGpQM-snU20-unsplash.jpg-5d0d2952-1bc4-4e3c-af96-19e000730c1f" alt="Material 5" class="w-full h-auto object-cover shadow-lg hover:shadow-xl transition-shadow duration-300">
-                </div>
-                </div>
-        </div>
+                    <div class="fade-in-up delay-2 bg-pure-white p-8 shadow-lg hover:shadow-xl transition-all duration-300">
+                        <div class="mb-4"><img src="https://raw.githubusercontent.com/allo-les-anges/mosaia/main/mosaia-assets/logos/image2-index.png" alt="Walls example" /></div>
+                        <h4 data-translate-key="domain_walls_title" class="text-xl font-title font-bold uppercase mb-4">WALLS & FACADES</h4>
+                        <p data-translate-key="domain_walls_desc" class="text-medium-gray">Exceptional architectural coverings for interiors and exteriors, redefining the space.</p>
+                    </div>
 
-        <button id="carousel-prev" class="absolute left-0 top-1/2 -translate-y-1/2 bg-charcoal/50 hover:bg-bronze p-3 text-pure-white transition-all z-30 ml-4 rounded-full" aria-label="Previous image">
-            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
-        </button>
-        <button id="carousel-next" class="absolute right-0 top-1/2 -translate-y-1/2 bg-charcoal/50 hover:bg-bronze p-3 text-pure-white transition-all z-30 mr-4 rounded-full" aria-label="Next image">
-            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
-        </button>
-    </div>
-</section>
-<section class="min-h-[400px] bg-charcoal flex items-center justify-center bg-fixed bg-center bg-cover" style="background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><rect width="100%" height="100%" fill="%231A1A1A"/><circle cx="500" cy="500" r="400" fill="%23C99B4F" opacity="0.05"/></svg>');">
+                    <div class="fade-in-up delay-3 bg-pure-white p-8 shadow-lg hover:shadow-xl transition-all duration-300">
+                        <div class="mb-4"><img src="https://raw.githubusercontent.com/allo-les-anges/mosaia/main/mosaia-assets/logos/image3-index.png" alt="Artworks example" /></div>
+                        <h4 data-translate-key="domain_artworks_title" class="text-xl font-title font-bold uppercase mb-4">ARTWORKS</h4>
+                        <p data-translate-key="domain_artworks_desc" class="text-medium-gray">Unique artworks and custom installations. The pure expression of your creative vision.</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section class="min-h-[400px] bg-charcoal flex items-center justify-center bg-fixed bg-center bg-cover" style="background-image: url('data:image/svg+xml,<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 1000 1000&quot;><rect width=&quot;100%&quot; height=&quot;100%&quot; fill=&quot;%231A1A1A&quot;/><circle cx=&quot;500&quot; cy=&quot;500&quot; r=&quot;400&quot; fill=&quot;%23C99B4F&quot; opacity=&quot;0.05&quot;/></svg>');">
             <div class="max-w-4xl mx-auto px-6 text-center">
                 <h3 class="text-4xl md:text-5xl font-title font-light text-pure-white leading-relaxed tracking-wide italic fade-in-up">
                     <span class="text-bronze font-normal" data-translate-key="quote_1_bronze">« Mosaic is not decoration,</span><br>
@@ -258,6 +235,7 @@
         </section>
     </main>
 
+    <!-- ====== FOOTER ====== -->
     <footer class="bg-charcoal text-pure-white py-12 border-t border-bronze/10">
         <div class="max-w-7xl mx-auto px-6">
             <div class="flex flex-col lg:flex-row justify-between items-center space-y-4 lg:space-y-0">
@@ -266,9 +244,11 @@
                 </div>
                 <div class="flex space-x-6">
                     <a href="#" class="text-pure-white/80 hover:text-bronze transition-colors duration-300 transform hover:scale-110" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM12 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                        <!-- instagram icon -->
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM12 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
                     </a>
                     <a href="#" class="text-pure-white/80 hover:text-bronze transition-colors duration-300 transform hover:scale-110" target="_blank" rel="noopener noreferrer" aria-label="Pinterest">
+                        <!-- pinterest icon -->
                         <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.374 0 0 5.374 0 12s5.374 12 12 12c.343 0 .682-.015 1.017-.043-.096-.996-.264-2.317-.264-3.245 0-1.264.476-2.129 1.017-2.129.476 0 .714.357.714.833 0 .508-.321 1.269-.321 1.968 0 .833.714 1.508 1.548 1.508 1.468 0 2.456-1.548 2.456-3.611 0-1.889-1.349-3.301-3.301-3.301-2.317 0-3.683 1.746-3.683 3.571 0 .714.274 1.484.619 1.905.095.119.107.222.079.341-.021.095-.071.278-.095.357-.032.119-.127.151-.238.095-.833-.389-1.357-1.603-1.357-2.587 0-2.095 1.524-4.016 4.397-4.016 2.309 0 4.103 1.643 4.103 3.841 0 2.293-1.444 4.135-3.452 4.135-.675 0-1.31-.349-1.524-.778 0 0-.333 1.27-.405 1.579-.147.563-.544 1.27-.81 1.698C10.85 23.846 11.417 24 12 24c6.626 0 12-5.374 12-12S18.626 0 12 0z"/></svg>
                     </a>
                 </div>
@@ -278,14 +258,14 @@
             </div>
         </div>
     </footer>
-    
-    <script>
-        // --- 0. CONFIGURATION GLOBALE ---
-        const BASE_URL = 'https://allo-les-anges.github.io/mosaia/'; 
-        const DEFAULT_LANG = 'en'; // Langue par défaut: Anglais
-        let currentLang = DEFAULT_LANG; 
 
-        // --- 1. DONNÉES DE TRADUCTION (Mise à jour avec la clé du Carrousel) ---
+    <!-- ====== SCRIPTS: TRANSLATION, CAROUSEL, NAVIGATION ====== -->
+    <script>
+        // --- CONFIGURATION ---
+        const BASE_URL = 'https://allo-les-anges.github.io/mosaia/';
+        const DEFAULT_LANG = 'en';
+
+        // --- TRANSLATIONS (trimmed to essential keys used) ---
         const translations = {
             'page_title': { fr: "Mosaia Studio - Accueil", en: "Mosaia Studio - Home", nl: "Mosaia Studio - Startpagina", de: "Mosaia Studio - Startseite", es: "Mosaia Studio - Inicio" },
             'nav_home': { fr: "ACCUEIL", en: "HOME", nl: "STARTPAGINA", de: "STARTSEITE", es: "INICIO" },
@@ -296,117 +276,76 @@
             'nav_partners': { fr: "PARTENAIRES", en: "PARTNERS", nl: "PARTNERS", de: "PARTNER", es: "SOCIOS" },
             'nav_contact': { fr: "CONTACT", en: "CONTACT", nl: "CONTACT", de: "KONTAKT", es: "CONTACTO" },
             'menu_btn': { fr: "Menu", en: "Menu", nl: "Menu", de: "Menü", es: "Menú" },
-            'lang_selector_title': { fr: "Choisir la Langue", en: "Choose Language", nl: "Taal Kiezen", de: "Sprache Wählen", es: "Elegir Idioma" },
-            
+
             'hero_title': { fr: "L’ART DE LA MOSAÏQUE", en: "THE ART OF MOSAIC", nl: "DE KUNST VAN MOZAÏEK", de: "DIE KUNST DES MOSAIKS", es: "EL ARTE DEL MOSAICO" },
             'hero_title_bronze': { fr: "QUI ÉVEILLE L’ÉMOTION", en: "THAT AWAKENS EMOTION", nl: "DAT EMOTIE OPROEPT", de: "DIE EMOTIONEN WECKT", es: "QUE DESPIERTA EMOCIÓN" },
             'hero_title_end': { fr: "ET PERDURE", en: "AND ENDURES", nl: "EN VOORTDUURT", de: "UND BESTEHT", es: "Y PERDURA" },
-            
-            'cta_portfolio': { fr: "EXPLORER LE PORTFOLIO", en: "EXPLORE THE PORTFOLIO", nl: "ONTDEK DE PORTFOLIO", de: "PORTFOLIO ENTDEKKEN", es: "EXPLORAR EL PORTAFOLIO" },
-            'cta_bespoke': { fr: "DÉMARRER UN PROJET SUR MESURE", en: "START A BESPOKE PROJECT", nl: "START EEN MAATWERK PROJECT", de: "EIN MASSGESCHNEIDERTES PROJEKT STARTEN", es: "INICIAR UN PROYECTO A MEDIDA" },
-            
-            'intro_text': { fr: "Né d’une passion profonde pour l’artisanat et l’art, Mosaia Studio fusionne la tradition et le design moderne,", en: "Born from a deep passion for craftsmanship and art, Mosaia Studio merges tradition with modern design,", nl: "Geboren uit een diepe passie voor vakmanschap en kunst, versmelt Mosaia Studio traditie met modern design,", de: "Aus tiefer Leidenschaft für Handwerk und Kunst entstanden, vereint das Mosaia Studio Tradition mit modernem Design,", es: "Nacido de una profunda pasión por la artesanía y el arte, Mosaia Studio fusiona la tradición y el diseño moderne," },
-            'intro_text_bronze': { fr: "mêlant la précision artisanale à l’expression artistique.", en: "blending hand-crafted precision with artistic expression.", nl: "waarbij handgemaakte precisie wordt gecombineerd met artistieke expressie.", de: "verbindet handwerkliche Präzision mit künstlerischem Ausdruck.", es: "mezclando la precisión artesanal con la expresión artística." },
-            
-            'key_domains_title': { fr: "NOS DOMAINES CLÉS", en: "OUR KEY DOMAINS", nl: "ONZE BELANGRIJKSTE DOMEINEN", de: "UNSERE SCHLÜSSELBEREICHE", es: "NUESTROS DOMINIOS CLAVE" },
-            
-            'domain_pools_title': { fr: "PISCINES", en: "POOLS", nl: "ZWEMBADEN", de: "POOLS", es: "PISCINAS" },
-            'domain_pools_desc': { fr: "Transformez votre piscine en une œuvre d'art aquatique durable et sophistiquée.", en: "Transform your pool into a durable and sophisticated aquatic work of art.", nl: "Transformeer uw zwembad in een duurzaam en verfijnd waterkunstwerk.", de: "Verwandeln Sie Ihren Pool in ein langlebiges en raffiniertes Wasserkunstwerk.", es: "Transforma tu piscina en una obra de arte acuática duradera y sofisticada." },
-            
-            'domain_walls_title': { fr: "MURS & FAÇADES", en: "WALLS & FACADES", nl: "MUREN & GEVELS", de: "WÄNDE & FASSADEN", es: "MUROS & FACHADAS" },
-            'domain_walls_desc': { fr: "Revêtements architecturaux d'exception pour intérieurs et extérieurs, redéfinissant l'espace.", en: "Exceptional architectural coverings for interiors and exteriors, redefining the space.", nl: "Uitzonderlijke architecturale bekleding voor interieur en exterieur, die de ruimte herdefinieert.", de: "Außergewöhnliche architektonische Verkleidungen für innen und außen, die den Raum neu definieren.", es: "Revestimientos arquitectónicos excepcionales para interiores y exteriores, redefiniendo el espacio." },
-            
-            'domain_artworks_title': { fr: "ARTWORKS", en: "ARTWORKS", nl: "KUNSTWERKEN", de: "KUNSTWERKE", es: "OBRAS DE ARTE" },
-            'domain_artworks_desc': { fr: "Œuvres d'art uniques et installations personnalisées. L'expression pure de votre vision créative.", en: "Unique artworks and custom installations. The pure expression of your creative vision.", nl: "Unieke kunstwerken en gepersonaliseerde installaties. De pure uitdrukking van uw creatieve visie.", de: "Einzigartige Kunstwerke und kundenspezifische Installationen. Der reine Ausdruck Ihrer kreativen Vision.", es: "Obras de arte únicas e instalaciones personalizadas. La expresión pura de su visión creativa." },
 
-            // Nouvelle clé de traduction pour le carrousel
-            'carousel_title': { fr: "UNE SÉLECTION DE NOS MATÉRIAUX", en: "A SELECTION OF OUR MATERIALS", nl: "EEN SELECTIE VAN ONZE MATERIALEN", de: "EINE AUSWAHL UNSERER MATERIALIEN", es: "UNA SELECCIÓN DE NUESTROS MATERIALES" },
-            
-            'quote_1_bronze': { fr: "« La mosaïque n’est pas une décoration,", en: "« Mosaic is not decoration,", nl: "« Mozaïek is geen decoratie,", de: "« Mosaik ist keine Dekoration,", es: "« El mosaico no es una decoración," },
-            'quote_2': { fr: "c’est une narration. »", en: "it is a narrative. »", nl: "het is een verhaal. »", de: "es ist eine Erzählung. »", es: "es una narración. »" },
-            
-            'footer_copyright': { fr: "© MOSAIA STUDIO – PAR AMARU BRANDS", en: "© MOSAIA STUDIO – BY AMARU BRANDS", nl: "© MOSAIA STUDIO – DOOR AMARU BRANDS", de: "© MOSAIA STUDIO – VON AMARU BRANDS", es: "© MOSAIA STUDIO – POR AMARU BRANDS" },
-            'footer_tagline': { fr: "L'ART DE LA MOSAÏQUE QUI ÉVEILLE L'ÉMOTION ET DURE", en: "THE ART OF MOSAIC THAT AWAKENS EMOTION AND ENDURES", nl: "DE KUNST VAN MOZAÏEK DAT EMOTIE OPROEPT EN VOORTDUURT", de: "DIE KUNST DES MOSAIKS, DIE EMOTIONEN WECKT UND BESTEHT", es: "EL ARTE DEL MOSAICO QUE DESPIERTA EMOCIÓN Y PERDURA" }
+            'cta_portfolio': { fr: "EXPLORER LE PORTFOLIO", en: "EXPLORE THE PORTFOLIO" },
+            'cta_bespoke': { fr: "DÉMARRER UN PROJET SUR MESURE", en: "START A BESPOKE PROJECT" },
+
+            'intro_text': { fr: "Né d’une passion profonde pour l’artisanat et l’art, Mosaia Studio fusionne la tradition et le design moderne,", en: "Born from a deep passion for craftsmanship and art, Mosaia Studio merges tradition with modern design," },
+            'intro_text_bronze': { fr: "mêlant la précision artisanale à l’expression artistique.", en: "blending hand-crafted precision with artistic expression." },
+
+            'key_domains_title': { fr: "NOS DOMAINES CLÉS", en: "OUR KEY DOMAINS" },
+            'domain_pools_title': { fr: "PISCINES", en: "POOLS" },
+            'domain_pools_desc': { fr: "Transformez votre piscine en une œuvre d'art aquatique durable et sophistiquée.", en: "Transform your pool into a durable and sophisticated aquatic work of art." },
+            'domain_walls_title': { fr: "MURS & FAÇADES", en: "WALLS & FACADES" },
+            'domain_walls_desc': { fr: "Revêtements architecturaux d'exception pour intérieurs et extérieurs, redéfinissant l'espace.", en: "Exceptional architectural coverings for interiors and exteriors, redefining the space." },
+            'domain_artworks_title': { fr: "ARTWORKS", en: "ARTWORKS" },
+            'domain_artworks_desc': { fr: "Œuvres d'art uniques et installations personnalisées. L'expression pure de votre vision créative.", en: "Unique artworks and custom installations. The pure expression of your creative vision." },
+
+            'quote_1_bronze': { fr: "« La mosaïque n’est pas une décoration,", en: "« Mosaic is not decoration," },
+            'quote_2': { fr: "c’est une narration. »", en: "it is a narrative. »" },
+
+            'footer_copyright': { fr: "© MOSAIA STUDIO – PAR AMARU BRANDS", en: "© MOSAIA STUDIO – BY AMARU BRANDS" },
+            'footer_tagline': { fr: "L'ART DE LA MOSAÏQUE QUI ÉVEILLE L'ÉMOTION ET DURE", en: "THE ART OF MOSAIC THAT AWAKENS EMOTION AND ENDURES" }
         };
 
-        // --- 2. FONCTIONS DE MISE À JOUR DU CONTENU ET DES LIENS ---
-
-        /**
-         * Met à jour les liens de navigation et les CTA pour utiliser des chemins absolus GitHub Pages.
-         */
+        // --- Update navigation links to GitHub Pages absolute paths ---
         function updateNavigationLinks() {
             document.querySelectorAll('a[data-page-name]').forEach(link => {
                 const pageName = link.getAttribute('data-page-name');
-                if (pageName) {
-                    link.href = BASE_URL + pageName;
-                }
+                if (pageName) link.href = BASE_URL + pageName;
             });
         }
-        
-        /**
-         * Met à jour le contenu HTML et les classes 'active' en fonction de la langue.
-         * @param {string} lang - Code de la langue ('en', 'fr', etc.).
-         */
+
+        // --- Translation & persistence ---
         function updateContentTranslations(lang) {
-            currentLang = lang;
-            document.documentElement.lang = lang; 
-
-            // Mise à jour du titre de la page
-            const newTitle = translations['page_title'][lang] || translations['page_title'][DEFAULT_LANG];
-            document.title = newTitle;
-
-            // Mise à jour de tous les éléments traduisibles
-            document.querySelectorAll('[data-translate-key]').forEach(element => {
-                const key = element.getAttribute('data-translate-key');
-                if (translations[key]) {
-                    element.innerHTML = translations[key][lang] || translations[key][DEFAULT_LANG];
-                }
-            });
-
-            // Mise à jour de l'affichage de la langue actuelle dans le dropdown
-            const currentLangDisplay = document.getElementById('current-lang-display');
-            if (currentLangDisplay) {
-                currentLangDisplay.textContent = lang.toUpperCase();
-                currentLangDisplay.closest('.lang-button').classList.remove('active');
-                currentLangDisplay.closest('.lang-button').classList.add('text-bronze');
+            document.documentElement.lang = lang;
+            const pageTitleKey = document.querySelector('title').getAttribute('data-translate-key') || 'page_title';
+            if (translations[pageTitleKey] && translations[pageTitleKey][lang]) {
+                document.title = translations[pageTitleKey][lang];
+            } else {
+                document.title = translations['page_title'][DEFAULT_LANG];
             }
 
-            // Gère l'état actif des boutons et options
-            document.querySelectorAll('.nav-link, .lang-button, .lang-option').forEach(element => {
-                // Gestion des liens de navigation actifs 
-                if (element.classList.contains('nav-link')) {
-                    element.classList.remove('active', 'text-bronze', 'border-b-2', 'border-bronze');
-                    const currentPage = new URL(window.location.href).pathname.split('/').pop() || 'index.html';
-                    if (element.getAttribute('data-page-name') === currentPage) {
-                        element.classList.add('active', 'text-bronze', 'border-b-2', 'border-bronze');
-                    }
-                    // Pour index.html, on ajoute une classe active simplifiée pour la démo
-                    if (element.getAttribute('data-page-name') === 'index.html' && currentPage === 'index.html') {
-                        element.classList.add('active', 'text-bronze'); // La classe 'active' est gérée par le CSS :after
-                    }
-                    return;
-                }
-                
-                // Gestion des sélecteurs de langue
-                element.classList.remove('active');
-                if (element.getAttribute('data-lang') === lang) {
-                    element.classList.add('active');
+            document.querySelectorAll('[data-translate-key]').forEach(el => {
+                const key = el.getAttribute('data-translate-key');
+                if (translations[key]) {
+                    el.innerHTML = translations[key][lang] || translations[key][DEFAULT_LANG] || el.innerHTML;
                 }
             });
-            
-            // Met à jour les liens de navigation avec la BASE_URL (ESSENTIEL)
+
+            // mark active language on UI
+            document.querySelectorAll('.lang-option, .lang-button[data-lang]').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.getAttribute('data-lang') === lang) btn.classList.add('active');
+            });
+
+            // Update current-lang display
+            const cur = document.getElementById('current-lang-display');
+            if (cur) cur.textContent = lang.toUpperCase();
+
+            // update links for github pages
             updateNavigationLinks();
         }
 
-        /**
-         * Gère le changement de langue par l'utilisateur.
-         * @param {string} lang - Code de la nouvelle langue.
-         */
         function switchLanguage(lang) {
             localStorage.setItem('userLanguage', lang);
-            updateContentTranslations(lang); 
-            
-            // Ferme les menus (logic desktop et mobile)
+            updateContentTranslations(lang);
+
+            // close menus if open
             const langMenu = document.getElementById('lang-menu');
             const dropdownArrow = document.getElementById('dropdown-arrow');
             const langDropdownBtn = document.getElementById('lang-dropdown-btn');
@@ -414,186 +353,87 @@
             const mobileMenuBtn = document.getElementById('mobileMenuBtn');
 
             if (langMenu && !langMenu.classList.contains('hidden')) {
-                 langMenu.classList.add('hidden');
-                 dropdownArrow.classList.remove('rotate-180');
-                 langDropdownBtn.setAttribute('aria-expanded', 'false');
+                langMenu.classList.add('hidden');
+                dropdownArrow.classList.remove('rotate-180');
+                if (langDropdownBtn) langDropdownBtn.setAttribute('aria-expanded', 'false');
             }
-            
             if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
-                 mobileMenu.classList.add('hidden');
-                 mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                mobileMenu.classList.add('hidden');
+                if (mobileMenuBtn) mobileMenuBtn.setAttribute('aria-expanded', 'false');
             }
         }
 
-        // --- 3. LOGIQUE DU CARROUSEL INFINI (NOUVEAU) ---
-        let currentIndex = 0;
-        let itemsPerView = 4; // Par défaut pour desktop
-        let itemCount; // Nombre total d'éléments (originaux + duplicatas)
-        let totalOriginalItems; // Nombre d'éléments originaux
-
-        function getItemsPerView() {
-            if (window.innerWidth >= 1024) return 4; // lg:w-1/4
-            if (window.innerWidth >= 768) return 3; // md:w-1/3
-            return 1; // w-full
-        }
-
-        function updateCarousel(isInitialSetup = false) {
-            const track = document.getElementById('carousel-track');
-            if (!track) return;
-
-            const items = track.querySelectorAll('.carousel-item');
-            if (items.length === 0) return;
-
-            itemsPerView = getItemsPerView();
-            const itemWidth = 100 / itemsPerView;
-
-            items.forEach(item => {
-                item.style.width = `${itemWidth}%`;
-            });
-
-            if (isInitialSetup) {
-                // Créer la boucle infinie en dupliquant les N premiers éléments à la fin, et N derniers au début
-                totalOriginalItems = items.length;
-                const clonedEnd = [];
-                const clonedStart = [];
-
-                // Clone les N premiers pour la fin
-                for (let i = 0; i < itemsPerView; i++) {
-                    clonedEnd.push(items[i].cloneNode(true));
-                }
-
-                // Clone les N derniers pour le début
-                for (let i = totalOriginalItems - itemsPerView; i < totalOriginalItems; i++) {
-                    clonedStart.push(items[i].cloneNode(true));
-                }
-                
-                // Insère les clones
-                clonedStart.reverse().forEach(clone => track.prepend(clone));
-                clonedEnd.forEach(clone => track.appendChild(clone));
-
-                // Met à jour itemCount après l'ajout des clones
-                itemCount = track.querySelectorAll('.carousel-item').length;
-                
-                // Positionne le carrousel sur le premier élément original (après les clones de départ)
-                currentIndex = itemsPerView; 
-                track.style.transition = 'none'; // Désactive la transition pour le repositionnement initial
-                track.style.transform = `translateX(-${currentIndex * itemWidth}%)`;
-
-                // Réactive la transition après un court délai
-                setTimeout(() => {
-                    track.style.transition = 'transform 0.5s ease-in-out';
-                }, 50);
+        // --- CAROUSEL logic (will be initialized after DOM ready) ---
+        let carouselInterval = null;
+        function initCarousel({ interval = 5000 } = {}) {
+            const slides = document.querySelectorAll('.carousel-slide');
+            if (!slides || slides.length === 0) return;
+            let index = 0;
+            function show(i) {
+                slides.forEach((s, idx) => s.classList.toggle('active', idx === i));
             }
-
-            // Le nombre total d'items après clonage est: (Original + 2 * itemsPerView)
-            itemCount = track.querySelectorAll('.carousel-item').length;
-            totalOriginalItems = itemCount - 2 * itemsPerView; // Recalcule le nombre d'éléments originaux si on ne passe pas par l'initialisation
-
-            // Ajuste la position en cas de redimensionnement pour rester sur le slide actif
-            track.style.transform = `translateX(-${currentIndex * itemWidth}%)`;
+            show(index);
+            carouselInterval = setInterval(() => {
+                index = (index + 1) % slides.length;
+                show(index);
+            }, interval);
         }
 
-
-        function moveCarousel(direction) {
-            const track = document.getElementById('carousel-track');
-            const itemWidth = 100 / itemsPerView;
-
-            let nextIndex = currentIndex + direction;
-
-            // Applique la transition pour le mouvement
-            track.style.transition = 'transform 0.5s ease-in-out';
-            track.style.transform = `translateX(-${nextIndex * itemWidth}%)`;
-            currentIndex = nextIndex;
-
-            // Logique de boucle infinie (teleportation)
-            if (currentIndex >= totalOriginalItems + itemsPerView) {
-                // Est sur le premier clone de fin -> saute au premier original (juste après les clones de début)
-                setTimeout(() => {
-                    currentIndex = itemsPerView;
-                    track.style.transition = 'none';
-                    track.style.transform = `translateX(-${currentIndex * itemWidth}%)`;
-                }, 500); // Temps doit correspondre à la durée de la transition CSS
-            } else if (currentIndex < itemsPerView) {
-                // Est sur le dernier clone de début -> saute au dernier original
-                setTimeout(() => {
-                    currentIndex = totalOriginalItems + itemsPerView - 1; 
-                    track.style.transition = 'none';
-                    track.style.transform = `translateX(-${currentIndex * itemWidth}%)`;
-                }, 500);
-            }
-        }
-
-
-        // --- 4. GESTION DES ÉVÉNEMENTS & INITIALISATION ---
-
+        // --- DOMContentLoaded initialization ---
         document.addEventListener('DOMContentLoaded', () => {
-            // A. Détermine la langue initiale et initialise le contenu
-            let initialLang = localStorage.getItem('userLanguage') || DEFAULT_LANG;
-            updateContentTranslations(initialLang);
+            // pick saved language or default
+            const saved = localStorage.getItem('userLanguage') || DEFAULT_LANG;
+            updateContentTranslations(saved);
 
-            // B. Initialisation du Carrousel
-            updateCarousel(true);
-
-            // C. Ajout des écouteurs d'événements pour le changement de langue
-            document.querySelectorAll('.lang-option, .lang-button[data-lang]').forEach(button => {
-                button.addEventListener('click', (e) => {
+            // attach language selector handlers (desktop options and mobile buttons)
+            document.querySelectorAll('.lang-option, .lang-button[data-lang]').forEach(el => {
+                el.addEventListener('click', (e) => {
                     e.preventDefault();
-                    const lang = e.currentTarget.getAttribute('data-lang');
-                    if (lang && lang !== currentLang) {
-                        switchLanguage(lang);
-                    }
+                    const lang = el.getAttribute('data-lang');
+                    if (lang) switchLanguage(lang);
                 });
             });
 
-            // D. Gestion des menus (mobile et dropdown desktop)
+            // mobile menu toggle
             const mobileMenuBtn = document.getElementById('mobileMenuBtn');
             const mobileMenu = document.getElementById('mobileMenu');
             if (mobileMenuBtn) {
                 mobileMenuBtn.addEventListener('click', () => {
-                    const isExpanded = mobileMenuBtn.getAttribute('aria-expanded') === 'true';
-                    mobileMenuBtn.setAttribute('aria-expanded', String(!isExpanded));
-                    mobileMenu.classList.toggle('hidden');
+                    const expanded = mobileMenuBtn.getAttribute('aria-expanded') === 'true';
+                    mobileMenuBtn.setAttribute('aria-expanded', String(!expanded));
+                    if (mobileMenu) mobileMenu.classList.toggle('hidden');
                 });
             }
 
+            // lang dropdown desktop toggle
             const langDropdownBtn = document.getElementById('lang-dropdown-btn');
             const langMenu = document.getElementById('lang-menu');
             const dropdownArrow = document.getElementById('dropdown-arrow');
-            
             if (langDropdownBtn && langMenu) {
-                langDropdownBtn.addEventListener('click', () => {
-                    const isExpanded = langDropdownBtn.getAttribute('aria-expanded') === 'true';
-                    langDropdownBtn.setAttribute('aria-expanded', String(!isExpanded));
+                langDropdownBtn.addEventListener('click', (ev) => {
+                    ev.stopPropagation();
+                    const expanded = langDropdownBtn.getAttribute('aria-expanded') === 'true';
+                    langDropdownBtn.setAttribute('aria-expanded', String(!expanded));
                     langMenu.classList.toggle('hidden');
-                    dropdownArrow.classList.toggle('rotate-180');
+                    if (dropdownArrow) dropdownArrow.classList.toggle('rotate-180');
                 });
 
-                document.addEventListener('click', (event) => {
-                    if (document.getElementById('lang-dropdown-container') && !document.getElementById('lang-dropdown-container').contains(event.target) && !langMenu.classList.contains('hidden')) {
+                // close on outside click
+                document.addEventListener('click', (ev) => {
+                    const container = document.getElementById('lang-dropdown-container');
+                    if (!container.contains(ev.target) && !langMenu.classList.contains('hidden')) {
                         langMenu.classList.add('hidden');
                         langDropdownBtn.setAttribute('aria-expanded', 'false');
-                        dropdownArrow.classList.remove('rotate-180');
+                        if (dropdownArrow) dropdownArrow.classList.remove('rotate-180');
                     }
                 });
             }
 
-            // E. Écouteurs pour les boutons du Carrousel
-            const prevButton = document.getElementById('carousel-prev');
-            const nextButton = document.getElementById('carousel-next');
+            // initialize carousel
+            initCarousel({ interval: 5000 });
 
-            if (prevButton && nextButton) {
-                prevButton.addEventListener('click', () => moveCarousel(-1));
-                nextButton.addEventListener('click', () => moveCarousel(1));
-            }
-
-            // F. Gestion du redimensionnement de la fenêtre pour le Carrousel (responsive)
-            window.addEventListener('resize', () => {
-                // Empêche de lancer updateCarousel trop souvent lors du redimensionnement
-                clearTimeout(window.resizeTimer);
-                window.resizeTimer = setTimeout(() => {
-                    updateCarousel(false); 
-                }, 250);
-            });
+            // ensure nav links use BASE_URL
+            updateNavigationLinks();
         });
     </script>
 </body>
