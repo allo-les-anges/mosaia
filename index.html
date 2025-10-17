@@ -35,8 +35,18 @@
 
         .cta-primary { background: linear-gradient(135deg, #C99B4F, #B8894A); transition: all 0.4s ease; position: relative; overflow: hidden; border: 1px solid rgba(201,155,79,0.3); font-family:'Montserrat',sans-serif; font-weight:600; }
         .cta-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(201,155,79,0.2); background:#1A1A1A; color:#C99B4F; }
-        .cta-secondary { border: 2px solid #C99B4F; color: #C99B4F; transition: all 0.4s ease; font-family:'Montserrat',sans-serif; font-weight:500; }
-        .cta-secondary:hover { background: #C99B4F; color: #1A1A1A; transform: translateY(-2px); }
+        .cta-secondary { 
+    border: 2px solid #FFFFFF; /* ⭐ CHANGÉ : Cadre/Bordure en Blanc */
+    color: #FFFFFF; /* ⭐ CHANGÉ : Texte en Blanc */
+    transition: all 0.4s ease; 
+    font-family:'Montserrat',sans-serif; 
+    font-weight:500; 
+}
+.cta-secondary:hover { 
+    background: #FFFFFF; /* CHANGÉ : Fond Blanc au survol (pour s'harmoniser avec la bordure blanche) */
+    color: #1A1A1A; /* Texte Charbon au survol (pour être lisible sur le fond blanc) */
+    transform: translateY(-2px); 
+}
 
         .nav-link { position: relative; transition: all 0.3s ease; }
         .nav-link:hover { color: #C99B4F; }
