@@ -245,30 +245,6 @@
         
         <section class="page-section bg-light-gray">
     <div class="max-w-7xl mx-auto px-6 lg:px-8">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div class="fade-in-up">
-                </div>
-
-            <div class="fade-in-up delay-1">
-                <div class="relative pt-[56.25%] shadow-2xl rounded-lg overflow-hidden">
-                    <section class="page-section bg-light-gray">
-                        <div class="max-w-7xl mx-auto px-6 lg:px-8">
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-                                ```
-
-En imbriquant toute la structure de section à l'intérieur d'une colonne de grille, vous forcez le navigateur à afficher une seule colonne large contenant tout le contenu dupliqué, ce qui fait que votre affichage est "à droite sur la moitié de la page" (la colonne de gauche est vide, et la colonne de droite contient l'entièreté de la section imbriquée).
-
----
-
-## Code Corrigé de la Section "What We Do"
-
-J'ai nettoyé le code en conservant la structure à **deux colonnes** (`md:grid-cols-2`) : **Texte à gauche** et **Vidéo à droite**.
-
-Veuillez remplacer tout le bloc de code commençant par la première `<section class="page-section bg-light-gray">` jusqu'à la fin de la seconde section dupliquée par ce code :
-
-```html
-<section class="page-section bg-light-gray">
-    <div class="max-w-7xl mx-auto px-6 lg:px-8">
         
         <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             
