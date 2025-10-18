@@ -244,35 +244,61 @@
     <div class="relative pt-[56.25%] shadow-2xl rounded-lg overflow-hidden">
         
         <section class="page-section bg-light-gray">
-            <div class="max-w-7xl mx-auto px-6 lg:px-8">
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-                                        <div class="fade-in-up">
-                        <h3 data-translate-key="what_we_do_title" class="text-4xl font-title font-bold text-charcoal mb-6 elegant-line inline-block">WHAT WE DO</h3>
-                        <p data-translate-key="what_we_do_intro" class="text-xl md:text-2xl text-medium-gray leading-relaxed font-body font-light mb-6">
-                            Mosaia Studio brings centuries of mosaic artistry into contemporary design. We partner with architects, designers, and private clients to create bespoke, enduring surfaces.
-                        </p>
-                        <p data-translate-key="what_we_do_detail" class="text-medium-gray mb-8">
-                            Our process combines high-end materials—from glass to natural stone—with meticulous hand-setting techniques. Every project, whether a custom pool, an architectural façade, or a unique art installation, is a unique collaboration, crafted to reflect a singular vision and stand the test of time.
-                        </p>
-                        <a href="processus.html" data-translate-key="cta_learn_more" data-page-name="processus.html" class="cta-primary px-8 py-3 text-pure-white tracking-widest uppercase inline-block">LEARN MORE ABOUT OUR PROCESS</a>
-                    </div>
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div class="fade-in-up">
+                </div>
 
-                                        <div class="fade-in-up delay-1">
-                        <div class="relative pt-[56.25%] shadow-2xl rounded-lg overflow-hidden">
-                            <video class="absolute top-0 left-0 w-full h-full" 
-                                src="videos/WhatsApp%20Vid%C3%A9o%202025-10-18%20%C3%A0%2011.08.39_ef725303.mp4" 
-                                autoplay 
-                                loop 
-                                muted
-                                preload="auto"
-                                title="Mosaia Studio Video Presentation">
-                                Votre navigateur ne supporte pas la balise vidéo.
-                            </video>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+            <div class="fade-in-up delay-1">
+                <div class="relative pt-[56.25%] shadow-2xl rounded-lg overflow-hidden">
+                    <section class="page-section bg-light-gray">
+                        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                                ```
+
+En imbriquant toute la structure de section à l'intérieur d'une colonne de grille, vous forcez le navigateur à afficher une seule colonne large contenant tout le contenu dupliqué, ce qui fait que votre affichage est "à droite sur la moitié de la page" (la colonne de gauche est vide, et la colonne de droite contient l'entièreté de la section imbriquée).
+
+---
+
+## Code Corrigé de la Section "What We Do"
+
+J'ai nettoyé le code en conservant la structure à **deux colonnes** (`md:grid-cols-2`) : **Texte à gauche** et **Vidéo à droite**.
+
+Veuillez remplacer tout le bloc de code commençant par la première `<section class="page-section bg-light-gray">` jusqu'à la fin de la seconde section dupliquée par ce code :
+
+```html
+<section class="page-section bg-light-gray">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            
+            <div class="fade-in-up">
+                <h3 data-translate-key="what_we_do_title" class="text-4xl font-title font-bold text-charcoal mb-6 elegant-line inline-block">WHAT WE DO</h3>
+                <p data-translate-key="what_we_do_intro" class="text-xl md:text-2xl text-medium-gray leading-relaxed font-body font-light mb-6">
+                    Mosaia Studio brings centuries of mosaic artistry into contemporary design. We partner with architects, designers, and private clients to create bespoke, enduring surfaces.
+                </p>
+                <p data-translate-key="what_we_do_detail" class="text-medium-gray mb-8">
+                    Our process combines high-end materials—from glass to natural stone—with meticulous hand-setting techniques. Every project, whether a custom pool, an architectural façade, or a unique art installation, is a unique collaboration, crafted to reflect a singular vision and stand the test of time.
+                </p>
+                <a href="processus.html" data-translate-key="cta_learn_more" data-page-name="processus.html" class="cta-primary px-8 py-3 text-pure-white tracking-widest uppercase inline-block">LEARN MORE ABOUT OUR PROCESS</a>
+            </div>
+
+            <div class="fade-in-up delay-1">
+                <div class="relative pt-[56.25%] shadow-2xl rounded-xl overflow-hidden">
+                    <video class="absolute top-0 left-0 w-full h-full" 
+                        src="videos/WhatsApp%20Vid%C3%A9o%202025-10-18%20%C3%A0%2011.08.39_ef725303.mp4" 
+                        autoplay 
+                        loop 
+                        muted
+                        preload="auto"
+                        title="Mosaia Studio Video Presentation">
+                        Votre navigateur ne supporte pas la balise vidéo.
+                    </video>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
         
         <section class="min-h-[400px] bg-charcoal flex items-center justify-center bg-fixed bg-center bg-cover" style="background-image: url('data:image/svg+xml,<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 1000 1000&quot;><rect width=&quot;100%&quot; height=&quot;100%&quot; fill=&quot;%231A1A1A&quot;/><circle cx=&quot;500&quot; cy=&quot;500&quot; r=&quot;400&quot; fill=&quot;%23C99B4F&quot; opacity=&quot;0.05&quot;/></svg>');">
             <div class="max-w-4xl mx-auto px-6 text-center">
