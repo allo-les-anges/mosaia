@@ -215,390 +215,420 @@
         </div>
     </footer>
     
-    <script>
-        // --- 0. CONFIGURATION GLOBALE ---
-        // NOUVELLE BASE_URL MISE À JOUR SELON VOTRE DEMANDE
-        const BASE_URL = 'https://allo-les-anges.github.io/mosaia/'; 
-        const CURRENT_PAGE = 'portfolio.html'; 
-        const DEFAULT_LANG = 'en';
-        let currentLang = DEFAULT_LANG; 
+   <script>
+    // --- 0. CONFIGURATION GLOBALE ---
+    const BASE_URL = 'https://allo-les-anges.github.io/mosaia/'; 
+    const CURRENT_PAGE = 'portfolio.html'; 
+    const DEFAULT_LANG = 'en';
+    let currentLang = DEFAULT_LANG; 
+    
+    // Ajout d'une variable globale pour l'intervalle d'autoplay
+    let autoSlideInterval;
+    const AUTOPLAY_DELAY = 5000; // 5 secondes
 
-        // --- 1. DONNÉES DE TRADUCTION ---
-        const translations = {
-            // Page & Navigation
-            'page_title': { fr: "Mosaia Studio - Portfolio", en: "Mosaia Studio - Portfolio", nl: "Mosaia Studio - Portfolio", de: "Mosaia Studio - Portfolio", es: "Mosaia Studio - Portafolio" },
-            'nav_home': { fr: "ACCUEIL", en: "HOME", nl: "STARTPAGINA", de: "STARTSEITE", es: "INICIO" },
-            'nav_portfolio': { fr: "PORTFOLIO", en: "PORTFOLIO", nl: "PORTFOLIO", de: "PORTFOLIO", es: "PORTAFOLIO" },
-            'nav_studio': { fr: "STUDIO", en: "STUDIO", nl: "STUDIO", de: "STUDIO", es: "ESTUDIO" },
-            'nav_bespoke': { fr: "SUR-MESURE", en: "BESPOKE", nl: "MAATWERK", de: "MAẞARBEIT", es: "A MEDIDA" },
-            'nav_process': { fr: "PROCESSUS", en: "PROCESS", nl: "PROCES", de: "PROZESS", es: "PROCESO" },
-            'nav_partners': { fr: "PARTENAIRES", en: "PARTNERS", nl: "PARTNERS", de: "PARTNER", es: "SOCIOS" },
-            'nav_contact': { fr: "CONTACT", en: "CONTACT", nl: "CONTACT", de: "KONTAKT", es: "CONTACTO" },
-            'menu_btn': { fr: "Menu", en: "Menu", nl: "Menu", de: "Menü", es: "Menú" },
-            'lang_selector_title': { fr: "Choisir la Langue", en: "Choose Language", nl: "Taal Kiezen", de: "Sprache Wählen", es: "Elegir Idioma" },
-            
-            // Portfolio Section
-            'section_title': { fr: "NOS RÉALISATIONS", en: "OUR PROJECTS", nl: "ONZE REALISATIES", de: "UNSERE PROJEKTE", es: "NUESTRAS REALIZACIONES" },
-            'section_subtitle': { fr: "Chaque projet est une œuvre unique, conçue pour dialoguer avec la lumière, l’espace et la matière.", en: "Each project is a unique work, designed to dialogue with light, space, and material.", nl: "Elk project is een uniek kunstwerk, ontworpen om in dialoog te gaan met licht, ruimte en materiaal.", de: "Jedes Projekt ist ein einzigartiges Werk, das darauf ausgelegt ist, mit Licht, Raum und Material in Dialog zu treten.", es: "Cada proyecto es una obra única, diseñada para dialogar con la luz, el espacio y la materia." },
-
-            // Filters
-            'filter_residential': { fr: "RÉSIDENTIEL", en: "RESIDENTIAL", nl: "RESIDENTIEEL", de: "WOHNBAU", es: "RESIDENCIAL" },
-            'filter_commercial': { fr: "COMMERCIAL", en: "COMMERCIAL", nl: "COMMERCIEEL", de: "GEWERBEBAU", es: "COMERCIAL" },
-            'filter_civil_public': { fr: "CIVIL & PUBLIC", en: "CIVIL & PUBLIC", nl: "CIVIEL & OPENBAAR", de: "ZIVIL & ÖFFENTLICH", es: "CIVIL & PÚBLICO" },
-
-            // Category Info Titles
-            'category_title_residential': { fr: "RÉSIDENTIEL :", en: "RESIDENTIAL :", nl: "RESIDENTIEEL :", de: "WOHNBAU :", es: "RESIDENCIAL :" },
-            'category_title_commercial': { fr: "COMMERCIAL :", en: "COMMERCIAL :", nl: "COMMERCIEEL :", de: "GEWERBEBAU :", es: "COMERCIAL :" },
-            'category_title_civil-public': { fr: "CIVIL & PUBLIC :", en: "CIVIL & PUBLIC :", nl: "CIVIEL & OPENBAAR :", de: "ZIVIL & ÖFFENTLICH :", es: "CIVIL & PÚBLICO :" },
-            
-            // Category Info Descriptions
-            'category_description_residential': { fr: "Piscines, installations d'art, sols, entourage de cheminées, murs décoratifs.", en: "Swimming pools, Art installations, Floors, Fireplace surrounds, Decorative walls.", nl: "Zwembaden, kunstinstallaties, vloeren, schouwomlijstingen, decoratieve muren.", de: "Schwimmbäder, Kunstinstallationen, Böden, Kaminumrandungen, dekorative Wände.", es: "Piscinas, instalaciones de arte, suelos, revestimientos de chimeneas, paredes decorativas." },
-            'category_description_commercial': { fr: "Hôtels, restaurants, boutiques de luxe, spas et centres de bien-être, locaux professionnels.", en: "Hotels, Restaurants, Luxury boutiques, Spas and wellness centers, Professional premises.", nl: "Hotels, restaurants, luxe boetieks, spa's en wellnesscentra, bedrijfspanden.", de: "Hotels, Restaurants, Luxusboutiquen, Spas und Wellnesszentren, Geschäftsräume.", es: "Hoteles, restaurantes, boutiques de lujo, spas y centros de bienestar, locales profesionales." },
-            'category_description_civil-public': { fr: "Murs extérieurs de bâtiments publics, façades, fontaines et œuvres urbaines, aménagements municipaux.", en: "Exterior walls of public buildings, facades, fountains and urban artworks, municipal developments.", nl: "Buitenmuren van openbare gebouwen, gevels, fonteinen en stedelijke kunstwerken, gemeentelijke voorzieningen.", de: "Außenwände öffentlicher Gebäude, Fassaden, Brunnen und städtische Kunstwerke, kommunale Einrichtungen.", es: "Muros exteriores de edificios públicos, fachadas, fuentes y obras urbanas, equipamientos municipales." },
-
-            // Footer
-            'footer_copyright': { fr: "© MOSAIA STUDIO – PAR AMARU BRANDS", en: "© MOSAIA STUDIO – BY AMARU BRANDS", nl: "© MOSAIA STUDIO – DOOR AMARU BRANDS", de: "© MOSAIA STUDIO – VON AMARU BRANDS", es: "© MOSAIA STUDIO – POR AMARU BRANDS" },
-            'footer_tagline': { fr: "L'ART DE LA MOSAÏQUE QUI ÉVEILLE L'ÉMOTION ET DURE", en: "THE ART OF MOSAIC THAT AWAKENS EMOTION AND ENDURES", nl: "DE KUNST VAN MOZAÏEK DAT EMOTIE OPROEPT EN VOORTDUURT", de: "DIE KUNST DES MOSAIKS, DIE EMOTIONEN WECKT UND BESTEHT", es: "EL ARTE DEL MOSAICO QUE DESPIERTA EMOCIÓN Y PERDURA" }
-        };
+    // --- 1. DONNÉES DE TRADUCTION ---
+    const translations = {
+        // Page & Navigation
+        'page_title': { fr: "Mosaia Studio - Portfolio", en: "Mosaia Studio - Portfolio", nl: "Mosaia Studio - Portfolio", de: "Mosaia Studio - Portfolio", es: "Mosaia Studio - Portafolio" },
+        'nav_home': { fr: "ACCUEIL", en: "HOME", nl: "STARTPAGINA", de: "STARTSEITE", es: "INICIO" },
+        'nav_portfolio': { fr: "PORTFOLIO", en: "PORTFOLIO", nl: "PORTFOLIO", de: "PORTFOLIO", es: "PORTAFOLIO" },
+        'nav_studio': { fr: "STUDIO", en: "STUDIO", nl: "STUDIO", de: "STUDIO", es: "ESTUDIO" },
+        'nav_bespoke': { fr: "SUR-MESURE", en: "BESPOKE", nl: "MAATWERK", de: "MAẞARBEIT", es: "A MEDIDA" },
+        'nav_process': { fr: "PROCESSUS", en: "PROCESS", nl: "PROCES", de: "PROZESS", es: "PROCESO" },
+        'nav_partners': { fr: "PARTENAIRES", en: "PARTNERS", nl: "PARTNERS", de: "PARTNER", es: "SOCIOS" },
+        'nav_contact': { fr: "CONTACT", en: "CONTACT", nl: "CONTACT", de: "KONTAKT", es: "CONTACTO" },
+        'menu_btn': { fr: "Menu", en: "Menu", nl: "Menu", de: "Menü", es: "Menú" },
+        'lang_selector_title': { fr: "Choisir la Langue", en: "Choose Language", nl: "Taal Kiezen", de: "Sprache Wählen", es: "Elegir Idioma" },
         
-        // --- 2. FONCTIONS DE MISE À JOUR DU CONTENU ET DES LIENS ---
+        // Portfolio Section
+        'section_title': { fr: "NOS RÉALISATIONS", en: "OUR PROJECTS", nl: "ONZE REALISATIES", de: "UNSERE PROJEKTE", es: "NUESTRAS REALIZACIONES" },
+        'section_subtitle': { fr: "Chaque projet est une œuvre unique, conçue pour dialoguer avec la lumière, l’espace et la matière.", en: "Each project is a unique work, designed to dialogue with light, space, and material.", nl: "Elk project is een uniek kunstwerk, ontworpen om in dialoog te gaan met licht, ruimte en materiaal.", de: "Jedes Projekt ist ein einzigartiges Werk, das darauf ausgelegt ist, mit Licht, Raum und Material in Dialog zu treten.", es: "Cada proyecto es una obra única, diseñada para dialogar con la luz, el espacio y la materia." },
 
-        /**
-         * Met à jour les liens de navigation et les CTA pour utiliser des chemins absolus GitHub Pages.
-         */
-        function updateNavigationLinks() {
-            document.querySelectorAll('a[href]').forEach(link => {
-                const pageName = link.getAttribute('href');
-                if (pageName && pageName.endsWith('.html')) {
-                    // Utilise la nouvelle BASE_URL
-                    link.href = BASE_URL + pageName;
-                }
-            });
-        }
+        // Filters
+        'filter_residential': { fr: "RÉSIDENTIEL", en: "RESIDENTIAL", nl: "RESIDENTIEEL", de: "WOHNBAU", es: "RESIDENCIAL" },
+        'filter_commercial': { fr: "COMMERCIAL", en: "COMMERCIAL", nl: "COMMERCIEEL", de: "GEWERBEBAU", es: "COMERCIAL" },
+        'filter_civil_public': { fr: "CIVIL & PUBLIC", en: "CIVIL & PUBLIC", nl: "CIVIEL & OPENBAAR", de: "ZIVIL & ÖFFENTLICH", es: "CIVIL & PÚBLICO" },
+
+        // Category Info Titles
+        'category_title_residential': { fr: "RÉSIDENTIEL :", en: "RESIDENTIAL :", nl: "RESIDENTIEEL :", de: "WOHNBAU :", es: "RESIDENCIAL :" },
+        'category_title_commercial': { fr: "COMMERCIAL :", en: "COMMERCIAL :", nl: "COMMERCIEEL :", de: "GEWERBEBAU :", es: "COMERCIAL :" },
+        'category_title_civil-public': { fr: "CIVIL & PUBLIC :", en: "CIVIL & PUBLIC :", nl: "CIVIEL & OPENBAAR :", de: "ZIVIL & ÖFFENTLICH :", es: "CIVIL & PÚBLICO :" },
         
-        /**
-         * Met à jour le contenu HTML et les classes 'active' en fonction de la langue.
-         * @param {string} lang - Code de la langue ('en', 'fr', etc.).
-         */
-        function updateContentTranslations(lang) {
-            currentLang = lang;
-            document.documentElement.lang = lang; 
+        // Category Info Descriptions
+        'category_description_residential': { fr: "Piscines, installations d'art, sols, entourage de cheminées, murs décoratifs.", en: "Swimming pools, Art installations, Floors, Fireplace surrounds, Decorative walls.", nl: "Zwembaden, kunstinstallaties, vloeren, schouwomlijstingen, decoratieve muren.", de: "Schwimmbäder, Kunstinstallationen, Böden, Kaminumrandungen, dekorative Wände.", es: "Piscinas, instalaciones de arte, suelos, revestimientos de chimeneas, paredes decorativas." },
+        'category_description_commercial': { fr: "Hôtels, restaurants, boutiques de luxe, spas et centres de bien-être, locaux professionnels.", en: "Hotels, Restaurants, Luxury boutiques, Spas and wellness centers, Professional premises.", nl: "Hotels, restaurants, luxe boetieks, spa's en wellnesscentra, bedrijfspanden.", de: "Hotels, Restaurants, Luxusboutiquen, Spas und Wellnesszentren, Geschäftsräume.", es: "Hoteles, restaurantes, boutiques de lujo, spas y centros de bienestar, locales profesionales." },
+        'category_description_civil-public': { fr: "Murs extérieurs de bâtiments publics, façades, fontaines et œuvres urbaines, aménagements municipaux.", en: "Exterior walls of public buildings, facades, fountains and urban artworks, municipal developments.", nl: "Buitenmuren van openbare gebouwen, gevels, fonteinen en stedelijke kunstwerken, gemeentelijke voorzieningen.", de: "Außenwände öffentlicher Gebäude, Fassaden, Brunnen und städtische Kunstwerke, kommunale Einrichtungen.", es: "Muros exteriores de edificios públicos, fachadas, fuentes y obras urbanas, equipamientos municipales." },
 
-            // Mise à jour du titre de la page
-            const newTitle = translations['page_title'][lang] || translations['page_title'][DEFAULT_LANG];
-            document.title = newTitle;
+        // Footer
+        'footer_copyright': { fr: "© MOSAIA STUDIO – PAR AMARU BRANDS", en: "© MOSAIA STUDIO – BY AMARU BRANDS", nl: "© MOSAIA STUDIO – DOOR AMARU BRANDS", de: "© MOSAIA STUDIO – VON AMARU BRANDS", es: "© MOSAIA STUDIO – POR AMARU BRANDS" },
+        'footer_tagline': { fr: "L'ART DE LA MOSAÏQUE QUI ÉVEILLE L'ÉMOTION ET DURE", en: "THE ART OF MOSAIC THAT AWAKENS EMOTION AND ENDURES", nl: "DE KUNST VAN MOZAÏEK DAT EMOTIE OPROEPT EN VOORTDUURT", de: "DIE KUNST DES MOSAIKS, DIE EMOTIONEN WECKT UND BESTEHT", es: "EL ARTE DEL MOSAICO QUE DESPIERTA EMOCIÓN UND PERDURA" }
+    };
+    
+    // --- 2. FONCTIONS DE MISE À JOUR DU CONTENU ET DES LIENS ---
 
-            // Mise à jour de tous les éléments traduisibles
-            document.querySelectorAll('[data-translate-key]').forEach(element => {
-                const key = element.getAttribute('data-translate-key');
-                if (translations[key]) {
-                    element.innerHTML = translations[key][lang] || translations[key][DEFAULT_LANG];
-                }
-            });
-            
-            // Mise à jour de l'affichage de la langue actuelle dans le dropdown
-            const currentLangDisplay = document.getElementById('current-lang-display');
-            if (currentLangDisplay) {
-                currentLangDisplay.textContent = lang.toUpperCase();
+    /** Met à jour les liens de navigation. */
+    function updateNavigationLinks() {
+        document.querySelectorAll('a[href]').forEach(link => {
+            const pageName = link.getAttribute('href');
+            if (pageName && pageName.endsWith('.html')) {
+                link.href = BASE_URL + pageName;
             }
+        });
+    }
+    
+    /** Met à jour le contenu HTML en fonction de la langue. */
+    function updateContentTranslations(lang) {
+        currentLang = lang;
+        document.documentElement.lang = lang; 
 
-            // Gère l'état actif des liens de navigation et des sélecteurs de langue
-            document.querySelectorAll('.nav-link, .lang-button, .lang-option').forEach(element => {
+        const newTitle = translations['page_title'][lang] || translations['page_title'][DEFAULT_LANG];
+        document.title = newTitle;
+
+        document.querySelectorAll('[data-translate-key]').forEach(element => {
+            const key = element.getAttribute('data-translate-key');
+            if (translations[key]) {
+                element.innerHTML = translations[key][lang] || translations[key][DEFAULT_LANG];
+            }
+        });
+        
+        const currentLangDisplay = document.getElementById('current-lang-display');
+        if (currentLangDisplay) {
+            currentLangDisplay.textContent = lang.toUpperCase();
+        }
+
+        document.querySelectorAll('.nav-link, .lang-button, .lang-option').forEach(element => {
+            
+            // 1. Gestion de la navigation (lien actif)
+            if (element.classList.contains('nav-link')) {
+                const linkPage = element.getAttribute('href');
+                element.classList.remove('active', 'text-bronze', 'border-b-2', 'border-bronze');
+                element.classList.add('text-charcoal'); 
                 
-                // 1. Gestion de la navigation (lien actif)
-                if (element.classList.contains('nav-link')) {
-                    const linkPage = element.getAttribute('href');
-                    // Retirer les classes actives liées à la navigation de tous les liens
-                    element.classList.remove('active', 'text-bronze', 'border-b-2', 'border-bronze');
-                    element.classList.add('text-charcoal'); 
-                    
-                    if (linkPage.includes(CURRENT_PAGE)) {
-                        element.classList.add('active', 'text-bronze');
-                        // Appliquer la bordure seulement pour la navigation desktop (non-mobile)
-                        if (!element.parentElement.classList.contains('md:hidden')) { 
-                            element.classList.add('border-b-2', 'border-bronze');
-                        }
+                if (linkPage.includes(CURRENT_PAGE)) {
+                    element.classList.add('active', 'text-bronze');
+                    if (!element.parentElement.classList.contains('md:hidden')) { 
+                        element.classList.add('border-b-2', 'border-bronze');
                     }
                 }
-                
-                // 2. Gestion des sélecteurs de langue
-                if (element.getAttribute('data-lang')) {
-                    element.classList.remove('active');
-                    if (element.getAttribute('data-lang') === lang) {
-                        element.classList.add('active');
-                    }
-                }
-            });
-            
-            // 3. Mise à jour de la zone de description de catégorie après traduction
-            const activeFilter = document.querySelector('.filter-btn.active')?.getAttribute('data-filter') || 'residential';
-            updateCategoryInfo(activeFilter);
-            
-            // Met à jour les liens de navigation avec la BASE_URL
-            updateNavigationLinks();
-        }
-
-        /**
-         * Gère le changement de langue par l'utilisateur.
-         * @param {string} lang - Code de la nouvelle langue.
-         */
-        function switchLanguage(lang) {
-            localStorage.setItem('userLanguage', lang);
-            updateContentTranslations(lang);
-        }
-        
-        /**
-         * Met à jour les titres et descriptions de catégorie lors du filtrage.
-         * @param {string} category - La catégorie sélectionnée ('residential', 'commercial', 'civil-public').
-         */
-        function updateCategoryInfo(category) {
-            const titleElement = document.getElementById('category-info-title');
-            const descElement = document.getElementById('category-info-desc');
-            const lang = currentLang;
-
-            if (titleElement) {
-                const titleKey = `category_title_${category}`;
-                titleElement.textContent = translations[titleKey][lang] || translations[titleKey][DEFAULT_LANG];
             }
-            if (descElement) {
-                const descKey = `category_description_${category}`;
-                descElement.textContent = translations[descKey][lang] || translations[descKey][DEFAULT_LANG];
-            }
-        }
-        
-        // --- 3. LOGIQUE MOBILE ET INITIALISATION ---
-        
-        // Fonction pour l'animation des éléments au scroll
-        const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('fade-in-up');
-                    entry.target.classList.remove('opacity-0', 'translate-y-[40px]');
-                    observer.unobserve(entry.target);
+            
+            // 2. Gestion des sélecteurs de langue
+            if (element.getAttribute('data-lang')) {
+                element.classList.remove('active');
+                if (element.getAttribute('data-lang') === lang) {
+                    element.classList.add('active');
                 }
-            });
-        }, observerOptions);
+            }
+        });
+        
+        // 3. Mise à jour de la zone de description de catégorie
+        // Nécessite que filterPortfolio soit défini. Si le DOM n'est pas prêt, le filtre par défaut est utilisé.
+        const activeFilter = document.querySelector('.filter-btn.active')?.getAttribute('data-filter') || 'residential';
+        updateCategoryInfo(activeFilter);
+        
+        updateNavigationLinks();
+    }
 
-        // --- NOUVELLE LOGIQUE POUR LE CARROUSEL ---
-        let currentSlide = 0;
-        let carouselItems;
-        let indicators;
+    /** Gère le changement de langue par l'utilisateur. */
+    function switchLanguage(lang) {
+        localStorage.setItem('userLanguage', lang);
+        updateContentTranslations(lang);
+    }
+    
+    /** Met à jour les titres et descriptions de catégorie lors du filtrage. */
+    function updateCategoryInfo(category) {
+        const titleElement = document.getElementById('category-info-title');
+        const descElement = document.getElementById('category-info-desc');
+        const lang = currentLang;
 
-        /**
-         * Affiche la diapositive spécifiée et met à jour les indicateurs.
-         * @param {number} index - Index de la diapositive à afficher.
-         */
-        function showSlide(index) {
-            if (!carouselItems || carouselItems.length === 0) return;
+        if (titleElement) {
+            const titleKey = `category_title_${category}`;
+            titleElement.textContent = translations[titleKey][lang] || translations[titleKey][DEFAULT_LANG];
+        }
+        if (descElement) {
+            const descKey = `category_description_${category}`;
+            descElement.textContent = translations[descKey][lang] || translations[descKey][DEFAULT_LANG];
+        }
+    }
+    
+    // --- 3. LOGIQUE MOBILE, CARROUSEL ET INITIALISATION ---
+    
+    // Fonction pour l'animation des éléments au scroll
+    const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('fade-in-up');
+                entry.target.classList.remove('opacity-0', 'translate-y-[40px]');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
 
-            // Masquer toutes les diapositives
-            carouselItems.forEach(item => {
-                item.classList.remove('active');
-                item.classList.add('opacity-0', 'z-0'); // z-0 pour s'assurer que les boutons sont au-dessus
-            });
-            // Réinitialiser les indicateurs
-            indicators.forEach(indicator => {
-                indicator.classList.remove('active', 'bg-bronze');
-                indicator.classList.add('bg-medium-gray');
-            });
+    // --- LOGIQUE DU CARROUSEL ---
+    let currentSlide = 0;
+    let carouselItems;
+    let indicators;
+    
+    /**
+     * Affiche la diapositive spécifiée et met à jour les indicateurs.
+     * @param {number} index - Index de la diapositive à afficher.
+     */
+    function showSlide(index) {
+        if (!carouselItems || carouselItems.length === 0) return;
 
-            // Afficher la diapositive actuelle
-            const slideToShow = carouselItems[index];
-            slideToShow.classList.add('active', 'z-10'); // z-10 pour l'afficher au-dessus
+        // Assurer que l'index est valide
+        currentSlide = (index + carouselItems.length) % carouselItems.length;
+
+        // Masquer/Réinitialiser
+        carouselItems.forEach(item => {
+            item.classList.remove('active', 'z-10');
+            item.classList.add('opacity-0', 'z-0'); 
+        });
+        indicators.forEach(indicator => {
+            indicator.classList.remove('active', 'bg-bronze');
+            indicator.classList.add('bg-medium-gray');
+        });
+
+        // Afficher
+        const slideToShow = carouselItems[currentSlide];
+        if (slideToShow) {
+            slideToShow.classList.add('active', 'z-10'); 
             slideToShow.classList.remove('opacity-0', 'z-0');
             
             // Mettre à jour l'indicateur
-            const indicatorToShow = indicators[index];
+            const indicatorToShow = indicators[currentSlide];
             if(indicatorToShow) {
                 indicatorToShow.classList.add('active', 'bg-bronze');
                 indicatorToShow.classList.remove('bg-medium-gray');
             }
         }
+    }
 
-        /**
-         * Filtre et affiche les projets du carrousel en fonction de la catégorie.
-         * Note : Dans cette implémentation simple, nous changeons juste la diapositive pour qu'elle corresponde à la catégorie.
-         * Vous pourriez vouloir que le carrousel ne contienne *que* les images filtrées dans une version plus complexe.
-         * Pour l'instant, on se contente de naviguer vers la première image de la catégorie.
-         */
-        function filterPortfolio(filter) {
-            // Mise à jour des boutons de filtre
-            filterButtons.forEach(btn => {
-                btn.classList.remove('active', 'text-bronze', 'border-bronze');
-                btn.classList.add('text-charcoal'); 
-
-                if (btn.getAttribute('data-filter') === filter) {
-                    btn.classList.add('active', 'text-bronze', 'border-bronze');
-                    btn.classList.remove('text-charcoal');
-                }
-            });
-
-            // Mise à jour des descriptions de catégorie
-            updateCategoryInfo(filter);
-
-            // Trouver la première diapositive qui correspond au filtre
-            let targetIndex = -1;
-            carouselItems.forEach((item, index) => {
-                if (item.getAttribute('data-category') === filter && targetIndex === -1) {
-                    targetIndex = index;
-                }
-            });
-
-            // Si une diapositive correspond, on y navigue
-            if (targetIndex !== -1) {
-                currentSlide = targetIndex;
-                showSlide(currentSlide);
+    /**
+     * Fait avancer le carrousel d'une diapositive.
+     */
+    function nextSlide() {
+        // Faire avancer le slide
+        const nextIndex = (currentSlide + 1) % carouselItems.length;
+        
+        // Mettre à jour le filtre correspondant (pour maintenir l'affichage du titre/desc)
+        const newFilter = carouselItems[nextIndex].getAttribute('data-category');
+        // On appelle directement showSlide ici, car filterPortfolio réinitialiserait l'intervalle.
+        showSlide(nextIndex); 
+        updateCategoryInfo(newFilter); 
+        // Mise à jour de l'état actif des boutons de filtre (sans déclencher leur propre logique)
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        filterButtons.forEach(btn => {
+            btn.classList.remove('active', 'text-bronze', 'border-bronze');
+            btn.classList.add('text-charcoal'); 
+            if (btn.getAttribute('data-filter') === newFilter) {
+                btn.classList.add('active', 'text-bronze', 'border-bronze');
+                btn.classList.remove('text-charcoal');
             }
-            // Si aucune ne correspond (ce qui ne devrait pas arriver ici), on revient à la première
-            else {
-                currentSlide = 0;
-                showSlide(currentSlide);
+        });
+    }
+
+    /**
+     * Démarre l'autoplay.
+     */
+    function startAutoplay() {
+        stopAutoplay(); // S'assurer qu'il n'y a qu'un seul intervalle
+        autoSlideInterval = setInterval(nextSlide, AUTOPLAY_DELAY);
+    }
+
+    /**
+     * Arrête l'autoplay (par exemple, lors d'une interaction manuelle).
+     */
+    function stopAutoplay() {
+        if (autoSlideInterval) {
+            clearInterval(autoSlideInterval);
+            autoSlideInterval = null;
+        }
+    }
+
+
+    /**
+     * Filtre et affiche les projets du carrousel en fonction de la catégorie.
+     */
+    function filterPortfolio(filter) {
+        // Arrêter l'autoplay lors d'une interaction utilisateur
+        stopAutoplay();
+
+        // Mise à jour des boutons de filtre
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        filterButtons.forEach(btn => {
+            btn.classList.remove('active', 'text-bronze', 'border-bronze');
+            btn.classList.add('text-charcoal'); 
+
+            if (btn.getAttribute('data-filter') === filter) {
+                btn.classList.add('active', 'text-bronze', 'border-bronze');
+                btn.classList.remove('text-charcoal');
             }
+        });
+
+        // Mise à jour des descriptions de catégorie
+        updateCategoryInfo(filter);
+
+        // Trouver la première diapositive qui correspond au filtre
+        let targetIndex = -1;
+        carouselItems.forEach((item, index) => {
+            if (item.getAttribute('data-category') === filter && targetIndex === -1) {
+                targetIndex = index;
+            }
+        });
+
+        // Si une diapositive correspond, on y navigue
+        if (targetIndex !== -1) {
+            showSlide(targetIndex);
+        }
+        // Redémarrer l'autoplay après un court délai (laissant le temps à l'utilisateur de voir le slide)
+        setTimeout(startAutoplay, 3000); 
+    }
+    
+    // --- ÉVÉNEMENTS DU CARROUSEL ---
+    function attachCarouselEvents() {
+        const nextBtn = document.getElementById('next-btn');
+        const prevBtn = document.getElementById('prev-btn');
+        const filterButtons = document.querySelectorAll('.filter-btn');
+
+        if (nextBtn) {
+            nextBtn.addEventListener('click', () => {
+                stopAutoplay();
+                nextSlide();
+                setTimeout(startAutoplay, 3000); // Redémarrer l'autoplay
+            });
+        }
+
+        if (prevBtn) {
+            prevBtn.addEventListener('click', () => {
+                stopAutoplay();
+                // Fait reculer le slide
+                const prevIndex = (currentSlide - 1 + carouselItems.length) % carouselItems.length;
+                const newFilter = carouselItems[prevIndex].getAttribute('data-category');
+                filterPortfolio(newFilter); 
+                // showSlide est appelé par filterPortfolio
+                setTimeout(startAutoplay, 3000); // Redémarrer l'autoplay
+            });
         }
         
-        // --- ÉVÉNEMENTS DU CARROUSEL ---
-        function attachCarouselEvents() {
-            const nextBtn = document.getElementById('next-btn');
-            const prevBtn = document.getElementById('prev-btn');
-
-            if (nextBtn) {
-                nextBtn.addEventListener('click', () => {
-                    currentSlide = (currentSlide + 1) % carouselItems.length;
-                    // Mettre à jour le filtre du bouton actif pour correspondre à la catégorie du nouveau slide
-                    const newFilter = carouselItems[currentSlide].getAttribute('data-category');
-                    filterPortfolio(newFilter); 
-                });
-            }
-
-            if (prevBtn) {
-                prevBtn.addEventListener('click', () => {
-                    currentSlide = (currentSlide - 1 + carouselItems.length) % carouselItems.length;
-                    // Mettre à jour le filtre du bouton actif pour correspondre à la catégorie du nouveau slide
-                    const newFilter = carouselItems[currentSlide].getAttribute('data-category');
-                    filterPortfolio(newFilter); 
-                });
-            }
-            
-            // Événement pour les indicateurs (dots)
-            indicators.forEach((indicator, index) => {
-                indicator.addEventListener('click', () => {
-                    currentSlide = index;
-                    const newFilter = carouselItems[currentSlide].getAttribute('data-category');
-                    filterPortfolio(newFilter);
-                });
-            });
-        }
-        
-        // --- DOMContentLoaded ---
-        document.addEventListener('DOMContentLoaded', () => {
-            
-            // Récupérer les éléments du carrousel
-            carouselItems = document.querySelectorAll('.carousel-item');
-            indicators = document.querySelectorAll('#carousel-indicators button');
-            
-            // --- INITIALISATION DE LA LANGUE (Stratégie) ---
-            let initialLang = DEFAULT_LANG; 
-            const storedLang = localStorage.getItem('userLanguage');
-            const availableLangs = Object.keys(translations.page_title); // ['fr', 'en', 'nl', ...]
-
-            if (storedLang && availableLangs.includes(storedLang)) {
-                initialLang = storedLang;
-            } else if (navigator.language) {
-                const browserLang = navigator.language.substring(0, 2).toLowerCase();
-                if (availableLangs.includes(browserLang)) { 
-                    initialLang = browserLang;
-                    localStorage.setItem('userLanguage', initialLang);
-                }
-            }
-
-            // Applique la traduction initiale et met à jour les liens
-            updateContentTranslations(initialLang); 
-            
-            // --- LOGIQUE MOBILE ET DROPDOWN ---
-            const mobileMenu = document.getElementById('mobileMenu');
-            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-            const langDropdownContainer = document.getElementById('lang-dropdown-container');
-            const langDropdownBtn = document.getElementById('lang-dropdown-btn');
-            const langMenu = document.getElementById('lang-menu');
-            const dropdownArrow = document.getElementById('dropdown-arrow');
-            const filterButtons = document.querySelectorAll('.filter-btn');
-            
-            // Toggle du menu mobile
-            function toggleMobileMenu() {
-                const isExpanded = mobileMenuBtn.getAttribute('aria-expanded') === 'true';
-                mobileMenuBtn.setAttribute('aria-expanded', String(!isExpanded));
-                mobileMenu.classList.toggle('hidden');
-            }
-            mobileMenuBtn.addEventListener('click', toggleMobileMenu);
-
-            if (langDropdownBtn && langMenu) {
-                // Toggle du dropdown desktop
-                langDropdownBtn.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    e.stopPropagation(); 
-                    const isExpanded = langDropdownBtn.getAttribute('aria-expanded') === 'true';
-                    
-                    langMenu.classList.toggle('hidden', isExpanded);
-                    dropdownArrow.classList.toggle('rotate-180', !isExpanded);
-                    langDropdownBtn.setAttribute('aria-expanded', String(!isExpanded));
-                });
-
-                // Fermer le dropdown en cliquant à l'extérieur
-                document.addEventListener('click', (e) => {
-                    if (langDropdownContainer && !langDropdownContainer.contains(e.target)) {
-                        langMenu.classList.add('hidden');
-                        dropdownArrow.classList.remove('rotate-180');
-                        langDropdownBtn.setAttribute('aria-expanded', 'false');
-                    }
-                });
-            }
-
-            // Écouteurs d'événements pour TOUS les sélecteurs de langue
-            document.querySelectorAll('.lang-button, .lang-option').forEach(element => {
-                element.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const lang = element.getAttribute('data-lang');
-                    switchLanguage(lang);
-                    
-                    if (langMenu && !langMenu.classList.contains('hidden')) {
-                        langMenu.classList.add('hidden');
-                        langDropdownBtn.setAttribute('aria-expanded', 'false');
-                        dropdownArrow.classList.remove('rotate-180');
-                    }
-                    if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
-                           mobileMenu.classList.add('hidden');
-                           mobileMenuBtn.setAttribute('aria-expanded', 'false');
-                    }
-                });
-            });
-
-            // --- LOGIQUE DE FILTRAGE DU PORTFOLIO ---
-            
-            // Attachement des événements de filtre
-            filterButtons.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    const filter = btn.getAttribute('data-filter');
-                    filterPortfolio(filter);
-                });
-            });
-            
-            // --- INITIALISATION FINALE ---
-            
-            // Initialisation du carrousel et des filtres
-            attachCarouselEvents();
-            filterPortfolio('residential'); // Initialise le carrousel sur le premier slide 'residential'
-            showSlide(currentSlide); // S'assurer que le premier slide est visible
-
-            // Initialisation des animations
-            document.querySelectorAll('.fade-in-up').forEach(element => {
-                // Assurez-vous que l'élément n'a pas déjà l'animation appliquée par le JS initial
-                if (!element.classList.contains('fade-in-up')) { 
-                    element.classList.add('opacity-0', 'translate-y-[40px]');
-                }
-                observer.observe(element);
+        // Événement pour les indicateurs (dots)
+        indicators.forEach((indicator, index) => {
+            indicator.addEventListener('click', () => {
+                stopAutoplay();
+                const newFilter = carouselItems[index].getAttribute('data-category');
+                filterPortfolio(newFilter);
+                // showSlide est appelé par filterPortfolio
+                setTimeout(startAutoplay, 3000); // Redémarrer l'autoplay
             });
         });
-    </script>
+
+        // Attachement des événements de filtre
+        filterButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const filter = btn.getAttribute('data-filter');
+                filterPortfolio(filter);
+            });
+        });
+    }
+    
+    // --- DOMContentLoaded ---
+    document.addEventListener('DOMContentLoaded', () => {
+        
+        // Récupérer les éléments du carrousel (maintenant au début du DOMContentLoaded)
+        carouselItems = document.querySelectorAll('.carousel-item');
+        indicators = document.querySelectorAll('#carousel-indicators button');
+        
+        // --- INITIALISATION DE LA LANGUE (Stratégie) ---
+        let initialLang = DEFAULT_LANG; 
+        const storedLang = localStorage.getItem('userLanguage');
+        const availableLangs = Object.keys(translations.page_title);
+
+        if (storedLang && availableLangs.includes(storedLang)) {
+            initialLang = storedLang;
+        } else if (navigator.language) {
+            const browserLang = navigator.language.substring(0, 2).toLowerCase();
+            if (availableLangs.includes(browserLang)) { 
+                initialLang = browserLang;
+                localStorage.setItem('userLanguage', initialLang);
+            }
+        }
+
+        updateContentTranslations(initialLang); 
+        
+        // --- LOGIQUE MOBILE ET DROPDOWN (non modifiée) ---
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const langDropdownContainer = document.getElementById('lang-dropdown-container');
+        const langDropdownBtn = document.getElementById('lang-dropdown-btn');
+        const langMenu = document.getElementById('lang-menu');
+        const dropdownArrow = document.getElementById('dropdown-arrow');
+        
+        function toggleMobileMenu() {
+            const isExpanded = mobileMenuBtn.getAttribute('aria-expanded') === 'true';
+            mobileMenuBtn.setAttribute('aria-expanded', String(!isExpanded));
+            mobileMenu.classList.toggle('hidden');
+        }
+        mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+
+        if (langDropdownBtn && langMenu) {
+            langDropdownBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation(); 
+                const isExpanded = langDropdownBtn.getAttribute('aria-expanded') === 'true';
+                
+                langMenu.classList.toggle('hidden', isExpanded);
+                dropdownArrow.classList.toggle('rotate-180', !isExpanded);
+                langDropdownBtn.setAttribute('aria-expanded', String(!isExpanded));
+            });
+
+            document.addEventListener('click', (e) => {
+                if (langDropdownContainer && !langDropdownContainer.contains(e.target)) {
+                    langMenu.classList.add('hidden');
+                    dropdownArrow.classList.remove('rotate-180');
+                    langDropdownBtn.setAttribute('aria-expanded', 'false');
+                }
+            });
+        }
+
+        document.querySelectorAll('.lang-button, .lang-option').forEach(element => {
+            element.addEventListener('click', (e) => {
+                e.preventDefault();
+                const lang = element.getAttribute('data-lang');
+                switchLanguage(lang);
+                
+                if (langMenu && !langMenu.classList.contains('hidden')) {
+                    langMenu.classList.add('hidden');
+                    langDropdownBtn.setAttribute('aria-expanded', 'false');
+                    dropdownArrow.classList.remove('rotate-180');
+                }
+                if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                       mobileMenu.classList.add('hidden');
+                       mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                }
+            });
+        });
+
+        // --- INITIALISATION FINALE ---
+        
+        // Initialisation du carrousel et des événements
+        attachCarouselEvents();
+        
+        // Afficher le premier slide ('residential') et le filtre actif.
+        // Ceci est important pour s'assurer que le premier slide est visible.
+        filterPortfolio('residential'); 
+        
+        // Démarrer le défilement automatique
+        startAutoplay();
+
+        // Initialisation des animations
+        document.querySelectorAll('.fade-in-up').forEach(element => {
+            if (!element.classList.contains('fade-in-up')) { 
+                element.classList.add('opacity-0', 'translate-y-[40px]');
+            }
+            observer.observe(element);
+        });
+    });
+</script>
 </body>
 </html>
