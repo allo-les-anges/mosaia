@@ -45,8 +45,10 @@
         .timeline-item::before { content: ''; position: absolute; left: -10px; top: 0; width: 20px; height: 20px; background-color: #C99B4F; border-radius: 50%; border: 4px solid #FFFFFF; transition: all 0.3s ease; }
         .timeline-item:hover::before { background-color: #1A1A1A; border-color: #C99B4F; transform: scale(1.1); }
         .timeline-item:last-child { border-left: none; }
-        .advantage-icon { transition: transform 0.4s ease, color 0.4s ease; }
-        .advantage-icon:hover { transform: translateY(-5px); color: #C99B4F; }
+        
+        /* Modifié pour les images : Supprime la couleur au hover */
+        .advantage-icon-wrapper { transition: transform 0.4s ease; }
+        .advantage-icon-wrapper:hover { transform: translateY(-5px); }
         
         /* Style pour le sélecteur de langue */
         .lang-button { background: none; border: 1px solid transparent; padding: 4px 8px; border-radius: 4px; transition: all 0.3s; }
@@ -185,41 +187,32 @@
                 <div class="grid md:grid-cols-4 gap-10 text-center max-w-6xl mx-auto">
                     
                     <div class="fade-in-up delay-3">
-                        <div class="text-charcoal advantage-icon mb-4 mx-auto w-12 h-12" aria-hidden="true">
-                            <svg class="w-full h-full" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
-                            </svg>
+                        <div class="advantage-icon-wrapper mb-4 mx-auto w-12 h-12" aria-hidden="true">
+                            <img src="https://via.placeholder.com/48/1A1A1A/C99B4F?text=PRE" alt="Visual Previews" class="w-full h-full object-contain">
                         </div>
                         <h4 data-translate-key="advantage1_title" class="font-title font-bold uppercase mb-2">Visual Previews</h4>
                         <p data-translate-key="advantage1_text" class="text-sm text-medium-gray">Visualize the result before production with our photorealistic renderings.</p>
                     </div>
                     
                     <div class="fade-in-up delay-4">
-                        <div class="text-charcoal advantage-icon mb-4 mx-auto w-12 h-12" aria-hidden="true">
-                            <svg class="w-full h-full" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zM12 18a6 6 0 100-12 6 6 0 000 12zM12 15a3 3 0 100-6 3 3 0 000 6z" />
-                            </svg>
+                        <div class="advantage-icon-wrapper mb-4 mx-auto w-12 h-12" aria-hidden="true">
+                            <img src="https://via.placeholder.com/48/1A1A1A/C99B4F?text=MAP" alt="Precision Mapping" class="w-full h-full object-contain">
                         </div>
                         <h4 data-translate-key="advantage2_title" class="font-title font-bold uppercase mb-2">Precision Mapping</h4>
                         <p data-translate-key="advantage2_text" class="text-sm text-medium-gray">Millimeter precision guaranteed by our mapping technology.</p>
                     </div>
                     
                     <div class="fade-in-up delay-5">
-                        <div class="text-charcoal advantage-icon mb-4 mx-auto w-12 h-12" aria-hidden="true">
-                            <svg class="w-full h-full" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 14.75h9m-9-6.75h9m-1.5 15h-6m7.5-3.75V7.5m-3.75 0V3m-3.75 1.5H7.5m1.5 6.75H9m-3.75 0H4.5m10.5 0h1.5m-1.5 3h1.5m-6-1.5h1.5m-3-1.5h1.5" />
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M18 12a6 6 0 11-12 0 6 6 0 0112 0z" />
-                            </svg>
+                        <div class="advantage-icon-wrapper mb-4 mx-auto w-12 h-12" aria-hidden="true">
+                            <img src="https://via.placeholder.com/48/1A1A1A/C99B4F?text=CUS" alt="Full Customization" class="w-full h-full object-contain">
                         </div>
                         <h4 data-translate-key="advantage3_title" class="font-title font-bold uppercase mb-2">Full Customization</h4>
                         <p data-translate-key="advantage3_text" class="text-sm text-medium-gray">Total freedom over colors, size, and materials for each tessera.</p>
                     </div>
                     
                     <div class="fade-in-up delay-6">
-                        <div class="text-charcoal advantage-icon mb-4 mx-auto w-12 h-12" aria-hidden="true">
-                            <svg class="w-full h-full" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 7.5h.75m7.5 0h.75m-12 0v8.25m0-8.25A4.75 4.75 0 017.5 3h9a4.75 4.75 0 014.75 4.75v8.25m-12 0H3m18 0h-1.5m-16.5 0H3m18 0V7.5m-18 8.25V7.5m-1.5 1.5l1.5-1.5m18 1.5l-1.5-1.5m-15 4.5l3 3m-3-3h6m-6 0v6m10.5 4.5H12a.75.75 0 01-.75-.75V15m3 4.5a3 3 0 11-6 0 3 3 0 016 0z" />
-                            </svg>
+                        <div class="advantage-icon-wrapper mb-4 mx-auto w-12 h-12" aria-hidden="true">
+                            <img src="https://via.placeholder.com/48/1A1A1A/C99B4F?text=COL" alt="Collaboration" class="w-full h-full object-contain">
                         </div>
                         <h4 data-translate-key="advantage4_title" class="font-title font-bold uppercase mb-2">Collaboration</h4>
                         <p data-translate-key="advantage4_text" class="text-sm text-medium-gray">Close collaboration with architects and designers for integration.</p>
@@ -307,7 +300,7 @@
         'advantage3_title': { fr: "Full Customization", en: "Full Customization", nl: "Volledige Personalisatie", de: "Vollständige Anpassung", es: "Personalización Total" },
         'advantage3_text': { fr: "Liberté totale sur les couleurs, la taille et les matériaux de chaque tesselle.", en: "Total freedom over colors, size, and materials for each tessera.", nl: "Volledige vrijheid over kleuren, grootte en materialen van elke tegel.", de: "Völlige Freiheit bei Farben, Größe und Materialien jeder Tesselle.", es: "Libertad total sobre colores, tamaño y materiales de cada tesela." },
         'advantage4_title': { fr: "Collaboration", en: "Collaboration", nl: "Samenwerking", de: "Zusammenarbeit", es: "Colaboración" },
-        'advantage4_text': { fr: "Travail en étroite collaboration avec architectes et designers pour l'intégration.", en: "Close collaboration with architects and designers for integration.", nl: "Nauwe samenwerking met architecten en ontwerpers voor integratie.", de: "Enge Zusammenarbeit mit Architecten und Designern für die Integration.", es: "Colaboración estrecha con arquitectos y diseñadores para la integración." },
+        'advantage4_text': { fr: "Travail en étroite collaboration avec architectes et designers pour l'intégration.", en: "Close collaboration with architects and designers for integration.", nl: "Nauwe samenwerking met architecten en ontwerpers voor integratie.", de: "Enge Zusammenarbeit mit Architecten und Designern für die Integration.", es: "Colaboración estrecha con arquitectos et designers pour l'intégration." },
         'conclusion_text': { fr: "Nos experts accompagnent chaque client à chaque étape, garantissant beauté, durabilité et émotion.", en: "Our experts support every client at every step, guaranteeing beauty, durability, and emotion.", nl: "Onze experts begeleiden elke klant bij elke stap en garanderen schoonheid, duurzaamheid en emotie.", de: "Unsere Experten begleiten jeden Kunden bei jedem Schritt und garantieren Schönheit, Haltbarkeit und Emotionen.", es: "Nuestros expertos acompañan a cada cliente en cada etapa, garantizando belleza, durabilidad y emoción." },
         'cta_quote': { fr: "DEMANDER UN DEVIS", en: "REQUEST A QUOTE", nl: "VRAAG EEN OFFERTE AAN", de: "EIN ANGEBOT ANFORDERN", es: "SOLICITAR PRESUPUESTO" },
         
