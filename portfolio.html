@@ -17,6 +17,7 @@
         }
     </script>
     <style>
+        /* Styles CSS pour les animations et la navigation */
         .fade-in-up { animation: fadeInUp 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; opacity: 0; transform: translateY(40px); }
         .fade-in-up.delay-1 { animation-delay: 0.3s; }
         .fade-in-up.delay-2 { animation-delay: 0.6s; }
@@ -32,7 +33,7 @@
         .nav-link::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: #C99B4F; transition: width 0.3s ease; }
         .nav-link:hover::after, .nav-link.active::after { width: 100%; }
         .page-section { padding-top: 100px; padding-bottom: 100px; }
-        /* Masonry Grid Styles */
+        /* Masonry Grid Styles (Conservés, mais inutilisés pour le carrousel) */
         .masonry-grid { column-count: 3; column-gap: 1.5rem; }
         .masonry-item { display: inline-block; width: 100%; margin-bottom: 1.5rem; overflow: hidden; }
         .masonry-item img { transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
@@ -49,6 +50,9 @@
         
         /* Style pour les boutons de filtre */
         .filter-btn.active { color: #C99B4F; border-bottom-color: #C99B4F; }
+        
+        /* NOUVEAUX STYLES POUR LE CARROUSEL */
+        .carousel-item { transition: opacity 0.6s ease-in-out; }
     </style>
 </head>
 <body class="bg-pure-white font-body text-charcoal">
@@ -63,7 +67,7 @@
                 <nav class="hidden md:block">
                     <div class="flex items-center space-x-8 lg:space-x-10">
                         <a href="index.html" data-translate-key="nav_home" data-page-name="index.html" class="nav-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase">ACCUEIL</a>
-                        <a href="portfolio.html" data-translate-key="nav_portfolio" data-page-name="portfolio.html" class="nav-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase">PORTFOLIO</a>
+                        <a href="portfolio.html" data-translate-key="nav_portfolio" data-page-name="portfolio.html" class="nav-link active text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase border-b-2 border-bronze">PORTFOLIO</a>
                         <a href="studio.html" data-translate-key="nav_studio" data-page-name="studio.html" class="nav-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase">STUDIO</a>
                         <a href="sur-mesure.html" data-translate-key="nav_bespoke" data-page-name="sur-mesure.html" class="nav-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase">SUR-MESURE</a>
                         <a href="processus.html" data-translate-key="nav_process" data-page-name="processus.html" class="nav-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase">PROCESSUS</a>
@@ -154,16 +158,37 @@
                     <h4 data-translate-key="category_title" id="category-info-title" class="font-title font-bold uppercase text-charcoal mb-3">RÉSIDENTIEL :</h4>
                     <p data-translate-key="category_description" id="category-info-desc">Piscines, installations d'art, sols, entourage de cheminées, murs décoratifs.</p>
                 </div>
+                
+                <div id="project-carousel" class="relative max-w-5xl mx-auto fade-in-up delay-4">
+                    <div id="carousel-inner" class="relative overflow-hidden rounded-lg shadow-xl">
+                        <div class="carousel-item absolute inset-0 opacity-0 active" data-category="residential">
+                            <img src="https://raw.githubusercontent.com/allo-les-anges/mosaia/main/mosaia-assets/logos/P1.jpg" alt="Projet Mosaia 1" class="w-full h-[500px] object-cover">
+                        </div>
+                        <div class="carousel-item absolute inset-0 opacity-0" data-category="commercial">
+                            <img src="https://raw.githubusercontent.com/allo-les-anges/mosaia/main/mosaia-assets/logos/P2.jpg" alt="Projet Mosaia 2" class="w-full h-[500px] object-cover">
+                        </div>
+                        <div class="carousel-item absolute inset-0 opacity-0" data-category="civil-public">
+                            <img src="https://raw.githubusercontent.com/allo-les-anges/mosaia/main/mosaia-assets/logos/P3.jpg" alt="Projet Mosaia 3" class="w-full h-[500px] object-cover">
+                        </div>
+                        <div class="relative w-full h-[500px] invisible">
+                             <img src="https://raw.githubusercontent.com/allo-les-anges/mosaia/main/mosaia-assets/logos/P1.jpg" alt="" class="w-full h-full object-cover">
+                        </div>
+                    </div>
 
-                <div class="masonry-grid fade-in-up delay-4">
-                    <div class="masonry-item" data-category="residential"><div class="bg-gray-200 h-96 w-full shadow-lg hover:shadow-xl transition-shadow" style="background-color: #E5E7EB;"></div></div>
-                    <div class="masonry-item" data-category="commercial"><div class="bg-gray-200 h-64 w-full shadow-lg hover:shadow-xl transition-shadow" style="background-color: #D1D5DB;"></div></div>
-                    <div class="masonry-item" data-category="residential"><div class="bg-gray-200 h-80 w-full shadow-lg hover:shadow-xl transition-shadow" style="background-color: #F3F4F6;"></div></div>
-                    <div class="masonry-item" data-category="civil-public"><div class="bg-gray-200 h-72 w-full shadow-lg hover:shadow-xl transition-shadow" style="background-color: #E5E7EB;"></div></div>
-                    <div class="masonry-item" data-category="residential"><div class="bg-gray-200 h-100 w-full shadow-lg hover:shadow-xl transition-shadow" style="background-color: #D1D5DB;"></div></div>
-                    <div class="masonry-item" data-category="commercial"><div class="bg-gray-200 h-60 w-full shadow-lg hover:shadow-xl transition-shadow" style="background-color: #F3F4F6;"></div></div>
+                    <button id="prev-btn" class="absolute top-1/2 left-4 transform -translate-y-1/2 bg-charcoal/50 text-pure-white p-3 rounded-full hover:bg-charcoal/80 transition-colors duration-300" aria-label="Projet précédent">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                    </button>
+                    <button id="next-btn" class="absolute top-1/2 right-4 transform -translate-y-1/2 bg-charcoal/50 text-pure-white p-3 rounded-full hover:bg-charcoal/80 transition-colors duration-300" aria-label="Projet suivant">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    </button>
+
+                    <div id="carousel-indicators" class="flex justify-center mt-6 space-x-3">
+                        <button data-index="0" class="w-3 h-3 bg-bronze rounded-full transition-colors duration-300 active" aria-label="Afficher le projet 1"></button>
+                        <button data-index="1" class="w-3 h-3 bg-medium-gray hover:bg-bronze/50 rounded-full transition-colors duration-300" aria-label="Afficher le projet 2"></button>
+                        <button data-index="2" class="w-3 h-3 bg-medium-gray hover:bg-bronze/50 rounded-full transition-colors duration-300" aria-label="Afficher le projet 3"></button>
+                    </div>
                 </div>
-            </div>
+                </div>
         </section>
     </main>
 
@@ -176,7 +201,7 @@
                 
                 <div class="flex space-x-6">
                     <a href="#" class="text-pure-white/80 hover:text-bronze transition-colors duration-300 transform hover:scale-110" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM12 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM12 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
                     </a>
                     <a href="#" class="text-pure-white/80 hover:text-bronze transition-colors duration-300 transform hover:scale-110" target="_blank" rel="noopener noreferrer" aria-label="Pinterest">
                         <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.374 0 0 5.374 0 12s5.374 12 12 12c.343 0 .682-.015 1.017-.043-.096-.996-.264-2.317-.264-3.245 0-1.264.476-2.129 1.017-2.129.476 0 .714.357.714.833 0 .508-.321 1.269-.321 1.968 0 .833.714 1.508 1.548 1.508 1.468 0 2.456-1.548 2.456-3.611 0-1.889-1.349-3.301-3.301-3.301-2.317 0-3.683 1.746-3.683 3.571 0 .714.274 1.484.619 1.905.095.119.107.222.079.341-.021.095-.071.278-.095.357-.032.119-.127.151-.238.095-.833-.389-1.357-1.603-1.357-2.587 0-2.095 1.524-4.016 4.397-4.016 2.309 0 4.103 1.643 4.103 3.841 0 2.293-1.444 4.135-3.452 4.135-.675 0-1.31-.349-1.524-.778 0 0-.333 1.27-.405 1.579-.147.563-.544 1.27-.81 1.698C10.85 23.846 11.417 24 12 24c6.626 0 12-5.374 12-12S18.626 0 12 0z"/></svg>
@@ -283,13 +308,15 @@
                 // 1. Gestion de la navigation (lien actif)
                 if (element.classList.contains('nav-link')) {
                     const linkPage = element.getAttribute('href');
+                    // Retirer les classes actives liées à la navigation de tous les liens
                     element.classList.remove('active', 'text-bronze', 'border-b-2', 'border-bronze');
                     element.classList.add('text-charcoal'); 
                     
-                    if (linkPage === CURRENT_PAGE) {
+                    if (linkPage.includes(CURRENT_PAGE)) {
                         element.classList.add('active', 'text-bronze');
+                        // Appliquer la bordure seulement pour la navigation desktop (non-mobile)
                         if (!element.parentElement.classList.contains('md:hidden')) { 
-                             element.classList.add('border-b-2', 'border-bronze');
+                            element.classList.add('border-b-2', 'border-bronze');
                         }
                     }
                 }
@@ -304,7 +331,6 @@
             });
             
             // 3. Mise à jour de la zone de description de catégorie après traduction
-            // Le filtre 'residential' est le filtre par défaut
             const activeFilter = document.querySelector('.filter-btn.active')?.getAttribute('data-filter') || 'residential';
             updateCategoryInfo(activeFilter);
             
@@ -354,7 +380,122 @@
             });
         }, observerOptions);
 
+        // --- NOUVELLE LOGIQUE POUR LE CARROUSEL ---
+        let currentSlide = 0;
+        let carouselItems;
+        let indicators;
+
+        /**
+         * Affiche la diapositive spécifiée et met à jour les indicateurs.
+         * @param {number} index - Index de la diapositive à afficher.
+         */
+        function showSlide(index) {
+            if (!carouselItems || carouselItems.length === 0) return;
+
+            // Masquer toutes les diapositives
+            carouselItems.forEach(item => {
+                item.classList.remove('active');
+                item.classList.add('opacity-0', 'z-0'); // z-0 pour s'assurer que les boutons sont au-dessus
+            });
+            // Réinitialiser les indicateurs
+            indicators.forEach(indicator => {
+                indicator.classList.remove('active', 'bg-bronze');
+                indicator.classList.add('bg-medium-gray');
+            });
+
+            // Afficher la diapositive actuelle
+            const slideToShow = carouselItems[index];
+            slideToShow.classList.add('active', 'z-10'); // z-10 pour l'afficher au-dessus
+            slideToShow.classList.remove('opacity-0', 'z-0');
+            
+            // Mettre à jour l'indicateur
+            const indicatorToShow = indicators[index];
+            if(indicatorToShow) {
+                indicatorToShow.classList.add('active', 'bg-bronze');
+                indicatorToShow.classList.remove('bg-medium-gray');
+            }
+        }
+
+        /**
+         * Filtre et affiche les projets du carrousel en fonction de la catégorie.
+         * Note : Dans cette implémentation simple, nous changeons juste la diapositive pour qu'elle corresponde à la catégorie.
+         * Vous pourriez vouloir que le carrousel ne contienne *que* les images filtrées dans une version plus complexe.
+         * Pour l'instant, on se contente de naviguer vers la première image de la catégorie.
+         */
+        function filterPortfolio(filter) {
+            // Mise à jour des boutons de filtre
+            filterButtons.forEach(btn => {
+                btn.classList.remove('active', 'text-bronze', 'border-bronze');
+                btn.classList.add('text-charcoal'); 
+
+                if (btn.getAttribute('data-filter') === filter) {
+                    btn.classList.add('active', 'text-bronze', 'border-bronze');
+                    btn.classList.remove('text-charcoal');
+                }
+            });
+
+            // Mise à jour des descriptions de catégorie
+            updateCategoryInfo(filter);
+
+            // Trouver la première diapositive qui correspond au filtre
+            let targetIndex = -1;
+            carouselItems.forEach((item, index) => {
+                if (item.getAttribute('data-category') === filter && targetIndex === -1) {
+                    targetIndex = index;
+                }
+            });
+
+            // Si une diapositive correspond, on y navigue
+            if (targetIndex !== -1) {
+                currentSlide = targetIndex;
+                showSlide(currentSlide);
+            }
+            // Si aucune ne correspond (ce qui ne devrait pas arriver ici), on revient à la première
+            else {
+                currentSlide = 0;
+                showSlide(currentSlide);
+            }
+        }
+        
+        // --- ÉVÉNEMENTS DU CARROUSEL ---
+        function attachCarouselEvents() {
+            const nextBtn = document.getElementById('next-btn');
+            const prevBtn = document.getElementById('prev-btn');
+
+            if (nextBtn) {
+                nextBtn.addEventListener('click', () => {
+                    currentSlide = (currentSlide + 1) % carouselItems.length;
+                    // Mettre à jour le filtre du bouton actif pour correspondre à la catégorie du nouveau slide
+                    const newFilter = carouselItems[currentSlide].getAttribute('data-category');
+                    filterPortfolio(newFilter); 
+                });
+            }
+
+            if (prevBtn) {
+                prevBtn.addEventListener('click', () => {
+                    currentSlide = (currentSlide - 1 + carouselItems.length) % carouselItems.length;
+                    // Mettre à jour le filtre du bouton actif pour correspondre à la catégorie du nouveau slide
+                    const newFilter = carouselItems[currentSlide].getAttribute('data-category');
+                    filterPortfolio(newFilter); 
+                });
+            }
+            
+            // Événement pour les indicateurs (dots)
+            indicators.forEach((indicator, index) => {
+                indicator.addEventListener('click', () => {
+                    currentSlide = index;
+                    const newFilter = carouselItems[currentSlide].getAttribute('data-category');
+                    filterPortfolio(newFilter);
+                });
+            });
+        }
+        
+        // --- DOMContentLoaded ---
         document.addEventListener('DOMContentLoaded', () => {
+            
+            // Récupérer les éléments du carrousel
+            carouselItems = document.querySelectorAll('.carousel-item');
+            indicators = document.querySelectorAll('#carousel-indicators button');
             
             // --- INITIALISATION DE LA LANGUE (Stratégie) ---
             let initialLang = DEFAULT_LANG; 
@@ -372,7 +513,7 @@
             }
 
             // Applique la traduction initiale et met à jour les liens
-            updateContentTranslations(initialLang); 
+            updateContentTranslations(initialLang); 
             
             // --- LOGIQUE MOBILE ET DROPDOWN ---
             const mobileMenu = document.getElementById('mobileMenu');
@@ -382,7 +523,6 @@
             const langMenu = document.getElementById('lang-menu');
             const dropdownArrow = document.getElementById('dropdown-arrow');
             const filterButtons = document.querySelectorAll('.filter-btn');
-            const masonryItems = document.querySelectorAll('.masonry-item');
             
             // Toggle du menu mobile
             function toggleMobileMenu() {
@@ -427,44 +567,14 @@
                         dropdownArrow.classList.remove('rotate-180');
                     }
                     if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
-                         mobileMenu.classList.add('hidden');
-                         mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                           mobileMenu.classList.add('hidden');
+                           mobileMenuBtn.setAttribute('aria-expanded', 'false');
                     }
                 });
             });
 
             // --- LOGIQUE DE FILTRAGE DU PORTFOLIO ---
             
-            /**
-             * Filtre les éléments de la grille et met à jour les boutons de filtre.
-             * @param {string} filter - La catégorie à afficher.
-             */
-            function filterPortfolio(filter) {
-                // Mise à jour des boutons de filtre
-                filterButtons.forEach(btn => {
-                    btn.classList.remove('active', 'text-bronze', 'border-bronze');
-                    btn.classList.add('text-charcoal'); // Reset couleur par défaut
-
-                    if (btn.getAttribute('data-filter') === filter) {
-                        btn.classList.add('active', 'text-bronze', 'border-bronze');
-                        btn.classList.remove('text-charcoal');
-                    }
-                });
-
-                // Mise à jour des descriptions de catégorie
-                updateCategoryInfo(filter);
-
-                // Affichage/Masquage des items
-                masonryItems.forEach(item => {
-                    const itemCategory = item.getAttribute('data-category');
-                    if (itemCategory === filter || filter === 'all') { 
-                        item.style.display = 'inline-block';
-                    } else {
-                        item.style.display = 'none';
-                    }
-                });
-            }
-
             // Attachement des événements de filtre
             filterButtons.forEach(btn => {
                 btn.addEventListener('click', () => {
@@ -473,12 +583,19 @@
                 });
             });
             
-            // Initialisation du filtre
-            filterPortfolio('residential'); 
+            // --- INITIALISATION FINALE ---
+            
+            // Initialisation du carrousel et des filtres
+            attachCarouselEvents();
+            filterPortfolio('residential'); // Initialise le carrousel sur le premier slide 'residential'
+            showSlide(currentSlide); // S'assurer que le premier slide est visible
 
             // Initialisation des animations
             document.querySelectorAll('.fade-in-up').forEach(element => {
-                element.classList.add('opacity-0', 'translate-y-[40px]');
+                // Assurez-vous que l'élément n'a pas déjà l'animation appliquée par le JS initial
+                if (!element.classList.contains('fade-in-up')) { 
+                    element.classList.add('opacity-0', 'translate-y-[40px]');
+                }
                 observer.observe(element);
             });
         });
