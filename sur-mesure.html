@@ -18,6 +18,30 @@
         }
     </script>
     <style>
+        /* Définition de l'image de fond et de l'overlay */
+        .hero-background {
+            /* Utilisation de l'URL du fichier brut pour que le CSS fonctionne */
+            background-image: url('https://raw.githubusercontent.com/allo-les-anges/mosaia/main/mosaia-assets/logos/ilse-orsel-lx9SRR_cIDE-unsplash.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; /* Rend l'effet plus immersif */
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Overlay pour assurer la lisibilité (un gris très léger, presque transparent) */
+        .hero-background::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(255, 255, 255, 0.96); /* Fond blanc très légèrement opaque */
+            z-index: -1;
+        }
+
+        /* Animations */
         .fade-in-up { opacity: 0; transform: translateY(40px); transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
         .fade-in-up.loaded { opacity: 1; transform: translateY(0); }
         .fade-in-up.delay-1 { transition-delay: 0.1s; }
@@ -29,6 +53,7 @@
         .fade-in-up.delay-7 { transition-delay: 0.7s; }
         .fade-in-up.delay-8 { transition-delay: 0.8s; }
 
+        /* Styles spécifiques */
         .elegant-line { position: relative; }
         .elegant-line::after { content: ''; position: absolute; bottom: -12px; left: 50%; transform: translateX(-50%); width: 80px; height: 1px; background: linear-gradient(90deg, transparent, #C99B4F, transparent); }
         .cta-primary { background: linear-gradient(135deg, #C99B4F, #B8894A); transition: all 0.4s ease; font-family: 'Montserrat', sans-serif; font-weight: 600; }
@@ -87,19 +112,19 @@
                         <a href="contact.html" data-translate-key="nav_contact" class="nav-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase">CONTACT</a>
                         
                         <div class="relative ml-4 pl-4 border-l border-charcoal/10" id="lang-dropdown-container">
-                            <button id="lang-dropdown-btn" 
-                                        class="lang-button text-charcoal text-sm font-title font-medium flex items-center p-2" 
-                                        aria-expanded="false" 
-                                        aria-controls="lang-menu"
-                                        aria-label="Sélectionner la langue">
+                            <button id="lang-dropdown-btn"
+                                            class="lang-button text-charcoal text-sm font-title font-medium flex items-center p-2"
+                                            aria-expanded="false"
+                                            aria-controls="lang-menu"
+                                            aria-label="Sélectionner la langue">
                                 <span id="current-lang-display" class="font-semibold text-bronze">EN</span>
                                 <svg class="h-4 w-4 ml-1 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" id="dropdown-arrow"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
                             </button>
                             
-                            <div id="lang-menu" 
-                                class="absolute right-0 mt-3 w-36 bg-pure-white shadow-xl rounded-md ring-1 ring-charcoal/5 hidden origin-top-right py-1 z-50" 
-                                role="menu" 
-                                aria-orientation="vertical" 
+                            <div id="lang-menu"
+                                class="absolute right-0 mt-3 w-36 bg-pure-white shadow-xl rounded-md ring-1 ring-charcoal/5 hidden origin-top-right py-1 z-50"
+                                role="menu"
+                                aria-orientation="vertical"
                                 aria-labelledby="lang-dropdown-btn">
                                 <a href="#" class="lang-option block px-4 py-2 text-sm text-charcoal hover:bg-light-gray" role="menuitem" data-lang="fr">Français</a>
                                 <a href="#" class="lang-option block px-4 py-2 text-sm text-charcoal hover:bg-light-gray" role="menuitem" data-lang="en">English</a>
@@ -112,12 +137,12 @@
                 </nav>
                 
                 <div class="md:hidden flex items-center space-x-4">
-                    <button id="mobileMenuBtn" 
-                                class="text-charcoal hover:text-bronze p-2" 
-                                data-translate-key="menu_btn"
-                                aria-label="Menu mobile" 
-                                aria-expanded="false" 
-                                aria-controls="mobileMenu">
+                    <button id="mobileMenuBtn"
+                                 class="text-charcoal hover:text-bronze p-2"
+                                 data-translate-key="menu_btn"
+                                 aria-label="Menu mobile"
+                                 aria-expanded="false"
+                                 aria-controls="mobileMenu">
                         <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>
                     </button>
                 </div>
@@ -147,9 +172,8 @@
             </div>
         </div>
     </header>
-    <main>
-        <section class="page-section bg-pure-white">
-            <div class="max-w-7xl mx-auto px-6">
+    <main class="hero-background">
+        <section class="page-section"> <div class="max-w-7xl mx-auto px-6">
                 <div class="text-center mb-20">
                     <h2 data-translate-key="section_title" class="text-4xl md:text-5xl font-title font-bold text-charcoal mb-8 tracking-widest uppercase fade-in-up elegant-line">
                         YOUR VISION, OUR ART
