@@ -513,57 +513,6 @@
             observer.observe(element);
         });
     });
-
-        <script>
-document.addEventListener('DOMContentLoaded', () => {
-    // Sélecteur de langue (Desktop)
-    const langBtn = document.getElementById('lang-dropdown-btn');
-    const langMenu = document.getElementById('lang-menu');
-    const dropdownArrow = document.getElementById('dropdown-arrow');
-
-    if (langBtn && langMenu) {
-        langBtn.addEventListener('click', (e) => {
-            e.stopPropagation(); // Empêche la fermeture immédiate
-            langMenu.classList.toggle('hidden');
-            dropdownArrow.classList.toggle('rotate-180');
-        });
-
-        // Ferme le menu si on clique ailleurs
-        document.addEventListener('click', (e) => {
-            if (!langBtn.contains(e.target) && !langMenu.contains(e.target)) {
-                langMenu.classList.add('hidden');
-                dropdownArrow.classList.remove('rotate-180');
-            }
-        });
-    }
-
-    // Sélecteurs de langue (mobile et desktop)
-    const langButtons = document.querySelectorAll('.lang-button, .lang-option');
-    const currentLangDisplay = document.getElementById('current-lang-display');
-
-    langButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-            const selectedLang = btn.dataset.lang;
-            if (selectedLang) {
-                localStorage.setItem('selectedLang', selectedLang);
-                currentLangDisplay.textContent = selectedLang.toUpperCase();
-
-                // Ferme le menu après sélection (desktop)
-                if (langMenu) langMenu.classList.add('hidden');
-                dropdownArrow.classList.remove('rotate-180');
-
-                // Recharge la page (ou recharge les traductions dynamiquement si tu as un script prévu)
-                location.reload();
-            }
-        });
-    });
-
-    // Restaure la langue sélectionnée au chargement
-    const savedLang = localStorage.getItem('selectedLang');
-    if (savedLang && currentLangDisplay) {
-        currentLangDisplay.textContent = savedLang.toUpperCase();
-    }
-});
-</script>
+    </script>
 </body>
 </html>
