@@ -29,17 +29,18 @@
             z-index: 10;
         }
 
-        /* Overlay pour assurer la lisibilité (un gris très léger, presque transparent) */
-        .hero-background::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: rgba(255, 255, 255, 0.80); /* Fond blanc très légèrement opaque */
-            z-index: -1;
-        }
+        /* Overlay pour assurer la lisibilité (MAINTENANT NOIR/CHARCOAL TRANSPARENT) */
+.hero-background::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* UTILISE CHARCOAL (1A1A1A) avec une opacité de 0.5 (50% d'obscurité) */
+    background-color: rgba(26, 26, 26, 0.5); 
+    z-index: -1;
+}
 
         /* Animations */
         .fade-in-up { opacity: 0; transform: translateY(40px); transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
