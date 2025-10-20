@@ -431,92 +431,91 @@
 
 
     // --- 3. INITIALISATION LORS DU CHARGEMENT DE LA PAGE ---
-    document.addEventListener('DOMContentLoaded', () => {
-        
-        let initialLang = localStorage.getItem('mosaiaLang');
+document.addEventListener('DOMContentLoaded', () => {
+    
+    // ... (Logique de détection de la langue initiale) ...
+    let initialLang = localStorage.getItem('mosaiaLang');
+    if (!initialLang) {
+        const browserLang = navigator.language.split('-')[0];
+        initialLang = SUPPORTED_LANGS.includes(browserLang) ? browserLang : DEFAULT_LANG;
+    }
+    switchLanguage(initialLang); 
 
-        if (!initialLang) {
-            // Première visite : Détection du navigateur
-            const browserLang = navigator.language.split('-')[0];
-            if (SUPPORTED_LANGS.includes(browserLang)) {
-                initialLang = browserLang;
-            } else {
-                initialLang = DEFAULT_LANG;
-            }
+    // ---------------------------------------------
+    // --- GESTION DES MENUS ET DROPDOWNS CORRIGÉE ---
+    // ---------------------------------------------
+    
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+
+    function toggleMobileMenu() {
+        if (!mobileMenu || !mobileMenuBtn) return;
+        const isExpanded = mobileMenuBtn.getAttribute('aria-expanded') === 'true';
+        mobileMenuBtn.setAttribute('aria-expanded', String(!isExpanded));
+        mobileMenu.classList.toggle('hidden');
+    }
+    
+    if(mobileMenuBtn) {
+        mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+    }
+
+    const langDropdownBtn = document.getElementById('lang-dropdown-btn');
+    const langMenu = document.getElementById('lang-menu');
+    const dropdownArrow = document.getElementById('dropdown-arrow');
+    const langDropdownContainer = document.getElementById('lang-dropdown-container');
+
+    // ** L'écouteur de clic pour l'ouverture/fermeture du menu PC **
+    if (langDropdownBtn && langMenu && dropdownArrow) { 
+        langDropdownBtn.addEventListener('click', (event) => {
+            event.stopPropagation();
+            
+            // Logique pour basculer l'état
+            const isExpanded = langDropdownBtn.getAttribute('aria-expanded') === 'true';
+            langDropdownBtn.setAttribute('aria-expanded', String(!isExpanded));
+            langMenu.classList.toggle('hidden');
+            dropdownArrow.classList.toggle('rotate-180');
+        });
+    }
+    
+    // Fermer le dropdown en cliquant à l'extérieur (le problème venait de l'interférence ici)
+    document.addEventListener('click', (event) => {
+        if (langDropdownContainer && langMenu && dropdownArrow && langDropdownBtn && 
+            !langDropdownContainer.contains(event.target) && 
+            !langMenu.classList.contains('hidden')) {
+            
+            langMenu.classList.add('hidden');
+            langDropdownBtn.setAttribute('aria-expanded', 'false');
+            dropdownArrow.classList.remove('rotate-180');
         }
+    });
 
-        // Applique la langue initiale
-        switchLanguage(initialLang); 
-
-        // --- GESTION DES MENUS ET DROPDOWNS ---
-        
-        const mobileMenu = document.getElementById('mobileMenu');
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-
-        function toggleMobileMenu() {
-            if (!mobileMenu || !mobileMenuBtn) return;
-            const isExpanded = mobileMenuBtn.getAttribute('aria-expanded') === 'true';
-            mobileMenuBtn.setAttribute('aria-expanded', String(!isExpanded));
-            mobileMenu.classList.toggle('hidden');
-        }
-        
-        if(mobileMenuBtn) {
-            mobileMenuBtn.addEventListener('click', toggleMobileMenu);
-        }
-
-        const langDropdownBtn = document.getElementById('lang-dropdown-btn');
-        const langMenu = document.getElementById('lang-menu');
-        const dropdownArrow = document.getElementById('dropdown-arrow');
-        const langDropdownContainer = document.getElementById('lang-dropdown-container');
-        
-        if (langDropdownBtn) {
-            langDropdownBtn.addEventListener('click', (event) => {
-                event.stopPropagation();
-                if (!langMenu || !dropdownArrow) return;
-                const isExpanded = langDropdownBtn.getAttribute('aria-expanded') === 'true';
-                langDropdownBtn.setAttribute('aria-expanded', String(!isExpanded));
-                langMenu.classList.toggle('hidden');
-                dropdownArrow.classList.toggle('rotate-180');
-            });
-        }
-        
-        // Fermer le dropdown en cliquant à l'extérieur
-        document.addEventListener('click', (event) => {
-            if (langDropdownContainer && langMenu && dropdownArrow && !langDropdownContainer.contains(event.target) && !langMenu.classList.contains('hidden')) {
-                langMenu.classList.add('hidden');
-                langDropdownBtn.setAttribute('aria-expanded', 'false');
-                dropdownArrow.classList.remove('rotate-180');
+    // ----------------------------------------------------------------------
+    // --- ÉCOUTEURS D'ÉVÉNEMENTS POUR LE CHANGEMENT DE LANGUE (CORRECTION PRÉCÉDENTE) ---
+    // ----------------------------------------------------------------------
+    document.querySelectorAll('.lang-option, .lang-button').forEach(element => {
+        element.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation(); // 👈 GARANTIT que le clic ne propage pas de confusion
+            const lang = e.currentTarget.getAttribute('data-lang');
+            switchLanguage(lang);
+        });
+    });
+    
+    // ... (Logique d'animation Intersection Observer) ...
+    const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+    const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('loaded'); 
+                obs.unobserve(entry.target);
             }
         });
+    }, observerOptions);
 
-        // --- ÉCOUTEURS D'ÉVÉNEMENTS POUR LE CHANGEMENT DE LANGUE ---
-document.querySelectorAll('.lang-option, .lang-button').forEach(element => {
-    element.addEventListener('click', (e) => {
-        e.preventDefault();
-        // Empêche l'événement de se propager au 'document', 
-        // ce qui pourrait réinitialiser le menu ou causer des interférences
-        e.stopPropagation(); // <-- AJOUT CRITIQUE
-
-        const lang = e.currentTarget.getAttribute('data-lang');
-        switchLanguage(lang);
+    document.querySelectorAll('.fade-in-up').forEach(element => {
+        observer.observe(element);
     });
 });
-        
-        // --- LOGIQUE D'ANIMATION (Intersection Observer) ---
-        const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
-        const observer = new IntersectionObserver((entries, obs) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('loaded'); 
-                    obs.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.fade-in-up').forEach(element => {
-            observer.observe(element);
-        });
-    });
     </script>
 </body>
 </html>
