@@ -88,10 +88,10 @@
                         
                         <div class="relative ml-4 pl-4 border-l border-charcoal/10" id="lang-dropdown-container">
                             <button id="lang-dropdown-btn" 
-                                    class="lang-button text-charcoal text-sm font-title font-medium flex items-center p-2" 
-                                    aria-expanded="false" 
-                                    aria-controls="lang-menu"
-                                    aria-label="Sélectionner la langue">
+                                        class="lang-button text-charcoal text-sm font-title font-medium flex items-center p-2" 
+                                        aria-expanded="false" 
+                                        aria-controls="lang-menu"
+                                        aria-label="Sélectionner la langue">
                                 <span id="current-lang-display" class="font-semibold text-bronze">EN</span>
                                 <svg class="h-4 w-4 ml-1 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" id="dropdown-arrow"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
                             </button>
@@ -113,11 +113,11 @@
                 
                 <div class="md:hidden flex items-center space-x-4">
                     <button id="mobileMenuBtn" 
-                            class="text-charcoal hover:text-bronze p-2" 
-                            data-translate-key="menu_btn"
-                            aria-label="Menu mobile" 
-                            aria-expanded="false" 
-                            aria-controls="mobileMenu">
+                                class="text-charcoal hover:text-bronze p-2" 
+                                data-translate-key="menu_btn"
+                                aria-label="Menu mobile" 
+                                aria-expanded="false" 
+                                aria-controls="mobileMenu">
                         <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>
                     </button>
                 </div>
@@ -263,10 +263,10 @@
     
     <script>
     // --- 0. CONFIGURATION GLOBALE ---
-    const BASE_URL = ''; // Vous pouvez définir l'URL de base ici si nécessaire
+    const BASE_URL = '';
     const DEFAULT_LANG = 'en';
     const SUPPORTED_LANGS = ['fr', 'en', 'nl', 'de', 'es'];
-    let currentLang = DEFAULT_LANG;
+    let currentLang = DEFAULT_LANG; // Sera écrasé par localStorage ou la détection
 
     // --- 1. DONNÉES DE TRADUCTION ---
     const translations = {
@@ -293,20 +293,20 @@
         'step1_text': { fr: "Échanges initiaux pour capturer votre idée et l'environnement du projet.", en: "Initial discussions to capture your idea and the project's environment.", nl: "Eerste gesprekken om uw idee en de projectomgeving vast te leggen.", de: "Erste Gespräche zur Erfassung Ihrer Idee und des Projektumfelds.", es: "Intercambios iniciales para capturar su idea et le entorno del proyecto." },
         'step2_title': { fr: "2. Digital Design", en: "2. Digital Design", nl: "2. Digitaal Ontwerp", de: "2. Digitales Design", es: "2. Diseño Digital" },
         'step2_text': { fr: "Modélisation et rendu 3D de la mosaïque dans son contexte architectural.", en: "3D modeling and rendering of the mosaic within its architectural context.", nl: "3D-modellering en rendering van het mozaïek in zijn architecturale context.", de: "3D-Modellierung und Rendering des Mosaiks in seinem architektonischen Kontext.", es: "Modelado 3D y renderizado del mosaico en su contexto arquitectónico." },
-        'step3_title': { fr: "3. Material Selection", en: "3. Material Selection", nl: "3. Materiaalkeuze", de: "3. Materialauswahl", es: "3. Selección de Materiales" },
+        'step3_title': { fr: "3. Sélection Matériaux", en: "3. Material Selection", nl: "3. Materiaalkeuze", de: "3. Materialauswahl", es: "3. Selección de Materiales" },
         'step3_text': { fr: "Sélection des tesselles (verre, pierre, métal) et vérification des textures.", en: "Selection of tesserae (glass, stone, metal) and texture verification.", nl: "Selectie van tegels (glas, steen, metaal) en textuurcontrole.", de: "Auswahl der Tesserae (Glas, Stein, Metall) und Texturprüfung.", es: "Selección de teselas (vidrio, piedra, metal) y verificación de texturas." },
-        'step4_title': { fr: "4. Color Mapping", en: "4. Color Mapping", nl: "4. Kleurcodering", de: "4. Farbkartierung", es: "4. Mapeo de Colores" },
+        'step4_title': { fr: "4. Cartographie Couleur", en: "4. Color Mapping", nl: "4. Kleurcodering", de: "4. Farbkartierung", es: "4. Mapeo de Colores" },
         'step4_text': { fr: "Cartographie précise des couleurs pour assurer la fidélité de l'œuvre finale.", en: "Precise color mapping to ensure the fidelity of the final work.", nl: "Nauwkeurige kleurcodering om de getrouwheid van het uiteindelijke werk te garanderen.", de: "Präzise Farbkartierung zur Gewährleistung der Wiedergabetreue des Endwerks.", es: "Mapeo preciso de colores para asegurar la fidelidad de la obra final." },
-        'step5_title': { fr: "5. Approval & Production", en: "5. Approval & Production", nl: "5. Goedkeuring & Productie", de: "5. Genehmigung & Produktion", es: "5. Aprobación y Producción" },
+        'step5_title': { fr: "5. Approbation & Prod.", en: "5. Approval & Production", nl: "5. Goedkeuring & Productie", de: "5. Genehmigung & Produktion", es: "5. Aprobación y Producción" },
         'step5_text': { fr: "Validation finale par le client avant le lancement de la production robotisée.", en: "Final client validation before launching robotic production.", nl: "Definitieve goedkeuring door de klant vóór de start van de gerobotiseerde productie.", de: "Endgültige Kundenfreigabe vor dem Start der robotergestützten Produktion.", es: "Validación final del cliente antes de iniciar la producción robotizada." },
 
         // Avantages
         'advantages_title': { fr: "Avantages du Sur-Mesure", en: "Bespoke Advantages", nl: "Voordelen van Maatwerk", de: "Vorteile der Maßanfertigung", es: "Ventajas del Servicio a Medida" },
-        'advantage1_title': { fr: "Visual Previews", en: "Visual Previews", nl: "Visuele Voorbeelden", de: "Visuelle Vorschauen", es: "Vistas Previas Visuales" },
+        'advantage1_title': { fr: "Aperçus Visuels", en: "Visual Previews", nl: "Visuele Voorbeelden", de: "Visuelle Vorschauen", es: "Vistas Previas Visuales" },
         'advantage1_text': { fr: "Visualisez le résultat avant la production grâce à nos rendus photoréalistes.", en: "Visualize the result before production with our photorealistic renderings.", nl: "Visualiseer het resultaat vóór productie dankzij onze fotorealistische renderings.", de: "Visualisieren Sie das Ergebnis vor der Produktion dank unserer photorealistischen Renderings.", es: "Visualice el resultado antes de la production con nuestros renders fotorrealistas." },
-        'advantage2_title': { fr: "Precision Mapping", en: "Precision Mapping", nl: "Precisie Codering", de: "Präzisionskartierung", es: "Mapeo de Precisión" },
+        'advantage2_title': { fr: "Cartographie Précise", en: "Precision Mapping", nl: "Precisie Codering", de: "Präzisionskartierung", es: "Mapeo de Precisión" },
         'advantage2_text': { fr: "Une précision au millimètre garantie par notre technologie de cartographie.", en: "Millimeter precision guaranteed by our mapping technology.", nl: "Millimeterprecisie gegarandeerd door onze coderingstechnologie.", de: "Millimetergenaue Präzision, garantiert durch unsere Kartierungstechnologie.", es: "Precisión milimétrica garantizada por nuestra tecnología de mapeo." },
-        'advantage3_title': { fr: "Full Customization", en: "Full Customization", nl: "Volledige Personalisatie", de: "Vollständige Anpassung", es: "Personalización Total" },
+        'advantage3_title': { fr: "Personnalisation", en: "Full Customization", nl: "Volledige Personalisatie", de: "Vollständige Anpassung", es: "Personalización Total" },
         'advantage3_text': { fr: "Liberté totale sur les couleurs, la taille et les matériaux de chaque tesselle.", en: "Total freedom over colors, size, and materials for each tessera.", nl: "Volledige vrijheid over kleuren, grootte en materialen van elke tegel.", de: "Völlige Freiheit bei Farben, Größe und Materialien jeder Tesselle.", es: "Libertad total sobre colores, tamaño y materiales de cada tesela." },
         'advantage4_title': { fr: "Collaboration", en: "Collaboration", nl: "Samenwerking", de: "Zusammenarbeit", es: "Colaboración" },
         'advantage4_text': { fr: "Travail en étroite collaboration avec architectes et designers pour l'intégration.", en: "Close collaboration with architects and designers for integration.", nl: "Nauwe samenwerking met architecten en ontwerpers voor integratie.", de: "Enge Zusammenarbeit mit Architecten und Designern für die Integration.", es: "Colaboración estrecha con arquitectos et designers pour l'intégration." },
@@ -324,6 +324,7 @@
         if (!SUPPORTED_LANGS.includes(lang)) {
             lang = DEFAULT_LANG;
         }
+        // Sauvegarde avec une clé unique pour éviter les conflits
         localStorage.setItem('mosaiaLang', lang);
         currentLang = lang;
         document.documentElement.lang = lang; 
@@ -339,23 +340,22 @@
             if (translations[key] && translations[key][lang]) {
                 element.textContent = translations[key][lang];
             } else if (translations[key] && translations[key][DEFAULT_LANG]) {
-                // S'assurer d'avoir toujours un fallback (Anglais)
                 element.textContent = translations[key][DEFAULT_LANG];
             }
         });
 
         // Gère les classes 'active' pour les liens de navigation
+        const currentPagePath = window.location.pathname.split('/').pop() || 'index.html';
+        
         document.querySelectorAll('.nav-link').forEach(link => {
-            // Supprime toutes les classes actives
+            // Logique de navigation (sur-mesure.html)
+            const linkPageName = link.getAttribute('href').split('/').pop();
+
+            // Supprime et ajoute la classe active
             link.classList.remove('active', 'text-bronze', 'border-b-2', 'border-bronze');
             link.classList.add('text-charcoal');
-            
-            // Logique pour déterminer si le lien est actif pour la page actuelle
-            const pageName = window.location.pathname.split('/').pop() || 'index.html'; // Fallback pour la racine
-            const linkHref = link.getAttribute('href') || '';
-            const linkPageName = linkHref.split('/').pop();
 
-            if (linkPageName === pageName) {
+            if (linkPageName === currentPagePath) {
                 link.classList.add('active', 'text-bronze', 'border-b-2', 'border-bronze');
                 link.classList.remove('text-charcoal');
             }
@@ -376,11 +376,11 @@
             }
         });
         
-        // Ferme les menus si la sélection vient de là (logique maintenue)
+        // Ferme les menus après la sélection
         const langMenu = document.getElementById('lang-menu');
         const arrow = document.getElementById('dropdown-arrow');
         const langDropdownBtn = document.getElementById('lang-dropdown-btn');
-        if (langMenu && arrow && langDropdownBtn && !langMenu.classList.contains('hidden')) { // Vérifier si le menu est ouvert avant de tenter de le fermer
+        if (langMenu && arrow && langDropdownBtn && !langMenu.classList.contains('hidden')) {
             langMenu.classList.add('hidden');
             arrow.classList.remove('rotate-180');
             langDropdownBtn.setAttribute('aria-expanded', 'false');
@@ -402,7 +402,7 @@
 
         if (!initialLang) {
             // Première visite : Détection du navigateur
-            const browserLang = navigator.language.split('-')[0]; // ex: 'fr-FR' -> 'fr'
+            const browserLang = navigator.language.split('-')[0];
             if (SUPPORTED_LANGS.includes(browserLang)) {
                 initialLang = browserLang;
             } else {
@@ -410,14 +410,16 @@
             }
         }
 
-        // Applique la langue initiale (qui va aussi sauvegarder dans localStorage)
+        // Applique la langue initiale
         switchLanguage(initialLang); 
 
-        // --- GESTION DU MENU MOBILE ---
+        // --- GESTION DES MENUS ET DROPDOWNS ---
+        
         const mobileMenu = document.getElementById('mobileMenu');
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
 
         function toggleMobileMenu() {
+            if (!mobileMenu || !mobileMenuBtn) return;
             const isExpanded = mobileMenuBtn.getAttribute('aria-expanded') === 'true';
             mobileMenuBtn.setAttribute('aria-expanded', String(!isExpanded));
             mobileMenu.classList.toggle('hidden');
@@ -427,7 +429,6 @@
             mobileMenuBtn.addEventListener('click', toggleMobileMenu);
         }
 
-        // --- GESTION DU DROPDOWN DESKTOP ---
         const langDropdownBtn = document.getElementById('lang-dropdown-btn');
         const langMenu = document.getElementById('lang-menu');
         const dropdownArrow = document.getElementById('dropdown-arrow');
@@ -436,6 +437,7 @@
         if (langDropdownBtn) {
             langDropdownBtn.addEventListener('click', (event) => {
                 event.stopPropagation();
+                if (!langMenu || !dropdownArrow) return;
                 const isExpanded = langDropdownBtn.getAttribute('aria-expanded') === 'true';
                 langDropdownBtn.setAttribute('aria-expanded', String(!isExpanded));
                 langMenu.classList.toggle('hidden');
@@ -461,12 +463,11 @@
             });
         });
         
-        // --- LOGIQUE D'ANIMATION ---
+        // --- LOGIQUE D'ANIMATION (Intersection Observer) ---
         const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
         const observer = new IntersectionObserver((entries, obs) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    // Utilise 'loaded' au lieu de 'fade-in-up' pour le déclencheur
                     entry.target.classList.add('loaded'); 
                     obs.unobserve(entry.target);
                 }
