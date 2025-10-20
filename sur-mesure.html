@@ -432,123 +432,72 @@
 
     // --- 3. INITIALISATION LORS DU CHARGEMENT DE LA PAGE ---
 document.addEventListener('DOMContentLoaded', () => {
-    
-    // ... (Logique de détection de la langue initiale) ...
-    let initialLang = localStorage.getItem('mosaiaLang');
-    if (!initialLang) {
-        const browserLang = navigator.language.split('-')[0];
-        initialLang = SUPPORTED_LANGS.includes(browserLang) ? browserLang : DEFAULT_LANG;
-    }
-    switchLanguage(initialLang); 
+    // --- CONFIGURATION GLOBALE ---
+    const DEFAULT_LANG = 'en';
+    const SUPPORTED_LANGS = ['fr','en','nl','de','es'];
+    let currentLang = localStorage.getItem('lang') || DEFAULT_LANG;
 
-    // ---------------------------------------------
-    // --- GESTION DES MENUS ET DROPDOWNS CORRIGÉE ---
-    // ---------------------------------------------
-    
-    const mobileMenu = document.getElementById('mobileMenu');
-    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-
-    function toggleMobileMenu() {
-        if (!mobileMenu || !mobileMenuBtn) return;
-        const isExpanded = mobileMenuBtn.getAttribute('aria-expanded') === 'true';
-        mobileMenuBtn.setAttribute('aria-expanded', String(!isExpanded));
-        mobileMenu.classList.toggle('hidden');
-    }
-    
-    if(mobileMenuBtn) {
-        mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+    // --- FONCTION DE TRADUCTION ---
+    function translatePage(lang) {
+        currentLang = lang;
+        localStorage.setItem('lang', lang);
+        const elements = document.querySelectorAll('[data-translate-key]');
+        elements.forEach(el => {
+            const key = el.getAttribute('data-translate-key');
+            if (translations[key] && translations[key][lang]) {
+                el.textContent = translations[key][lang];
+            }
+        });
     }
 
+    // --- MENU LANGUES ---
     const langDropdownBtn = document.getElementById('lang-dropdown-btn');
     const langMenu = document.getElementById('lang-menu');
     const dropdownArrow = document.getElementById('dropdown-arrow');
-    const langDropdownContainer = document.getElementById('lang-dropdown-container');
 
-    // ** L'écouteur de clic pour l'ouverture/fermeture du menu PC **
-    if (langDropdownBtn && langMenu && dropdownArrow) { 
-        langDropdownBtn.addEventListener('click', (event) => {
-            event.stopPropagation();
-            
-            // Logique pour basculer l'état
-            const isExpanded = langDropdownBtn.getAttribute('aria-expanded') === 'true';
-            langDropdownBtn.setAttribute('aria-expanded', String(!isExpanded));
-            langMenu.classList.toggle('hidden');
-            dropdownArrow.classList.toggle('rotate-180');
-        });
-    }
-    
-    // Fermer le dropdown en cliquant à l'extérieur (le problème venait de l'interférence ici)
-    document.addEventListener('click', (event) => {
-        if (langDropdownContainer && langMenu && dropdownArrow && langDropdownBtn && 
-            !langDropdownContainer.contains(event.target) && 
-            !langMenu.classList.contains('hidden')) {
-            
-            langMenu.classList.add('hidden');
-            langDropdownBtn.setAttribute('aria-expanded', 'false');
-            dropdownArrow.classList.remove('rotate-180');
-        }
+    langDropdownBtn.addEventListener('click', () => {
+        langMenu.classList.toggle('hidden');
+        dropdownArrow.classList.toggle('rotate-180');
     });
 
-    // ----------------------------------------------------------------------
-    // --- ÉCOUTEURS D'ÉVÉNEMENTS POUR LE CHANGEMENT DE LANGUE (CORRECTION PRÉCÉDENTE) ---
-    // ----------------------------------------------------------------------
-    document.querySelectorAll('.lang-option, .lang-button').forEach(element => {
-        element.addEventListener('click', (e) => {
+    document.querySelectorAll('#lang-menu a.lang-option').forEach(btn => {
+        btn.addEventListener('click', e => {
             e.preventDefault();
-            e.stopPropagation(); // 👈 GARANTIT que le clic ne propage pas de confusion
-            const lang = e.currentTarget.getAttribute('data-lang');
-            switchLanguage(lang);
-        });
-    });
-    
-    // ... (Logique d'animation Intersection Observer) ...
-    const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
-    const observer = new IntersectionObserver((entries, obs) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('loaded'); 
-                obs.unobserve(entry.target);
-            }
-        });
-    }, observerOptions);
-
-    document.querySelectorAll('.fade-in-up').forEach(element => {
-        observer.observe(element);
-    });
-});
-    <script>
-    // Sélecteurs
-    const langBtn = document.getElementById('lang-dropdown-btn');
-    const langMenu = document.getElementById('lang-menu');
-    const dropdownArrow = document.getElementById('dropdown-arrow');
-    const langOptions = document.querySelectorAll('#lang-menu a.lang-option');
-
-    // Toggle dropdown
-    langBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        langMenu.classList.toggle('hidden'); // Affiche/masque le menu
-        dropdownArrow.classList.toggle('rotate-180'); // Fait tourner la flèche
-    });
-
-    // Clic sur une option
-    langOptions.forEach(option => {
-        option.addEventListener('click', (e) => {
-            e.preventDefault();
-            const selectedLang = option.getAttribute('data-lang');
+            const selectedLang = btn.getAttribute('data-lang');
+            translatePage(selectedLang);
             document.getElementById('current-lang-display').textContent = selectedLang.toUpperCase();
-            langMenu.classList.add('hidden'); // Ferme le menu
-            dropdownArrow.classList.remove('rotate-180'); // Remet la flèche
+            langMenu.classList.add('hidden');
+            dropdownArrow.classList.remove('rotate-180');
         });
     });
 
-    // Fermer le menu si clic en dehors
-    document.addEventListener('click', (e) => {
-        if (!langBtn.contains(e.target) && !langMenu.contains(e.target)) {
-            langMenu.classList.add('hidden');
-            dropdownArrow.classList.remove('rotate-180');
-        }
+    // --- MOBILE MENU ---
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    mobileMenuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+        mobileMenuBtn.setAttribute('aria-expanded', !mobileMenu.classList.contains('hidden'));
     });
-</script>
 
+    // --- MOBILE LANG BUTTONS ---
+    document.querySelectorAll('#lang-selector-mobile .lang-button').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const selectedLang = btn.getAttribute('data-lang');
+            translatePage(selectedLang);
+        });
+    });
+
+    // --- ANIMATIONS FADE-IN-UP ---
+    const fadeEls = document.querySelectorAll('.fade-in-up');
+    fadeEls.forEach(el => {
+        setTimeout(() => {
+            el.classList.add('loaded');
+        }, 100); // On peut ajuster pour stagger si besoin
+    });
+
+    // --- TRADUCTION INITIALE ---
+    translatePage(currentLang);
+});
+</script>
 </body>
 </html>
