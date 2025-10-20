@@ -490,13 +490,17 @@
         });
 
         // --- ÉCOUTEURS D'ÉVÉNEMENTS POUR LE CHANGEMENT DE LANGUE ---
-        document.querySelectorAll('.lang-option, .lang-button').forEach(element => {
-            element.addEventListener('click', (e) => {
-                e.preventDefault(); 
-                const lang = e.currentTarget.getAttribute('data-lang');
-                switchLanguage(lang);
-            });
-        });
+document.querySelectorAll('.lang-option, .lang-button').forEach(element => {
+    element.addEventListener('click', (e) => {
+        e.preventDefault();
+        // Empêche l'événement de se propager au 'document', 
+        // ce qui pourrait réinitialiser le menu ou causer des interférences
+        e.stopPropagation(); // <-- AJOUT CRITIQUE
+
+        const lang = e.currentTarget.getAttribute('data-lang');
+        switchLanguage(lang);
+    });
+});
         
         // --- LOGIQUE D'ANIMATION (Intersection Observer) ---
         const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
