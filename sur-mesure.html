@@ -489,7 +489,69 @@
             }
         });
 
+        // --- 3. INITIALISATION LORS DU CHARGEMENT DE LA PAGE ---
+    document.addEventListener('DOMContentLoaded', () => {
+        
+        let initialLang = localStorage.getItem('mosaiaLang');
+
+        if (!initialLang) {
+            // Première visite : Détection du navigateur
+            const browserLang = navigator.language.split('-')[0];
+            if (SUPPORTED_LANGS.includes(browserLang)) {
+                initialLang = browserLang;
+            } else {
+                initialLang = DEFAULT_LANG;
+            }
+        }
+
+        // Applique la langue initiale
+        switchLanguage(initialLang); 
+
+        // --- GESTION DES MENUS ET DROPDOWNS ---
+        
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+
+        function toggleMobileMenu() {
+            if (!mobileMenu || !mobileMenuBtn) return;
+            const isExpanded = mobileMenuBtn.getAttribute('aria-expanded') === 'true';
+            mobileMenuBtn.setAttribute('aria-expanded', String(!isExpanded));
+            mobileMenu.classList.toggle('hidden');
+        }
+        
+        if(mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+        }
+
+        const langDropdownBtn = document.getElementById('lang-dropdown-btn');
+        const langMenu = document.getElementById('lang-menu');
+        const dropdownArrow = document.getElementById('dropdown-arrow');
+        const langDropdownContainer = document.getElementById('lang-dropdown-container');
+        
+        if (langDropdownBtn) {
+            langDropdownBtn.addEventListener('click', (event) => {
+                event.stopPropagation();
+                if (!langMenu || !dropdownArrow) return;
+                const isExpanded = langDropdownBtn.getAttribute('aria-expanded') === 'true';
+                langDropdownBtn.setAttribute('aria-expanded', String(!isExpanded));
+                langMenu.classList.toggle('hidden');
+                dropdownArrow.classList.toggle('rotate-180');
+            });
+        }
+        
+        // Fermer le dropdown en cliquant à l'extérieur
+        document.addEventListener('click', (event) => {
+            // S'assure qu'on ne ferme le menu que s'il est ouvert ET que le clic n'est pas dans le conteneur du dropdown.
+            if (langDropdownContainer && langMenu && dropdownArrow && !langDropdownContainer.contains(event.target) && !langMenu.classList.contains('hidden')) {
+                langMenu.classList.add('hidden');
+                // N'oublie pas de mettre à jour l'attribut ARIA
+                langDropdownBtn.setAttribute('aria-expanded', 'false'); 
+                dropdownArrow.classList.remove('rotate-180');
+            }
+        });
+
         // --- ÉCOUTEURS D'ÉVÉNEMENTS POUR LE CHANGEMENT DE LANGUE ---
+        // C'est le bloc clé qui appelle la fonction switchLanguage
         document.querySelectorAll('.lang-option, .lang-button').forEach(element => {
             element.addEventListener('click', (e) => {
                 e.preventDefault(); 
@@ -513,36 +575,6 @@
             observer.observe(element);
         });
     });
-
-        <script>
-document.addEventListener('DOMContentLoaded', () => {
-    // Sélecteur de langue (Desktop)
-    const langBtn = document.getElementById('lang-dropdown-btn');
-    const langMenu = document.getElementById('lang-menu');
-    const dropdownArrow = document.getElementById('dropdown-arrow');
-
-    if (langBtn && langMenu) {
-        langBtn.addEventListener('click', (e) => {
-            e.stopPropagation(); // Empêche la fermeture immédiate
-            langMenu.classList.toggle('hidden');
-            dropdownArrow.classList.toggle('rotate-180');
-        });
-
-        // Ferme le menu si on clique ailleurs
-        document.addEventListener('click', (e) => {
-            if (!langBtn.contains(e.target) && !langMenu.contains(e.target)) {
-                langMenu.classList.add('hidden');
-                dropdownArrow.classList.remove('rotate-180');
-            }
-        });
-    }
-
-    // Restaure la langue sélectionnée au chargement
-    const savedLang = localStorage.getItem('selectedLang');
-    if (savedLang && currentLangDisplay) {
-        currentLangDisplay.textContent = savedLang.toUpperCase();
-    }
-});
 </script>
 </body>
 </html>
