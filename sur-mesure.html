@@ -516,6 +516,39 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(element);
     });
 });
-    </script>
+    <script>
+    // Sélecteurs
+    const langBtn = document.getElementById('lang-dropdown-btn');
+    const langMenu = document.getElementById('lang-menu');
+    const dropdownArrow = document.getElementById('dropdown-arrow');
+    const langOptions = document.querySelectorAll('#lang-menu a.lang-option');
+
+    // Toggle dropdown
+    langBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        langMenu.classList.toggle('hidden'); // Affiche/masque le menu
+        dropdownArrow.classList.toggle('rotate-180'); // Fait tourner la flèche
+    });
+
+    // Clic sur une option
+    langOptions.forEach(option => {
+        option.addEventListener('click', (e) => {
+            e.preventDefault();
+            const selectedLang = option.getAttribute('data-lang');
+            document.getElementById('current-lang-display').textContent = selectedLang.toUpperCase();
+            langMenu.classList.add('hidden'); // Ferme le menu
+            dropdownArrow.classList.remove('rotate-180'); // Remet la flèche
+        });
+    });
+
+    // Fermer le menu si clic en dehors
+    document.addEventListener('click', (e) => {
+        if (!langBtn.contains(e.target) && !langMenu.contains(e.target)) {
+            langMenu.classList.add('hidden');
+            dropdownArrow.classList.remove('rotate-180');
+        }
+    });
+</script>
+
 </body>
 </html>
