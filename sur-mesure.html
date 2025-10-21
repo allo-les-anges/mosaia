@@ -431,7 +431,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- CONFIGURATION GLOBALE ---
     const DEFAULT_LANG = 'en';
     const SUPPORTED_LANGS = ['fr','en','nl','de','es'];
-    let currentLang = localStorage.getItem('lang') || DEFAULT_LANG;
+    let currentLang = localStorage.getItem('mosaiaLang') || 'en';
 
     // --- FONCTION DE TRADUCTION ---
     function translatePage(lang) {
