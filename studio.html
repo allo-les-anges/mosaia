@@ -312,7 +312,7 @@
         };
 
         // Langue par défaut et nom du fichier actuel
-        let currentLang = 'en'; 
+        let currentLang = localStorage.getItem('mosaiaLang') || 'en'; 
         const pageFileName = 'studio.html'; 
         const supportedLangs = ['fr', 'en', 'nl', 'de', 'es'];
 
