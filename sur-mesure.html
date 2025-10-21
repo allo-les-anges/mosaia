@@ -297,7 +297,11 @@
     const BASE_URL = '';
     const DEFAULT_LANG = 'en';
     const SUPPORTED_LANGS = ['fr', 'en', 'nl', 'de', 'es'];
-     
+    // DÉCLARATION DE LA VARIABLE currentLang
+    let currentLang;
+
+        // NÉCESSAIRE pour gérer l'état actif des liens de navigation
+    const currentPagePath = window.location.pathname.split('/').pop() || 'index.html';
 
     // --- 1. DONNÉES DE TRADUCTION ---
     const translations = {
@@ -425,58 +429,111 @@
         }
     }
 
-    // --- 3. INITIALISATION LORS DU CHARGEMENT DE LA PAGE ---
-const initialLang = localStorage.getItem('mosaiaLang') || DEFAULT_LANG; 
-    switchLanguage(initialLang);
+    // --- 3. LOGIQUE D'INITIALISATION LORS DU CHARGEMENT DE LA PAGE (Rapide) ---
+    function initializeLanguage() {
+        let initialLang = localStorage.getItem('mosaiaLang');
 
-    // --- MENU LANGUES ---
-    const langDropdownBtn = document.getElementById('lang-dropdown-btn');
-    const langMenu = document.getElementById('lang-menu');
-    const dropdownArrow = document.getElementById('dropdown-arrow');
+        // 1. Utilisation de la langue sauvegardée ou du navigateur
+        if (!initialLang || !SUPPORTED_LANGS.includes(initialLang)) {
+            const browserLang = navigator.language.substring(0, 2);
+            if (SUPPORTED_LANGS.includes(browserLang)) {
+                initialLang = browserLang;
+            } else {
+                initialLang = DEFAULT_LANG;
+            }
+        }
+        
+        // 2. Applique la langue trouvée (C'est ici que la traduction est faite la première fois)
+        switchLanguage(initialLang);
+    }
+    
+    // Exécution de l'initialisation de la langue (avant DOMContentLoaded pour un rendu rapide)
+    initializeLanguage();
 
-    langDropdownBtn.addEventListener('click', () => {
-        langMenu.classList.toggle('hidden');
-        dropdownArrow.classList.toggle('rotate-180');
-    });
 
-    document.querySelectorAll('#lang-menu a.lang-option').forEach(btn => {
-        btn.addEventListener('click', e => {
-            e.preventDefault();
-            const selectedLang = btn.getAttribute('data-lang');
-            translatePage(selectedLang);
-            document.getElementById('current-lang-display').textContent = selectedLang.toUpperCase();
-            langMenu.classList.add('hidden');
-            dropdownArrow.classList.remove('rotate-180');
+    // --- 4. LOGIQUE DOMContentLoaded (pour les interactions) ---
+    document.addEventListener('DOMContentLoaded', () => {
+
+        // --- GESTION DU MENU MOBILE ---
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        if (mobileMenuBtn && mobileMenu) {
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                mobileMenuBtn.setAttribute('aria-expanded', !mobileMenu.classList.contains('hidden'));
+            });
+        }
+        
+        // --- LOGIQUE DU SÉLECTEUR DE LANGUE DESKTOP ---
+        const langDropdownBtn = document.getElementById('lang-dropdown-btn');
+        const langMenu = document.getElementById('lang-menu');
+        const dropdownArrow = document.getElementById('dropdown-arrow');
+        const langDropdownContainer = document.getElementById('lang-dropdown-container'); 
+
+        if (langDropdownBtn && langMenu && dropdownArrow && langDropdownContainer) {
+            langDropdownBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const isExpanded = langDropdownBtn.getAttribute('aria-expanded') === 'true';
+                langDropdownBtn.setAttribute('aria-expanded', !isExpanded);
+                langMenu.classList.toggle('hidden');
+                dropdownArrow.classList.toggle('rotate-180');
+            });
+
+            document.addEventListener('click', (event) => {
+                if (!langDropdownContainer.contains(event.target)) {
+                    langMenu.classList.add('hidden');
+                    langDropdownBtn.setAttribute('aria-expanded', 'false');
+                    dropdownArrow.classList.remove('rotate-180');
+                }
+            });
+            
+            // Écouteurs pour la sélection de langue DESKTOP
+            document.querySelectorAll('#lang-menu a.lang-option').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault(); 
+                    const lang = link.getAttribute('data-lang');
+                    switchLanguage(lang); // <--- CORRECTION : Utilise switchLanguage
+                    langMenu.classList.add('hidden');
+                    langDropdownBtn.setAttribute('aria-expanded', 'false');
+                    dropdownArrow.classList.remove('rotate-180');
+                });
+            });
+        }
+
+        // Écouteurs pour la sélection de langue MOBILE
+        document.querySelectorAll('#lang-selector-mobile .lang-button').forEach(button => {
+            button.addEventListener('click', () => {
+                const lang = button.getAttribute('data-lang');
+                switchLanguage(lang); // <--- CORRECTION : Utilise switchLanguage
+                if (mobileMenu) mobileMenu.classList.add('hidden');
+                if (mobileMenuBtn) mobileMenuBtn.setAttribute('aria-expanded', 'false');
+            });
         });
-    });
+        
+        // --- LOGIQUE D'ANIMATION AU SCROLL (Intersection Observer) ---
+        const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const delayClass = Array.from(entry.target.classList).find(cls => cls.startsWith('delay-'));
+                    const delayInSeconds = delayClass ? parseInt(delayClass.split('-')[1]) * 100 : 0;
+                    
+                    setTimeout(() => {
+                        entry.target.classList.add('loaded'); // Ajout de la classe 'loaded'
+                        entry.target.classList.remove('opacity-0', 'translate-y-[40px]');
+                        observer.unobserve(entry.target);
+                    }, delayInSeconds);
+                }
+            });
+        }, observerOptions);
 
-    // --- MOBILE MENU ---
-    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
-    mobileMenuBtn.addEventListener('click', () => {
-        mobileMenu.classList.toggle('hidden');
-        mobileMenuBtn.setAttribute('aria-expanded', !mobileMenu.classList.contains('hidden'));
-    });
-
-    // --- MOBILE LANG BUTTONS ---
-    document.querySelectorAll('#lang-selector-mobile .lang-button').forEach(btn => {
-        btn.addEventListener('click', () => {
-            const selectedLang = btn.getAttribute('data-lang');
-            translatePage(selectedLang);
+        document.querySelectorAll('.fade-in-up').forEach(element => {
+            // Ces classes sont déjà dans le CSS, mais l'ajout dans le JS assure la transition.
+            element.classList.add('opacity-0', 'translate-y-[40px]', 'transition', 'duration-1000', 'ease-out');
+            observer.observe(element);
         });
-    });
 
-    // --- ANIMATIONS FADE-IN-UP ---
-    const fadeEls = document.querySelectorAll('.fade-in-up');
-    fadeEls.forEach(el => {
-        setTimeout(() => {
-            el.classList.add('loaded');
-        }, 100); // On peut ajuster pour stagger si besoin
-    });
-
-    // --- TRADUCTION INITIALE ---
-    translatePage(currentLang);
-});
+    }); // Fin DOMContentLoaded
 </script>
 </body>
 </html>
