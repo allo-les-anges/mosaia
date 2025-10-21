@@ -425,26 +425,9 @@
         }
     }
 
-
     // --- 3. INITIALISATION LORS DU CHARGEMENT DE LA PAGE ---
-document.addEventListener('DOMContentLoaded', () => {
-    // --- CONFIGURATION GLOBALE ---
-    const DEFAULT_LANG = 'en';
-    const SUPPORTED_LANGS = ['fr','en','nl','de','es'];
-    let currentLang = localStorage.getItem('mosaiaLang') || 'en';
-
-    // --- FONCTION DE TRADUCTION ---
-    function translatePage(lang) {
-        currentLang = lang;
-        localStorage.setItem('lang', lang);
-        const elements = document.querySelectorAll('[data-translate-key]');
-        elements.forEach(el => {
-            const key = el.getAttribute('data-translate-key');
-            if (translations[key] && translations[key][lang]) {
-                el.textContent = translations[key][lang];
-            }
-        });
-    }
+const initialLang = localStorage.getItem('mosaiaLang') || DEFAULT_LANG; 
+    switchLanguage(initialLang);
 
     // --- MENU LANGUES ---
     const langDropdownBtn = document.getElementById('lang-dropdown-btn');
