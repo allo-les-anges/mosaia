@@ -37,6 +37,24 @@
         /* Rotation pour la flèche du dropdown desktop */
         #dropdown-arrow { transition: transform 0.2s ease; }
         .rotate-180 { transform: rotate(180deg); }
+        .bg-processus {
+    background-image: url('https://raw.githubusercontent.com/allo-les-anges/mosaia/main/mosaia-assets/logos/Processus.png');
+    background-size: cover;            /* couvre toute la surface */
+    background-position: center;       /* centre l'image */
+    background-repeat: no-repeat;      /* évite la répétition */
+    background-attachment: fixed;      /* effet de parallaxe léger */
+    color: #1A1A1A;                    /* assure lisibilité du texte */
+    position: relative;
+    z-index: 0;
+}
+
+.bg-processus::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.88); /* voile blanc léger pour garder la lisibilité */
+    z-index: -1;
+}
     </style>
 </head>
 <body class="bg-pure-white font-body text-charcoal">
