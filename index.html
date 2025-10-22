@@ -340,6 +340,7 @@
                     <button type="submit" class="cta-secondary px-8 py-3 w-full mt-4 text-sm tracking-widest uppercase">
                         <span data-translate-key="footer_subscribe_btn">SUBSCRIBE</span>
                     </button>
+                    
                 </form>
             </div> </div> <div class="mt-16 pt-8 border-t border-bronze/10 text-center text-sm opacity-80 font-body font-light tracking-wide uppercase">
             <p data-translate-key="footer_copyright">© MOSAIA STUDIO – BY AMARU BRANDS</p>
@@ -353,39 +354,41 @@
         Stay tuned with the latest news about mosaics, design, and events.
     </p>
 
-    <form 
-        action="https://formsubmit.co/gm.harchies@gmail.com" 
-        method="POST" 
-        target="_blank" 
-        class="space-y-4"
-    >
-        <input 
-            type="email" 
-            name="Email"  placeholder="email" 
-            required 
-            class="w-full bg-charcoal border border-pure-white/30 text-pure-white placeholder-pure-white/50 px-4 py-3 text-sm focus:border-bronze focus:ring-bronze transition-colors appearance-none"
-        >
-        
-        <div class="flex items-start space-x-2 text-sm">
-            <input 
-                type="checkbox" 
-                id="privacy-policy" 
-                name="Policy_Accepted"  required
-                class="mt-1 h-4 w-4 text-bronze bg-charcoal border-pure-white/30 focus:ring-bronze rounded"
-            >
-            <label for="privacy-policy" data-translate-key="footer_checkbox_policy" class="text-pure-white/80">
-                I have read and accept the Mosaia Privacy Policy
-            </label>
-        </div>
+    <<form id="subscribe-form" class="space-y-4">
+  <input type="email" name="Email" placeholder="email" required
+      class="w-full bg-charcoal border border-pure-white/30 text-pure-white placeholder-pure-white/50 px-4 py-3 text-sm">
+  
+  <div class="flex items-start space-x-2 text-sm">
+      <input type="checkbox" id="privacy-policy" name="Policy_Accepted" required>
+      <label for="privacy-policy">I have read and accept the Mosaia Privacy Policy</label>
+  </div>
 
-        <button type="submit" class="cta-primary w-full px-8 py-3 text-pure-white tracking-widest uppercase mt-4">
-            S'ABONNER
-        </button>
+  <button type="submit" class="cta-primary w-full px-8 py-3 text-pure-white tracking-widest uppercase mt-4">S'ABONNER</button>
+</form>
 
-        <input type="hidden" name="_next" value="https://allo-les-anges.github.io/mosaiia/index.html">
-        
-    </form>
-</div>
+<script>
+  const form = document.getElementById('subscribe-form');
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    const email = form.Email.value;
+
+    try {
+      const res = await fetch('https://script.google.com/macros/s/AKfycbwE-srzUs_OCWolk0WUBIIVkHdnStIQsOH6x1UNkBeAgi1ws336T7dX0neCW-Vaohei/exec', {
+        method: 'POST',
+        body: JSON.stringify({Email: email}),
+        headers: {'Content-Type': 'application/json'}
+      });
+
+      const data = await res.json();
+      alert("Merci pour votre inscription !");
+      form.reset();
+    } catch(err) {
+      alert("Erreur, réessayez plus tard.");
+      console.error(err);
+    }
+  });
+</script>
+
     
     <script>
         // --- CONFIGURATION ---
