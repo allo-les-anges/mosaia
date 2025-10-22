@@ -105,8 +105,43 @@
   transform: translateY(-2px);
 }
     </style>
+   /* Loader logo style */
+  #page-loader img {
+    border-radius: 50%; /* Bords arrondis */
+    width: 15rem; /* 3x la taille actuelle (h-20 ~ 5rem) */
+    height: auto;
+    animation: heartbeat 1.2s infinite; /* Pulsation */
+    transform-origin: center;
+  }
+
+  @keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    25% { transform: scale(1.2); }
+    50% { transform: scale(1); }
+    75% { transform: scale(1.2); }
+  }
+
+  /* Maintenir le loader visible au moins 4 secondes */
+  body.loaded #page-loader {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.7s ease;
+  }
+
 </head>
 <body class="bg-pure-white font-body text-charcoal">
+
+<!-- ====== LOADER ====== -->
+<div id="page-loader" class="fixed inset-0 z-50 flex items-center justify-center bg-charcoal">
+  <div class="flex flex-col items-center justify-center">
+    <!-- Logo pulsant -->
+    <img src="https://raw.githubusercontent.com/allo-les-anges/mosaia/main/mosaia-assets/logo_mosaia_1.png" 
+         alt="Mosaia Studio Logo" />
+
+    <!-- Cercle animé -->
+    <div class="w-12 h-12 border-4 border-bronze border-t-transparent rounded-full animate-spin mt-6"></div>
+  </div>
+</div>
 
     <!-- ====== HEADER ====== -->
     <header class="bg-pure-white/98 shadow-sm">
@@ -317,58 +352,36 @@
                     Stay tuned with the latest news about mosaics, design, and events.
                 </p>
 
-  <form id="subscribe-form" action="#" method="POST" class="space-y-4">
-    <!-- Email -->
-    <input type="email" name="Email" placeholder="email" required
-        class="w-full bg-charcoal border border-pure-white/30 text-pure-white placeholder-pure-white/50 px-4 py-3 text-sm focus:border-bronze focus:ring-bronze rounded transition-colors">
+                <form action="#" method="POST" class="space-y-4">
+                    <input type="email" placeholder="email" required 
+                        class="w-full bg-charcoal border border-pure-white/30 text-pure-white placeholder-pure-white/50 px-4 py-3 text-sm focus:border-bronze focus:ring-bronze transition-colors appearance-none">
+                    
+                    <div class="flex items-start space-x-2 text-sm">
+                        <input type="checkbox" id="privacy-policy" name="privacy-policy" required
+                            class="mt-1 h-4 w-4 text-bronze bg-charcoal border-pure-white/30 focus:ring-bronze rounded">
+                        <label for="privacy-policy" data-translate-key="footer_checkbox_policy" class="text-pure-white/80">
+                            I have read and accept the Mosaia Privacy Policy
+                        </label>
+                    </div>
 
-    <!-- Politique de confidentialité -->
-    <div class="flex items-start space-x-2 text-sm">
-      <input type="checkbox" id="privacy-policy" name="Policy_Accepted" required
-          class="mt-1 h-4 w-4 text-bronze bg-charcoal border-pure-white/30 focus:ring-bronze rounded">
-      <label for="privacy-policy" class="text-pure-white/80 text-left">
-        J'ai lu et j'accepte la Politique de Confidentialité Mosaia
-      </label>
+                    <div class="flex items-start space-x-2 text-sm">
+                        <input type="checkbox" id="commercial-communication" name="commercial-communication"
+                            class="mt-1 h-4 w-4 text-bronze bg-charcoal border-pure-white/30 focus:ring-bronze rounded">
+                        <label for="commercial-communication" data-translate-key="footer_checkbox_commercial" class="text-pure-white/80">
+                            I accept the commercial communication
+                        </label>
+                    </div>
+
+                    <button type="submit" class="cta-secondary px-8 py-3 w-full mt-4 text-sm tracking-widest uppercase">
+                        <span data-translate-key="footer_subscribe_btn">SUBSCRIBE</span>
+                    </button>
+                </form>
+            </div> </div> <div class="mt-16 pt-8 border-t border-bronze/10 text-center text-sm opacity-80 font-body font-light tracking-wide uppercase">
+            <p data-translate-key="footer_copyright">© MOSAIA STUDIO – BY AMARU BRANDS</p>
+        </div>
+
     </div>
-
-    <!-- Communication commerciale -->
-    <div class="flex items-start space-x-2 text-sm">
-      <input type="checkbox" id="commercial-communication" name="Commercial_Communication">
-      <label for="commercial-communication" class="text-pure-white/80 text-left">
-        J'accepte la communication commerciale
-      </label>
-    </div>
-
-    <!-- Submit -->
-    <button type="submit" class="cta-primary w-full px-8 py-3 text-pure-white tracking-widest uppercase mt-4">
-      S'ABONNER
-    </button>
-  </form>
-</div>
-
-<script>
-  const form = document.getElementById('subscribe-form');
-  form.addEventListener('submit', async e => {
-    e.preventDefault();
-    const email = form.Email.value;
-
-    try {
-      const res = await fetch('https://script.google.com/macros/s/AKfycbwE-srzUs_OCWolk0WUBIIVkHdnStIQsOH6x1UNkBeAgi1ws336T7dX0neCW-Vaohei/exec', {
-        method: 'POST',
-        body: JSON.stringify({Email: email}),
-        headers: {'Content-Type': 'application/json'}
-      });
-
-      const data = await res.json();
-      alert("Merci pour votre inscription !");
-      form.reset();
-    } catch(err) {
-      alert("Erreur, réessayez plus tard.");
-      console.error(err);
-    }
-  });
-</script>
-
+</footer>
     
     <script>
         // --- CONFIGURATION ---
@@ -644,5 +657,12 @@
             updateNavigationLinks();
         });
     </script>
+    <script>
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      document.body.classList.add('loaded'); // Fait disparaître le loader après 4 secondes
+    }, 4000); // 4000 ms = 4 secondes
+  });
+</script>
 </body>
 </html>
