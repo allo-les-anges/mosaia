@@ -311,65 +311,147 @@
                     </div>
                 </div>
 
-                <!-- NEWSLETTER FORM - GOOGLE SHEETS INTEGRATION -->
-                <div>
-                    <h3 class="text-4xl font-title font-bold text-pure-white mb-3" data-translate-key="footer_newsletter_title">
-                        Subscribe to "Mosaia News"
-                    </h3>
-                    <p class="text-base text-pure-white/80 mb-6 font-body" data-translate-key="footer_newsletter_tagline">
-                        Stay tuned with the latest news about mosaics, design, and events.
-                    </p>
+               <!-- NEWSLETTER FORM - GOOGLE SHEETS INTEGRATION -->
+<div>
+    <h3 class="text-4xl font-title font-bold text-pure-white mb-3" data-translate-key="footer_newsletter_title">
+        Subscribe to "Mosaia News"
+    </h3>
+    <p class="text-base text-pure-white/80 mb-6 font-body" data-translate-key="footer_newsletter_tagline">
+        Stay tuned with the latest news about mosaics, design, and events.
+    </p>
 
-                    <form id="newsletter-form" class="space-y-4">
-                        <input 
-                            type="email" 
-                            id="newsletter-email"
-                            name="email"  
-                            placeholder="email" 
-                            required 
-                            class="w-full bg-charcoal border border-pure-white/30 text-pure-white placeholder-pure-white/50 px-4 py-3 text-sm focus:border-bronze focus:ring-bronze transition-colors appearance-none"
-                        >
-                        
-                        <div class="flex items-start space-x-2 text-sm">
-                            <input 
-                                type="checkbox" 
-                                id="privacy-policy" 
-                                name="policyAccepted"
-                                required
-                                class="mt-1 h-4 w-4 text-bronze bg-charcoal border-pure-white/30 focus:ring-bronze rounded"
-                            >
-                            <label for="privacy-policy" data-translate-key="footer_checkbox_policy" class="text-pure-white/80">
-                                I have read and accept the Mosaia Privacy Policy
-                            </label>
-                        </div>
-
-                        <div class="flex items-start space-x-2 text-sm">
-                            <input 
-                                type="checkbox" 
-                                id="commercial-communication" 
-                                name="commercialAccepted"
-                                class="mt-1 h-4 w-4 text-bronze bg-charcoal border-pure-white/30 focus:ring-bronze rounded"
-                            >
-                            <label for="commercial-communication" data-translate-key="footer_checkbox_commercial" class="text-pure-white/80">
-                                I accept the commercial communication
-                            </label>
-                        </div>
-
-                        <button type="submit" class="cta-primary w-full px-8 py-3 text-pure-white tracking-widest uppercase mt-4">
-                            <span data-translate-key="footer_subscribe_btn">SUBSCRIBE</span>
-                        </button>
-
-                        <!-- Messages de statut -->
-                        <div id="form-message" class="form-message"></div>
-                    </form>
-                </div>
-            </div>
-
-            <div class="mt-16 pt-8 border-t border-bronze/10 text-center text-sm opacity-80 font-body font-light tracking-wide uppercase">
-                <p data-translate-key="footer_copyright">© MOSAIA STUDIO – BY AMARU BRANDS</p>
-            </div>
+    <form id="newsletter-form" class="space-y-4">
+        <input 
+            type="email" 
+            id="newsletter-email"
+            name="email"  
+            placeholder="Votre email" 
+            required 
+            class="w-full bg-charcoal border border-pure-white/30 text-pure-white placeholder-pure-white/50 px-4 py-3 text-sm focus:border-bronze focus:ring-bronze transition-colors appearance-none"
+        >
+        
+        <div class="flex items-start space-x-2 text-sm">
+            <input 
+                type="checkbox" 
+                id="privacy-policy" 
+                name="policyAccepted"
+                required
+                class="mt-1 h-4 w-4 text-bronze bg-charcoal border-pure-white/30 focus:ring-bronze rounded"
+            >
+            <label for="privacy-policy" data-translate-key="footer_checkbox_policy" class="text-pure-white/80">
+                I have read and accept the Mosaia Privacy Policy
+            </label>
         </div>
-    </footer>
+
+        <div class="flex items-start space-x-2 text-sm">
+            <input 
+                type="checkbox" 
+                id="commercial-communication" 
+                name="commercialAccepted"
+                class="mt-1 h-4 w-4 text-bronze bg-charcoal border-pure-white/30 focus:ring-bronze rounded"
+            >
+            <label for="commercial-communication" data-translate-key="footer_checkbox_commercial" class="text-pure-white/80">
+                I accept the commercial communication
+            </label>
+        </div>
+
+        <button type="submit" class="cta-primary w-full px-8 py-3 text-pure-white tracking-widest uppercase mt-4">
+            <span data-translate-key="footer_subscribe_btn">SUBSCRIBE</span>
+        </button>
+
+        <!-- Messages de statut -->
+        <div id="form-message" class="form-message"></div>
+    </form>
+</div>
+
+<script>
+// --- Gestion du formulaire Google Sheets ---
+document.addEventListener('DOMContentLoaded', function() {
+    const newsletterForm = document.getElementById('newsletter-form');
+    const formMessage = document.getElementById('form-message');
+    
+    // REMPLACEZ CETTE URL PAR VOTRE VRAIE URL GOOGLE APPS SCRIPT
+    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwE-srzUs_OCWolk0WUBIIVkHdnStIQsOH6x1UNkBeAgi1ws336T7dX0neCW-Vaohei/exec';
+    
+    if (newsletterForm) {
+        newsletterForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const submitButton = newsletterForm.querySelector('button[type="submit"]');
+            const originalText = submitButton.innerHTML;
+            
+            // Afficher le chargement
+            submitButton.innerHTML = 'Envoi en cours...';
+            submitButton.disabled = true;
+            
+            // Récupérer les données du formulaire
+            const formData = {
+                email: document.getElementById('newsletter-email').value,
+                policyAccepted: document.getElementById('privacy-policy').checked,
+                commercialAccepted: document.getElementById('commercial-communication').checked
+            };
+            
+            try {
+                // Essayer d'abord avec mode 'cors'
+                const response = await fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                });
+                
+                const result = await response.json();
+                
+                if (result.result === 'success') {
+                    showFormMessage('✅ Inscription réussie ! Merci de vous être abonné.', 'success');
+                    newsletterForm.reset();
+                } else {
+                    showFormMessage('❌ Une erreur est survenue: ' + result.message, 'error');
+                }
+            } catch (error) {
+                console.error('Erreur fetch:', error);
+                
+                // Fallback: essayer avec mode 'no-cors'
+                try {
+                    await fetch(GOOGLE_SCRIPT_URL, {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(formData)
+                    });
+                    
+                    // Avec no-cors on ne peut pas vérifier la réponse, on suppose le succès
+                    showFormMessage('✅ Inscription envoyée ! Merci.', 'success');
+                    newsletterForm.reset();
+                } catch (noCorsError) {
+                    console.error('Erreur no-cors:', noCorsError);
+                    showFormMessage('❌ Erreur de connexion. Veuillez réessayer.', 'error');
+                }
+            } finally {
+                // Réactiver le bouton
+                submitButton.innerHTML = originalText;
+                submitButton.disabled = false;
+            }
+        });
+    }
+    
+    function showFormMessage(message, type) {
+        if (formMessage) {
+            formMessage.textContent = message;
+            formMessage.className = 'form-message ' + (type === 'success' ? 'form-success' : 'form-error');
+            formMessage.style.display = 'block';
+            
+            // Masquer le message après 5 secondes
+            setTimeout(() => {
+                formMessage.style.display = 'none';
+            }, 5000);
+        }
+    }
+});
+</footer>
 
     <script>
         // --- CONFIGURATION ---
