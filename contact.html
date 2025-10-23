@@ -401,64 +401,96 @@
     }
 
 // --- LOGIQUE DU FORMULAIRE CONTACT (Adaptée du formulaire Partenaires) ---
+// --- LOGIQUE DU FORMULAIRE CONTACT AVEC JSONP ---
 function initializeContactForm() {
-    // 🚨 CORRECTION : DÉFINISSEZ L'URL AU DÉBUT DE LA FONCTION (PORTÉE LOCALE CORRECTE)
-    // Utilisez l'URL que vous m'avez fournie.
-    const contactAppsScriptURL = 'https://script.google.com/macros/s/AKfycbw-mfqXTtcN7tLCqP7dcyQzlbKFfea5nOm1izoy_Bbr8dQcoW16r_bDDTen26vqMkeo/exec';
-    
-    const form = document.getElementById('contactForm');
-    const formMessage = document.getElementById('contactFormMessage'); 
+    // 🚨 UTILISEZ LA BONNE URL APPS SCRIPT
+    const contactAppsScriptURL = 'https://script.google.com/macros/s/AKfycbzgtsVi8TtegNsDAowAZOXu3jErza_M83eHjL7LLz3QVoRDrzeWXmTQIQyl_VDDILhw/exec';
+    
+    const form = document.getElementById('contactForm');
+    const formMessage = document.getElementById('contactFormMessage'); 
 
-    // Ligne 415 // Vérifie si le formulaire et l'URL sont prêts
-    if (form && contactAppsScriptURL.includes('https://script.google.com/macros/')) {
-        form.addEventListener('submit', async function(e) {
-            e.preventDefault(); 
+    if (form && contactAppsScriptURL.includes('https://script.google.com/macros/')) {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault(); 
 
-            // 1. Récupération des données par leur attribut 'name'
-            const data = {
-                // Clés du formulaire de contact (doivent correspondre aux paramètres GAS)
-                name: form.querySelector('input[name="name"]').value,
-                email: form.querySelector('input[name="email"]').value,
-                project_type: form.querySelector('select[name="project_type"]').value,
-                message: form.querySelector('textarea[name="message"]').value
-            };
+            // 1. Récupération des données
+            const data = {
+                name: form.querySelector('input[name="name"]').value,
+                email: form.querySelector('input[name="email"]').value,
+                project_type: form.querySelector('select[name="project_type"]').value,
+                message: form.querySelector('textarea[name="message"]').value,
+                formType: 'Devis', // ⭐ IMPORTANT : pour diriger vers la bonne feuille
+                callback: 'handleContactResponse' // ⭐ Callback JSONP
+            };
 
-            // 2. Construire les paramètres d'URL (Query String)
-            const params = new URLSearchParams(data);
-            const fullUrl = `${contactAppsScriptURL}?${params.toString()}`;
+            // 2. Construire les paramètres d'URL (Query String)
+            const params = new URLSearchParams(data);
+            
+            // 3. Créer un script tag pour JSONP
+            const script = document.createElement('script');
+            script.src = `${contactAppsScriptURL}?${params.toString()}`;
+            
+            // 4. Définir la fonction callback globale
+            window.handleContactResponse = function(response) {
+                console.log('Contact response received:', response);
+                
+                // ⭐ TOUJOURS EFFACER LE MESSAGE D'ABORD
+                formMessage.textContent = '';
+                
+                if (response.status === 'success') {
+                    formMessage.textContent = response.message; 
+                    formMessage.style.color = '#C99B4F'; 
+                    form.reset();
+                    
+                    // Masquer le message après 3 secondes
+                    setTimeout(() => {
+                        formMessage.textContent = '';
+                    }, 3000);
+                    
+                } else {
+                    formMessage.textContent = 'Erreur: ' + (response.message || 'La soumission a échoué.');
+                    formMessage.style.color = 'red';
+                    
+                    // Masquer l'erreur après 5 secondes
+                    setTimeout(() => {
+                        formMessage.textContent = '';
+                    }, 5000);
+                }
+                
+                // Nettoyer
+                if (script.parentNode) {
+                    script.parentNode.removeChild(script);
+                }
+                delete window.handleContactResponse;
+            };
 
-            try {
-                formMessage.textContent = 'Envoi en cours...';
-                formMessage.style.color = '#1A1A1A'; 
+            // Afficher "Envoi en cours..." pendant l'envoi
+            formMessage.textContent = 'Envoi en cours...';
+            formMessage.style.color = '#1A1A1A';
+            
+            console.log('Starting contact request to:', script.src);
+            
+            // 5. Ajouter le script à la page pour déclencher la requête
+            document.head.appendChild(script);
 
-                // 3. Requête Fetch en utilisant la méthode GET (pour éviter le CORS)
-                const response = await fetch(fullUrl, {
-                    method: 'GET',
-                    mode: 'cors'
-                });
-
-                const result = await response.json(); 
-
-                if (result.status === 'success') {
-                    formMessage.textContent = result.message; 
-                    formMessage.style.color = '#C99B4F'; // Succès en Bronze
-                    form.reset();
-                } else {
-                    formMessage.textContent = 'Erreur serveur: ' + (result.message || 'La soumission a échoué.');
-                    formMessage.style.color = 'red';
-                }
-
-            } catch (error) {
-                console.error('Erreur de Fetch:', error);
-                formMessage.textContent = 'Erreur réseau ou déploiement Apps Script. (Vérifiez la console)';
-                formMessage.style.color = 'red';
-            }
-        });
-    } else if (form) {
-        console.warn("L'URL Apps Script Contact est incorrecte ou manquante. Le formulaire est désactivé.");
-        formMessage.textContent = "Erreur: Le service de formulaire est indisponible.";
-        formMessage.style.color = 'red';
-    }
+            // ⭐ TIMEOUT DE SÉCURITÉ
+            setTimeout(() => {
+                if (window.handleContactResponse) {
+                    console.log('Contact request timeout');
+                    formMessage.textContent = 'Erreur: Délai de requête dépassé';
+                    formMessage.style.color = 'red';
+                    if (script.parentNode) {
+                        script.parentNode.removeChild(script);
+                    }
+                    delete window.handleContactResponse;
+                }
+            }, 15000);
+        });
+    } else if (form) {
+        console.warn("L'URL Apps Script Contact est incorrecte ou manquante. Le formulaire est désactivé.");
+        formMessage.textContent = "Erreur: Le service de formulaire est indisponible.";
+        formMessage.style.color = 'red';
+    }
 }
  
     // --- LOGIQUE D'ANIMATION (Observer) ---
