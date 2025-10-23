@@ -448,7 +448,7 @@ function initializeLanguage() {
 
 // --- LOGIQUE DU FORMULAIRE PARTENAIRES AVEC JSONP ---
 function initializePartnerForm() {
-    // 🚨 UTILISEZ LA BONNE URL APPS SCRIPT (LA MÊME QUE LES AUTRES FORMULAIRES)
+    // 🚨 UTILISEZ LA BONNE URL APPS SCRIPT
     const partnerAppsScriptURL = 'https://script.google.com/macros/s/AKfycbzgtsVi8TtegNsDAowAZOXu3jErza_M83eHjL7LLz3QVoRDrzeWXmTQIQyl_VDDILhw/exec';
     
     const form = document.getElementById('partnerForm');
@@ -460,8 +460,8 @@ function initializePartnerForm() {
 
             // 1. Récupération des données
             const data = {
-                company_name: form.querySelector('input[name="company"]').value, // ⭐ Note: 'company_name' pour correspondre à Apps Script
-                contact_name: form.querySelector('input[name="contactName"]').value, // ⭐ Note: 'contact_name' pour correspondre
+                company_name: form.querySelector('input[name="company"]').value,
+                contact_name: form.querySelector('input[name="contactName"]').value,
                 email: form.querySelector('input[name="email"]').value,
                 role: form.querySelector('input[name="role"]').value,
                 message: form.querySelector('textarea[name="message"]').value,
