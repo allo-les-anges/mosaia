@@ -445,6 +445,68 @@ function initializeLanguage() {
     }
 }
 
+
+// --- LOGIQUE DU FORMULAIRE PARTENAIRES ---
+function initializePartnerForm() {
+    // L'URL EXEC est maintenant correcte dans votre code
+    const partnerAppsScriptURL = 'https://script.google.com/macros/s/AKfycbw-mfqXTtcN7tLCqP7dcyQzlbKFfea5nOm1izoy_Bbr8dQcoW16r_bDDTen26vqMkeo/exec'; 
+    
+    const form = document.getElementById('partnerForm');
+    const formMessage = document.getElementById('partnerFormMessage'); 
+
+    // Vérifie si le formulaire et l'URL sont prêts
+    if (form && partnerAppsScriptURL.includes('https://script.google.com/macros/')) {
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault(); 
+
+            // 1. Récupération des données par leur attribut 'name' (doit correspondre au script doGet)
+            const data = {
+                company: form.querySelector('input[name="company"]').value,
+                contactName: form.querySelector('input[name="contactName"]').value,
+                email: form.querySelector('input[name="email"]').value,
+                role: form.querySelector('input[name="role"]').value,
+                message: form.querySelector('textarea[name="message"]').value
+            };
+
+            // 2. Construire les paramètres d'URL (Query String)
+            const params = new URLSearchParams(data);
+            const fullUrl = `${partnerAppsScriptURL}?${params.toString()}`;
+
+            try {
+                formMessage.textContent = 'Envoi en cours...';
+                formMessage.style.color = '#1A1A1A'; 
+
+                // 3. Requête Fetch en utilisant la méthode GET (pour éviter le CORS)
+                const response = await fetch(fullUrl, {
+                    method: 'GET',
+                    mode: 'cors'
+                });
+
+                // Tente de lire la réponse JSON
+                const result = await response.json(); 
+
+                if (result.status === 'success') {
+                    formMessage.textContent = result.message; 
+                    formMessage.style.color = '#C99B4F'; // Succès en Bronze
+                    form.reset();
+                } else {
+                    formMessage.textContent = 'Erreur serveur: ' + (result.message || 'La soumission a échoué.');
+                    formMessage.style.color = 'red';
+                }
+
+            } catch (error) {
+                console.error('Erreur de Fetch:', error);
+                formMessage.textContent = 'Erreur réseau ou déploiement Apps Script. (Vérifiez la console)';
+                formMessage.style.color = 'red';
+            }
+        });
+    } else if (form) {
+        console.warn("L'URL Apps Script Partenaires est incorrecte ou manquante. Le formulaire est désactivé.");
+        formMessage.textContent = "Erreur: Le service de formulaire est indisponible.";
+        formMessage.style.color = 'red';
+    }
+}
+        
 // --- LOGIQUE D'ANIMATION ET MENU MOBILE ---
 
 function initializeAnimations() {
