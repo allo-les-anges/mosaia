@@ -356,7 +356,7 @@
         const DEFAULT_LANG = 'en';
         
         // ⭐ REMPLACEZ PAR VOTRE VRAIE URL EXEC DE DÉPLOIEMENT APPS SCRIPT ⭐
-        const appsScriptURL = 'https://script.google.com/macros/s/AKfycbw-mfqXTtcN7tLCqP7dcyQzlbKFfea5nOm1izoy_Bbr8dQcoW16r_bDDTen26vqMkeo/exec'; 
+        const appsScriptURL = 'VOTRE_URL_EXEC_DEPLOIEMENT_ICI'; 
         
         // --- TRANSLATIONS (TRADUCTIONS MISES À JOUR) ---
         const translations = {
@@ -436,12 +436,6 @@
 
             // update links for github pages
             updateNavigationLinks();
-            
-            // Re-apply translations for form messages if necessary (optional, but robust)
-            const formMessage = document.getElementById('formMessage');
-            if (formMessage && formMessage.textContent.includes('Formulaire reçu')) {
-                 formMessage.textContent = lang === 'fr' ? 'Inscription réussie !' : 'Subscription successful!';
-            }
         }
 
         function switchLanguage(lang) {
@@ -544,9 +538,9 @@
 
             if (form && appsScriptURL.includes('https://script.google.com/macros/')) {
                 form.addEventListener('submit', async function(e) {
-                    e.preventDefault(); // <-- Empêche la soumission classique et l'erreur 405
+                    e.preventDefault(); 
 
-                    // 1. Récupérer les données du formulaire (en utilisant les attributs 'name' et 'id' du formulaire corrigé)
+                    // 1. Récupérer les données du formulaire
                     const data = {
                         email: form.querySelector('input[name="email"]').value,
                         privacyPolicy: form.querySelector('input[name="privacyPolicy"]').checked,
@@ -555,7 +549,7 @@
 
                     try {
                         formMessage.textContent = 'Envoi en cours...';
-                        formMessage.style.color = '#FFFFFF'; // Blanc
+                        formMessage.style.color = '#FFFFFF'; 
 
                         // 2. Requête Fetch vers Apps Script
                         const response = await fetch(appsScriptURL, {
@@ -583,13 +577,15 @@
                     } catch (error) {
                         // Erreur réseau ou blocage CORS
                         console.error('Erreur de Fetch:', error);
-                        formMessage.textContent = 'Erreur réseau ou problème de configuration Apps Script.';
+                        formMessage.textContent = 'Erreur réseau. Vérifiez votre URL Apps Script et le déploiement.';
                         formMessage.style.color = 'red';
                     }
                 });
             } else if (form) {
                 // Message d'erreur si l'URL n'a pas été remplacée
-                console.warn("L'URL de déploiement Apps Script n'a pas été remplacée ou est incorrecte. Le formulaire ne soumettra pas.");
+                console.warn("L'URL de déploiement Apps Script n'a pas été remplacée ou est incorrecte.");
+                formMessage.textContent = "Attention : Formulaire non fonctionnel. Mettez à jour l'URL Apps Script.";
+                formMessage.style.color = 'yellow';
             }
         });
     </script>
