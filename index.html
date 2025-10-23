@@ -5,10 +5,8 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title data-translate-key="page_title">Mosaia Studio - Home</title>
 
-    <!-- Tailwind CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 
     <script>
@@ -36,17 +34,17 @@
         .cta-primary { background: linear-gradient(135deg, #C99B4F, #B8894A); transition: all 0.4s ease; position: relative; overflow: hidden; border: 1px solid rgba(201,155,79,0.3); font-family:'Montserrat',sans-serif; font-weight:600; }
         .cta-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(201,155,79,0.2); background:#1A1A1A; color:#C99B4F; }
         .cta-secondary { 
-    border: 2px solid #FFFFFF; /* ⭐ CHANGÉ : Cadre/Bordure en Blanc */
-    color: #FFFFFF; /* ⭐ CHANGÉ : Texte en Blanc */
-    transition: all 0.4s ease; 
-    font-family:'Montserrat',sans-serif; 
-    font-weight:500; 
-}
-.cta-secondary:hover { 
-    background: #FFFFFF; /* CHANGÉ : Fond Blanc au survol (pour s'harmoniser avec la bordure blanche) */
-    color: #1A1A1A; /* Texte Charbon au survol (pour être lisible sur le fond blanc) */
-    transform: translateY(-2px); 
-}
+            border: 2px solid #FFFFFF; 
+            color: #FFFFFF; 
+            transition: all 0.4s ease; 
+            font-family:'Montserrat',sans-serif; 
+            font-weight:500; 
+        }
+        .cta-secondary:hover { 
+            background: #FFFFFF; 
+            color: #1A1A1A; 
+            transform: translateY(-2px); 
+        }
 
         .nav-link { position: relative; transition: all 0.3s ease; }
         .nav-link:hover { color: #C99B4F; }
@@ -87,34 +85,34 @@
         header { background-color: rgba(255,255,255,0.98); backdrop-filter: blur(6px); position: sticky; top:0; z-index:40; border-bottom: 1px solid rgba(26,26,26,0.05); }
 
         /* --- HERO MAIN BUTTON (bouton principal blanc) --- */
-.hero-main-btn {
-  border: 2px solid white;
-  color: white;
-  background: transparent;
-  padding: 0.75rem 1.5rem;
-  border-radius: 9999px;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  transition: all 0.3s ease;
-}
+        .hero-main-btn {
+            border: 2px solid white;
+            color: white;
+            background: transparent;
+            padding: 0.75rem 1.5rem;
+            border-radius: 9999px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            transition: all 0.3s ease;
+        }
 
-.hero-main-btn:hover {
-  background: white;
-  color: #1A1A1A;
-  transform: translateY(-2px);
-}
+        .hero-main-btn:hover {
+            background: white;
+            color: #1A1A1A;
+            transform: translateY(-2px);
+        }
     </style>
 </head>
 <body class="bg-pure-white font-body text-charcoal">
 
-    <!-- ====== HEADER ====== -->
     <header class="bg-pure-white/98 shadow-sm">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
                 <div class="flex items-center space-x-4">
                     <a href="index.html" data-page-name="index.html" class="flex items-center">
-<img src="https://raw.githubusercontent.com/allo-les-anges/mosaia/main/mosaia-assets/logos/logo%20mosaia%203D.png" alt="Mosaia Studio Logo 3D" class="h-12 lg:h-14.4 w-auto"></a>
+                        <img src="https://raw.githubusercontent.com/allo-les-anges/mosaia/main/mosaia-assets/logos/logo%20mosaia%203D.png" alt="Mosaia Studio Logo 3D" class="h-12 lg:h-14.4 w-auto">
+                    </a>
                 </div>
 
                 <nav class="hidden md:block">
@@ -127,7 +125,6 @@
                         <a href="partenaires.html" data-translate-key="nav_partners" data-page-name="partenaires.html" class="nav-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase">PARTNERS</a>
                         <a href="contact.html" data-translate-key="nav_contact" data-page-name="contact.html" class="nav-link text-charcoal px-1 py-2 text-sm font-body font-medium tracking-wide uppercase">CONTACT</a>
 
-                        <!-- Lang dropdown (desktop) -->
                         <div class="relative ml-4 pl-4 border-l border-charcoal/10" id="lang-dropdown-container">
                             <button id="lang-dropdown-btn" class="lang-button text-charcoal text-sm font-title font-medium flex items-center p-2" aria-expanded="false" aria-controls="lang-menu" aria-label="Select language">
                                 <span id="current-lang-display" class="font-semibold text-bronze">EN</span>
@@ -146,7 +143,6 @@
                     </div>
                 </nav>
 
-                <!-- Mobile menu button -->
                 <div class="md:hidden flex items-center">
                     <button id="mobileMenuBtn" class="text-charcoal hover:text-bronze p-2" data-translate-key="menu_btn" aria-label="Mobile menu" aria-expanded="false" aria-controls="mobileMenu">
                         <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
@@ -154,7 +150,6 @@
                 </div>
             </div>
 
-            <!-- Mobile nav -->
             <div id="mobileMenu" class="md:hidden bg-pure-white border-t border-charcoal/10 hidden">
                 <div class="px-6 py-4 space-y-2">
                     <a href="index.html" data-translate-key="nav_home" data-page-name="index.html" class="block py-2 text-charcoal font-body font-medium uppercase">HOME</a>
@@ -180,7 +175,6 @@
         </div>
     </header>
 
-    <!-- ====== HERO: CAROUSEL (remplace le background statique) ====== -->
     <main>
         <section class="hero-carousel" aria-label="Hero carousel">
             <div class="carousel-slide active" role="group" aria-roledescription="slide" aria-label="Slide 1 of 3">
@@ -264,357 +258,340 @@
     </main>
 
     <footer class="bg-charcoal text-pure-white py-16 md:py-24">
-    <div class="max-w-7xl mx-auto px-6 lg:px-8">
-        
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
 
-            <div>
-                <div class="flex space-x-6 mb-12"> <a href="#" class="text-pure-white hover:text-bronze transition-colors duration-300" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM12 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-                    </a>
-                    <a href="#" class="text-pure-white hover:text-bronze transition-colors duration-300" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.125-1.333h2.875v-5h-3.325c-3.118 0-4.675 1.465-4.675 4.333v2.667z"/></svg>
-                    </a>
-                    <a href="#" class="text-pure-white hover:text-bronze transition-colors duration-300" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38.809-2.5 2.48-2.5s2.48 1.119 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.992v16h4.992v-8.798c0-2.021 2.379-2.316 2.379 0v8.798h4.99v-10.138c0-3.322-2.199-4.887-4.525-4.887-1.879 0-2.616.993-3.136 1.879l-.163-.076v-1.558h4.869v-5h-4.869c-2.738 0-4.08 1.393-4.08 4.298v2.422h-1.51z"/></svg>
-                    </a>
-                    <a href="#" class="text-pure-white hover:text-bronze transition-colors duration-300" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)">
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.873L4.972 21.75H1.662l7.73-8.835L1.25 2.25h8.057l4.634 6.108zm-2.094 17.653H14.07L4.76 4.394h2.578z"/></svg>
-                    </a>
-                    <a href="#" class="text-pure-white hover:text-bronze transition-colors duration-300" target="_blank" rel="noopener noreferrer" aria-label="Pinterest">
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.374 0 0 5.374 0 12s5.374 12 12 12c.343 0 .682-.015 1.017-.043-.096-.996-.264-2.317-.264-3.245 0-1.264.476-2.129 1.017-2.129.476 0 .714.357.714.833 0 .508-.321 1.269-.321 1.968 0 .833.714 1.508 1.548 1.508 1.468 0 2.456-1.548 2.456-3.611 0-1.889-1.349-3.301-3.301-3.301-2.317 0-3.683 1.746-3.683 3.571 0 .714.274 1.484.619 1.905.095.119.107.222.079.341-.021.095-.071.278-.095.357-.032.119-.127.151-.238.095-.833-.389-1.357-1.603-1.357-2.587 0-2.095 1.524-4.016 4.397-4.016 2.309 0 4.103 1.643 4.103 3.841 0 2.293-1.444 4.135-3.452 4.135-.675 0-1.31-.349-1.524-.778 0 0-.333 1.27-.405 1.579-.147.563-.544 1.27-.81 1.698C10.85 23.846 11.417 24 12 24c6.626 0 12-5.374 12-12S18.626 0 12 0z"/></svg>
-                    </a>
-                </div>
-
-                <div class="grid grid-cols-2 sm:grid-cols-3 gap-6 lg:gap-8 text-sm font-body">
-                    <div class="space-y-3">
-                        <p class="font-bold uppercase text-xs tracking-wider opacity-90 text-bronze mb-2" data-translate-key="footer_services_title">Services</p>
-                        <a href="portfolio.html" class="block hover:text-bronze transition-colors" data-translate-key="nav_portfolio">PORTFOLIO</a>
-                        <a href="sur-mesure.html" class="block hover:text-bronze transition-colors" data-translate-key="nav_bespoke">BESPOKE</a>
-                        <a href="#" class="block hover:text-bronze transition-colors" data-translate-key="footer_service_pools">Pools & Spas</a>
-                        <a href="#" class="block hover:text-bronze transition-colors" data-translate-key="footer_service_facades">Facades & Walls</a>
-                        <a href="#" class="block hover:text-bronze transition-colors" data-translate-key="footer_service_art">Art & Design</a>
-                    </div>
-                    <div class="space-y-3">
-                        <p class="font-bold uppercase text-xs tracking-wider opacity-90 text-bronze mb-2" data-translate-key="footer_about_title">Studio</p>
-                        <a href="studio.html" class="block hover:text-bronze transition-colors" data-translate-key="nav_studio">STUDIO</a>
-                        <a href="processus.html" class="block hover:text-bronze transition-colors" data-translate-key="nav_process">PROCESS</a>
-                        <a href="partenaires.html" class="block hover:text-bronze transition-colors" data-translate-key="nav_partners">PARTNERS</a>
-                        <a href="contact.html" class="block hover:text-bronze transition-colors" data-translate-key="nav_contact">CONTACT</a>
-                    </div>
-                    <div class="space-y-3">
-                        <p class="font-bold uppercase text-xs tracking-wider opacity-90 text-bronze mb-2" data-translate-key="footer_legal_title">Legal</p>
-                        <a href="#" class="block hover:text-bronze transition-colors" data-translate-key="footer_cookies">Cookies notice</a>
-                        <a href="#" class="block hover:text-bronze transition-colors" data-translate-key="footer_conditions">Conditions of use</a>
-                        <a href="#" class="block hover:text-bronze transition-colors" data-translate-key="footer_privacy">Privacy notice</a>
-                    </div>
-                </div>
-            </div> <div>
-                <h3 class="text-4xl font-title font-bold text-pure-white mb-3" data-translate-key="footer_newsletter_title">
-                    Subscribe to "Mosaia News"
-                </h3>
-                <p class="text-base text-pure-white/80 mb-6 font-body" data-translate-key="footer_newsletter_tagline">
-                    Stay tuned with the latest news about mosaics, design, and events.
-                </p>
-
-                <form action="#" method="POST" class="space-y-4">
-                    <input type="email" placeholder="email" required 
-                        class="w-full bg-charcoal border border-pure-white/30 text-pure-white placeholder-pure-white/50 px-4 py-3 text-sm focus:border-bronze focus:ring-bronze transition-colors appearance-none">
-                    
-                    <div class="flex items-start space-x-2 text-sm">
-                        <input type="checkbox" id="privacy-policy" name="privacy-policy" required
-                            class="mt-1 h-4 w-4 text-bronze bg-charcoal border-pure-white/30 focus:ring-bronze rounded">
-                        <label for="privacy-policy" data-translate-key="footer_checkbox_policy" class="text-pure-white/80">
-                            I have read and accept the Mosaia Privacy Policy
-                        </label>
+                <div>
+                    <div class="flex space-x-6 mb-12"> 
+                        <a href="#" class="text-pure-white hover:text-bronze transition-colors duration-300" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM12 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                        </a>
+                        <a href="#" class="text-pure-white hover:text-bronze transition-colors duration-300" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.125-1.333h2.875v-5h-3.325c-3.118 0-4.675 1.465-4.675 4.333v2.667z"/></svg>
+                        </a>
+                        <a href="#" class="text-pure-white hover:text-bronze transition-colors duration-300" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38.809-2.5 2.48-2.5s2.48 1.119 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.992v16h4.992v-8.798c0-2.021 2.379-2.316 2.379 0v8.798h4.99v-10.138c0-3.322-2.199-4.887-4.525-4.887-1.879 0-2.616.993-3.136 1.879l-.163-.076v-1.558h4.869v-5h-4.869c-2.738 0-4.08 1.393-4.08 4.298v2.422h-1.51z"/></svg>
+                        </a>
+                        <a href="#" class="text-pure-white hover:text-bronze transition-colors duration-300" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.873L4.972 21.75H1.662l7.73-8.835L1.25 2.25h8.057l4.634 6.108zm-2.094 17.653H14.07L4.76 4.394h2.578z"/></svg>
+                        </a>
+                        <a href="#" class="text-pure-white hover:text-bronze transition-colors duration-300" target="_blank" rel="noopener noreferrer" aria-label="Pinterest">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.374 0 0 5.374 0 12s5.374 12 12 12c.343 0 .682-.015 1.017-.043-.096-.996-.264-2.317-.264-3.245 0-1.264.476-2.129 1.017-2.129.476 0 .714.357.714.833 0 .508-.321 1.269-.321 1.968 0 .833.714 1.508 1.548 1.508 1.468 0 2.456-1.548 2.456-3.611 0-1.889-1.349-3.301-3.301-3.301-2.317 0-3.683 1.746-3.683 3.571 0 .714.274 1.484.619 1.905.095.119.107.222.079.341-.021.095-.071.278-.095.357-.032.119-.127.151-.238.095-.833-.389-1.357-1.603-1.357-2.587 0-2.095 1.524-4.016 4.397-4.016 2.309 0 4.103 1.643 4.103 3.841 0 2.293-1.444 4.135-3.452 4.135-.675 0-1.31-.349-1.524-.778 0 0-.333 1.27-.405 1.579-.147.563-.544 1.27-.81 1.698C10.85 23.846 11.417 24 12 24c6.626 0 12-5.374 12-12S18.626 0 12 0z"/></svg>
+                        </a>
                     </div>
 
-                    <div class="flex items-start space-x-2 text-sm">
-                        <input type="checkbox" id="commercial-communication" name="commercial-communication"
-                            class="mt-1 h-4 w-4 text-bronze bg-charcoal border-pure-white/30 focus:ring-bronze rounded">
-                        <label for="commercial-communication" data-translate-key="footer_checkbox_commercial" class="text-pure-white/80">
-                            I accept the commercial communication
-                        </label>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-6 lg:gap-8 text-sm font-body">
+                        <div class="space-y-3">
+                            <p class="font-bold uppercase text-xs tracking-wider opacity-90 text-bronze mb-2" data-translate-key="footer_services_title">Services</p>
+                            <a href="portfolio.html" class="block hover:text-bronze transition-colors" data-translate-key="nav_portfolio">PORTFOLIO</a>
+                            <a href="sur-mesure.html" class="block hover:text-bronze transition-colors" data-translate-key="nav_bespoke">BESPOKE</a>
+                            <a href="#" class="block hover:text-bronze transition-colors" data-translate-key="footer_service_pools">Pools & Spas</a>
+                            <a href="#" class="block hover:text-bronze transition-colors" data-translate-key="footer_service_facades">Facades & Walls</a>
+                            <a href="#" class="block hover:text-bronze transition-colors" data-translate-key="footer_service_art">Art & Design</a>
+                        </div>
+                        <div class="space-y-3">
+                            <p class="font-bold uppercase text-xs tracking-wider opacity-90 text-bronze mb-2" data-translate-key="footer_about_title">Studio</p>
+                            <a href="studio.html" class="block hover:text-bronze transition-colors" data-translate-key="nav_studio">STUDIO</a>
+                            <a href="processus.html" class="block hover:text-bronze transition-colors" data-translate-key="nav_process">PROCESS</a>
+                            <a href="partenaires.html" class="block hover:text-bronze transition-colors" data-translate-key="nav_partners">PARTNERS</a>
+                            <a href="contact.html" class="block hover:text-bronze transition-colors" data-translate-key="nav_contact">CONTACT</a>
+                        </div>
+                        <div class="space-y-3">
+                            <p class="font-bold uppercase text-xs tracking-wider opacity-90 text-bronze mb-2" data-translate-key="footer_legal_title">Legal</p>
+                            <a href="#" class="block hover:text-bronze transition-colors" data-translate-key="footer_cookies">Cookies notice</a>
+                            <a href="#" class="block hover:text-bronze transition-colors" data-translate-key="footer_conditions">Conditions of use</a>
+                            <a href="#" class="block hover:text-bronze transition-colors" data-translate-key="footer_privacy">Privacy notice</a>
+                        </div>
                     </div>
+                </div> 
+                
+                <div>
+                    <h3 class="text-4xl font-title font-bold text-pure-white mb-3" data-translate-key="footer_newsletter_title">
+                        Subscribe to "Mosaia News"
+                    </h3>
+                    <p class="text-base text-pure-white/80 mb-6 font-body" data-translate-key="footer_newsletter_tagline">
+                        Stay tuned with the latest news about mosaics, design, and events.
+                    </p>
 
-                    <button type="submit" class="cta-secondary px-8 py-3 w-full mt-4 text-sm tracking-widest uppercase">
-                        <span data-translate-key="footer_subscribe_btn">SUBSCRIBE</span>
-                    </button>
-                </form>
-            </div> </div> <div class="mt-16 pt-8 border-t border-bronze/10 text-center text-sm opacity-80 font-body font-light tracking-wide uppercase">
-            <p data-translate-key="footer_copyright">© MOSAIA STUDIO – BY AMARU BRANDS</p>
+                    <form id="subscriptionForm" action="#" method="POST" class="space-y-4">
+                        <input type="email" name="email" placeholder="email" required 
+                            class="w-full bg-charcoal border border-pure-white/30 text-pure-white placeholder-pure-white/50 px-4 py-3 text-sm focus:border-bronze focus:ring-bronze transition-colors appearance-none">
+                        
+                        <div class="flex items-start space-x-2 text-sm">
+                            <input type="checkbox" id="privacy-policy" name="privacyPolicy" required
+                                class="mt-1 h-4 w-4 text-bronze bg-charcoal border-pure-white/30 focus:ring-bronze rounded">
+                            <label for="privacy-policy" data-translate-key="footer_checkbox_policy" class="text-pure-white/80">
+                                I have read and accept the Mosaia Privacy Policy
+                            </label>
+                        </div>
+
+                        <div class="flex items-start space-x-2 text-sm">
+                            <input type="checkbox" id="commercial-communication" name="commercialCommunication"
+                                class="mt-1 h-4 w-4 text-bronze bg-charcoal border-pure-white/30 focus:ring-bronze rounded">
+                            <label for="commercial-communication" data-translate-key="footer_checkbox_commercial" class="text-pure-white/80">
+                                I accept the commercial communication
+                            </label>
+                        </div>
+
+                        <button type="submit" class="cta-secondary px-8 py-3 w-full mt-4 text-sm tracking-widest uppercase">
+                            <span data-translate-key="footer_subscribe_btn">SUBSCRIBE</span>
+                        </button>
+                        
+                        <p id="formMessage" class="text-sm font-body mt-2"></p> 
+                    </form>
+                </div> 
+            </div> 
+
+            <div class="mt-16 pt-8 border-t border-bronze/10 text-center text-sm opacity-80 font-body font-light tracking-wide uppercase">
+                <p data-translate-key="footer_copyright">© MOSAIA STUDIO – BY AMARU BRANDS</p>
+            </div>
+
         </div>
+    </footer>
 
-    </div>
-</footer>
-
-<script>
-<form id="subscriptionForm" action="#" method="POST" class="space-y-4">
-    <input type="email" name="email" placeholder="email" required
-        class="w-full bg-charcoal border border-pure-white/30 text-pure-white placeholder-pure-white/50 px-4 py-3 text-sm focus:border-bronze focus:ring-bronze transition-colors appearance-none">
-
-    <div class="flex items-start space-x-2 text-sm">
-        <input type="checkbox" id="privacy-policy" name="privacyPolicy" required
-            class="mt-1 h-4 w-4 text-bronze bg-charcoal border-pure-white/30 focus:ring-bronze rounded">
-        <label for="privacy-policy" data-translate-key="footer_checkbox_policy" class="text-pure-white/80">
-            J'ai lu et accepté la politique de confidentialité de Mosaia
-        </label>
-    </div>
-
-    <div class="flex items-start space-x-2 text-sm">
-        <input type="checkbox" id="commercial-communication" name="commercialCommunication"
-            class="mt-1 h-4 w-4 text-bronze bg-charcoal border-pure-white/30 focus:ring-bronze rounded">
-        <label for="commercial-communication" data-translate-key="footer_checkbox_commercial" class="text-pure-white/80">
-            J'accepte la communication commerciale
-        </label>
-    </div>
-
-    <button type="submit" class="cta-secondary px-8 py-3 w-full mt-4 text-sm tracking-widest uppercase">
-        <span data-translate-key="footer_subscribe_btn">S'ABONNER</span>
-    </button>
-    <p id="formMessage" style="margin-top: 10px;"></p>
-</form>
-
-<script>
-    const form = document.getElementById('subscriptionForm');
-    const formMessage = document.getElementById('formMessage');
-    // REMPLACEZ 'YOUR_DEPLOYMENT_EXEC_URL_HERE' par l'URL de déploiement de votre Google Apps Script
-    const appsScriptURL = 'https://script.google.com/macros/s/AKfycbw-mfqXTtcN7tLCqP7dcyQzlbKFfea5nOm1izoy_Bbr8dQcoW16r_bDDTen26vqMkeo/exec'; 
-
-    form.addEventListener('submit', async function(e) {
-        e.preventDefault(); // Empêche la soumission classique du formulaire
-
-        // 1. Récupérer les données du formulaire
-        const data = {
-            email: form.querySelector('input[type="email"]').value,
-            // Récupère l'état (true/false) des cases à cocher
-            privacyPolicy: form.querySelector('#privacy-policy').checked,
-            commercialCommunication: form.querySelector('#commercial-communication').checked
+    <script>
+        // --- CONFIGURATION ---
+        const BASE_URL = 'https://allo-les-anges.github.io/mosaia/';
+        const DEFAULT_LANG = 'en';
+        
+        // ⭐ REMPLACEZ PAR VOTRE VRAIE URL EXEC DE DÉPLOIEMENT APPS SCRIPT ⭐
+        const appsScriptURL = 'VOTRE_URL_EXEC_DEPLOIEMENT_ICI'; 
+        
+        // --- TRANSLATIONS (TRADUCTIONS MISES À JOUR) ---
+        const translations = {
+            'page_title': { fr: "Mosaia Studio - Accueil", en: "Mosaia Studio - Home", nl: "Mosaia Studio - Startpagina", de: "Mosaia Studio - Startseite", es: "Mosaia Studio - Inicio" },
+            'nav_home': { fr: "ACCUEIL", en: "HOME", nl: "STARTPAGINA", de: "STARTSEITE", es: "INICIO" },
+            'nav_portfolio': { fr: "PORTFOLIO", en: "PORTFOLIO", nl: "PORTFOLIO", de: "PORTFOLIO", es: "PORTAFOLIO" },
+            'nav_studio': { fr: "STUDIO", en: "STUDIO", nl: "STUDIO", de: "STUDIO", es: "ESTUDIO" },
+            'nav_bespoke': { fr: "SUR-MESURE", en: "BESPOKE", nl: "MAATWERK", de: "MAẞARBEIT", es: "A MEDIDA" },
+            'nav_process': { fr: "PROCESSUS", en: "PROCESS", nl: "PROCES", de: "PROZESS", es: "PROCESO" },
+            'nav_partners': { fr: "PARTENAIRES", en: "PARTNERS", nl: "PARTNERS", de: "PARTNER", es: "SOCIOS" },
+            'nav_contact': { fr: "CONTACT", en: "CONTACT", nl: "CONTACT", de: "KONTAKT", es: "CONTACTO" },
+            'menu_btn': { fr: "Menu", en: "Menu", nl: "Menu", de: "Menü", es: "Menú" },
+            'hero_title': { fr: "L’ART DE LA MOSAÏQUE", en: "THE ART OF MOSAIC", nl: "DE KUNST VAN MOZAÏEK", de: "DIE KUNST DES MOSAIKS", es: "EL ARTE DEL MOSAICO" },
+            'hero_title_bronze': { fr: "QUI ÉVEILLE L’ÉMOTION", en: "THAT AWAKENS EMOTION", nl: "DAT EMOTIE OPROEPT", de: "DIE EMOTIONEN WECKT", es: "QUE DESPIERTA EMOCIÓN" },
+            'hero_title_end': { fr: "ET PERDURE", en: "AND ENDURES", nl: "EN VOORTDUURT", de: "UND BESTEHT", es: "Y PERDURA" },
+            'cta_portfolio': { fr: "EXPLORER LE PORTFOLIO", en: "EXPLORE THE PORTFOLIO" },
+            'cta_bespoke': { fr: "DÉMARRER UN PROJET SUR MESURE", en: "START A BESPOKE PROJECT" },
+            'intro_text': { fr: "Né d’une passion profonde pour l’artisanat et l’art, Mosaia Studio fusionne la tradition et le design moderne,", en: "Born from a deep passion for craftsmanship and art, Mosaia Studio merges tradition with modern design," },
+            'intro_text_bronze': { fr: "mêlant la précision artisanale à l’expression artistique.", en: "blending hand-crafted precision with artistic expression." },
+            'what_we_do_title': { fr: "NOTRE SAVOIR-FAIRE", en: "WHAT WE DO" },
+            'what_we_do_intro': { fr: "Mosaia Studio apporte des siècles d'art de la mosaïque au design contemporain. Nous collaborons avec des architectes, designers, et clients privés pour créer des surfaces sur mesure et durables.", en: "Mosaia Studio brings centuries of mosaic artistry into contemporary design. We partner with architects, designers, and private clients to create bespoke, enduring surfaces." },
+            'what_we_do_detail': { fr: "Notre processus combine des matériaux haut de gamme—du verre à la pierre naturelle—avec des techniques de pose méticuleuses et artisanales. Chaque projet, qu'il s'agisse d'une piscine sur mesure, d'une façade architecturale, ou d'une installation artistique unique, est une collaboration singulière, conçue pour refléter une vision unique et traverser le temps.", en: "Our process combines high-end materials—from glass to natural stone—with meticulous hand-setting techniques. Every project, whether a custom pool, an architectural façade, or a unique art installation, is a unique collaboration, crafted to reflect a singular vision and stand the test of time." },
+            'cta_learn_more': { fr: "EN SAVOIR PLUS SUR NOTRE PROCESSUS", en: "LEARN MORE ABOUT OUR PROCESS" },
+            'quote_1_bronze': { fr: "« La mosaïque n’est pas une décoration,", en: "« Mosaic is not decoration," },
+            'quote_2': { fr: "c’est une narration. »", en: "it is a narrative. »" },
+            'footer_copyright': { fr: "© MOSAIA STUDIO – PAR AMARU BRANDS", en: "© MOSAIA STUDIO – BY AMARU BRANDS" },
+            'footer_services_title': { fr: "Services", en: "Services" },
+            'footer_service_pools': { fr: "Piscines & Spas", en: "Pools & Spas" },
+            'footer_service_facades': { fr: "Façades & Murs", en: "Facades & Walls" },
+            'footer_service_art': { fr: "Art & Design", en: "Art & Design" },
+            'footer_about_title': { fr: "Studio", en: "Studio" }, 
+            'footer_legal_title': { fr: "Légal", en: "Legal" },
+            'footer_cookies': { fr: "Avis de cookies", en: "Cookies notice" },
+            'footer_conditions': { fr: "Conditions d'utilisation", en: "Conditions of use" },
+            'footer_privacy': { fr: "Politique de confidentialité", en: "Privacy notice" },
+            'footer_newsletter_title': { fr: "Abonnez-vous à « Mosaia News »", en: 'Subscribe to "Mosaia News"' },
+            'footer_newsletter_tagline': { fr: "Restez informé des dernières nouvelles sur la mosaïque, le design et les événements.", en: "Stay tuned with the latest news about mosaics, design, and events." },
+            'footer_checkbox_policy': { fr: "J'ai lu et j'accepte la Politique de Confidentialité Mosaia", en: "I have read and accept the Mosaia Privacy Policy" },
+            'footer_checkbox_commercial': { fr: "J'accepte la communication commerciale", en: "I accept the commercial communication" },
+            'footer_subscribe_btn': { fr: "S'ABONNER", en: "SUBSCRIBE" },
         };
 
-        try {
-            formMessage.textContent = 'Envoi en cours...';
-            formMessage.style.color = 'inherit'; // Réinitialiser la couleur
-
-            // 2. Requête Fetch
-            const response = await fetch(appsScriptURL, {
-                method: 'POST',
-                mode: 'cors', // Indique que c'est une requête cross-origin
-                headers: {
-                    'Content-Type': 'application/json' // Crucial : on envoie du JSON
-                },
-                body: JSON.stringify(data) // Convertir l'objet JS en chaîne JSON
+        // --- Update navigation links to GitHub Pages absolute paths ---
+        function updateNavigationLinks() {
+            document.querySelectorAll('a[data-page-name]').forEach(link => {
+                const pageName = link.getAttribute('data-page-name');
+                if (pageName) link.href = BASE_URL + pageName;
             });
+        }
 
-            const result = await response.json();
-
-            // 3. Traiter la réponse
-            if (response.ok && result.status === 'success') {
-                formMessage.textContent = result.message; // "Formulaire reçu !"
-                formMessage.style.color = 'green';
-                form.reset(); // Vider le formulaire après succès
+        // --- Translation & persistence ---
+        function updateContentTranslations(lang) {
+            document.documentElement.lang = lang;
+            const pageTitleKey = document.querySelector('title').getAttribute('data-translate-key') || 'page_title';
+            if (translations[pageTitleKey] && translations[pageTitleKey][lang]) {
+                document.title = translations[pageTitleKey][lang];
             } else {
-                // Erreur côté serveur ou HTTP non-2xx
-                formMessage.textContent = 'Erreur : ' + (result.message || 'La soumission a échoué.');
-                formMessage.style.color = 'red';
+                document.title = translations['page_title'][DEFAULT_LANG];
             }
 
-        } catch (error) {
-            // Erreur réseau ou blocage CORS
-            console.error('Erreur de Fetch :', error);
-            formMessage.textContent = 'Erreur réseau ou problème de CORS. Vérifiez la console.';
-            formMessage.style.color = 'red';
-        }
-    });
-</script>
-    
-    <script>
-        // --- CONFIGURATION ---
-        const BASE_URL = 'https://allo-les-anges.github.io/mosaia/';
-        const DEFAULT_LANG = 'en';
+            document.querySelectorAll('[data-translate-key]').forEach(el => {
+                const key = el.getAttribute('data-translate-key');
+                if (translations[key]) {
+                    el.innerHTML = translations[key][lang] || translations[key][DEFAULT_LANG] || el.innerHTML;
+                }
+            });
 
-        // --- TRANSLATIONS (TRADUCTIONS MISES À JOUR) ---
-        const translations = {
-            'page_title': { fr: "Mosaia Studio - Accueil", en: "Mosaia Studio - Home", nl: "Mosaia Studio - Startpagina", de: "Mosaia Studio - Startseite", es: "Mosaia Studio - Inicio" },
-            'nav_home': { fr: "ACCUEIL", en: "HOME", nl: "STARTPAGINA", de: "STARTSEITE", es: "INICIO" },
-            'nav_portfolio': { fr: "PORTFOLIO", en: "PORTFOLIO", nl: "PORTFOLIO", de: "PORTFOLIO", es: "PORTAFOLIO" },
-            'nav_studio': { fr: "STUDIO", en: "STUDIO", nl: "STUDIO", de: "STUDIO", es: "ESTUDIO" },
-            'nav_bespoke': { fr: "SUR-MESURE", en: "BESPOKE", nl: "MAATWERK", de: "MAẞARBEIT", es: "A MEDIDA" },
-            'nav_process': { fr: "PROCESSUS", en: "PROCESS", nl: "PROCES", de: "PROZESS", es: "PROCESO" },
-            'nav_partners': { fr: "PARTENAIRES", en: "PARTNERS", nl: "PARTNERS", de: "PARTNER", es: "SOCIOS" },
-            'nav_contact': { fr: "CONTACT", en: "CONTACT", nl: "CONTACT", de: "KONTAKT", es: "CONTACTO" },
-            'menu_btn': { fr: "Menu", en: "Menu", nl: "Menu", de: "Menü", es: "Menú" },
+            // mark active language on UI
+            document.querySelectorAll('.lang-option, .lang-button[data-lang]').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.getAttribute('data-lang') === lang) btn.classList.add('active');
+            });
 
-            'hero_title': { fr: "L’ART DE LA MOSAÏQUE", en: "THE ART OF MOSAIC", nl: "DE KUNST VAN MOZAÏEK", de: "DIE KUNST DES MOSAIKS", es: "EL ARTE DEL MOSAICO" },
-            'hero_title_bronze': { fr: "QUI ÉVEILLE L’ÉMOTION", en: "THAT AWAKENS EMOTION", nl: "DAT EMOTIE OPROEPT", de: "DIE EMOTIONEN WECKT", es: "QUE DESPIERTA EMOCIÓN" },
-            'hero_title_end': { fr: "ET PERDURE", en: "AND ENDURES", nl: "EN VOORTDUURT", de: "UND BESTEHT", es: "Y PERDURA" },
+            // Update current-lang display
+            const cur = document.getElementById('current-lang-display');
+            if (cur) cur.textContent = lang.toUpperCase();
 
-            'cta_portfolio': { fr: "EXPLORER LE PORTFOLIO", en: "EXPLORE THE PORTFOLIO" },
-            'cta_bespoke': { fr: "DÉMARRER UN PROJET SUR MESURE", en: "START A BESPOKE PROJECT" },
-
-            'intro_text': { fr: "Né d’une passion profonde pour l’artisanat et l’art, Mosaia Studio fusionne la tradition et le design moderne,", en: "Born from a deep passion for craftsmanship and art, Mosaia Studio merges tradition with modern design," },
-            'intro_text_bronze': { fr: "mêlant la précision artisanale à l’expression artistique.", en: "blending hand-crafted precision with artistic expression." },
+            // update links for github pages
+            updateNavigationLinks();
             
-            // NOUVELLES CLÉS POUR LA SECTION "WHAT WE DO"
-            'what_we_do_title': { fr: "NOTRE SAVOIR-FAIRE", en: "WHAT WE DO" },
-            'what_we_do_intro': { fr: "Mosaia Studio apporte des siècles d'art de la mosaïque au design contemporain. Nous collaborons avec des architectes, designers, et clients privés pour créer des surfaces sur mesure et durables.", en: "Mosaia Studio brings centuries of mosaic artistry into contemporary design. We partner with architects, designers, and private clients to create bespoke, enduring surfaces." },
-            'what_we_do_detail': { fr: "Notre processus combine des matériaux haut de gamme—du verre à la pierre naturelle—avec des techniques de pose méticuleuses et artisanales. Chaque projet, qu'il s'agisse d'une piscine sur mesure, d'une façade architecturale, ou d'une installation artistique unique, est une collaboration singulière, conçue pour refléter une vision unique et traverser le temps.", en: "Our process combines high-end materials—from glass to natural stone—with meticulous hand-setting techniques. Every project, whether a custom pool, an architectural façade, or a unique art installation, is a unique collaboration, crafted to reflect a singular vision and stand the test of time." },
-            'cta_learn_more': { fr: "EN SAVOIR PLUS SUR NOTRE PROCESSUS", en: "LEARN MORE ABOUT OUR PROCESS" },
+            // Re-apply translations for form messages if necessary (optional, but robust)
+            const formMessage = document.getElementById('formMessage');
+            if (formMessage && formMessage.textContent.includes('Formulaire reçu')) {
+                 formMessage.textContent = lang === 'fr' ? 'Inscription réussie !' : 'Subscription successful!';
+            }
+        }
 
-            'quote_1_bronze': { fr: "« La mosaïque n’est pas une décoration,", en: "« Mosaic is not decoration," },
-            'quote_2': { fr: "c’est une narration. »", en: "it is a narrative. »" },
+        function switchLanguage(lang) {
+            localStorage.setItem('userLanguage', lang);
+            updateContentTranslations(lang);
 
-            // NOUVELLES CLÉS POUR LE FOOTER
-            'footer_copyright': { fr: "© MOSAIA STUDIO – PAR AMARU BRANDS", en: "© MOSAIA STUDIO – BY AMARU BRANDS" },
-            'footer_services_title': { fr: "Services", en: "Services" },
-            'footer_service_pools': { fr: "Piscines & Spas", en: "Pools & Spas" },
-            'footer_service_facades': { fr: "Façades & Murs", en: "Facades & Walls" },
-            'footer_service_art': { fr: "Art & Design", en: "Art & Design" },
-            'footer_about_title': { fr: "Studio", en: "Studio" }, 
-            'footer_legal_title': { fr: "Légal", en: "Legal" },
-            'footer_cookies': { fr: "Avis de cookies", en: "Cookies notice" },
-            'footer_conditions': { fr: "Conditions d'utilisation", en: "Conditions of use" },
-            'footer_privacy': { fr: "Politique de confidentialité", en: "Privacy notice" },
-            'footer_newsletter_title': { fr: "Abonnez-vous à « Mosaia News »", en: 'Subscribe to "Mosaia News"' },
-            'footer_newsletter_tagline': { fr: "Restez informé des dernières nouvelles sur la mosaïque, le design et les événements.", en: "Stay tuned with the latest news about mosaics, design, and events." },
-            'footer_checkbox_policy': { fr: "J'ai lu et j'accepte la Politique de Confidentialité Mosaia", en: "I have read and accept the Mosaia Privacy Policy" },
-            'footer_checkbox_commercial': { fr: "J'accepte la communication commerciale", en: "I accept the commercial communication" },
-            'footer_subscribe_btn': { fr: "S'ABONNER", en: "SUBSCRIBE" },
-        };
+            // close menus if open
+            const langMenu = document.getElementById('lang-menu');
+            const dropdownArrow = document.getElementById('dropdown-arrow');
+            const langDropdownBtn = document.getElementById('lang-dropdown-btn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
 
-        // --- Update navigation links to GitHub Pages absolute paths ---
-        function updateNavigationLinks() {
-            document.querySelectorAll('a[data-page-name]').forEach(link => {
-                const pageName = link.getAttribute('data-page-name');
-                if (pageName) link.href = BASE_URL + pageName;
-            });
-        }
+            if (langMenu && !langMenu.classList.contains('hidden')) {
+                langMenu.classList.add('hidden');
+                dropdownArrow.classList.remove('rotate-180');
+                if (langDropdownBtn) langDropdownBtn.setAttribute('aria-expanded', 'false');
+            }
+            if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.add('hidden');
+                if (mobileMenuBtn) mobileMenuBtn.setAttribute('aria-expanded', 'false');
+            }
+        }
 
-        // --- Translation & persistence ---
-        function updateContentTranslations(lang) {
-            document.documentElement.lang = lang;
-            const pageTitleKey = document.querySelector('title').getAttribute('data-translate-key') || 'page_title';
-            if (translations[pageTitleKey] && translations[pageTitleKey][lang]) {
-                document.title = translations[pageTitleKey][lang];
-            } else {
-                document.title = translations['page_title'][DEFAULT_LANG];
-            }
+        // --- CAROUSEL logic ---
+        let carouselInterval = null;
+        function initCarousel({ interval = 5000 } = {}) {
+            const slides = document.querySelectorAll('.carousel-slide');
+            if (!slides || slides.length === 0) return;
+            let index = 0;
+            function show(i) {
+                slides.forEach((s, idx) => s.classList.toggle('active', idx === i));
+            }
+            show(index);
+            carouselInterval = setInterval(() => {
+                index = (index + 1) % slides.length;
+                show(index);
+            }, interval);
+        }
 
-            document.querySelectorAll('[data-translate-key]').forEach(el => {
-                const key = el.getAttribute('data-translate-key');
-                if (translations[key]) {
-                    el.innerHTML = translations[key][lang] || translations[key][DEFAULT_LANG] || el.innerHTML;
-                }
-            });
+        // --- DOMContentLoaded initialization ---
+        document.addEventListener('DOMContentLoaded', () => {
+            // pick saved language or default
+            const saved = localStorage.getItem('userLanguage') || DEFAULT_LANG;
+            updateContentTranslations(saved);
 
-            // mark active language on UI
-            document.querySelectorAll('.lang-option, .lang-button[data-lang]').forEach(btn => {
-                btn.classList.remove('active');
-                if (btn.getAttribute('data-lang') === lang) btn.classList.add('active');
-            });
+            // attach language selector handlers (desktop options and mobile buttons)
+            document.querySelectorAll('.lang-option, .lang-button[data-lang]').forEach(el => {
+                el.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const lang = el.getAttribute('data-lang');
+                    if (lang) switchLanguage(lang);
+                });
+            });
 
-            // Update current-lang display
-            const cur = document.getElementById('current-lang-display');
-            if (cur) cur.textContent = lang.toUpperCase();
+            // mobile menu toggle
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            if (mobileMenuBtn) {
+                mobileMenuBtn.addEventListener('click', () => {
+                    const expanded = mobileMenuBtn.getAttribute('aria-expanded') === 'true';
+                    mobileMenuBtn.setAttribute('aria-expanded', String(!expanded));
+                    if (mobileMenu) mobileMenu.classList.toggle('hidden');
+                });
+            }
 
-            // update links for github pages
-            updateNavigationLinks();
-        }
+            // lang dropdown desktop toggle
+            const langDropdownBtn = document.getElementById('lang-dropdown-btn');
+            const langMenu = document.getElementById('lang-menu');
+            const dropdownArrow = document.getElementById('dropdown-arrow');
+            if (langDropdownBtn && langMenu) {
+                langDropdownBtn.addEventListener('click', (ev) => {
+                    ev.stopPropagation();
+                    const expanded = langDropdownBtn.getAttribute('aria-expanded') === 'true';
+                    langDropdownBtn.setAttribute('aria-expanded', String(!expanded));
+                    langMenu.classList.toggle('hidden');
+                    if (dropdownArrow) dropdownArrow.classList.toggle('rotate-180');
+                });
 
-        function switchLanguage(lang) {
-            localStorage.setItem('userLanguage', lang);
-            updateContentTranslations(lang);
+                // close on outside click
+                document.addEventListener('click', (ev) => {
+                    const container = document.getElementById('lang-dropdown-container');
+                    if (!container.contains(ev.target) && !langMenu.classList.contains('hidden')) {
+                        langMenu.classList.add('hidden');
+                        langDropdownBtn.setAttribute('aria-expanded', 'false');
+                        if (dropdownArrow) dropdownArrow.classList.remove('rotate-180');
+                    }
+                });
+            }
 
-            // close menus if open
-            const langMenu = document.getElementById('lang-menu');
-            const dropdownArrow = document.getElementById('dropdown-arrow');
-            const langDropdownBtn = document.getElementById('lang-dropdown-btn');
-            const mobileMenu = document.getElementById('mobileMenu');
-            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            // initialize carousel
+            initCarousel({ interval: 5000 });
 
-            if (langMenu && !langMenu.classList.contains('hidden')) {
-                langMenu.classList.add('hidden');
-                dropdownArrow.classList.remove('rotate-180');
-                if (langDropdownBtn) langDropdownBtn.setAttribute('aria-expanded', 'false');
-            }
-            if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
-                mobileMenu.classList.add('hidden');
-                if (mobileMenuBtn) mobileMenuBtn.setAttribute('aria-expanded', 'false');
-            }
-        }
+            // ensure nav links use BASE_URL
+            updateNavigationLinks();
+            
+            // --- CODE DE SOUMISSION DU FORMULAIRE GOOGLE APPS SCRIPT (AJAX/Fetch) ---
+            const form = document.getElementById('subscriptionForm');
+            const formMessage = document.getElementById('formMessage');
 
-        // --- CAROUSEL logic (will be initialized after DOM ready) ---
-        let carouselInterval = null;
-        function initCarousel({ interval = 5000 } = {}) {
-            const slides = document.querySelectorAll('.carousel-slide');
-            if (!slides || slides.length === 0) return;
-            let index = 0;
-            function show(i) {
-                slides.forEach((s, idx) => s.classList.toggle('active', idx === i));
-            }
-            show(index);
-            carouselInterval = setInterval(() => {
-                index = (index + 1) % slides.length;
-                show(index);
-            }, interval);
-        }
+            if (form && appsScriptURL.includes('https://script.google.com/macros/')) {
+                form.addEventListener('submit', async function(e) {
+                    e.preventDefault(); // <-- Empêche la soumission classique et l'erreur 405
 
-        // --- DOMContentLoaded initialization ---
-        document.addEventListener('DOMContentLoaded', () => {
-            // pick saved language or default
-            const saved = localStorage.getItem('userLanguage') || DEFAULT_LANG;
-            updateContentTranslations(saved);
+                    // 1. Récupérer les données du formulaire (en utilisant les attributs 'name' et 'id' du formulaire corrigé)
+                    const data = {
+                        email: form.querySelector('input[name="email"]').value,
+                        privacyPolicy: form.querySelector('input[name="privacyPolicy"]').checked,
+                        commercialCommunication: form.querySelector('input[name="commercialCommunication"]').checked
+                    };
 
-            // attach language selector handlers (desktop options and mobile buttons)
-            document.querySelectorAll('.lang-option, .lang-button[data-lang]').forEach(el => {
-                el.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const lang = el.getAttribute('data-lang');
-                    if (lang) switchLanguage(lang);
-                });
-            });
+                    try {
+                        formMessage.textContent = 'Envoi en cours...';
+                        formMessage.style.color = '#FFFFFF'; // Blanc
 
-            // mobile menu toggle
-            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-            const mobileMenu = document.getElementById('mobileMenu');
-            if (mobileMenuBtn) {
-                mobileMenuBtn.addEventListener('click', () => {
-                    const expanded = mobileMenuBtn.getAttribute('aria-expanded') === 'true';
-                    mobileMenuBtn.setAttribute('aria-expanded', String(!expanded));
-                    if (mobileMenu) mobileMenu.classList.toggle('hidden');
-                });
-            }
+                        // 2. Requête Fetch vers Apps Script
+                        const response = await fetch(appsScriptURL, {
+                            method: 'POST',
+                            mode: 'cors',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(data)
+                        });
 
-            // lang dropdown desktop toggle
-            const langDropdownBtn = document.getElementById('lang-dropdown-btn');
-            const langMenu = document.getElementById('lang-menu');
-            const dropdownArrow = document.getElementById('dropdown-arrow');
-            if (langDropdownBtn && langMenu) {
-                langDropdownBtn.addEventListener('click', (ev) => {
-                    ev.stopPropagation();
-                    const expanded = langDropdownBtn.getAttribute('aria-expanded') === 'true';
-                    langDropdownBtn.setAttribute('aria-expanded', String(!expanded));
-                    langMenu.classList.toggle('hidden');
-                    if (dropdownArrow) dropdownArrow.classList.toggle('rotate-180');
-                });
+                        const result = await response.json();
 
-                // close on outside click
-                document.addEventListener('click', (ev) => {
-                    const container = document.getElementById('lang-dropdown-container');
-                    if (!container.contains(ev.target) && !langMenu.classList.contains('hidden')) {
-                        langMenu.classList.add('hidden');
-                        langDropdownBtn.setAttribute('aria-expanded', 'false');
-                        if (dropdownArrow) dropdownArrow.classList.remove('rotate-180');
-                    }
-                });
-            }
+                        // 3. Traiter la réponse
+                        if (response.ok && result.status === 'success') {
+                            formMessage.textContent = result.message; 
+                            formMessage.style.color = '#C99B4F'; // Bronze pour succès
+                            form.reset();
+                        } else {
+                            // Erreur côté serveur ou HTTP non-2xx
+                            formMessage.textContent = 'Erreur: ' + (result.message || 'La soumission a échoué.');
+                            formMessage.style.color = 'red';
+                        }
 
-            // initialize carousel
-            initCarousel({ interval: 5000 });
-
-            // ensure nav links use BASE_URL
-            updateNavigationLinks();
-        });
-    </script>
+                    } catch (error) {
+                        // Erreur réseau ou blocage CORS
+                        console.error('Erreur de Fetch:', error);
+                        formMessage.textContent = 'Erreur réseau ou problème de configuration Apps Script.';
+                        formMessage.style.color = 'red';
+                    }
+                });
+            } else if (form) {
+                // Message d'erreur si l'URL n'a pas été remplacée
+                console.warn("L'URL de déploiement Apps Script n'a pas été remplacée ou est incorrecte. Le formulaire ne soumettra pas.");
+            }
+        });
+    </script>
 </body>
 </html>
