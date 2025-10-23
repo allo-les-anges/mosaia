@@ -532,7 +532,7 @@
             // ensure nav links use BASE_URL
             updateNavigationLinks();
             
-            // --- CODE DE SOUMISSION DU FORMULAIRE AVEC JSONP ---
+                        // --- CODE DE SOUMISSION DU FORMULAIRE AVEC JSONP ---
             const form = document.getElementById('subscriptionForm');
             const formMessage = document.getElementById('formMessage');
 
@@ -564,8 +564,14 @@
                             formMessage.textContent = response.message; 
                             formMessage.style.color = '#C99B4F'; 
                             form.reset();
+                            
+                            // Masquer le message après 3 secondes
+                            setTimeout(() => {
+                                formMessage.textContent = '';
+                            }, 3000);
+                            
                         } else {
-                            formMessage.textContent = 'Erreur: ' + (response.message || 'La soumission a échoué.');
+                            formMessage.textContent = 'Error: ' + (response.message || 'Submission failed.');
                             formMessage.style.color = 'red';
                         }
                         // Nettoyer
@@ -573,7 +579,8 @@
                         delete window.handleFormResponse;
                     };
 
-                    formMessage.textContent = 'Envoi en cours...';
+                    // Afficher "Envoi en cours" seulement pendant l'envoi
+                    formMessage.textContent = 'Sending...';
                     formMessage.style.color = '#FFFFFF';
                     
                     // 5. Ajouter le script à la page pour déclencher la requête
@@ -581,7 +588,7 @@
                 });
             } else if (form) {
                 console.warn("L'URL Apps Script est incorrecte ou manquante.");
-                formMessage.textContent = "Attention : Formulaire non fonctionnel. Mettez à jour l'URL Apps Script.";
+                formMessage.textContent = "Warning: Form not functional. Update the Apps Script URL.";
                 formMessage.style.color = 'yellow';
             }
         });
