@@ -560,6 +560,7 @@
                     
                     // 4. Définir la fonction callback globale
                     window.handleFormResponse = function(response) {
+                            console.log('Response received:', response); // ⭐ Debug
                         // ⭐ CORRECTION : "Sending..." est automatiquement remplacé ici
                         if (response.status === 'success') {
                             formMessage.textContent = response.message; 
