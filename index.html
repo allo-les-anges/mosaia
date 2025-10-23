@@ -532,68 +532,58 @@
             // ensure nav links use BASE_URL
             updateNavigationLinks();
             
-            // --- CODE DE SOUMISSION DU FORMULAIRE GOOGLE APPS SCRIPT (AJAX/Fetch) ---
-const form = document.getElementById('subscriptionForm');
-const formMessage = document.getElementById('formMessage');
+            // --- CODE DE SOUMISSION DU FORMULAIRE AVEC JSONP ---
+            const form = document.getElementById('subscriptionForm');
+            const formMessage = document.getElementById('formMessage');
 
-if (form && appsScriptURL.includes('https://script.google.com/macros/')) {
-    form.addEventListener('submit', async function(e) {
-        e.preventDefault(); 
+            if (form && appsScriptURL.includes('https://script.google.com/macros/')) {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault(); 
 
-        // 1. Récupérer les données
-        const emailValue = form.querySelector('input[name="email"]').value;
-        const policyChecked = form.querySelector('input[name="privacyPolicy"]').checked;
-        const commercialChecked = form.querySelector('input[name="commercialCommunication"]').checked;
+                    // 1. Récupérer les données
+                    const emailValue = form.querySelector('input[name="email"]').value;
+                    const policyChecked = form.querySelector('input[name="privacyPolicy"]').checked;
+                    const commercialChecked = form.querySelector('input[name="commercialCommunication"]').checked;
 
-        // 2. Construire les paramètres d'URL (Query String)
-        const params = new URLSearchParams({
-            email: emailValue,
-            // 'on' est ce que Apps Script attend pour une case cochée
-            privacyPolicy: policyChecked ? 'on' : 'off', 
-            commercialCommunication: commercialChecked ? 'on' : 'off',
-            
-            // ⭐ CORRECTION : AJOUT DU PARAMÈTRE formType pour la redirection dans le script unifié
-            formType: 'Newsletter' 
-        });
-        
-        // 3. Concaténer l'URL de base Apps Script avec les paramètres
-        const fullUrl = `${appsScriptURL}?${params.toString()}`;
+                    // 2. Construire les paramètres d'URL (Query String)
+                    const params = new URLSearchParams({
+                        email: emailValue,
+                        privacyPolicy: policyChecked ? 'on' : 'off', 
+                        commercialCommunication: commercialChecked ? 'on' : 'off',
+                        formType: 'Newsletter',
+                        callback: 'handleFormResponse' // Callback pour JSONP
+                    });
+                    
+                    // 3. Créer un script tag pour JSONP
+                    const script = document.createElement('script');
+                    script.src = `${appsScriptURL}?${params.toString()}`;
+                    
+                    // 4. Définir la fonction callback globale
+                    window.handleFormResponse = function(response) {
+                        if (response.status === 'success') {
+                            formMessage.textContent = response.message; 
+                            formMessage.style.color = '#C99B4F'; 
+                            form.reset();
+                        } else {
+                            formMessage.textContent = 'Erreur: ' + (response.message || 'La soumission a échoué.');
+                            formMessage.style.color = 'red';
+                        }
+                        // Nettoyer
+                        document.head.removeChild(script);
+                        delete window.handleFormResponse;
+                    };
 
-        try {
-            formMessage.textContent = 'Envoi en cours...';
-            formMessage.style.color = '#FFFFFF'; 
-
-            // 4. Requête Fetch en utilisant la méthode GET
-            const response = await fetch(fullUrl, {
-                method: 'GET', 
-                mode: 'cors'
-            });
-
-            // Apps Script renvoie toujours une réponse 200, il faut vérifier le JSON
-            const result = await response.json(); 
-
-            // 5. Traiter la réponse JSON
-            if (result.status === 'success') {
-                formMessage.textContent = result.message; 
-                formMessage.style.color = '#C99B4F'; 
-                form.reset();
-            } else {
-                formMessage.textContent = 'Erreur: ' + (result.message || 'La soumission a échoué.');
-                formMessage.style.color = 'red';
+                    formMessage.textContent = 'Envoi en cours...';
+                    formMessage.style.color = '#FFFFFF';
+                    
+                    // 5. Ajouter le script à la page pour déclencher la requête
+                    document.head.appendChild(script);
+                });
+            } else if (form) {
+                console.warn("L'URL Apps Script est incorrecte ou manquante.");
+                formMessage.textContent = "Attention : Formulaire non fonctionnel. Mettez à jour l'URL Apps Script.";
+                formMessage.style.color = 'yellow';
             }
-
-        } catch (error) {
-            console.error('Erreur de Fetch:', error);
-            // Ce message sera affiché si le CORS bloque (comme actuellement)
-            formMessage.textContent = 'Erreur réseau ou problème de déploiement Apps Script. (Vérifiez la console pour CORS)';
-            formMessage.style.color = 'red';
-        }
-    });
-} else if (form) {
-    console.warn("L'URL Apps Script est incorrecte ou manquante.");
-    formMessage.textContent = "Attention : Formulaire non fonctionnel. Mettez à jour l'URL Apps Script.";
-    formMessage.style.color = 'yellow';
-}
         });
     </script>
 </body>
