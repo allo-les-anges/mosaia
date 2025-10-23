@@ -446,59 +446,91 @@ function initializeLanguage() {
 }
 
 
-// --- LOGIQUE DU FORMULAIRE PARTENAIRES ---
+// --- LOGIQUE DU FORMULAIRE PARTENAIRES AVEC JSONP ---
 function initializePartnerForm() {
-    // L'URL EXEC est maintenant correcte dans votre code
-    const partnerAppsScriptURL = 'https://script.google.com/macros/s/AKfycbw-mfqXTtcN7tLCqP7dcyQzlbKFfea5nOm1izoy_Bbr8dQcoW16r_bDDTen26vqMkeo/exec'; 
+    // 🚨 UTILISEZ LA BONNE URL APPS SCRIPT (LA MÊME QUE LES AUTRES FORMULAIRES)
+    const partnerAppsScriptURL = 'https://script.google.com/macros/s/AKfycbzgtsVi8TtegNsDAowAZOXu3jErza_M83eHjL7LLz3QVoRDrzeWXmTQIQyl_VDDILhw/exec';
     
     const form = document.getElementById('partnerForm');
     const formMessage = document.getElementById('partnerFormMessage'); 
 
-    // Vérifie si le formulaire et l'URL sont prêts
     if (form && partnerAppsScriptURL.includes('https://script.google.com/macros/')) {
-        form.addEventListener('submit', async function(e) {
+        form.addEventListener('submit', function(e) {
             e.preventDefault(); 
 
-            // 1. Récupération des données par leur attribut 'name' (doit correspondre au script doGet)
+            // 1. Récupération des données
             const data = {
-                company: form.querySelector('input[name="company"]').value,
-                contactName: form.querySelector('input[name="contactName"]').value,
+                company_name: form.querySelector('input[name="company"]').value, // ⭐ Note: 'company_name' pour correspondre à Apps Script
+                contact_name: form.querySelector('input[name="contactName"]').value, // ⭐ Note: 'contact_name' pour correspondre
                 email: form.querySelector('input[name="email"]').value,
                 role: form.querySelector('input[name="role"]').value,
-                message: form.querySelector('textarea[name="message"]').value
+                message: form.querySelector('textarea[name="message"]').value,
+                formType: 'Partenaires', // ⭐ IMPORTANT : pour diriger vers la feuille "Partenaires"
+                callback: 'handlePartnerResponse' // ⭐ Callback JSONP
             };
 
             // 2. Construire les paramètres d'URL (Query String)
             const params = new URLSearchParams(data);
-            const fullUrl = `${partnerAppsScriptURL}?${params.toString()}`;
-
-            try {
-                formMessage.textContent = 'Envoi en cours...';
-                formMessage.style.color = '#1A1A1A'; 
-
-                // 3. Requête Fetch en utilisant la méthode GET (pour éviter le CORS)
-                const response = await fetch(fullUrl, {
-                    method: 'GET',
-                    mode: 'cors'
-                });
-
-                // Tente de lire la réponse JSON
-                const result = await response.json(); 
-
-                if (result.status === 'success') {
-                    formMessage.textContent = result.message; 
-                    formMessage.style.color = '#C99B4F'; // Succès en Bronze
+            
+            // 3. Créer un script tag pour JSONP
+            const script = document.createElement('script');
+            script.src = `${partnerAppsScriptURL}?${params.toString()}`;
+            
+            // 4. Définir la fonction callback globale
+            window.handlePartnerResponse = function(response) {
+                console.log('Partner response received:', response);
+                
+                // ⭐ TOUJOURS EFFACER LE MESSAGE D'ABORD
+                formMessage.textContent = '';
+                
+                if (response.status === 'success') {
+                    formMessage.textContent = response.message; 
+                    formMessage.style.color = '#C99B4F'; 
                     form.reset();
+                    
+                    // Masquer le message après 3 secondes
+                    setTimeout(() => {
+                        formMessage.textContent = '';
+                    }, 3000);
+                    
                 } else {
-                    formMessage.textContent = 'Erreur serveur: ' + (result.message || 'La soumission a échoué.');
+                    formMessage.textContent = 'Erreur: ' + (response.message || 'La soumission a échoué.');
                     formMessage.style.color = 'red';
+                    
+                    // Masquer l'erreur après 5 secondes
+                    setTimeout(() => {
+                        formMessage.textContent = '';
+                    }, 5000);
                 }
+                
+                // Nettoyer
+                if (script.parentNode) {
+                    script.parentNode.removeChild(script);
+                }
+                delete window.handlePartnerResponse;
+            };
 
-            } catch (error) {
-                console.error('Erreur de Fetch:', error);
-                formMessage.textContent = 'Erreur réseau ou déploiement Apps Script. (Vérifiez la console)';
-                formMessage.style.color = 'red';
-            }
+            // Afficher "Envoi en cours..." pendant l'envoi
+            formMessage.textContent = 'Envoi en cours...';
+            formMessage.style.color = '#1A1A1A';
+            
+            console.log('Starting partner request to:', script.src);
+            
+            // 5. Ajouter le script à la page pour déclencher la requête
+            document.head.appendChild(script);
+
+            // ⭐ TIMEOUT DE SÉCURITÉ
+            setTimeout(() => {
+                if (window.handlePartnerResponse) {
+                    console.log('Partner request timeout');
+                    formMessage.textContent = 'Erreur: Délai de requête dépassé';
+                    formMessage.style.color = 'red';
+                    if (script.parentNode) {
+                        script.parentNode.removeChild(script);
+                    }
+                    delete window.handlePartnerResponse;
+                }
+            }, 15000);
         });
     } else if (form) {
         console.warn("L'URL Apps Script Partenaires est incorrecte ou manquante. Le formulaire est désactivé.");
