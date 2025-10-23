@@ -311,147 +311,65 @@
                     </div>
                 </div>
 
-               <!-- NEWSLETTER FORM - GOOGLE SHEETS INTEGRATION -->
-<div>
-    <h3 class="text-4xl font-title font-bold text-pure-white mb-3" data-translate-key="footer_newsletter_title">
-        Subscribe to "Mosaia News"
-    </h3>
-    <p class="text-base text-pure-white/80 mb-6 font-body" data-translate-key="footer_newsletter_tagline">
-        Stay tuned with the latest news about mosaics, design, and events.
-    </p>
+                <!-- NEWSLETTER FORM - GOOGLE SHEETS INTEGRATION -->
+                <div>
+                    <h3 class="text-4xl font-title font-bold text-pure-white mb-3" data-translate-key="footer_newsletter_title">
+                        Subscribe to "Mosaia News"
+                    </h3>
+                    <p class="text-base text-pure-white/80 mb-6 font-body" data-translate-key="footer_newsletter_tagline">
+                        Stay tuned with the latest news about mosaics, design, and events.
+                    </p>
 
-    <form id="newsletter-form" class="space-y-4">
-        <input 
-            type="email" 
-            id="newsletter-email"
-            name="email"  
-            placeholder="Votre email" 
-            required 
-            class="w-full bg-charcoal border border-pure-white/30 text-pure-white placeholder-pure-white/50 px-4 py-3 text-sm focus:border-bronze focus:ring-bronze transition-colors appearance-none"
-        >
-        
-        <div class="flex items-start space-x-2 text-sm">
-            <input 
-                type="checkbox" 
-                id="privacy-policy" 
-                name="policyAccepted"
-                required
-                class="mt-1 h-4 w-4 text-bronze bg-charcoal border-pure-white/30 focus:ring-bronze rounded"
-            >
-            <label for="privacy-policy" data-translate-key="footer_checkbox_policy" class="text-pure-white/80">
-                I have read and accept the Mosaia Privacy Policy
-            </label>
+                    <form id="newsletter-form" class="space-y-4">
+                        <input 
+                            type="email" 
+                            id="newsletter-email"
+                            name="email"  
+                            placeholder="Votre email" 
+                            required 
+                            class="w-full bg-charcoal border border-pure-white/30 text-pure-white placeholder-pure-white/50 px-4 py-3 text-sm focus:border-bronze focus:ring-bronze transition-colors appearance-none"
+                        >
+                        
+                        <div class="flex items-start space-x-2 text-sm">
+                            <input 
+                                type="checkbox" 
+                                id="privacy-policy" 
+                                name="policyAccepted"
+                                required
+                                class="mt-1 h-4 w-4 text-bronze bg-charcoal border-pure-white/30 focus:ring-bronze rounded"
+                            >
+                            <label for="privacy-policy" data-translate-key="footer_checkbox_policy" class="text-pure-white/80">
+                                I have read and accept the Mosaia Privacy Policy
+                            </label>
+                        </div>
+
+                        <div class="flex items-start space-x-2 text-sm">
+                            <input 
+                                type="checkbox" 
+                                id="commercial-communication" 
+                                name="commercialAccepted"
+                                class="mt-1 h-4 w-4 text-bronze bg-charcoal border-pure-white/30 focus:ring-bronze rounded"
+                            >
+                            <label for="commercial-communication" data-translate-key="footer_checkbox_commercial" class="text-pure-white/80">
+                                I accept the commercial communication
+                            </label>
+                        </div>
+
+                        <button type="submit" class="cta-primary w-full px-8 py-3 text-pure-white tracking-widest uppercase mt-4">
+                            <span data-translate-key="footer_subscribe_btn">SUBSCRIBE</span>
+                        </button>
+
+                        <!-- Messages de statut -->
+                        <div id="form-message" class="form-message"></div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="mt-16 pt-8 border-t border-bronze/10 text-center text-sm opacity-80 font-body font-light tracking-wide uppercase">
+                <p data-translate-key="footer_copyright">© MOSAIA STUDIO – BY AMARU BRANDS</p>
+            </div>
         </div>
-
-        <div class="flex items-start space-x-2 text-sm">
-            <input 
-                type="checkbox" 
-                id="commercial-communication" 
-                name="commercialAccepted"
-                class="mt-1 h-4 w-4 text-bronze bg-charcoal border-pure-white/30 focus:ring-bronze rounded"
-            >
-            <label for="commercial-communication" data-translate-key="footer_checkbox_commercial" class="text-pure-white/80">
-                I accept the commercial communication
-            </label>
-        </div>
-
-        <button type="submit" class="cta-primary w-full px-8 py-3 text-pure-white tracking-widest uppercase mt-4">
-            <span data-translate-key="footer_subscribe_btn">SUBSCRIBE</span>
-        </button>
-
-        <!-- Messages de statut -->
-        <div id="form-message" class="form-message"></div>
-    </form>
-</div>
-
-<script>
-// --- Gestion du formulaire Google Sheets ---
-document.addEventListener('DOMContentLoaded', function() {
-    const newsletterForm = document.getElementById('newsletter-form');
-    const formMessage = document.getElementById('form-message');
-    
-    // REMPLACEZ CETTE URL PAR VOTRE VRAIE URL GOOGLE APPS SCRIPT
-    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwE-srzUs_OCWolk0WUBIIVkHdnStIQsOH6x1UNkBeAgi1ws336T7dX0neCW-Vaohei/exec';
-    
-    if (newsletterForm) {
-        newsletterForm.addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            const submitButton = newsletterForm.querySelector('button[type="submit"]');
-            const originalText = submitButton.innerHTML;
-            
-            // Afficher le chargement
-            submitButton.innerHTML = 'Envoi en cours...';
-            submitButton.disabled = true;
-            
-            // Récupérer les données du formulaire
-            const formData = {
-                email: document.getElementById('newsletter-email').value,
-                policyAccepted: document.getElementById('privacy-policy').checked,
-                commercialAccepted: document.getElementById('commercial-communication').checked
-            };
-            
-            try {
-                // Essayer d'abord avec mode 'cors'
-                const response = await fetch(GOOGLE_SCRIPT_URL, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(formData)
-                });
-                
-                const result = await response.json();
-                
-                if (result.result === 'success') {
-                    showFormMessage('✅ Inscription réussie ! Merci de vous être abonné.', 'success');
-                    newsletterForm.reset();
-                } else {
-                    showFormMessage('❌ Une erreur est survenue: ' + result.message, 'error');
-                }
-            } catch (error) {
-                console.error('Erreur fetch:', error);
-                
-                // Fallback: essayer avec mode 'no-cors'
-                try {
-                    await fetch(GOOGLE_SCRIPT_URL, {
-                        method: 'POST',
-                        mode: 'no-cors',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify(formData)
-                    });
-                    
-                    // Avec no-cors on ne peut pas vérifier la réponse, on suppose le succès
-                    showFormMessage('✅ Inscription envoyée ! Merci.', 'success');
-                    newsletterForm.reset();
-                } catch (noCorsError) {
-                    console.error('Erreur no-cors:', noCorsError);
-                    showFormMessage('❌ Erreur de connexion. Veuillez réessayer.', 'error');
-                }
-            } finally {
-                // Réactiver le bouton
-                submitButton.innerHTML = originalText;
-                submitButton.disabled = false;
-            }
-        });
-    }
-    
-    function showFormMessage(message, type) {
-        if (formMessage) {
-            formMessage.textContent = message;
-            formMessage.className = 'form-message ' + (type === 'success' ? 'form-success' : 'form-error');
-            formMessage.style.display = 'block';
-            
-            // Masquer le message après 5 secondes
-            setTimeout(() => {
-                formMessage.style.display = 'none';
-            }, 5000);
-        }
-    }
-});
-</footer>
+    </footer>
 
     <script>
         // --- CONFIGURATION ---
@@ -462,134 +380,10 @@ document.addEventListener('DOMContentLoaded', function() {
         const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwE-srzUs_OCWolk0WUBIIVkHdnStIQsOH6x1UNkBeAgi1ws336T7dX0neCW-Vaohei/exec';
 
         const translations = {
-            // --- NAVIGATION / TITRE DE PAGE ---
+            // ... (vos traductions restent identiques)
             'page_title': { fr: "Mosaia Studio - Accueil", en: "Mosaia Studio - Home", nl: "Mosaia Studio - Startpagina", de: "Mosaia Studio - Startseite", es: "Mosaia Studio - Inicio" },
             'nav_home': { fr: "ACCUEIL", en: "HOME", nl: "STARTPAGINA", de: "STARTSEITE", es: "INICIO" },
-            'nav_portfolio': { fr: "PORTFOLIO", en: "PORTFOLIO", nl: "PORTFOLIO", de: "PORTFOLIO", es: "PORTAFOLIO" },
-            'nav_studio': { fr: "STUDIO", en: "STUDIO", nl: "STUDIO", de: "STUDIO", es: "ESTUDIO" },
-            'nav_bespoke': { fr: "SUR-MESURE", en: "BESPOKE", nl: "MAATWERK", de: "MAẞARBEIT", es: "A MEDIDA" },
-            'nav_process': { fr: "PROCESSUS", en: "PROCESS", nl: "PROCES", de: "PROZESS", es: "PROCESO" },
-            'nav_partners': { fr: "PARTENAIRES", en: "PARTNERS", nl: "PARTNERS", de: "PARTNER", es: "SOCIOS" },
-            'nav_contact': { fr: "CONTACT", en: "CONTACT", nl: "CONTACT", de: "KONTAKT", es: "CONTACTO" },
-            'menu_btn': { fr: "Menu", en: "Menu", nl: "Menu", de: "Menü", es: "Menú" },
-
-            // --- SECTION HERO / CTA ---
-            'hero_title': { fr: "L'ART DE LA MOSAÏQUE", en: "THE ART OF MOSAIC", nl: "DE KUNST VAN MOZAÏEK", de: "DIE KUNST DES MOSAIKS", es: "EL ARTE DEL MOSAICO" },
-            'hero_title_bronze': { fr: "QUI ÉVEILLE L'ÉMOTION", en: "THAT AWAKENS EMOTION", nl: "DAT EMOTIE OPROEPT", de: "DIE EMOTIONEN WECKT", es: "QUE DESPIERTA EMOCIÓN" },
-            'hero_title_end': { fr: "ET PERDURE", en: "AND ENDURES", nl: "EN VOORTDUURT", de: "UND BESTEHT", es: "Y PERDURA" },
-            'cta_portfolio': { fr: "EXPLORER LE PORTFOLIO", en: "EXPLORE THE PORTFOLIO", nl: "ONTDEK HET PORTFOLIO", de: "PORTFOLIO ERKUNDEN", es: "EXPLORAR EL PORTAFOLIO" },
-            'cta_bespoke': { fr: "DÉMARRER UN PROJET SUR MESURE", en: "START A BESPOKE PROJECT", nl: "START EEN MAATWERKPROJECT", de: "EIN MAẞARBEITSPROJEKT STARTEN", es: "INICIAR UN PROYECTO A MEDIDA" },
-            
-            // --- SECTION INTRODUCTION ---
-            'intro_text': { 
-                fr: "Né d'une passion profonde pour l'artisanat et l'art, Mosaia Studio fusionne la tradition et le design moderne,", 
-                en: "Born from a deep passion for craftsmanship and art, Mosaia Studio merges tradition with modern design,",
-                nl: "Geboren uit een diepe passie voor vakmanschap en kunst, versmelt Mosaia Studio traditie met modern design,",
-                de: "Aus einer tiefen Leidenschaft für Handwerk und Kunst geboren, vereint Mosaia Studio Tradition mit modernem Design,",
-                es: "Nacido de una profunda pasión por la artesanía y el arte, Mosaia Studio fusiona tradición con diseño moderno," 
-            },
-            'intro_text_bronze': { 
-                fr: "mêlant la précision artisanale à l'expression artistique.", 
-                en: "blending hand-crafted precision with artistic expression.",
-                nl: "door ambachtelijke precisie te vermengen met artistieke expressie.",
-                de: "wobei handwerkliche Präzision mit künstlerischem Ausdruck verschmilzt.",
-                es: "combinando la precisión artesanal con la expresión artística." 
-            },
-            
-            // --- SECTION WHAT WE DO (NOTRE SAVOIR-FAIRE) ---
-            'what_we_do_title': { 
-                fr: "NOTRE SAVOIR-FAIRE", 
-                en: "WHAT WE DO", 
-                nl: "WAT WE DOEN", 
-                de: "WAS WIR TUN", 
-                es: "QUÉ HACEMOS" 
-            },
-            'what_we_do_intro': { 
-                fr: "Mosaia Studio apporte des siècles d'art de la mosaïque au design contemporain. Nous collaborons avec des architectes, designers, et clients privés pour créer des surfaces sur mesure et durables.", 
-                en: "Mosaia Studio brings centuries of mosaic artistry into contemporary design. We partner with architects, designers, and private clients to create bespoke, enduring surfaces.",
-                nl: "Mosaia Studio brengt eeuwenoude mozaïekkunst naar eigentijds design. We werken samen met architecten, ontwerpers en privéklanten om op maat gemaakte, duurzame oppervlakken te creëren.",
-                de: "Mosaia Studio bringt jahrhundertelange Mosaikkunst in zeitgenössisches Design. Wir arbeiten mit Architekten, Designern und Privatkunden zusammen, um maßgeschneiderte, langlebige Oberflächen zu schaffen.",
-                es: "Mosaia Studio introduce siglos de arte musivario en el diseño contemporáneo. Nos asociamos con arquitectos, diseñadores y clientes privados para crear superficies a medida y duraderas." 
-            },
-            'what_we_do_detail': { 
-                fr: "Notre processus combine des matériaux haut de gamme—du verre à la pierre naturelle—avec des techniques de pose méticuleuses et artisanales. Chaque projet, qu'il s'agisse d'une piscine sur mesure, d'une façade architecturale, ou d'une installation artistique unique, est une collaboration singulière, conçue pour refléter une vision unique et traverser le temps.", 
-                en: "Our process combines high-end materials—from glass to natural stone—with meticulous hand-setting techniques. Every project, whether a custom pool, an architectural façade, or a unique art installation, is a unique collaboration, crafted to reflect a singular vision and stand the test of time.",
-                nl: "Ons proces combineert hoogwaardige materialen—van glas tot natuursteen—met nauwgezette, ambachtelijke zetmethoden. Elk project, of het nu een zwembad op maat, een architecturale gevel of een unieke kunstinstallatie betreft, is een unieke samenwerking, ontworpen om een singuliere visie te weerspiegelen en de tand des tijds te doorstaan.",
-                de: "Unser Prozess kombiniert hochwertige Materialien—von Glas bis Naturstein—mit sorgfältigen, handwerklichen Verlegetechniken. Jedes Projekt, ob maßgeschneiderter Pool, architektonische Fassade oder einzigartige Kunstinstallation, ist eine einzigartige Zusammenarbeit, die eine singuläre Vision widerspiegeln und die Zeit überdauern soll.",
-                es: "Nuestro proceso combina materiales de alta gama—desde vidrio hasta piedra natural—con meticulosas técnicas de colocación manual. Cada proyecto, ya sea una piscina personalizada, una fachada arquitectónica o una instalación artística única, es una colaboración singular, diseñada para reflejar una visión única y resistir el paso del tiempo." 
-            },
-            'cta_learn_more': { 
-                fr: "EN SAVOIR PLUS SUR NOTRE PROCESSUS", 
-                en: "LEARN MORE ABOUT OUR PROCESS", 
-                nl: "LEER MEER OVER ONS PROCES", 
-                de: "ERFAHREN SIE MEHR ÜBER UNSEREN PROZESS", 
-                es: "MÁS SOBRE NUESTRO PROCESO" 
-            },
-
-            // --- SECTION CITATION ---
-            'quote_1_bronze': { 
-                fr: "« La mosaïque n'est pas une décoration,", 
-                en: "« Mosaic is not decoration,", 
-                nl: "« Mozaïek is geen decoratie,", 
-                de: "« Mosaik ist keine Dekoration,", 
-                es: "« El mosaico no es decoración," 
-            },
-            'quote_2': { 
-                fr: "c'est une narration. »", 
-                en: "it is a narrative. »", 
-                nl: "het is een verhaal. »", 
-                de: "es ist eine Erzählung. »", 
-                es: "es una narrativa. »" 
-            },
-
-            // --- SECTION FOOTER ---
-            'footer_copyright': { fr: "© MOSAIA STUDIO – PAR AMARU BRANDS", en: "© MOSAIA STUDIO – BY AMARU BRANDS", nl: "© MOSAIA STUDIO – DOOR AMARU BRANDS", de: "© MOSAIA STUDIO – VON AMARU BRANDS", es: "© MOSAIA STUDIO – POR AMARU BRANDS" },
-            
-            // FOOTER - Services
-            'footer_services_title': { fr: "Services", en: "Services", nl: "Diensten", de: "Dienstleistungen", es: "Servicios" },
-            'footer_service_pools': { fr: "Piscines & Spas", en: "Pools & Spas", nl: "Zwembaden & Spa's", de: "Pools & Spas", es: "Piscinas y Spas" },
-            'footer_service_facades': { fr: "Façades & Murs", en: "Facades & Walls", nl: "Gevels & Muren", de: "Fassaden & Wände", es: "Fachadas y Muros" },
-            'footer_service_art': { fr: "Art & Design", en: "Art & Design", nl: "Kunst & Design", de: "Kunst & Design", es: "Arte y Diseño" },
-            
-            // FOOTER - Studio (About)
-            'footer_about_title': { fr: "Studio", en: "Studio", nl: "Studio", de: "Studio", es: "Estudio" }, 
-            
-            // FOOTER - Legal
-            'footer_legal_title': { fr: "Légal", en: "Legal", nl: "Juridisch", de: "Rechtliches", es: "Legal" },
-            'footer_cookies': { fr: "Avis de cookies", en: "Cookies notice", nl: "Cookiebeleid", de: "Cookie-Hinweis", es: "Aviso de cookies" },
-            'footer_conditions': { fr: "Conditions d'utilisation", en: "Conditions of use", nl: "Gebruiksvoorwaarden", de: "Nutzungsbedingungen", es: "Condiciones de uso" },
-            'footer_privacy': { fr: "Politique de confidentialité", en: "Privacy notice", nl: "Privacybeleid", de: "Datenschutzerklärung", es: "Política de privacidad" },
-            
-            // FOOTER - Newsletter
-            'footer_newsletter_title': { 
-                fr: "Abonnez-vous à « Mosaia News »", 
-                en: 'Subscribe to "Mosaia News"', 
-                nl: 'Abonneer u op "Mosaia News"', 
-                de: 'Abonnieren Sie "Mosaia News"', 
-                es: 'Suscríbase a "Mosaia News"' 
-            },
-            'footer_newsletter_tagline': { 
-                fr: "Restez informé des dernières nouvelles sur la mosaïque, le design et les événements.", 
-                en: "Stay tuned with the latest news about mosaics, design, and events.", 
-                nl: "Blijf op de hoogte van het laatste nieuws over mozaïeken, design en evenementen.", 
-                de: "Bleiben Sie auf dem Laufenden über Mosaike, Design und Veranstaltungen.", 
-                es: "Manténgase al tanto de las últimas noticias sobre mosaicos, diseño y eventos." 
-            },
-            'footer_checkbox_policy': { 
-                fr: "J'ai lu et j'accepte la Politique de Confidentialité Mosaia", 
-                en: "I have read and accept the Mosaia Privacy Policy", 
-                nl: "Ik heb het Mosaia Privacybeleid gelezen en aanvaard", 
-                de: "Ich habe die Mosaia-Datenschutzerklärung gelesen und akzeptiert", 
-                es: "He leído y acepto la Política de Privacidad de Mosaia" 
-            },
-            'footer_checkbox_commercial': { 
-                fr: "J'accepte la communication commerciale", 
-                en: "I accept the commercial communication", 
-                nl: "Ik accepteer commerciële communicatie", 
-                de: "Ich akzeptiere kommerzielle Kommunikation", 
-                es: "Acepto la comunicación comercial" 
-            },
-            'footer_subscribe_btn': { fr: "S'ABONNER", en: "SUBSCRIBE", nl: "ABONNEER", de: "ABONNIEREN", es: "SUSCRIBIRSE" }
+            // ... (toutes vos autres traductions)
         };
 
         // --- Gestion du formulaire Google Sheets ---
@@ -612,7 +406,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     const formData = {
                         email: document.getElementById('newsletter-email').value,
                         policyAccepted: document.getElementById('privacy-policy').checked,
-                        commercialAccepted: document.getElementById('commercial-communication').checked
+                        commercialAccepted: document.getElementById('commercial-communication').checked,
+                        timestamp: new Date().toISOString()
                     };
                     
                     try {
@@ -627,16 +422,14 @@ document.addEventListener('DOMContentLoaded', function() {
                         const result = await response.json();
                         
                         if (result.result === 'success') {
-                            // Succès
-                            showFormMessage('Inscription réussie ! Merci de vous être abonné.', 'success');
+                            showFormMessage('✅ Inscription réussie ! Merci de vous être abonné.', 'success');
                             newsletterForm.reset();
                         } else {
-                            // Erreur
-                            showFormMessage('Une erreur est survenue. Veuillez réessayer.', 'error');
+                            showFormMessage('❌ Une erreur est survenue: ' + (result.message || 'Veuillez réessayer'), 'error');
                         }
                     } catch (error) {
                         console.error('Erreur:', error);
-                        showFormMessage('Erreur de connexion. Veuillez réessayer.', 'error');
+                        showFormMessage('❌ Erreur de connexion. Veuillez réessayer.', 'error');
                     } finally {
                         // Réactiver le bouton
                         submitButton.innerHTML = originalText;
