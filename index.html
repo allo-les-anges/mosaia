@@ -349,37 +349,83 @@
 </footer>
 
 <script>
-const form = document.querySelector('form[action="#"]');
+<form id="subscriptionForm" action="#" method="POST" class="space-y-4">
+    <input type="email" name="email" placeholder="email" required
+        class="w-full bg-charcoal border border-pure-white/30 text-pure-white placeholder-pure-white/50 px-4 py-3 text-sm focus:border-bronze focus:ring-bronze transition-colors appearance-none">
 
-form.addEventListener('submit', async (e) => {
-    e.preventDefault(); // Empêche l'envoi classique
+    <div class="flex items-start space-x-2 text-sm">
+        <input type="checkbox" id="privacy-policy" name="privacyPolicy" required
+            class="mt-1 h-4 w-4 text-bronze bg-charcoal border-pure-white/30 focus:ring-bronze rounded">
+        <label for="privacy-policy" data-translate-key="footer_checkbox_policy" class="text-pure-white/80">
+            J'ai lu et accepté la politique de confidentialité de Mosaia
+        </label>
+    </div>
 
-    const email = form.querySelector('input[type="email"]').value;
-    const privacy = form.querySelector('#privacy-policy').checked;
-    const commercial = form.querySelector('#commercial-communication').checked;
+    <div class="flex items-start space-x-2 text-sm">
+        <input type="checkbox" id="commercial-communication" name="commercialCommunication"
+            class="mt-1 h-4 w-4 text-bronze bg-charcoal border-pure-white/30 focus:ring-bronze rounded">
+        <label for="commercial-communication" data-translate-key="footer_checkbox_commercial" class="text-pure-white/80">
+            J'accepte la communication commerciale
+        </label>
+    </div>
 
-    const data = { email, privacy, commercial };
+    <button type="submit" class="cta-secondary px-8 py-3 w-full mt-4 text-sm tracking-widest uppercase">
+        <span data-translate-key="footer_subscribe_btn">S'ABONNER</span>
+    </button>
+    <p id="formMessage" style="margin-top: 10px;"></p>
+</form>
 
-    try {
-        const response = await fetch('https://script.google.com/macros/s/AKfycbw-mfqXTtcN7tLCqP7dcyQzlbKFfea5nOm1izoy_Bbr8dQcoW16r_bDDTen26vqMkeo/exec', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data)
-        });
+<script>
+    const form = document.getElementById('subscriptionForm');
+    const formMessage = document.getElementById('formMessage');
+    // REMPLACEZ 'YOUR_DEPLOYMENT_EXEC_URL_HERE' par l'URL de déploiement de votre Google Apps Script
+    const appsScriptURL = 'https://script.google.com/macros/s/AKfycbw-mfqXTtcN7tLCqP7dcyQzlbKFfea5nOm1izoy_Bbr8dQcoW16r_bDDTen26vqMkeo/exec'; 
 
-        const result = await response.json();
+    form.addEventListener('submit', async function(e) {
+        e.preventDefault(); // Empêche la soumission classique du formulaire
 
-        if(result.status === 'success'){
-            alert("Merci pour votre inscription !");
-            form.reset();
-        } else {
-            alert("Erreur : " + result.message);
+        // 1. Récupérer les données du formulaire
+        const data = {
+            email: form.querySelector('input[type="email"]').value,
+            // Récupère l'état (true/false) des cases à cocher
+            privacyPolicy: form.querySelector('#privacy-policy').checked,
+            commercialCommunication: form.querySelector('#commercial-communication').checked
+        };
+
+        try {
+            formMessage.textContent = 'Envoi en cours...';
+            formMessage.style.color = 'inherit'; // Réinitialiser la couleur
+
+            // 2. Requête Fetch
+            const response = await fetch(appsScriptURL, {
+                method: 'POST',
+                mode: 'cors', // Indique que c'est une requête cross-origin
+                headers: {
+                    'Content-Type': 'application/json' // Crucial : on envoie du JSON
+                },
+                body: JSON.stringify(data) // Convertir l'objet JS en chaîne JSON
+            });
+
+            const result = await response.json();
+
+            // 3. Traiter la réponse
+            if (response.ok && result.status === 'success') {
+                formMessage.textContent = result.message; // "Formulaire reçu !"
+                formMessage.style.color = 'green';
+                form.reset(); // Vider le formulaire après succès
+            } else {
+                // Erreur côté serveur ou HTTP non-2xx
+                formMessage.textContent = 'Erreur : ' + (result.message || 'La soumission a échoué.');
+                formMessage.style.color = 'red';
+            }
+
+        } catch (error) {
+            // Erreur réseau ou blocage CORS
+            console.error('Erreur de Fetch :', error);
+            formMessage.textContent = 'Erreur réseau ou problème de CORS. Vérifiez la console.';
+            formMessage.style.color = 'red';
         }
-
-    } catch (err) {
-        alert("Impossible de soumettre le formulaire : " + err.message);
-    }
-});
+    });
 </script>
     
     <script>
