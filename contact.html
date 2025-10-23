@@ -139,26 +139,28 @@
                                 Chaque mosaïque commence par une conversation. Remplissez le formulaire ci-dessous pour démarrer votre projet.
                             </p>
                         </div>
-                        <form action="submit_form.php" method="POST"> <div class="mb-4">
-                                <input type="text" name="name" placeholder="Nom complet" class="w-full p-3 border border-gray-300 focus:outline-none focus:border-bronze focus:ring-1 focus:ring-bronze transition duration-300" required data-translate-key="form_placeholder_name">
-                            </div>
-                            <div class="mb-4">
-                                <input type="email" name="email" placeholder="Email" class="w-full p-3 border border-gray-300 focus:outline-none focus:border-bronze focus:ring-1 focus:ring-bronze transition duration-300" required data-translate-key="form_placeholder_email">
-                            </div>
-                            <div class="mb-4">
-                                <select name="project_type" class="w-full p-3 border border-gray-300 bg-pure-white focus:outline-none focus:border-bronze focus:ring-1 focus:ring-bronze transition duration-300" required>
-                                    <option value="" disabled selected data-translate-key="form_select_default">Type de projet (Liste déroulante)</option>
-                                    <option value="residentiel" data-translate-key="form_option_residentiel">Résidentiel</option>
-                                    <option value="commercial" data-translate-key="form_option_commercial">Commercial</option>
-                                    <option value="public" data-translate-key="form_option_public">Public (Civil & Public)</option>
-                                    <option value="artwork" data-translate-key="form_option_artwork">Œuvre d'Art</option>
-                                </select>
-                            </div>
-                            <div class="mb-6">
-                                <textarea name="message" placeholder="Message (Décrivez votre projet)" rows="6" class="w-full p-3 border border-gray-300 focus:outline-none focus:border-bronze focus:ring-1 focus:ring-bronze transition duration-300" data-translate-key="form_placeholder_message"></textarea>
-                            </div>
-                            <button type="submit" class="cta-primary w-full px-8 py-4 text-pure-white tracking-widest uppercase" data-translate-key="form_button">ENVOYER MA DEMANDE</button>
-                        </form>
+                       <form id="contactForm" action="#" method="GET"> 
+    <div class="mb-4">
+        <input type="text" name="name" placeholder="Nom complet" class="w-full p-3 border border-gray-300 focus:outline-none focus:border-bronze focus:ring-1 focus:ring-bronze transition duration-300" required data-translate-key="form_placeholder_name">
+    </div>
+    <div class="mb-4">
+        <input type="email" name="email" placeholder="Email" class="w-full p-3 border border-gray-300 focus:outline-none focus:border-bronze focus:ring-1 focus:ring-bronze transition duration-300" required data-translate-key="form_placeholder_email">
+    </div>
+    <div class="mb-4">
+        <select name="project_type" class="w-full p-3 border border-gray-300 bg-pure-white focus:outline-none focus:border-bronze focus:ring-1 focus:ring-bronze transition duration-300" required>
+            <option value="" disabled selected data-translate-key="form_select_default">Type de projet (Liste déroulante)</option>
+            <option value="residentiel" data-translate-key="form_option_residentiel">Résidentiel</option>
+            <option value="commercial" data-translate-key="form_option_commercial">Commercial</option>
+            <option value="public" data-translate-key="form_option_public">Public (Civil & Public)</option>
+            <option value="artwork" data-translate-key="form_option_artwork">Œuvre d'Art</option>
+        </select>
+    </div>
+    <div class="mb-6">
+        <textarea name="message" placeholder="Message (Décrivez votre projet)" rows="6" class="w-full p-3 border border-gray-300 focus:outline-none focus:border-bronze focus:ring-1 focus:ring-bronze transition duration-300" data-translate-key="form_placeholder_message"></textarea>
+    </div>
+    <button type="submit" class="cta-primary w-full px-8 py-4 text-pure-white tracking-widest uppercase" data-translate-key="form_button">ENVOYER MA DEMANDE</button>
+    <p id="contactFormMessage" class="text-center text-sm font-body mt-4"></p> 
+</form>
                     </div>
 
                     <div class="mt-12 lg:mt-0 lg:p-10 fade-in-up delay-1">
