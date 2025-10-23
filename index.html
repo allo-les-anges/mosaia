@@ -533,71 +533,84 @@
             updateNavigationLinks();
             
                                     // --- CODE DE SOUMISSION DU FORMULAIRE AVEC JSONP ---
-            const form = document.getElementById('subscriptionForm');
-            const formMessage = document.getElementById('formMessage');
+const form = document.getElementById('subscriptionForm');
+const formMessage = document.getElementById('formMessage');
 
-            if (form && appsScriptURL.includes('https://script.google.com/macros/')) {
-                form.addEventListener('submit', function(e) {
-                    e.preventDefault(); 
+if (form && appsScriptURL.includes('https://script.google.com/macros/')) {
+    form.addEventListener('submit', function(e) {
+        e.preventDefault(); 
 
-                    // 1. Récupérer les données
-                    const emailValue = form.querySelector('input[name="email"]').value;
-                    const policyChecked = form.querySelector('input[name="privacyPolicy"]').checked;
-                    const commercialChecked = form.querySelector('input[name="commercialCommunication"]').checked;
+        // 1. Récupérer les données
+        const emailValue = form.querySelector('input[name="email"]').value;
+        const policyChecked = form.querySelector('input[name="privacyPolicy"]').checked;
+        const commercialChecked = form.querySelector('input[name="commercialCommunication"]').checked;
 
-                    // 2. Construire les paramètres d'URL (Query String)
-                    const params = new URLSearchParams({
-                        email: emailValue,
-                        privacyPolicy: policyChecked ? 'on' : 'off', 
-                        commercialCommunication: commercialChecked ? 'on' : 'off',
-                        formType: 'Newsletter',
-                        callback: 'handleFormResponse' // Callback pour JSONP
-                    });
-                    
-                    // 3. Créer un script tag pour JSONP
-                    const script = document.createElement('script');
-                    script.src = `${appsScriptURL}?${params.toString()}`;
-                    
-                    // 4. Définir la fonction callback globale
-                    window.handleFormResponse = function(response) {
-                            console.log('Response received:', response); // ⭐ Debug
-                        // ⭐ CORRECTION : "Sending..." est automatiquement remplacé ici
-                        if (response.status === 'success') {
-                            formMessage.textContent = response.message; 
-                            formMessage.style.color = '#C99B4F'; 
-                            form.reset();
-                            
-                            // Masquer le message après 3 secondes
-                            setTimeout(() => {
-                                formMessage.textContent = '';
-                            }, 3000);
-                            
-                        } else {
-                            formMessage.textContent = 'Error: ' + (response.message || 'Submission failed.');
-                            formMessage.style.color = 'red';
-                            
-                            // ⭐ CORRECTION : Masquer aussi les erreurs après 5 secondes
-                            setTimeout(() => {
-                                formMessage.textContent = '';
-                            }, 5000);
-                        }
-                        // Nettoyer
-                        document.head.removeChild(script);
-                        delete window.handleFormResponse;
-                    };
-
-                    // Afficher "Sending..." pendant l'envoi
-                    formMessage.textContent = 'Sending...';
-                    formMessage.style.color = '#FFFFFF';
-                    
-                    // 5. Ajouter le script à la page pour déclencher la requête
-                    document.head.appendChild(script);
-                });
-            } else if (form) {
-                console.warn("L'URL Apps Script est incorrecte ou manquante.");
-                formMessage.textContent = "Warning: Form not functional. Update the Apps Script URL.";
-                formMessage.style.color = 'yellow';
+        // 2. Construire les paramètres d'URL (Query String)
+        const params = new URLSearchParams({
+            email: emailValue,
+            privacyPolicy: policyChecked ? 'on' : 'off', 
+            commercialCommunication: commercialChecked ? 'on' : 'off',
+            formType: 'Newsletter',
+            callback: 'handleFormResponse'
+        });
+        
+        // 3. Créer un script tag pour JSONP
+        const script = document.createElement('script');
+        script.src = `${appsScriptURL}?${params.toString()}`;
+        
+        // 4. Définir la fonction callback globale AVANT d'ajouter le script
+        window.handleFormResponse = function(response) {
+            console.log('Response received:', response);
+            
+            // ⭐ TOUJOURS EFFACER LE MESSAGE D'ABORD
+            formMessage.textContent = '';
+            
+            if (response.status === 'success') {
+                formMessage.textContent = response.message; 
+                formMessage.style.color = '#C99B4F';
+                form.reset();
+                
+                setTimeout(() => {
+                    formMessage.textContent = '';
+                }, 3000);
+            } else {
+                formMessage.textContent = 'Error: ' + (response.message || 'Submission failed.');
+                formMessage.style.color = 'red';
+                
+                setTimeout(() => {
+                    formMessage.textContent = '';
+                }, 5000);
             }
+            
+            // Nettoyer
+            if (script.parentNode) {
+                script.parentNode.removeChild(script);
+            }
+            delete window.handleFormResponse;
+        };
+
+        // Afficher "Sending..." et ajouter le script
+        formMessage.textContent = 'Sending...';
+        formMessage.style.color = '#FFFFFF';
+        
+        console.log('Starting request to:', script.src); // Debug
+        
+        document.head.appendChild(script);
+
+        // ⭐ TIMEOUT DE SÉCURITÉ
+        setTimeout(() => {
+            if (window.handleFormResponse) {
+                console.log('Request timeout');
+                formMessage.textContent = 'Error: Request timeout';
+                formMessage.style.color = 'red';
+                if (script.parentNode) {
+                    script.parentNode.removeChild(script);
+                }
+                delete window.handleFormResponse;
+            }
+        }, 15000);
+    });
+}
         });
     </script>
 </body>
