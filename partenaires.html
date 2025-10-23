@@ -161,25 +161,34 @@
 </div>
 
                 <div class="max-w-2xl mx-auto p-10 bg-light-gray shadow-2xl fade-in-up delay-5">
-                    <h3 class="text-3xl font-title font-bold uppercase mb-8 text-center text-charcoal" data-translate-key="form_title">Candidature Partenaire</h3>
-                    <form>
-                        <div class="mb-4">
-                            <input type="text" placeholder="Nom Société" class="w-full p-3 border border-gray-300 focus:border-bronze focus:ring-bronze transition duration-300" required data-translate-key="form_placeholder_company">
-                        </div>
-                        <div class="mb-4">
-                            <input type="text" placeholder="Contact" class="w-full p-3 border border-gray-300 focus:border-bronze focus:ring-bronze transition duration-300" required data-translate-key="form_placeholder_contact">
-                        </div>
-                        <div class="mb-4">
-                            <input type="email" placeholder="Email" class="w-full p-3 border border-gray-300 focus:border-bronze focus:ring-bronze transition duration-300" required data-translate-key="form_placeholder_email">
-                        </div>
-                        <div class="mb-4">
-                            <input type="text" placeholder="Rôle / Profession" class="w-full p-3 border border-gray-300 focus:border-bronze focus:ring-bronze transition duration-300" required data-translate-key="form_placeholder_role">
-                        </div>
-                        <div class="mb-6">
-                            <textarea placeholder="Message (Décrivez votre activité et vos besoins)" rows="4" class="w-full p-3 border border-gray-300 focus:border-bronze focus:ring-bronze transition duration-300" data-translate-key="form_placeholder_message"></textarea>
-                        </div>
-                        <button type="submit" class="cta-primary w-full px-8 py-3 text-pure-white tracking-widest uppercase" data-translate-key="form_button">REJOINDRE LE RÉSEAU</button>
-                    </form>
+    <h3 class="text-3xl font-title font-bold uppercase mb-8 text-center text-charcoal" data-translate-key="form_title">Candidature Partenaire</h3>
+    
+    <form id="partnerForm" action="#" method="GET"> 
+        
+        <div class="mb-4">
+            <input type="text" name="company" placeholder="Nom Société" class="w-full p-3 border border-gray-300 focus:border-bronze focus:ring-bronze transition duration-300" required data-translate-key="form_placeholder_company">
+        </div>
+        
+        <div class="mb-4">
+            <input type="text" name="contactName" placeholder="Contact" class="w-full p-3 border border-gray-300 focus:border-bronze focus:ring-bronze transition duration-300" required data-translate-key="form_placeholder_contact">
+        </div>
+        
+        <div class="mb-4">
+            <input type="email" name="email" placeholder="Email" class="w-full p-3 border border-gray-300 focus:border-bronze focus:ring-bronze transition duration-300" required data-translate-key="form_placeholder_email">
+        </div>
+        
+        <div class="mb-4">
+            <input type="text" name="role" placeholder="Rôle / Profession" class="w-full p-3 border border-gray-300 focus:border-bronze focus:ring-bronze transition duration-300" required data-translate-key="form_placeholder_role">
+        </div>
+        
+        <div class="mb-6">
+            <textarea name="message" placeholder="Message (Décrivez votre activité et vos besoins)" rows="4" class="w-full p-3 border border-gray-300 focus:border-bronze focus:ring-bronze transition duration-300" data-translate-key="form_placeholder_message"></textarea>
+        </div>
+        
+        <button type="submit" class="cta-primary w-full px-8 py-3 text-pure-white tracking-widest uppercase" data-translate-key="form_button">REJOINDRE LE RÉSEAU</button>
+        
+        <p id="partnerFormMessage" class="text-center text-sm font-body mt-4"></p> 
+    </form>
                 </div>
             </div>
         </section>
