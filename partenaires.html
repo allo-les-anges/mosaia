@@ -538,13 +538,16 @@ function toggleMobileMenu() {
 
 // Initialisation de la langue, du menu et des animations au chargement de la page
 document.addEventListener('DOMContentLoaded', () => {
-    initializeLanguage(); // DOIT être appelé en premier pour la traduction
-    initializeAnimations();
-    // Initialisation du menu mobile après l'initialisation de la langue
-    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-    if (mobileMenuBtn) {
-        mobileMenuBtn.addEventListener('click', toggleMobileMenu);
-    }
+    initializeLanguage(); // DOIT être appelé en premier pour la traduction
+    // 🚀 AJOUTEZ CETTE LIGNE : INITIALISATION DU FORMULAIRE
+    initializePartnerForm(); 
+    initializeAnimations();
+    
+    // Initialisation du menu mobile après l'initialisation de la langue
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    if (mobileMenuBtn) {
+        mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+    }
 });
 </script>
 </body>
