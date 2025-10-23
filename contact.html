@@ -400,10 +400,9 @@
         });
     }
 
-// --- LOGIQUE DU FORMULAIRE CONTACT (Adaptée du formulaire Partenaires) ---
 // --- LOGIQUE DU FORMULAIRE CONTACT AVEC JSONP ---
 function initializeContactForm() {
-    // 🚨 UTILISEZ LA BONNE URL APPS SCRIPT
+    // 🚨 UTILISEZ LA BONNE URL APPS SCRIPT (LA NOUVELLE)
     const contactAppsScriptURL = 'https://script.google.com/macros/s/AKfycbzgtsVi8TtegNsDAowAZOXu3jErza_M83eHjL7LLz3QVoRDrzeWXmTQIQyl_VDDILhw/exec';
     
     const form = document.getElementById('contactForm');
@@ -419,7 +418,7 @@ function initializeContactForm() {
                 email: form.querySelector('input[name="email"]').value,
                 project_type: form.querySelector('select[name="project_type"]').value,
                 message: form.querySelector('textarea[name="message"]').value,
-                formType: 'Devis', // ⭐ IMPORTANT : pour diriger vers la bonne feuille
+                formType: 'Devis', // ⭐ IMPORTANT : pour diriger vers la feuille "Contacts"
                 callback: 'handleContactResponse' // ⭐ Callback JSONP
             };
 
