@@ -402,13 +402,16 @@
 
 // --- LOGIQUE DU FORMULAIRE CONTACT (Adaptée du formulaire Partenaires) ---
 function initializeContactForm() {
-    // ⚠️ REMPLACEZ PAR VOTRE NOUVELLE URL EXEC CONTACT ⚠️
-    // L'URL DOIT ÊTRE UN NOUVEAU DÉPLOIEMENT OU L'URL DE VOTRE ANCIEN SCRIPT MULTI-FORMULAIRE
-    const contactAppsScriptURL = 'https://script.google.com/macros/s/AKfycbw-XXXXXXXXXX/exec'; // Remplacer par la VRAIE URL
-    
-    const form = document.getElementById('contactForm');
-    const formMessage = document.getElementById('contactFormMessage'); 
+    // ... (contactAppsScriptURL défini ici) ...
+    const form = document.getElementById('contactForm');
+    const formMessage = document.getElementById('contactFormMessage'); 
 
+    // AJOUTEZ CES LOGS
+    console.log("Tentative d'initialisation du formulaire de contact.");
+    console.log("Formulaire trouvé (doit être un objet HTML) :", form);
+    console.log("URL Apps Script utilisée :", contactAppsScriptURL);
+    // FIN DES LOGS
+    
     // Vérifie si le formulaire et l'URL sont prêts
     if (form && contactAppsScriptURL.includes('https://script.google.com/macros/')) {
         form.addEventListener('submit', async function(e) {
@@ -537,10 +540,11 @@ function initializeContactForm() {
         });
 
         // --- 4. Initialisation ---
-        initializeLanguage();
-        // 🚀 AJOUTEZ CETTE LIGNE 🚀
-        initializeContactForm();
-    });
+    initializeLanguage();
+    console.log("Appel de initializeContactForm..."); // Ajout de ce log
+    initializeContactForm();
+    console.log("initializeContactForm appelé."); // Ajout de ce log
+    });
 </script>
 </body>
 </html>
