@@ -532,7 +532,7 @@
             // ensure nav links use BASE_URL
             updateNavigationLinks();
             
-                        // --- CODE DE SOUMISSION DU FORMULAIRE AVEC JSONP ---
+                                    // --- CODE DE SOUMISSION DU FORMULAIRE AVEC JSONP ---
             const form = document.getElementById('subscriptionForm');
             const formMessage = document.getElementById('formMessage');
 
@@ -560,6 +560,7 @@
                     
                     // 4. Définir la fonction callback globale
                     window.handleFormResponse = function(response) {
+                        // ⭐ CORRECTION : "Sending..." est automatiquement remplacé ici
                         if (response.status === 'success') {
                             formMessage.textContent = response.message; 
                             formMessage.style.color = '#C99B4F'; 
@@ -573,13 +574,18 @@
                         } else {
                             formMessage.textContent = 'Error: ' + (response.message || 'Submission failed.');
                             formMessage.style.color = 'red';
+                            
+                            // ⭐ CORRECTION : Masquer aussi les erreurs après 5 secondes
+                            setTimeout(() => {
+                                formMessage.textContent = '';
+                            }, 5000);
                         }
                         // Nettoyer
                         document.head.removeChild(script);
                         delete window.handleFormResponse;
                     };
 
-                    // Afficher "Envoi en cours" seulement pendant l'envoi
+                    // Afficher "Sending..." pendant l'envoi
                     formMessage.textContent = 'Sending...';
                     formMessage.style.color = '#FFFFFF';
                     
