@@ -402,68 +402,65 @@
 
 // --- LOGIQUE DU FORMULAIRE CONTACT (Adaptée du formulaire Partenaires) ---
 function initializeContactForm() {
-    // ... (contactAppsScriptURL défini ici) ...
+    // 🚨 CORRECTION : DÉFINISSEZ L'URL AU DÉBUT DE LA FONCTION (PORTÉE LOCALE CORRECTE)
+    // Utilisez l'URL que vous m'avez fournie.
+    const contactAppsScriptURL = 'https://script.google.com/macros/s/AKfycbw-mfqXTtcN7tLCqP7dcyQzlbKFfea5nOm1izoy_Bbr8dQcoW16r_bDDTen26vqMkeo/exec';
+    
     const form = document.getElementById('contactForm');
     const formMessage = document.getElementById('contactFormMessage'); 
 
-    // AJOUTEZ CES LOGS
-    console.log("Tentative d'initialisation du formulaire de contact.");
-    console.log("Formulaire trouvé (doit être un objet HTML) :", form);
-    console.log("URL Apps Script utilisée :", contactAppsScriptURL);
-    // FIN DES LOGS
-    
-    // Vérifie si le formulaire et l'URL sont prêts
-    if (form && contactAppsScriptURL.includes('https://script.google.com/macros/')) {
-        form.addEventListener('submit', async function(e) {
-            e.preventDefault(); 
+    // Ligne 415 // Vérifie si le formulaire et l'URL sont prêts
+    if (form && contactAppsScriptURL.includes('https://script.google.com/macros/')) {
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault(); 
 
-            // 1. Récupération des données par leur attribut 'name'
-            const data = {
-                // Clés du formulaire de contact (doivent correspondre aux paramètres GAS)
-                name: form.querySelector('input[name="name"]').value,
-                email: form.querySelector('input[name="email"]').value,
-                project_type: form.querySelector('select[name="project_type"]').value,
-                message: form.querySelector('textarea[name="message"]').value
-            };
+            // 1. Récupération des données par leur attribut 'name'
+            const data = {
+                // Clés du formulaire de contact (doivent correspondre aux paramètres GAS)
+                name: form.querySelector('input[name="name"]').value,
+                email: form.querySelector('input[name="email"]').value,
+                project_type: form.querySelector('select[name="project_type"]').value,
+                message: form.querySelector('textarea[name="message"]').value
+            };
 
-            // 2. Construire les paramètres d'URL (Query String)
-            const params = new URLSearchParams(data);
-            const fullUrl = `${contactAppsScriptURL}?${params.toString()}`;
+            // 2. Construire les paramètres d'URL (Query String)
+            const params = new URLSearchParams(data);
+            const fullUrl = `${contactAppsScriptURL}?${params.toString()}`;
 
-            try {
-                formMessage.textContent = 'Envoi en cours...';
-                formMessage.style.color = '#1A1A1A'; 
+            try {
+                formMessage.textContent = 'Envoi en cours...';
+                formMessage.style.color = '#1A1A1A'; 
 
-                // 3. Requête Fetch en utilisant la méthode GET (pour éviter le CORS)
-                const response = await fetch(fullUrl, {
-                    method: 'GET',
-                    mode: 'cors'
-                });
+                // 3. Requête Fetch en utilisant la méthode GET (pour éviter le CORS)
+                const response = await fetch(fullUrl, {
+                    method: 'GET',
+                    mode: 'cors'
+                });
 
-                const result = await response.json(); 
+                const result = await response.json(); 
 
-                if (result.status === 'success') {
-                    formMessage.textContent = result.message; 
-                    formMessage.style.color = '#C99B4F'; // Succès en Bronze
-                    form.reset();
-                } else {
-                    formMessage.textContent = 'Erreur serveur: ' + (result.message || 'La soumission a échoué.');
-                    formMessage.style.color = 'red';
-                }
+                if (result.status === 'success') {
+                    formMessage.textContent = result.message; 
+                    formMessage.style.color = '#C99B4F'; // Succès en Bronze
+                    form.reset();
+                } else {
+                    formMessage.textContent = 'Erreur serveur: ' + (result.message || 'La soumission a échoué.');
+                    formMessage.style.color = 'red';
+                }
 
-            } catch (error) {
-                console.error('Erreur de Fetch:', error);
-                formMessage.textContent = 'Erreur réseau ou déploiement Apps Script. (Vérifiez la console)';
-                formMessage.style.color = 'red';
-            }
-        });
-    } else if (form) {
-        console.warn("L'URL Apps Script Contact est incorrecte ou manquante. Le formulaire est désactivé.");
-        formMessage.textContent = "Erreur: Le service de formulaire est indisponible.";
-        formMessage.style.color = 'red';
-    }
+            } catch (error) {
+                console.error('Erreur de Fetch:', error);
+                formMessage.textContent = 'Erreur réseau ou déploiement Apps Script. (Vérifiez la console)';
+                formMessage.style.color = 'red';
+            }
+        });
+    } else if (form) {
+        console.warn("L'URL Apps Script Contact est incorrecte ou manquante. Le formulaire est désactivé.");
+        formMessage.textContent = "Erreur: Le service de formulaire est indisponible.";
+        formMessage.style.color = 'red';
+    }
 }
-        
+ 
     // --- LOGIQUE D'ANIMATION (Observer) ---
     const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
     const observer = new IntersectionObserver((entries) => {
