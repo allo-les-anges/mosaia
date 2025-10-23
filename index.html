@@ -36,17 +36,17 @@
         .cta-primary { background: linear-gradient(135deg, #C99B4F, #B8894A); transition: all 0.4s ease; position: relative; overflow: hidden; border: 1px solid rgba(201,155,79,0.3); font-family:'Montserrat',sans-serif; font-weight:600; }
         .cta-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(201,155,79,0.2); background:#1A1A1A; color:#C99B4F; }
         .cta-secondary { 
-    border: 2px solid #FFFFFF; /* ⭐ CHANGÉ : Cadre/Bordure en Blanc */
-    color: #FFFFFF; /* ⭐ CHANGÉ : Texte en Blanc */
-    transition: all 0.4s ease; 
-    font-family:'Montserrat',sans-serif; 
-    font-weight:500; 
-}
-.cta-secondary:hover { 
-    background: #FFFFFF; /* CHANGÉ : Fond Blanc au survol (pour s'harmoniser avec la bordure blanche) */
-    color: #1A1A1A; /* Texte Charbon au survol (pour être lisible sur le fond blanc) */
-    transform: translateY(-2px); 
-}
+            border: 2px solid #FFFFFF;
+            color: #FFFFFF;
+            transition: all 0.4s ease; 
+            font-family:'Montserrat',sans-serif; 
+            font-weight:500; 
+        }
+        .cta-secondary:hover { 
+            background: #FFFFFF;
+            color: #1A1A1A;
+            transform: translateY(-2px); 
+        }
 
         .nav-link { position: relative; transition: all 0.3s ease; }
         .nav-link:hover { color: #C99B4F; }
@@ -65,7 +65,7 @@
         .rotate-180 { transform: rotate(180deg); }
 
         /* HERO CAROUSEL styles */
-        .hero-carousel { position: relative; width: 100%; height: calc(100vh - 80px); /* subtract header height approx */ overflow: hidden; }
+        .hero-carousel { position: relative; width: 100%; height: calc(100vh - 80px); overflow: hidden; }
         .carousel-slide { position: absolute; inset: 0; opacity: 0; transition: opacity 1.2s ease-in-out; }
         .carousel-slide img { width: 100%; height: 100%; object-fit: cover; display:block; }
         .carousel-slide.active { opacity: 1; z-index: 10; }
@@ -86,24 +86,23 @@
         /* header */
         header { background-color: rgba(255,255,255,0.98); backdrop-filter: blur(6px); position: sticky; top:0; z-index:40; border-bottom: 1px solid rgba(26,26,26,0.05); }
 
-        /* --- HERO MAIN BUTTON (bouton principal blanc) --- */
-.hero-main-btn {
-  border: 2px solid white;
-  color: white;
-  background: transparent;
-  padding: 0.75rem 1.5rem;
-  border-radius: 9999px;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  transition: all 0.3s ease;
-}
-
-.hero-main-btn:hover {
-  background: white;
-  color: #1A1A1A;
-  transform: translateY(-2px);
-}
+        /* Form messages */
+        .form-message {
+            padding: 12px;
+            border-radius: 6px;
+            margin-top: 16px;
+            display: none;
+        }
+        .form-success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .form-error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
     </style>
 </head>
 <body class="bg-pure-white font-body text-charcoal">
@@ -114,7 +113,8 @@
             <div class="flex items-center justify-between h-20">
                 <div class="flex items-center space-x-4">
                     <a href="index.html" data-page-name="index.html" class="flex items-center">
-<img src="https://raw.githubusercontent.com/allo-les-anges/mosaia/main/mosaia-assets/logo_mosaia_1.png" alt="Mosaia Studio Logo 3D" class="h-12 lg:h-14.4 w-auto"></a>
+                        <img src="https://raw.githubusercontent.com/allo-les-anges/mosaia/main/mosaia-assets/logo_mosaia_1.png" alt="Mosaia Studio Logo 3D" class="h-12 lg:h-14.4 w-auto">
+                    </a>
                 </div>
 
                 <nav class="hidden md:block">
@@ -142,7 +142,6 @@
                                 <a href="#" class="block px-4 py-2 text-sm text-charcoal hover:bg-light-gray lang-option" role="menuitem" data-lang="es">Español</a>
                             </div>
                         </div>
-
                     </div>
                 </nav>
 
@@ -180,7 +179,7 @@
         </div>
     </header>
 
-    <!-- ====== HERO: CAROUSEL (remplace le background statique) ====== -->
+    <!-- ====== HERO: CAROUSEL ====== -->
     <main>
         <section class="hero-carousel" aria-label="Hero carousel">
             <div class="carousel-slide active" role="group" aria-roledescription="slide" aria-label="Slide 1 of 3">
@@ -269,7 +268,8 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
 
                 <div>
-                    <div class="flex space-x-6 mb-12"> <a href="#" class="text-pure-white hover:text-bronze transition-colors duration-300" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                    <div class="flex space-x-6 mb-12">
+                        <a href="#" class="text-pure-white hover:text-bronze transition-colors duration-300" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
                             <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM12 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
                         </a>
                         <a href="#" class="text-pure-white hover:text-bronze transition-colors duration-300" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
@@ -311,7 +311,7 @@
                     </div>
                 </div>
 
-                <!-- NEWSLETTER FORM - UNIQUE FORM -->
+                <!-- NEWSLETTER FORM - GOOGLE SHEETS INTEGRATION -->
                 <div>
                     <h3 class="text-4xl font-title font-bold text-pure-white mb-3" data-translate-key="footer_newsletter_title">
                         Subscribe to "Mosaia News"
@@ -320,15 +320,11 @@
                         Stay tuned with the latest news about mosaics, design, and events.
                     </p>
 
-                    <form 
-                        action="https://formsubmit.co/gm.harchies@gmail.com" 
-                        method="POST" 
-                        target="_blank" 
-                        class="space-y-4"
-                    >
+                    <form id="newsletter-form" class="space-y-4">
                         <input 
                             type="email" 
-                            name="Email"  
+                            id="newsletter-email"
+                            name="email"  
                             placeholder="email" 
                             required 
                             class="w-full bg-charcoal border border-pure-white/30 text-pure-white placeholder-pure-white/50 px-4 py-3 text-sm focus:border-bronze focus:ring-bronze transition-colors appearance-none"
@@ -338,7 +334,7 @@
                             <input 
                                 type="checkbox" 
                                 id="privacy-policy" 
-                                name="Policy_Accepted"  
+                                name="policyAccepted"
                                 required
                                 class="mt-1 h-4 w-4 text-bronze bg-charcoal border-pure-white/30 focus:ring-bronze rounded"
                             >
@@ -351,7 +347,7 @@
                             <input 
                                 type="checkbox" 
                                 id="commercial-communication" 
-                                name="Commercial_Communication"
+                                name="commercialAccepted"
                                 class="mt-1 h-4 w-4 text-bronze bg-charcoal border-pure-white/30 focus:ring-bronze rounded"
                             >
                             <label for="commercial-communication" data-translate-key="footer_checkbox_commercial" class="text-pure-white/80">
@@ -363,8 +359,8 @@
                             <span data-translate-key="footer_subscribe_btn">SUBSCRIBE</span>
                         </button>
 
-                        <input type="hidden" name="_next" value="https://allo-les-anges.github.io/mosaia/index.html">
-                        <input type="hidden" name="_subject" value="New Mosaia News Subscription">
+                        <!-- Messages de statut -->
+                        <div id="form-message" class="form-message"></div>
                     </form>
                 </div>
             </div>
@@ -379,6 +375,9 @@
         // --- CONFIGURATION ---
         const BASE_URL = 'https://allo-les-anges.github.io/mosaia/';
         const DEFAULT_LANG = 'en';
+        
+        // REMPLACEZ CETTE URL PAR VOTRE URL GOOGLE APPS SCRIPT
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/VOTRE_ID_SCRIPT/exec';
 
         const translations = {
             // --- NAVIGATION / TITRE DE PAGE ---
@@ -511,90 +510,154 @@
             'footer_subscribe_btn': { fr: "S'ABONNER", en: "SUBSCRIBE", nl: "ABONNEER", de: "ABONNIEREN", es: "SUSCRIBIRSE" }
         };
 
-        // --- Update navigation links to GitHub Pages absolute paths ---
-        function updateNavigationLinks() {
-            document.querySelectorAll('a[data-page-name]').forEach(link => {
-                const pageName = link.getAttribute('data-page-name');
-                if (pageName) link.href = BASE_URL + pageName;
-            });
-        }
-
-        // --- Translation & persistence ---
-        function updateContentTranslations(lang) {
-            document.documentElement.lang = lang;
-            const pageTitleKey = document.querySelector('title').getAttribute('data-translate-key') || 'page_title';
-            if (translations[pageTitleKey] && translations[pageTitleKey][lang]) {
-                document.title = translations[pageTitleKey][lang];
-            } else {
-                document.title = translations['page_title'][DEFAULT_LANG];
+        // --- Gestion du formulaire Google Sheets ---
+        document.addEventListener('DOMContentLoaded', function() {
+            const newsletterForm = document.getElementById('newsletter-form');
+            const formMessage = document.getElementById('form-message');
+            
+            if (newsletterForm) {
+                newsletterForm.addEventListener('submit', async function(e) {
+                    e.preventDefault();
+                    
+                    const submitButton = newsletterForm.querySelector('button[type="submit"]');
+                    const originalText = submitButton.innerHTML;
+                    
+                    // Afficher le chargement
+                    submitButton.innerHTML = 'Envoi en cours...';
+                    submitButton.disabled = true;
+                    
+                    // Récupérer les données du formulaire
+                    const formData = {
+                        email: document.getElementById('newsletter-email').value,
+                        policyAccepted: document.getElementById('privacy-policy').checked,
+                        commercialAccepted: document.getElementById('commercial-communication').checked
+                    };
+                    
+                    try {
+                        const response = await fetch(GOOGLE_SCRIPT_URL, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify(formData)
+                        });
+                        
+                        const result = await response.json();
+                        
+                        if (result.result === 'success') {
+                            // Succès
+                            showFormMessage('Inscription réussie ! Merci de vous être abonné.', 'success');
+                            newsletterForm.reset();
+                        } else {
+                            // Erreur
+                            showFormMessage('Une erreur est survenue. Veuillez réessayer.', 'error');
+                        }
+                    } catch (error) {
+                        console.error('Erreur:', error);
+                        showFormMessage('Erreur de connexion. Veuillez réessayer.', 'error');
+                    } finally {
+                        // Réactiver le bouton
+                        submitButton.innerHTML = originalText;
+                        submitButton.disabled = false;
+                    }
+                });
             }
-
-            document.querySelectorAll('[data-translate-key]').forEach(el => {
-                const key = el.getAttribute('data-translate-key');
-                if (translations[key]) {
-                    el.innerHTML = translations[key][lang] || translations[key][DEFAULT_LANG] || el.innerHTML;
+            
+            function showFormMessage(message, type) {
+                if (formMessage) {
+                    formMessage.textContent = message;
+                    formMessage.className = 'form-message ' + (type === 'success' ? 'form-success' : 'form-error');
+                    formMessage.style.display = 'block';
+                    
+                    // Masquer le message après 5 secondes
+                    setTimeout(() => {
+                        formMessage.style.display = 'none';
+                    }, 5000);
                 }
-            });
-
-            // mark active language on UI
-            document.querySelectorAll('.lang-option, .lang-button[data-lang]').forEach(btn => {
-                btn.classList.remove('active');
-                if (btn.getAttribute('data-lang') === lang) btn.classList.add('active');
-            });
-
-            // Update current-lang display
-            const cur = document.getElementById('current-lang-display');
-            if (cur) cur.textContent = lang.toUpperCase();
-
-            // update links for github pages
-            updateNavigationLinks();
-        }
-
-        function switchLanguage(lang) {
-            localStorage.setItem('userLanguage', lang);
-            updateContentTranslations(lang);
-
-            // close menus if open
-            const langMenu = document.getElementById('lang-menu');
-            const dropdownArrow = document.getElementById('dropdown-arrow');
-            const langDropdownBtn = document.getElementById('lang-dropdown-btn');
-            const mobileMenu = document.getElementById('mobileMenu');
-            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-
-            if (langMenu && !langMenu.classList.contains('hidden')) {
-                langMenu.classList.add('hidden');
-                dropdownArrow.classList.remove('rotate-180');
-                if (langDropdownBtn) langDropdownBtn.setAttribute('aria-expanded', 'false');
             }
-            if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
-                mobileMenu.classList.add('hidden');
-                if (mobileMenuBtn) mobileMenuBtn.setAttribute('aria-expanded', 'false');
-            }
-        }
 
-        // --- CAROUSEL logic (will be initialized after DOM ready) ---
-        let carouselInterval = null;
-        function initCarousel({ interval = 5000 } = {}) {
-            const slides = document.querySelectorAll('.carousel-slide');
-            if (!slides || slides.length === 0) return;
-            let index = 0;
-            function show(i) {
-                slides.forEach((s, idx) => s.classList.toggle('active', idx === i));
+            // --- Update navigation links to GitHub Pages absolute paths ---
+            function updateNavigationLinks() {
+                document.querySelectorAll('a[data-page-name]').forEach(link => {
+                    const pageName = link.getAttribute('data-page-name');
+                    if (pageName) link.href = BASE_URL + pageName;
+                });
             }
-            show(index);
-            carouselInterval = setInterval(() => {
-                index = (index + 1) % slides.length;
+
+            // --- Translation & persistence ---
+            function updateContentTranslations(lang) {
+                document.documentElement.lang = lang;
+                const pageTitleKey = document.querySelector('title').getAttribute('data-translate-key') || 'page_title';
+                if (translations[pageTitleKey] && translations[pageTitleKey][lang]) {
+                    document.title = translations[pageTitleKey][lang];
+                } else {
+                    document.title = translations['page_title'][DEFAULT_LANG];
+                }
+
+                document.querySelectorAll('[data-translate-key]').forEach(el => {
+                    const key = el.getAttribute('data-translate-key');
+                    if (translations[key]) {
+                        el.innerHTML = translations[key][lang] || translations[key][DEFAULT_LANG] || el.innerHTML;
+                    }
+                });
+
+                // mark active language on UI
+                document.querySelectorAll('.lang-option, .lang-button[data-lang]').forEach(btn => {
+                    btn.classList.remove('active');
+                    if (btn.getAttribute('data-lang') === lang) btn.classList.add('active');
+                });
+
+                // Update current-lang display
+                const cur = document.getElementById('current-lang-display');
+                if (cur) cur.textContent = lang.toUpperCase();
+
+                // update links for github pages
+                updateNavigationLinks();
+            }
+
+            function switchLanguage(lang) {
+                localStorage.setItem('userLanguage', lang);
+                updateContentTranslations(lang);
+
+                // close menus if open
+                const langMenu = document.getElementById('lang-menu');
+                const dropdownArrow = document.getElementById('dropdown-arrow');
+                const langDropdownBtn = document.getElementById('lang-dropdown-btn');
+                const mobileMenu = document.getElementById('mobileMenu');
+                const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+
+                if (langMenu && !langMenu.classList.contains('hidden')) {
+                    langMenu.classList.add('hidden');
+                    dropdownArrow.classList.remove('rotate-180');
+                    if (langDropdownBtn) langDropdownBtn.setAttribute('aria-expanded', 'false');
+                }
+                if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                    if (mobileMenuBtn) mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                }
+            }
+
+            // --- CAROUSEL logic ---
+            let carouselInterval = null;
+            function initCarousel({ interval = 5000 } = {}) {
+                const slides = document.querySelectorAll('.carousel-slide');
+                if (!slides || slides.length === 0) return;
+                let index = 0;
+                function show(i) {
+                    slides.forEach((s, idx) => s.classList.toggle('active', idx === i));
+                }
                 show(index);
-            }, interval);
-        }
+                carouselInterval = setInterval(() => {
+                    index = (index + 1) % slides.length;
+                    show(index);
+                }, interval);
+            }
 
-        // --- DOMContentLoaded initialization ---
-        document.addEventListener('DOMContentLoaded', () => {
-            // pick saved language or default
+            // --- Initialisation ---
             const saved = localStorage.getItem('userLanguage') || DEFAULT_LANG;
             updateContentTranslations(saved);
 
-            // attach language selector handlers (desktop options and mobile buttons)
+            // attach language selector handlers
             document.querySelectorAll('.lang-option, .lang-button[data-lang]').forEach(el => {
                 el.addEventListener('click', (e) => {
                     e.preventDefault();
