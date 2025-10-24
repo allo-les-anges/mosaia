@@ -235,113 +235,127 @@
     <script>
     // --- LOGIQUE DE TRADUCTION (i18n) ---
     const translations = {
-        fr: {
-            page_title: "Mosaia Studio - Contact",
-            // Navigation
-            nav_home: "ACCUEIL", nav_portfolio: "PORTFOLIO", nav_studio: "STUDIO", nav_bespoke: "SUR-MESURE", nav_process: "PROCESSUS", nav_partners: "PARTENAIRES", nav_contact: "CONTACT",
-            // Contenu principal
-            contact_title: "DEMANDER UN DEVIS",
-            contact_subtitle: "Chaque mosaïque commence par une conversation. Remplissez le formulaire ci-dessous pour démarrer votre projet.",
-            // Formulaire
-            form_placeholder_name: "Nom complet", form_placeholder_email: "Email",
-            form_select_default: "Type de projet (Liste déroulante)",
-            form_option_residentiel: "Résidentiel", form_option_commercial: "Commercial", form_option_public: "Public (Civil & Public)", form_option_artwork: "Œuvre d'Art",
-            form_placeholder_message: "Message (Décrivez votre projet)",
-            form_button: "ENVOYER MA DEMANDE",
-            // Coordonnées
-            coords_title: "Coordonnées",
-            coords_studio: "Mosaia Studio – par Amaru Brands",
-            coords_location: "Localisation: Altea Pueblo, Espagne (Atelier & Design)",
-            // Footer
-            footer_copyright: "© MOSAIA STUDIO – PAR AMARU BRANDS",
-            footer_tagline: "L'ART DE LA MOSAÏQUE QUI ÉVEILLE L'ÉMOTION ET DURE"
-        },
-        en: {
-            page_title: "Mosaia Studio - Contact",
-            // Navigation
-            nav_home: "HOME", nav_portfolio: "PORTFOLIO", nav_studio: "STUDIO", nav_bespoke: "BESPOKE", nav_process: "PROCESS", nav_partners: "PARTNERS", nav_contact: "CONTACT",
-            // Contenu principal
-            contact_title: "REQUEST A QUOTE",
-            contact_subtitle: "Every mosaic starts with a conversation. Fill out the form below to start your project.",
-            // Formulaire
-            form_placeholder_name: "Full Name", form_placeholder_email: "Email",
-            form_select_default: "Project Type (Dropdown List)",
-            form_option_residentiel: "Residential", form_option_commercial: "Commercial", form_option_public: "Public (Civil & Public)", form_option_artwork: "Artwork",
-            form_placeholder_message: "Message (Describe your project)",
-            form_button: "SEND MY REQUEST",
-            // Coordonnées
-            coords_title: "Contact Details",
-            coords_studio: "Mosaia Studio – by Amaru Brands",
-            coords_location: "Location: Altea Pueblo, Spain (Studio & Design)",
-            // Footer
-            footer_copyright: "© MOSAIA STUDIO – BY AMARU BRANDS",
-            footer_tagline: "THE ART OF MOSAIC THAT AWAKENS EMOTION AND LASTS"
-        },
-        nl: {
-            page_title: "Mosaia Studio - Contact",
-            // Navigation
-            nav_home: "HOME", nav_portfolio: "PORTFOLIO", nav_studio: "STUDIO", nav_bespoke: "OP MAAT", nav_process: "PROCES", nav_partners: "PARTNERS", nav_contact: "CONTACT",
-            // Contenu principal
-            contact_title: "VRAAG EEN OFFERTE AAN",
-            contact_subtitle: "Elk mozaïek begint met een gesprek. Vul het onderstaande formulier in om uw project te starten.",
-            // Formulaire
-            form_placeholder_name: "Volledige naam", form_placeholder_email: "E-mail",
-            form_select_default: "Projecttype (Keuzelijst)",
-            form_option_residentiel: "Residentieel", form_option_commercial: "Commercieel", form_option_public: "Openbaar (Civiel & Openbaar)", form_option_artwork: "Kunstwerk",
-            form_placeholder_message: "Bericht (Beschrijf uw project)",
-            form_button: "VERZEND MIJN AANVRAAG",
-            // Coordonnées
-            coords_title: "Contactgegevens",
-            coords_studio: "Mosaia Studio – door Amaru Brands",
-            coords_location: "Locatie: Altea Pueblo, Spanje (Atelier & Ontwerp)",
-            // Footer
-            footer_copyright: "© MOSAIA STUDIO – DOOR AMARU BRANDS",
-            footer_tagline: "DE KUNST VAN MOZAÏEK DAT EMOTIE OPWEKT EN BLIJFT"
-        },
-        de: {
-            page_title: "Mosaia Studio - Kontakt",
-            // Navigation
-            nav_home: "STARTSEITE", nav_portfolio: "PORTFOLIO", nav_studio: "STUDIO", nav_bespoke: "MASSARBEIT", nav_process: "PROZESS", nav_partners: "PARTNER", nav_contact: "KONTAKT",
-            // Contenu principal
-            contact_title: "EINE PREISANFRAGE STELLEN",
-            contact_subtitle: "Jedes Mosaik beginnt mit einem Gespräch. Füllen Sie das folgende Formular aus, um Ihr Projekt zu starten.",
-            // Formulaire
-            form_placeholder_name: "Vollständiger Name", form_placeholder_email: "E-Mail",
-            form_select_default: "Projekttyp (Auswahlmenü)",
-            form_option_residentiel: "Wohnprojekte", form_option_commercial: "Kommerziell", form_option_public: "Öffentlich (Zivil & Öffentlich)", form_option_artwork: "Kunstwerk",
-            form_placeholder_message: "Nachricht (Beschreiben Sie Ihr Projekt)",
-            form_button: "MEINE ANFRAGE SENDEN",
-            // Coordonnées
-            coords_title: "Kontaktdaten",
-            coords_studio: "Mosaia Studio – von Amaru Brands",
-            coords_location: "Standort: Altea Pueblo, Spanien (Atelier & Design)",
-            // Footer
-            footer_copyright: "© MOSAIA STUDIO – VON AMARU BRANDS",
-            footer_tagline: "DIE KUNST DES MOSAIKS, DIE EMOTIONEN WECKT UND BESTÄNDIG IST"
-        },
-        es: {
-            page_title: "Mosaia Studio - Contacto",
-            // Navigation
-            nav_home: "INICIO", nav_portfolio: "PORTAFOLIO", nav_studio: "ESTUDIO", nav_bespoke: "A MEDIDA", nav_process: "PROCESO", nav_partners: "SOCIOS", nav_contact: "CONTACTO",
-            // Contenu principal
-            contact_title: "SOLICITAR UN PRESUPUESTO",
-            contact_subtitle: "Cada mosaico comienza con una conversación. Rellene el siguiente formulario para comenzar su proyecto.",
-            // Formulaire
-            form_placeholder_name: "Nombre completo", form_placeholder_email: "Correo electrónico",
-            form_select_default: "Tipo de proyecto (Lista desplegable)",
-            form_option_residentiel: "Residencial", form_option_commercial: "Comercial", form_option_public: "Público (Civil y Público)", form_option_artwork: "Obra de Arte",
-            form_placeholder_message: "Mensaje (Describa su proyecto)",
-            form_button: "ENVIAR MI SOLICITUD",
-            // Coordonnées
-            coords_title: "Coordenadas",
-            coords_studio: "Mosaia Studio – por Amaru Brands",
-            coords_location: "Ubicación: Altea Pueblo, España (Taller y Diseño)",
-            // Footer
-            footer_copyright: "© MOSAIA STUDIO – POR AMARU BRANDS",
-            footer_tagline: "EL ARTE DEL MOSAICO QUE DESPIERTA LA EMOCIÓN Y PERDURA"
-        }
-    };
-
+    fr: {
+        page_title: "Mosaia Studio - Contact",
+        nav_home: "ACCUEIL", nav_portfolio: "PORTFOLIO", nav_studio: "STUDIO", 
+        nav_bespoke: "SUR-MESURE", nav_process: "PROCESSUS", nav_partners: "PARTENAIRES", 
+        nav_contact: "CONTACT",
+        contact_title: "DEMANDER UN DEVIS",
+        contact_subtitle: "Chaque mosaïque commence par une conversation. Remplissez le formulaire ci-dessous pour démarrer votre projet.",
+        form_placeholder_name: "Nom complet", 
+        form_placeholder_email: "Email",
+        form_select_default: "Type de projet (Liste déroulante)",
+        form_option_residentiel: "Résidentiel", 
+        form_option_commercial: "Commercial", 
+        form_option_public: "Public (Civil & Public)", 
+        form_option_artwork: "Œuvre d'Art",
+        form_placeholder_message: "Message (Décrivez votre projet)",
+        form_button: "ENVOYER MA DEMANDE",
+        form_image_label: "📎 Image du projet (Optionnel)",
+        form_image_help: "Formats acceptés: JPG, PNG, WEBP - Taille max: 5MB",
+        coords_title: "Coordonnées",
+        coords_studio: "Mosaia Studio – par Amaru Brands",
+        coords_location: "Localisation: Altea Pueblo, Espagne (Atelier & Design)",
+        footer_copyright: "© MOSAIA STUDIO – PAR AMARU BRANDS",
+        footer_tagline: "L'ART DE LA MOSAÏQUE QUI ÉVEILLE L'ÉMOTION ET DURE"
+    },
+    en: {
+        page_title: "Mosaia Studio - Contact",
+        nav_home: "HOME", nav_portfolio: "PORTFOLIO", nav_studio: "STUDIO", 
+        nav_bespoke: "BESPOKE", nav_process: "PROCESS", nav_partners: "PARTNERS", 
+        nav_contact: "CONTACT",
+        contact_title: "REQUEST A QUOTE",
+        contact_subtitle: "Every mosaic starts with a conversation. Fill out the form below to start your project.",
+        form_placeholder_name: "Full Name", 
+        form_placeholder_email: "Email",
+        form_select_default: "Project Type (Dropdown List)",
+        form_option_residentiel: "Residential", 
+        form_option_commercial: "Commercial", 
+        form_option_public: "Public (Civil & Public)", 
+        form_option_artwork: "Artwork",
+        form_placeholder_message: "Message (Describe your project)",
+        form_button: "SEND MY REQUEST",
+        form_image_label: "📎 Project Image (Optional)",
+        form_image_help: "Accepted formats: JPG, PNG, WEBP - Max size: 5MB",
+        coords_title: "Contact Details",
+        coords_studio: "Mosaia Studio – by Amaru Brands",
+        coords_location: "Location: Altea Pueblo, Spain (Studio & Design)",
+        footer_copyright: "© MOSAIA STUDIO – BY AMARU BRANDS",
+        footer_tagline: "THE ART OF MOSAIC THAT AWAKENS EMOTION AND LASTS"
+    },
+    nl: {
+        page_title: "Mosaia Studio - Contact",
+        nav_home: "HOME", nav_portfolio: "PORTFOLIO", nav_studio: "STUDIO", 
+        nav_bespoke: "OP MAAT", nav_process: "PROCES", nav_partners: "PARTNERS", 
+        nav_contact: "CONTACT",
+        contact_title: "VRAAG EEN OFFERTE AAN",
+        contact_subtitle: "Elk mozaïek begint met een gesprek. Vul het onderstaande formulier in om uw project te starten.",
+        form_placeholder_name: "Volledige naam", 
+        form_placeholder_email: "E-mail",
+        form_select_default: "Projecttype (Keuzelijst)",
+        form_option_residentiel: "Residentieel", 
+        form_option_commercial: "Commercieel", 
+        form_option_public: "Openbaar (Civiel & Openbaar)", 
+        form_option_artwork: "Kunstwerk",
+        form_placeholder_message: "Bericht (Beschrijf uw project)",
+        form_button: "VERZEND MIJN AANVRAAG",
+        form_image_label: "📎 Projectafbeelding (Optioneel)",
+        form_image_help: "Geaccepteerde formaten: JPG, PNG, WEBP - Maximale grootte: 5MB",
+        coords_title: "Contactgegevens",
+        coords_studio: "Mosaia Studio – door Amaru Brands",
+        coords_location: "Locatie: Altea Pueblo, Spanje (Atelier & Ontwerp)",
+        footer_copyright: "© MOSAIA STUDIO – DOOR AMARU BRANDS",
+        footer_tagline: "DE KUNST VAN MOZAÏEK DAT EMOTIE OPWEKT EN BLIJFT"
+    },
+    de: {
+        page_title: "Mosaia Studio - Kontakt",
+        nav_home: "STARTSEITE", nav_portfolio: "PORTFOLIO", nav_studio: "STUDIO", 
+        nav_bespoke: "MASSARBEIT", nav_process: "PROZESS", nav_partners: "PARTNER", 
+        nav_contact: "KONTAKT",
+        contact_title: "EINE PREISANFRAGE STELLEN",
+        contact_subtitle: "Jedes Mosaik beginnt mit einem Gespräch. Füllen Sie das folgende Formular aus, um Ihr Projekt zu starten.",
+        form_placeholder_name: "Vollständiger Name", 
+        form_placeholder_email: "E-Mail",
+        form_select_default: "Projekttyp (Auswahlmenü)",
+        form_option_residentiel: "Wohnprojekte", 
+        form_option_commercial: "Kommerziell", 
+        form_option_public: "Öffentlich (Zivil & Öffentlich)", 
+        form_option_artwork: "Kunstwerk",
+        form_placeholder_message: "Nachricht (Beschreiben Sie Ihr Projekt)",
+        form_button: "MEINE ANFRAGE SENDEN",
+        form_image_label: "📎 Projektbild (Optional)",
+        form_image_help: "Akzeptierte Formate: JPG, PNG, WEBP - Maximale Größe: 5MB",
+        coords_title: "Kontaktdaten",
+        coords_studio: "Mosaia Studio – von Amaru Brands",
+        coords_location: "Standort: Altea Pueblo, Spanien (Atelier & Design)",
+        footer_copyright: "© MOSAIA STUDIO – VON AMARU BRANDS",
+        footer_tagline: "DIE KUNST DES MOSAIKS, DIE EMOTIONEN WECKT UND BESTÄNDIG IST"
+    },
+    es: {
+        page_title: "Mosaia Studio - Contacto",
+        nav_home: "INICIO", nav_portfolio: "PORTAFOLIO", nav_studio: "ESTUDIO", 
+        nav_bespoke: "A MEDIDA", nav_process: "PROCESO", nav_partners: "SOCIOS", 
+        nav_contact: "CONTACTO",
+        contact_title: "SOLICITAR UN PRESUPUESTO",
+        contact_subtitle: "Cada mosaico comienza con una conversación. Rellene el siguiente formulario para comenzar su proyecto.",
+        form_placeholder_name: "Nombre completo", 
+        form_placeholder_email: "Correo electrónico",
+        form_select_default: "Tipo de proyecto (Lista desplegable)",
+        form_option_residentiel: "Residencial", 
+        form_option_commercial: "Comercial", 
+        form_option_public: "Público (Civil y Público)", 
+        form_option_artwork: "Obra de Arte",
+        form_placeholder_message: "Mensaje (Describa su proyecto)",
+        form_button: "ENVIAR MI SOLICITUD",
+        form_image_label: "📎 Imagen del proyecto (Opcional)",
+        form_image_help: "Formatos aceptados: JPG, PNG, WEBP - Tamaño máximo: 5MB",
+        coords_title: "Coordenadas",
+        coords_studio: "Mosaia Studio – por Amaru Brands",
+        coords_location: "Ubicación: Altea Pueblo, España (Taller y Diseño)",
+        footer_copyright: "© MOSAIA STUDIO – POR AMARU BRANDS",
+        footer_tagline: "EL ARTE DEL MOSAICO QUE DESPIERTA LA EMOCIÓN Y PERDURA"
+    }
+};
         // Dans chaque langue (fr, en, nl, de, es), ajoutez :
 form_image_label: {
     fr: "📎 Image du projet (Optionnel)",
