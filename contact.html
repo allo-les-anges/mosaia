@@ -460,9 +460,23 @@ function initializeContactForm() {
                 email: form.querySelector('input[name="email"]').value,
                 project_type: form.querySelector('select[name="project_type"]').value,
                 message: form.querySelector('textarea[name="message"]').value,
-                imageUrl: imageUrl, // ⭐ URL de l'image uploadée
+                imageUrl: imageUrl,
                 formType: 'Devis',
                 callback: 'handleContactResponse'
+            };
+
+            // ✅ CORRECT : Créer params d'abord
+            const params = new URLSearchParams(data);
+
+            // ✅ MAINTENANT les logs fonctionnent
+            console.log('Form data to send:', data);
+            console.log('Full URL:', `${contactAppsScriptURL}?${params.toString()}`);
+
+            const script = document.createElement('script');
+            script.src = `${contactAppsScriptURL}?${params.toString()}`;
+            
+            window.handleContactResponse = function(response) {
+                console.log('Contact response received:', response);
             };
 
             // ⭐⭐ AJOUTEZ LES LOGS ICI ⭐⭐
