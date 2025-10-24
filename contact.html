@@ -465,26 +465,13 @@ function initializeContactForm() {
                 callback: 'handleContactResponse'
             };
 
-            // ✅ CORRECT : Créer params d'abord
+            // ✅ UNE SEULE DÉCLARATION de params
             const params = new URLSearchParams(data);
 
-            // ✅ MAINTENANT les logs fonctionnent
+            // ✅ LOGS DE DÉBOGAGE
             console.log('Form data to send:', data);
             console.log('Full URL:', `${contactAppsScriptURL}?${params.toString()}`);
 
-            const script = document.createElement('script');
-            script.src = `${contactAppsScriptURL}?${params.toString()}`;
-            
-            window.handleContactResponse = function(response) {
-                console.log('Contact response received:', response);
-            };
-
-            // ⭐⭐ AJOUTEZ LES LOGS ICI ⭐⭐
-            console.log('Form data to send:', data);
-            console.log('Full URL:', `${contactAppsScriptURL}?${params.toString()}`);
-
-            // Envoi JSONP classique
-            const params = new URLSearchParams(data);
             const script = document.createElement('script');
             script.src = `${contactAppsScriptURL}?${params.toString()}`;
             
